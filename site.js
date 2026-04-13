@@ -114,6 +114,26 @@ function highlightCodeBlocks() {
   });
 }
 
+function renderHeroImage(article) {
+  const wrapper = document.getElementById("hero-media");
+  const image = document.getElementById("hero-image");
+  if (!wrapper || !image) {
+    return;
+  }
+
+  const hero = (typeof HERO_IMAGES !== "undefined" && HERO_IMAGES[article.file]) || null;
+  if (!hero) {
+    wrapper.hidden = true;
+    image.removeAttribute("src");
+    image.alt = "";
+    return;
+  }
+
+  image.src = hero.src;
+  image.alt = hero.alt || article.title;
+  wrapper.hidden = false;
+}
+
 function renderNavEntries(navNode, entries) {
   if (!navNode) {
     return;
@@ -173,6 +193,7 @@ async function initReaderPage() {
   const article = ARTICLES[index];
   titleNode.textContent = article.title;
   metaNode.textContent = `Episode ${String(articleNumber(article)).padStart(2, "0")} of ${ARTICLES.length}`;
+  renderHeroImage(article);
   renderReaderNav(index);
 
   try {

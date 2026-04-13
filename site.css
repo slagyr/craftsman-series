@@ -374,6 +374,21 @@ pre {
   font: 500 0.95rem/1.4 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
+.hero-media {
+  margin: 1.25rem 0 0;
+}
+
+.hero-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  background: linear-gradient(180deg, #e9dcc7, #f8f2e8);
+}
+
 .markdown-body {
   font-size: 1.08rem;
 }
