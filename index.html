@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The Craftsman Series</title>
+    <meta name="description" content="The Craftsman series by Robert C. Martin, presented as a browsable GitHub Pages site.">
+    <link rel="stylesheet" href="site.css">
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="hero">
+        <div class="hero-card">
+          <p class="eyebrow">Robert C. Martin • 2002-2010</p>
+          <h1>The Craftsman Series</h1>
+          <p class="lede">A long-form software engineering narrative by Robert C. Martin (Uncle Bob), now organized as a browsable static site. The series follows an apprentice programmer through refactoring, testing, design pressure, team dynamics, architecture, and later Clean Code essays.</p>
+          <div class="hero-actions">
+            <a class="button" href="#articles">Browse Episodes</a>
+            <a class="button-secondary" href="README.md">Read Repository Overview</a>
+            <a class="button-secondary" href="archive/">Open Archive</a>
+          </div>
+        </div>
+      </header>
+
+      <main class="layout">
+        <section class="summary-grid">
+          <article class="panel">
+            <h2>What This Is</h2>
+            <p>The series is written as a continuing story rather than a conventional textbook. It mixes narrative, code listings, refactoring steps, acceptance tests, brown-bag discussions, and later craft essays.</p>
+          </article>
+          <article class="panel">
+            <h2>What Survived</h2>
+            <p>The articles are normalized Markdown reading copies converted from the original documents. Where possible, diagrams and local code archives are linked directly inside the episodes.</p>
+          </article>
+          <article class="panel">
+            <h2>Reading Order</h2>
+            <p>The intended path is numerical order, from episode 1 through episode 63. The arcs below group the story into its major phases to make browsing easier.</p>
+          </article>
+        </section>
+
+        <section id="articles" class="panel">
+          <h2>Episodes</h2>
+          <input id="search" class="search-box" type="search" placeholder="Filter by title, arc, or episode number">
+          <div id="article-groups" class="section-list"></div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <p>This site serves the Markdown edition directly from the repository. If GitHub Pages is disabled later, the source files remain unchanged in the repo.</p>
+      </footer>
+    </div>
+
+    <script src="articles.js"></script>
+    <script>
+      const arcs = [
+        { key: "foundations", label: "Episodes 1-10", description: "Early exercises in primes, factorization, socket services, and the habit of improving code under feedback.", test: (n) => n >= 1 && n <= 10 },
+        { key: "smcremote", label: "Episodes 11-23", description: "The SMCRemote storyline, where design pressure grows and architecture starts to matter much more.", test: (n) => n >= 11 && n <= 23 },
+        { key: "dosage", label: "Episodes 24-43", description: "The Dosage Tracking arc, with acceptance tests, domain pressure, and larger-scale cleanup work.", test: (n) => n >= 24 && n <= 43 },
+        { key: "brown-bags", label: "Episodes 44-51", description: "Brown-bag sessions on generics, state machines, abstract factories, Ruby, and visitor-style design tradeoffs.", test: (n) => n >= 44 && n <= 51 },
+        { key: "clean-code", label: "Episodes 52-63", description: "Later Clean Code and craft essays, closing with broader reflections on design and software development.", test: (n) => n >= 52 && n <= 63 },
+      ];
+
+      const articleGroups = document.getElementById("article-groups");
+      const searchInput = document.getElementById("search");
+
+      function renderArticles(filterText) {
+        const needle = filterText.trim().toLowerCase();
+        articleGroups.innerHTML = "";
+
+        arcs.forEach((arc) => {
+          const matching = ARTICLES.filter((article) => {
+            const number = articleNumber(article);
+            if (!arc.test(number)) {
+              return false;
+            }
+
+            if (!needle) {
+              return true;
+            }
+
+            const haystack = `${article.title} ${article.file} ${arc.label} ${arc.description}`.toLowerCase();
+            return haystack.includes(needle);
+          });
+
+          if (!matching.length) {
+            return;
+          }
+
+          const section = document.createElement("section");
+          section.className = "arc";
+
+          const heading = document.createElement("h3");
+          heading.textContent = arc.label;
+          section.appendChild(heading);
+
+          const description = document.createElement("p");
+          description.textContent = arc.description;
+          section.appendChild(description);
+
+          const list = document.createElement("ul");
+          list.className = "article-list";
+
+          matching.forEach((article) => {
+            const number = articleNumber(article);
+            const item = document.createElement("li");
+            const link = document.createElement("a");
+            link.className = "article-link";
+            link.href = articleHref(article.file);
+
+            const numberTag = document.createElement("span");
+            numberTag.className = "article-num";
+            numberTag.textContent = String(number).padStart(2, "0");
+
+            const title = document.createElement("span");
+            title.className = "article-title";
+            title.textContent = article.title;
+
+            link.appendChild(numberTag);
+            link.appendChild(title);
+            item.appendChild(link);
+            list.appendChild(item);
+          });
+
+          section.appendChild(list);
+          articleGroups.appendChild(section);
+        });
+      }
+
+      searchInput.addEventListener("input", (event) => renderArticles(event.target.value));
+      renderArticles("");
+    </script>
+  </body>
+</html>
