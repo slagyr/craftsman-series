@@ -378,6 +378,10 @@ pre {
   margin: 1.25rem 0 0;
 }
 
+.hero-media + .reader-nav {
+  margin-top: 1.25rem;
+}
+
 .hero-image {
   display: block;
   width: 100%;

@@ -11,6 +11,7 @@ class XaiImageGenerator
   MODEL = 'grok-imagine-image'.freeze
   OUTPUT_DIR = File.expand_path('files/heroes', __dir__)
   CHARACTER_SHEET_BASENAME = 'characters-cast'.freeze
+  MAX_REFERENCES = 3
 
   GLOBAL_STYLE = <<~PROMPT.strip
     Illustrated mid-century retro-futurist pulp science-fiction poster art inspired by the bold theatrical energy of classic 1950s space adventure posters, warm painterly brushwork, dramatic composition, heroic silhouettes, luminous machinery, recognizable recurring characters, humane expressions, believable body language, brass-and-amber palette with teal and crimson accents, no text, no caption, no logo, no watermark.
@@ -27,6 +28,7 @@ class XaiImageGenerator
     Jean: sharp senior engineer in her thirties, poised, dark curly hair, intense analytical gaze, polished utilitarian workwear.
     Jasmine: confident engineer in her late twenties, warm but formidable expression, black hair, precise posture, practical lab attire.
     Avery: thoughtful engineer in his thirties, composed face, short dark hair, observant demeanor, understated work clothes.
+    Jasper: exuberant journeyman programmer in his late twenties, wide grin, bright eyes, restless posture, casual utilitarian workwear, eager but patronizing energy.
     Carole: determined project lead in her forties, practical haircut, focused expression, strong presence, clean utilitarian wardrobe.
     Adelaide: bright, ambitious engineer in her late twenties, expressive face, neat hair, energetic and polished presentation.
 
@@ -64,6 +66,11 @@ class XaiImageGenerator
       file: 'avery-ref',
       description: 'thoughtful engineer in his thirties, composed face, short dark hair, observant demeanor, understated work clothes',
     },
+    jasper: {
+      label: 'Jasper',
+      file: 'jasper-ref',
+      description: 'exuberant journeyman programmer in his late twenties, wide grin, bright eyes, restless posture, casual utilitarian workwear, eager but patronizing energy',
+    },
     carole: {
       label: 'Carole',
       file: 'carole-ref',
@@ -76,7 +83,26 @@ class XaiImageGenerator
     },
   }.freeze
 
-  EPISODES = {
+  NAME_PATTERNS = {
+    alphonse: /\bAlphonse\b/i,
+    jerry: /\bJerry\b/i,
+    mr_c: /Mr\.\s*C\b/i,
+    jean: /\bJean\b/i,
+    jasmine: /\bJasmine\b/i,
+    avery: /\bAvery\b/i,
+    jasper: /\bJasper\b/i,
+    carole: /\bCarole\b/i,
+    adelaide: /\bAdelaide\b/i,
+  }.freeze
+
+  ARC_DEFAULTS = {
+    (1..23) => %i[alphonse jerry],
+    (24..43) => %i[alphonse jerry carole],
+    (44..51) => %i[adelaide jasmine avery],
+    (52..63) => %i[mr_c alphonse jerry],
+  }.freeze
+
+  EPISODE_OVERRIDES = {
     '01' => {
       file: 'The Craftsman 01 primes.md',
       alt: 'Alphonse nervously presents his first prime-number program to Jerry in a futuristic software lab.',
@@ -116,21 +142,29 @@ class XaiImageGenerator
     FileUtils.mkdir_p(OUTPUT_DIR)
   end
 
-  def generate_pilot!
+  def generate_all!
     ensure_character_sheet!
     references = ensure_character_references!
     manifest = {}
 
-    EPISODES.each do |episode_number, episode|
-      puts "Generating episode #{episode_number} hero image..."
-      reference_paths = episode.fetch(:references).map { |key| references.fetch(key) }
-      image_bytes = edit_from_references(episode[:prompt], reference_paths)
-      path = write_detected_image(File.join(OUTPUT_DIR, "#{episode_number}-hero"), image_bytes)
+    article_files.each do |file|
+      episode = episode_definition(file)
+      hero_path = existing_hero_path(episode[:number])
+
+      if hero_path
+        puts "Keeping existing episode #{episode[:number]} hero image..."
+      else
+        puts "Generating episode #{episode[:number]} hero image..."
+        reference_paths = episode.fetch(:references).map { |key| references.fetch(key) }
+        image_bytes = edit_from_references(episode[:prompt], reference_paths)
+        hero_path = write_detected_image(File.join(OUTPUT_DIR, "#{episode[:number]}-hero"), image_bytes)
+        puts "Saved #{hero_path}"
+      end
+
       manifest[episode[:file]] = {
-        src: relative_path(path),
+        src: relative_path(hero_path),
         alt: episode[:alt],
       }
-      puts "Saved #{path}"
     end
 
     write_hero_manifest(manifest)
@@ -139,6 +173,9 @@ class XaiImageGenerator
   private
 
   def ensure_character_sheet!
+    existing = Dir[File.join(OUTPUT_DIR, "#{CHARACTER_SHEET_BASENAME}.*")].first
+    return existing if existing
+
     puts 'Generating main character sheet...'
     image_bytes = generate_image(CHARACTER_SHEET_PROMPT)
     path = write_detected_image(File.join(OUTPUT_DIR, CHARACTER_SHEET_BASENAME), image_bytes)
@@ -148,6 +185,12 @@ class XaiImageGenerator
 
   def ensure_character_references!
     CHARACTERS.each_with_object({}) do |(key, details), refs|
+      existing = Dir[File.join(OUTPUT_DIR, "#{details[:file]}.*")].first
+      if existing
+        refs[key] = existing
+        next
+      end
+
       puts "Generating #{details[:label]} reference portrait..."
       prompt = <<~PROMPT.strip
         #{GLOBAL_STYLE}
@@ -160,6 +203,132 @@ class XaiImageGenerator
       refs[key] = path
       puts "Saved #{path}"
     end
+  end
+
+  def article_files
+    Dir[File.join(__dir__, 'The Craftsman *.md')]
+      .reject { |path| File.basename(path) == 'README.md' }
+      .sort_by { |path| episode_number_from_file(File.basename(path)) }
+  end
+
+  def episode_definition(path)
+    file = File.basename(path)
+    number = format('%02d', episode_number_from_file(file))
+    override = EPISODE_OVERRIDES[number]
+    return override.merge(number: number) if override
+
+    text = File.read(path, encoding: 'UTF-8')
+    title = article_title(text, file)
+    notes = extract_story_notes(text)
+    references = select_references(text, episode_number_from_file(file))
+
+    {
+      file: file,
+      number: number,
+      references: references,
+      alt: build_alt_text(title, references),
+      prompt: build_prompt(title, notes, references, episode_number_from_file(file)),
+    }
+  end
+
+  def episode_number_from_file(file)
+    file[/The Craftsman\s+(\d+)/, 1].to_i
+  end
+
+  def article_title(text, file)
+    heading = text.lines.find { |line| line.start_with?('# ') }
+    (heading || file).sub(/^# /, '').strip
+  end
+
+  def extract_story_notes(text)
+    paragraphs = text.split(/\n{2,}/).map { |paragraph| paragraph.gsub(/\s+/, ' ').strip }
+
+    selected = paragraphs.reject do |paragraph|
+      paragraph.empty? ||
+        paragraph.start_with?('#', '##', '```') ||
+        paragraph == 'Robert C. Martin' ||
+        paragraph.match?(/^\d{1,2}\s+[A-Za-z]+\s+\d{4}$/) ||
+        paragraph.start_with?('*This chapter is derived') ||
+        paragraph.start_with?('Listing ') ||
+        paragraph.match?(/^[A-Za-z0-9_.-]+\.(java|rb|cpp|c|cs)/) ||
+        paragraph.include?('The code for this article can be located at:')
+    end
+
+    selected.first(3).join(' ')
+  end
+
+  def select_references(text, episode_number)
+    counts = NAME_PATTERNS.transform_values { |pattern| text.scan(pattern).length }
+    explicit = counts.select { |_, count| count.positive? }
+                     .sort_by { |key, count| [-count, CHARACTERS.keys.index(key) || 999] }
+                     .map(&:first)
+
+    selected = []
+    defaults = defaults_for_episode(episode_number)
+    selected.concat(defaults.first(1))
+    selected.concat(explicit)
+    selected.concat(defaults)
+
+    selected.uniq.first(MAX_REFERENCES)
+  end
+
+  def defaults_for_episode(episode_number)
+    ARC_DEFAULTS.each do |range, defaults|
+      return defaults if range.cover?(episode_number)
+    end
+
+    %i[alphonse jerry]
+  end
+
+  def build_alt_text(title, references)
+    labels = references.map { |key| CHARACTERS.fetch(key).fetch(:label) }
+    if labels.empty?
+      "Hero illustration for #{title}."
+    else
+      "Hero illustration for #{title}, featuring #{labels.join(', ')}."
+    end
+  end
+
+  def build_prompt(title, notes, references, episode_number)
+    reference_instruction = references.each_with_index.map do |key, index|
+      "Use <IMAGE_#{index}> as the exact face and build reference for #{CHARACTERS.fetch(key).fetch(:label)}."
+    end.join(' ')
+
+    cast_instruction = if references.length == 1
+      "Show the referenced character prominently."
+    else
+      "Show only the referenced characters, with the most emotionally important one or two most prominent."
+    end
+
+    <<~PROMPT.strip
+      #{GLOBAL_STYLE}
+
+      #{reference_instruction}
+      Create a single 16:9 hero illustration for the episode titled "#{title}".
+      Story notes: #{notes}
+      #{arc_instruction(episode_number)}
+      #{cast_instruction}
+      Keep the scene cinematic, emotionally legible, and grounded in software craftsmanship rather than generic fantasy. Preserve the reference identities exactly. No text, no logos, no captions, and no readable UI labels.
+    PROMPT
+  end
+
+  def arc_instruction(episode_number)
+    case episode_number
+    when 1..10
+      'Emphasize apprenticeship, critique, and the excitement of early programming lessons in a compact futuristic lab.'
+    when 11..23
+      'Emphasize collaborative engineering work around networked tools, remote systems, and growing design pressure aboard a retro-futurist spacecraft workroom.'
+    when 24..43
+      'Emphasize team-based product work, acceptance tests, and interpersonal strain in a busy spacecraft engineering department.'
+    when 44..51
+      'Frame the scene as an intense brown-bag discussion or technical demonstration with bold poster-like composition and visible group dynamics.'
+    else
+      'Frame the scene as a clean, memorable visual metaphor or discussion scene around software craftsmanship and clean code principles while keeping the recurring cast recognizable.'
+    end
+  end
+
+  def existing_hero_path(number)
+    Dir[File.join(OUTPUT_DIR, "#{number}-hero.*")].first
   end
 
   def generate_image(prompt, aspect_ratio: '16:9')
@@ -270,4 +439,4 @@ class XaiImageGenerator
   end
 end
 
-XaiImageGenerator.new.generate_pilot!
+XaiImageGenerator.new.generate_all!
