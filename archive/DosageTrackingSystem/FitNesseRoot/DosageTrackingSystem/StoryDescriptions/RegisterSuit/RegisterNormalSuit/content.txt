@@ -1,0 +1,26 @@
+!3 Normal suit registration.
+
+''We assume that there are no suits in inventory.''
+!|Suit inventory parameters|
+|Number of suits?|
+|0|
+
+''We register suit 314159.''
+!|Suit Registration Request|
+|bar code|
+|314159|
+
+''DTrack sends the registration confirmation to Manufacturing.''
+!|Message sent to manufacturing|
+|Suit registration approval request?|message argument?|message sender?    |
+|true                               |314159           |Outside Maintenance|
+
+''Manufacturing accepts the confirmation.''
+!|Message received from manufacturing|
+|message id|message argument|message sender|message recipient|
+|Suit Registration Accepted|314159|Manufacturing|Outside Maintenance|
+
+''And now the suit is in inventory, and is scheduled for immediate inspection''
+!|Suits in inventory|
+|bar code?|next inspection date?|
+|314159|2/21/2002|

@@ -1,0 +1,869 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>The Craftsman</title>
+  <meta name="Author" content="Robert C. Martin">
+  <meta name="LastAuthor" content="Robert C. Martin">
+  <meta name="Company" content="Object Mentor Inc.">
+  <meta name="CreationTime" content="2002-07-24T07:47:00Z">
+  <meta name="ModificationTime" content="2002-07-24T07:47:00Z">
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.4">
+  <style type="text/css">
+    p.p1 {margin: 34.0px 0.0px 34.0px 0.0px; text-align: right; line-height: 22.0px; font: 24.0px 'Times New Roman'; color: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: right; font: 10.0px 'Times New Roman'; color: #000000}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: right; font: 10.0px 'Times New Roman'; color: #000000; min-height: 11.0px}
+    p.p4 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 12.0px 'Times New Roman'; color: #000000; min-height: 15.0px}
+    p.p5 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 10.0px 'Times New Roman'; color: #000000}
+    p.p6 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 10.0px 'Times New Roman'; color: #000000; min-height: 11.0px}
+    p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #000000}
+    p.p8 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 9.0px 'Courier New'; color: #000000}
+    p.p9 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; font: 10.0px 'Times New Roman'; color: #000000; min-height: 11.0px}
+    p.p10 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #000000; min-height: 10.0px}
+    span.s1 {font: 10.0px 'Times New Roman'}
+    span.s2 {font: 9.0px 'Courier New'}
+    table.t1 {border-collapse: collapse}
+    td.td1 {min-width: 442.8px; border-style: solid; border-width: 1.0px 1.0px 1.0px 1.0px; border-color: #bfbfbf #bfbfbf #bfbfbf #bfbfbf; padding: 0.0px 5.0px 0.0px 5.0px}
+  </style>
+</head>
+<body>
+<p class="p1"><b>The Craftsman: 5</b></p>
+<p class="p2">Robert C. Martin</p>
+<p class="p2">24 July 2002</p>
+<p class="p3"><i></i><br></p>
+<p class="p4"><br></p>
+<p class="p5">Jerry had asked me to write a program that generated prime factors.<span class="Apple-converted-space">  </span>I wrote it, and it worked just fine.<span class="Apple-converted-space">  </span>Then Jerry just deleted it.<span class="Apple-converted-space">  </span>I got a bit angry, but Jerry just said: “Don’t get vested in your code.”</p>
+<p class="p5">I didn’t like this; but I didn’t have an argument to use against him.<span class="Apple-converted-space">  </span>I just sat there in silent disagreement.</p>
+<p class="p5">“OK”, he said, “Lets start over.<span class="Apple-converted-space">  </span>The way we work around here is to write our unit tests <i>first</i>. “</p>
+<p class="p5">This was patently absurd.<span class="Apple-converted-space">  </span>I reacted with an intelligent: “Huh?”</p>
+<p class="p5">“Let me show you.” he said.<span class="Apple-converted-space">  </span>“Our task is to create an array of prime factors from a single integer.<span class="Apple-converted-space">  </span>What is the simplest test case you can think of?”</p>
+<p class="p5">“The first valid case is 2. And it should return an array with just a single 2 in it.”</p>
+<p class="p5">“Right.” he said.<span class="Apple-converted-space">  </span>And he wrote the following unit test.</p>
+<p class="p6"><br></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>public void testTwo() throws Exception {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>int factors[] = PrimeFactorizer.factor(2);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>assertEquals(1, factors.length);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>assertEquals(2, factors[0]);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p6"><br></p>
+<p class="p5">Then he wrote the simplest code that would allow the test case to compile.</p>
+<p class="p6"><br></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7">public class PrimeFactorizer {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>public static int[] factor(int multiple) {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>return new int[0];</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7">}</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p6"><br></p>
+<p class="p8"><span class="s1">He ran the test, and it failed saying: “</span>testTwo(TestPrimeFactors): expected: &lt;1&gt; but was: &lt;0&gt;<span class="s1">”. <span class="Apple-converted-space"> </span></span></p>
+<p class="p5">Now he looked at me and he said: “Do the simplest thing possible to make that test case pass.”</p>
+<p class="p5">This was absurdity upon absurdity.<span class="Apple-converted-space">  </span>“What do you mean?” I said.<span class="Apple-converted-space">  </span>“The simplest thing would be to return an array with a 2 in it.”</p>
+<p class="p5">With a straight face, he said, “OK, do that.”</p>
+<p class="p5">“But that’s silly.” I said.<span class="Apple-converted-space">  </span>“It’s the wrong code.<span class="Apple-converted-space">  </span>The real solution isn’t going to just return a 2.”</p>
+<p class="p5">“Yes, that’s true.” he said, “But just humor me for a bit.”</p>
+<p class="p5">I sighed, rolled my eyes, huffed and puffed a bit, and then wrote:</p>
+<p class="p6"><br></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>public static int[] factor(int multiple) {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>return new int<b>[] {2}</b>;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p5">I ran the tests, and – of course – they passed.</p>
+<p class="p5">“What did that prove?” I asked.</p>
+<p class="p5">“It proved that you could write a function that finds the prime factors of two.” He said.<span class="Apple-converted-space">  </span>“It also proves that the test passes when the function responds correctly to a two.”</p>
+<p class="p5">I rolled my eyes again.<span class="Apple-converted-space">  </span>This was beneath my intelligence.<span class="Apple-converted-space">  </span>I thought being an apprentice here was supposed to <i>teach</i> me something. <span class="Apple-converted-space"> </span></p>
+<p class="p5">“Now, what’s the simplest test case we can add to this?” he asked me.</p>
+<p class="p5">I couldn’t help myself.<span class="Apple-converted-space">  </span>I dripped with sarcasm as I said: “Gosh, Jerry, maybe we should try a three.”</p>
+<p class="p5">And though I expected it, I was also incredulous.<span class="Apple-converted-space">  </span>He actually wrote the test case for three:</p>
+<p class="p6"><br></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>public void testThree() throws Exception {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>int factors[] = PrimeFactorizer.factor(3);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>assertEquals(1, factors.length);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>assertEquals(3, factors[0]);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p6"><br></p>
+<p class="p8"><span class="s1">Running it produced the expected failure: “</span>testThree(TestPrimeFactors): expected: &lt;3&gt; but was: &lt;2&gt;<span class="s1">”. <span class="Apple-converted-space"> </span></span></p>
+<p class="p5">“OK, Alphonse, do the simplest thing that will make this test case pass.”</p>
+<p class="p5">Impatiently, I took the keyboard and typed the following:</p>
+<p class="p6"><br></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>public static int[] factor(int multiple) {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span><b>if (multiple == 2) </b>return new int[] {2};</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span><b>else return new int[] {3};</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p6"><br></p>
+<p class="p5">I ran the tests, and they passed.</p>
+<p class="p5">Jerry looked at me with an odd kind of smile.<span class="Apple-converted-space">  </span>He said: “OK, that passes the tests.<span class="Apple-converted-space">  </span>However, it’s not very bright it is?”</p>
+<p class="p5">He’s the one who started this nonsense and now he’s asking <i>me</i> if this is <i>bright</i>?<span class="Apple-converted-space">  </span>“I think this whole exercise is pretty dim.” I said.</p>
+<p class="p5">He ignored me and continued. “Every time you add a new test case, you have to make it pass by making the code more general. <span class="Apple-converted-space">  </span>Now go back and make the simplest change that is more general than your first solution.”</p>
+<p class="p5">I thought about this for a minute.<span class="Apple-converted-space">  </span>At last Jerry had asked me something that might require a few brain cells.<span class="Apple-converted-space">  </span>Yes, there was a more general solution.<span class="Apple-converted-space">  </span>I took the keyboard and typed:</p>
+<p class="p6"><br></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>public static int[] factor(int multiple) {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>return new int[] {<b>multiple</b>};</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p6"><br></p>
+<p class="p5">The tests passed, and Jerry smiled.<span class="Apple-converted-space">  </span>But I still couldn’t see how this was getting us any closer to generating prime factors.<span class="Apple-converted-space">  </span>As far as I could tell, this was a ridiculous waste of time.<span class="Apple-converted-space">  </span>Still, I wasn’t surprised when Jerry asked me: “Now what’s the simplest test case we can add?”</p>
+<p class="p5">“Clearly that would be the case for four.” I said impatiently.<span class="Apple-converted-space">  </span>And I grabbed the keyboard and wrote:</p>
+<p class="p9"><br></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>public void testFour() throws Exception {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>int factors[] = PrimeFactorizer.factor(4);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>assertEquals(2, factors.length);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>assertEquals(2, factors[0]);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>assertEquals(2, factors[1]);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}<span class="Apple-converted-space"> </span></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p6"><br></p>
+<p class="p5">“I expect the first assert will fail because an array of size 1 will be returned.” I said.</p>
+<p class="p8"><span class="s1">Sure enough, when I ran the test it reported: </span>testFour(TestPrimeFactors):expected &lt;2&gt; but was &lt;1&gt;<span class="s1">.</span></p>
+<p class="p5">“I presume you’d like me to make the simplest modification that will make all these tests pass, and will make the factor method more general?”<span class="Apple-converted-space">  </span>I asked.</p>
+<p class="p5">Jerry just nodded.</p>
+<p class="p5">I made a concerted effort to solve only the test case at hand, ignoring the test cases I knew would be next.<span class="Apple-converted-space">  </span>This galled me, but it was what Jerry wanted.<span class="Apple-converted-space">  </span>The result was:</p>
+<p class="p6"><br></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7">public class PrimeFactorizer {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>public static int[] factor(int multiple) {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>int currentFactor = 0;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>int factorRegister[] = new int[2];</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>for (; (multiple % 2) == 0; multiple /= 2)</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">      </span>factorRegister[currentFactor++] = 2;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>if (multiple != 1)</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">      </span>factorRegister[currentFactor++] = multiple;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>int factors[] = new int[currentFactor];</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>for (int i = 0; i &lt; currentFactor; i++)</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">      </span>factors[i] = factorRegister[i];</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>return factors;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7">}</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p10"><br></p>
+<p class="p5">This passed all the tests, but was pretty messy.<span class="Apple-converted-space">  </span>Jerry scrunched up his face as though he smelled something rotten.<span class="Apple-converted-space">  </span>He said: “We have to refactor this before we go any further.”</p>
+<p class="p5">“Wait.” I objected.<span class="Apple-converted-space">  </span>“I agree that it’s a bit messy.<span class="Apple-converted-space">  </span>But shouldn’t we get it all working first and then refactor it if there’s time?”</p>
+<p class="p5">“Egad! No!” said Jerry.<span class="Apple-converted-space">  </span>“We need to refactor it <i>now</i> so that we can see the true structure as it evolves.<span class="Apple-converted-space">  </span>Otherwise we’ll just keep piling mess upon mess, and we’ll lose the sense of what we’re doing.”</p>
+<p class="p5">“OK.” I sighed.<span class="Apple-converted-space">  </span>“Lets clean this up.”</p>
+<p class="p5">So the two of us did a little refactoring.<span class="Apple-converted-space">  </span>The result follows:</p>
+<p class="p6"><br></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7">public class PrimeFactorizer {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>private static int factorIndex;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>private static int[] factorRegister;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>public static int[] factor(int multiple) {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>initialize();</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>findPrimeFactors(multiple);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>return copyToResult();</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>private static void initialize() {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>factorIndex = 0;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>factorRegister = new int[2];</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>private static void findPrimeFactors(int multiple) {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>for (; (multiple % 2) == 0; multiple /= 2)</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">      </span>factorRegister[factorIndex++] = 2;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>if (multiple != 1)</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">      </span>factorRegister[factorIndex++] = multiple;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>private static int[] copyToResult() {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>int factors[] = new int[factorIndex];</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>for (int i = 0; i &lt; factorIndex; i++)</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">      </span>factors[i] = factorRegister[i];</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>return factors;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7">}</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p10"><br></p>
+<p class="p5">“Time for the next test case.” Said Jerry; and he passed me the keyboard.</p>
+<p class="p5">I still couldn’t see where this was going, but there was no way out of it. <span class="Apple-converted-space">  </span>Obligingly, I typed in the following test case:</p>
+<p class="p6"><br></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>public void testFive() throws Exception {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>int factors[] = PrimeFactorizer.factor(5);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>assertEquals(1, factors.length);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>assertEquals(5, factors[0]);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p10"><br></p>
+<p class="p5">“That’s interesting.”, I said as I stared at the green bar, “That one works without change.”</p>
+<p class="p5">“That <i>is</i> interesting.” Said Jerry.<span class="Apple-converted-space">  </span>“Lets try the next test case.”</p>
+<p class="p5">Now I was intrigued.<span class="Apple-converted-space">  </span>I hadn’t expected the test case to just work.<span class="Apple-converted-space">  </span>As I thought about it, it was obvious why it worked, but I still hadn’t anticipated it.<span class="Apple-converted-space">  </span>I was pretty sure the next test case would fail, so I typed it in and ran it.</p>
+<p class="p6"><br></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>public void testSix() throws Exception {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>int factors[] = PrimeFactorizer.factor(6);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>assertEquals(2, factors.length);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>assertContains(factors, 2);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>assertContains(factors, 3);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>private void assertContains(int factors[], int n) {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>String error = "assertContains:" + n;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>for (int i = 0; i &lt; factors.length; i++) {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">      </span>if (factors[i] == n)</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">        </span>return;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>fail(error);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p10"><br></p>
+<p class="p5">“Yikes!<span class="Apple-converted-space">  </span>That one passed too!” I cried. <span class="Apple-converted-space"> </span></p>
+<p class="p5">“Interesting.” Nodded Jerry.<span class="Apple-converted-space">  </span>“Seven is going to work too, isn’t it?”</p>
+<p class="p5">“Yeah, I think it is.”</p>
+<p class="p5">“Then lets skip it and go for eight.<span class="Apple-converted-space">  </span>That one can’t pass!”</p>
+<p class="p5">He was right.<span class="Apple-converted-space">  </span>Eight had to fail because the <span class="s2">factorRegister </span>array was too small.</p>
+<p class="p6"><br></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>public void testEight() throws Exception {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>int factors[] = PrimeFactorizer.factor(8);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>assertEquals(3, factors.length);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>assertContainsMany(factors, 3, 2);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>private void assertContainsMany(int factors[], int n, int f) {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>String error = "assertContains(" + n + "," + f +")";</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>int count = 0;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>for (int i = 0; i &lt; factors.length; i++) {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">      </span>if (factors[i] == f)</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">        </span>count++;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>if (count != n)</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">      </span>fail(error);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p10"><br></p>
+<p class="p5">“What a relief!, it failed!”</p>
+<p class="p5">“Yeah,” said Jerry, “for an array out of bounds exception.<span class="Apple-converted-space">  </span>You could get it to pass by increasing the size of <span class="s2">factorRegister</span>, but that wouldn’t be more general.”</p>
+<p class="p5">“Let’s try it anyway, and then we’ll solve the general problem of the array size.”</p>
+<p class="p5">So I changed the 2 to a 3 in the <span class="s2">initialize</span> function, and got a green bar.</p>
+<p class="p5">“OK,” I said, “what is the maximum number of factors that a number can have?”</p>
+<p class="p5">“I think it’s something like log2 of the number.” said Jerry.<span class="Apple-converted-space"> </span></p>
+<p class="p5">“Wait!” I said, “Maybe we’re chasing our tail.<span class="Apple-converted-space">  </span>What is the largest number we can handle?<span class="Apple-converted-space">  </span>Isn’t it 2<sup>64</sup>?”</p>
+<p class="p5">“I’m pretty sure it can’t be larger than that.” said Jerry.</p>
+<p class="p5">“OK, then lets just make the size of the <span class="s2">factorRegister</span> 100.<span class="Apple-converted-space">  </span>That’s big enough to handle any number we throw at it.</p>
+<p class="p5">“Fine by me.” said Jerry.<span class="Apple-converted-space">  </span>“A hundred integers is nothing to worry about.”</p>
+<p class="p5">We tried it, and the tests still ran.</p>
+<p class="p5">I looked at Jerry and said: “The next test case is nine.<span class="Apple-converted-space">  </span>That’s certainly going to fail.”</p>
+<p class="p5">“Lets try it.” he said.</p>
+<p class="p5">So I typed in the following:</p>
+<p class="p6"><br></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>public void testNine() throws Exception {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>int factors[] = PrimeFactorizer.factor(9);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>assertEquals(2, factors.length);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>assertContainsMany(factors, 2, 3);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p6"><br></p>
+<p class="p5">“Good, that failed.” I said.<span class="Apple-converted-space">  </span>“Making it pass should be simple.<span class="Apple-converted-space">  </span>I just need to remove 2 as a special number in <span class="s2">findPrimeFactors</span>, and use both 2 and 3 with some general algorithm.”<span class="Apple-converted-space">  </span>So I modified <span class="s2">findPrimeFactors</span> as follows:</p>
+<p class="p6"><br></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>private static void findPrimeFactors(int multiple) {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>for (int factor = 2; multiple != 1; factor++)</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">      </span>for (; (multiple % factor) == 0; multiple /= factor)</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">        </span>factorRegister[factorIndex++] = factor;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p10"><br></p>
+<p class="p5">“OK, that passes.” Said Jerry.<span class="Apple-converted-space">  </span>“Now what’s the next failing test case?”</p>
+<p class="p5">“Well, the simple algorithm I used will divide by non-primes as well as primes.<span class="Apple-converted-space">  </span>That won’t work right.<span class="Apple-converted-space">  </span>That’s why my first version of the program divided <i>only</i> by primes.<span class="Apple-converted-space">  </span>The first non-prime the algorithm will divide by is four, so I imagine 4X4 will fail. <span class="Apple-converted-space"> </span></p>
+<p class="p6"><br></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>public void testSixteen() throws Exception {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>int factors[] = PrimeFactorizer.factor(16);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>assertEquals(4, factors.length);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>assertContainsMany(factors, 4, 2);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p10"><br></p>
+<p class="p5">“Ouch!<span class="Apple-converted-space">  </span>That passes.” I said.<span class="Apple-converted-space">  </span>“How could that pass?”</p>
+<p class="p5">“It passes, because all the twos have been removed before you try to divide by four, so four is never found as a factor.<span class="Apple-converted-space">  </span>Remember, it also wasn’t found as a factor or 8 or 4!”</p>
+<p class="p5">“Of course!” I said.<span class="Apple-converted-space">  </span>“All the primes are removed before their composites.<span class="Apple-converted-space">  </span>The fact that the algorithm checks the composites is irrelevant.<span class="Apple-converted-space">  </span>But that means I never needed the array of prime numbers that I had in my first version.”</p>
+<p class="p5">“Right.” said Jerry. “That’s why I deleted it.”</p>
+<p class="p5">“Is this it then?<span class="Apple-converted-space">  </span>Are we done?”</p>
+<p class="p5">“Can you think of a failing test case?” asked Jerry?</p>
+<p class="p5">“I don’t know.” I said.<span class="Apple-converted-space">  </span>“Lets try 1000.”</p>
+<p class="p5">“Ah, the shotgun approach.<span class="Apple-converted-space">  </span>OK, give it a try.”</p>
+<p class="p6"><br></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>public void testThousand() throws Exception {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>int factors[] = PrimeFactorizer.factor(1000);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>assertEquals(6, factors.length);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>assertContainsMany(factors, 3, 2);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>assertContainsMany(factors, 3, 5);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p10"><br></p>
+<p class="p5">“That worked!<span class="Apple-converted-space">  </span>OK, how about...”</p>
+<p class="p5">We tried several other test cases, but they all passed. <span class="Apple-converted-space">  </span>This version of the program was much simpler than my first version, and was faster too.<span class="Apple-converted-space">  </span>No wonder Jerry deleted the first one. <span class="Apple-converted-space"> </span></p>
+<p class="p5">What amazed me, and still amazes me, is that we snuck up on the better solution one test case at a time.<span class="Apple-converted-space">  </span>I don’t think I would ever have stumbled upon this simple approach had we not been inching forward one simple test case at a time.<span class="Apple-converted-space">  </span>I wonder if that happens in<span class="Apple-converted-space">  </span>bigger projects?</p>
+<p class="p5">I <i>learned</i> something today.</p>
+</body>
+</html>

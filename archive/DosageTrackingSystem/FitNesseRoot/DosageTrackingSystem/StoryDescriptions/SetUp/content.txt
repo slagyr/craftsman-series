@@ -1,0 +1,11 @@
+!|fitlibrary.DoFixture|
+|start|dtrack.fixtures.DTrackFixture|
+
+!|Import|
+|dtrack.fixtures|
+|fitlibrary|
+
+''We assume that today is 2/21/2002.''
+!|DTrack Context|
+|Today's date|
+|2/21/2002|

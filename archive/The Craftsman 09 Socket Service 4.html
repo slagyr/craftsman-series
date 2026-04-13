@@ -1,0 +1,262 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>The Craftsman</title>
+  <meta name="Author" content="Robert C. Martin">
+  <meta name="LastAuthor" content="Robert C. Martin">
+  <meta name="Company" content="Object Mentor Inc.">
+  <meta name="CreationTime" content="2002-12-20T08:13:00Z">
+  <meta name="ModificationTime" content="2002-12-20T08:13:00Z">
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.4">
+  <style type="text/css">
+    p.p1 {margin: 34.0px 0.0px 34.0px 0.0px; text-align: right; line-height: 22.0px; font: 24.0px 'Times New Roman'; color: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: right; font: 10.0px 'Times New Roman'; color: #000000}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: right; font: 10.0px 'Times New Roman'; color: #000000; min-height: 11.0px}
+    p.p4 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 12.0px 'Times New Roman'; color: #000000; min-height: 15.0px}
+    p.p5 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 10.0px 'Times New Roman'; color: #000000}
+    p.p6 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 10.0px 'Times New Roman'; color: #000000; min-height: 11.0px}
+    p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #ff0000}
+    p.p8 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #ff0000; min-height: 10.0px}
+    p.p9 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #000000}
+    p.p10 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #000000; min-height: 10.0px}
+    p.p11 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; font: 9.0px 'Courier New'; color: #ff0000; min-height: 10.0px}
+    p.p12 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; font: 10.0px 'Times New Roman'; color: #000000; min-height: 11.0px}
+    span.s1 {font: 9.0px 'Courier New'}
+    span.Apple-tab-span {white-space:pre}
+    table.t1 {border-collapse: collapse}
+    td.td1 {min-width: 442.8px; border-style: solid; border-width: 1.0px 1.0px 1.0px 1.0px; border-color: #bfbfbf #bfbfbf #bfbfbf #bfbfbf; padding: 0.0px 5.0px 0.0px 5.0px}
+  </style>
+</head>
+<body>
+<p class="p1"><b>The Craftsman: 9<br>
+SocketService 4</b></p>
+<p class="p2">Robert C. Martin</p>
+<p class="p2">20 Dec 2002</p>
+<p class="p3"><i></i><br></p>
+<p class="p4"><br></p>
+<p class="p5"><i>...Continued from last month.<span class="Apple-converted-space">  </span>See &lt;&lt;link&gt;&gt; for last month's article, and the code we were working on.<span class="Apple-converted-space">  </span>You can download that code from:</i></p>
+<p class="p5"><i>www.objectmentor.com/resources/articles/CraftsmanCode/SDSocketServiceR3_SendAndReceive.zip</i></p>
+<p class="p6"><br></p>
+<p class="p5">Alphonse awoke to the gentle bleating of his PDA. <span class="Apple-converted-space">  </span>Shaking the sleep from his brain he switched off the sleeping field and climbed into the shower. <span class="Apple-converted-space">  </span>As the hypersonic spray scrubbed and massaged him he allowed his mind to wander to the events of the previous day.</p>
+<p class="p5">...He had come back from break, still thinking about the documentation value of tests.<span class="Apple-converted-space">  </span>Jerry was waiting for him and said:</p>
+<p class="p5">"I'm glad you're back.<span class="Apple-converted-space">  </span>I'm just finishing up the next test case.<span class="Apple-converted-space">  </span>Take a look at it and see if you can guess it's purpose."</p>
+<p class="p6"><br></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">  </span>public void testMultiThreaded() throws Exception {</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>ss.serve(999, new EchoServer());</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>Socket s1 = new Socket("localhost", 999);</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>BufferedReader br = SocketService.getBufferedReader(s1);</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>PrintStream ps = SocketService.getPrintStream(s1);</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p8"><b></b><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>Socket s2 = new Socket("localhost", 999);</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>BufferedReader br2 = SocketService.getBufferedReader(s2);</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>PrintStream ps2 = SocketService.getPrintStream(s2);</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p8"><b></b><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>ps2.println("MyMessage");</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>String answer2 = br2.readLine();</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>s2.close();</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p8"><b></b><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>ps.println("MyMessage");</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>String answer = br.readLine();</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>s1.close();</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p8"><b></b><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>assertEquals("MyMessage", answer2);</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>assertEquals("MyMessage", answer);</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">  </span>}</b></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p8"><b></b><br></p>
+<p class="p5">"It's a little complicated; but it looks like you are trying to prove that the <span class="s1">SocketService</span> can deal with two simultaneous connections."</p>
+<p class="p5">"Right." said Jerry.<span class="Apple-converted-space">  </span>"Did you notice that the first connection was the last to close?"</p>
+<p class="p5">"No; but now that you mention it I can see that that's true.<span class="Apple-converted-space">  </span>Why did you do that?"</p>
+<p class="p5">"I wanted two sessions open simultaneously. "</p>
+<p class="p5">"Why?"</p>
+<p class="p5">Jerry gave me a curious look and said: "Because then the <span class="s1">serve</span> method in the <span class="s1">SocketService</span> class will have been entered twice, in two different threads, before either had had a change to exit.<span class="Apple-converted-space">  </span>When a function is entered more than once before it exits, it is called <i>reentrant</i>."</p>
+<p class="p5">"But why do you want to test it?"</p>
+<p class="p5">"Because reentrant functions often give us the most interesting kinds of problems."</p>
+<p class="p5">I didn't understand this; but I knew that Jerry would explain himself eventually, so I just nodded.</p>
+<p class="p5">"OK." He said.<span class="Apple-converted-space">  </span>"Let's run this test."</p>
+<p class="p5">I compiled the test and ran it. <span class="Apple-converted-space">  </span>A green bar moved quickly across the test window, telling us that all our previous tests were still working.<span class="Apple-converted-space">  </span>But then it froze, just before the end.<span class="Apple-converted-space">  </span>I waited for a few seconds to see if it would wake up and finish; but it never did.<span class="Apple-converted-space">  </span>It just hung there.</p>
+<p class="p5">"Uh..." I uttered intelligently.<span class="Apple-converted-space"> </span></p>
+<p class="p5">"Yeah." said Jerry. "What do you think is wrong?"</p>
+<p class="p5">I studied the code in <span class="s1">SocketService.serve</span> for a minute, and then I said: "Oh, that's easy.<span class="Apple-converted-space">  </span>Look at this loop:"</p>
+<p class="p9"><span class="Apple-converted-space">         </span>while (running) {</p>
+<p class="p9"><span class="Apple-converted-space">            </span>try {</p>
+<p class="p9"><span class="Apple-converted-space">              </span>Socket s = serverSocket.accept();</p>
+<p class="p9"><span class="Apple-converted-space">              </span>itsServer.serve(s);</p>
+<p class="p9"><span class="Apple-converted-space">              </span>s.close();</p>
+<p class="p9"><span class="Apple-converted-space">            </span>} catch (IOException e) {</p>
+<p class="p9"><span class="Apple-converted-space">            </span>}</p>
+<p class="p9"><span class="Apple-converted-space">          </span>}</p>
+<p class="p10"><br></p>
+<p class="p5">"<span class="s1">itsServer.serve</span> isn't returning to catch the second connection.<span class="Apple-converted-space">  </span>The first connection is hung in the <span class="s1">EchoServer</span> waiting for you to send a message.<span class="Apple-converted-space">  </span>So we never go around the loop to call <span class="s1">accept</span> for the second socket connection."</p>
+<p class="p5">Jerry beamed at me.<span class="Apple-converted-space">  </span>"Well done!<span class="Apple-converted-space">  </span>Now what do we do about it?"</p>
+<p class="p5">"We need to put itsServer.serve in its own thread so that the loop can return without waiting for it."</p>
+<p class="p5">"Right again!<span class="Apple-converted-space">  </span>Care to take a stab at it?"</p>
+<p class="p5">So I took the keyboard and changed the <span class="s1">SocketService.serve</span> method as follows:</p>
+<p class="p10"><br></p>
+<p class="p9"><span class="Apple-converted-space">          </span>while (running) {</p>
+<p class="p9"><span class="Apple-converted-space">            </span>try {</p>
+<p class="p9"><span class="Apple-converted-space">              </span>Socket s = serverSocket.accept();</p>
+<p class="p7"><b><span class="Apple-converted-space">              </span>new Thread(new ServiceRunnable(s)).start();</b></p>
+<p class="p9"><span class="Apple-converted-space">            </span>} catch (IOException e) {</p>
+<p class="p9"><span class="Apple-converted-space">            </span>}</p>
+<p class="p9"><span class="Apple-converted-space">          </span>}</p>
+<p class="p10"><span class="Apple-converted-space">       </span></p>
+<p class="p5">Then I added the new <span class="s1">ServiceRunnable</span> class as an inner class within <span class="s1">SocketService</span>.</p>
+<p class="p6"><br></p>
+<p class="p7"><b><span class="Apple-converted-space">  </span>class ServiceRunnable implements Runnable {</b></p>
+<p class="p7"><b><span class="Apple-converted-space">    </span>private Socket itsSocket;</b></p>
+<p class="p8"><b></b><br></p>
+<p class="p7"><b><span class="Apple-converted-space">    </span>ServiceRunnable(Socket s) {</b></p>
+<p class="p7"><b><span class="Apple-converted-space">      </span>itsSocket = s;</b></p>
+<p class="p7"><b><span class="Apple-converted-space">    </span>}</b></p>
+<p class="p8"><b></b><br></p>
+<p class="p7"><b><span class="Apple-converted-space">    </span>public void run() {</b></p>
+<p class="p7"><b><span class="Apple-converted-space">      </span>try {</b></p>
+<p class="p7"><b><span class="Apple-converted-space">        </span>itsServer.serve(itsSocket);</b></p>
+<p class="p7"><b><span class="Apple-converted-space">        </span>itsSocket.close();</b></p>
+<p class="p7"><b><span class="Apple-converted-space">      </span>} catch (IOException e) {</b></p>
+<p class="p7"><b><span class="Apple-converted-space">      </span>}</b></p>
+<p class="p7"><b><span class="Apple-converted-space">    </span>}</b></p>
+<p class="p7"><b><span class="Apple-converted-space">  </span>}</b></p>
+<p class="p6"><br></p>
+<p class="p5">"That should do it." I said.<span class="Apple-converted-space">  </span>So I hit the test button and was rewarded with success.</p>
+<p class="p5">"Hit it a few more times." Jerry said.</p>
+<p class="p5">"Oh no, not one of these." I complained, remembering the intermittent failure we had when we first started.<span class="Apple-converted-space">  </span>So I hit the test button a few more times and, sure enough, I saw a failure.</p>
+<p class="p6"><br></p>
+<p class="p9">1) testMultiThreaded(TestSocketServer)</p>
+<p class="p9">java.lang.NullPointerException</p>
+<p class="p9"><span class="Apple-tab-span">	</span>at SocketService.close(SocketService.java:32)</p>
+<p class="p9"><span class="Apple-tab-span">	</span>at TestSocketServer.tearDown(TestSocketServer.java:30)</p>
+<p class="p10"><br></p>
+<p class="p5">"What the deuce?" I said, and I looked at line 32 of <span class="s1">SocketService.java</span>.</p>
+<p class="p8"><b></b><br></p>
+<p class="p9">30<span class="Apple-converted-space">  </span>public void close() throws Exception {</p>
+<p class="p9">31<span class="Apple-converted-space">    </span>running = false;</p>
+<p class="p9">32<span class="Apple-converted-space">    </span>serverSocket.close();</p>
+<p class="p9">33<span class="Apple-converted-space">  </span>}</p>
+<p class="p11"><b></b><br></p>
+<p class="p5">"Now wait a minute." I said.<span class="Apple-converted-space">  </span>"How could it be getting a null pointer exception there?" <span class="Apple-converted-space">  </span>I pulled up <span class="s1">TestSocketServer</span> line 30.</p>
+<p class="p6"><br></p>
+<p class="p9">29<span class="Apple-converted-space">  </span>public void tearDown() throws Exception {</p>
+<p class="p9">30<span class="Apple-converted-space">    </span>ss.close();</p>
+<p class="p9">31<span class="Apple-converted-space">  </span>}</p>
+<p class="p10"><br></p>
+<p class="p5">"Now wait just a darned minute here." I repeated.<span class="Apple-converted-space">  </span>"This doesn't make any sense.<span class="Apple-converted-space">  </span>Teardown is closing the <span class="s1">SocketService</span>, just like it should, and yet the <span class="s1">serverSocket</span> is <span class="s1">null</span>?<span class="Apple-converted-space">  </span>But if <span class="s1">serverSocket</span> were <span class="s1">null</span>, we'd have had errors at the beginning of <span class="s1">testMultiThreaded</span>, not in <span class="s1">tearDown</span>."</p>
+<p class="p5">Jerry must have felt like being useful, because he said: "Yeah." <span class="Apple-converted-space">   </span></p>
+<p class="p5">"Jerry, what's going on?<span class="Apple-converted-space">  </span>This doesn't make any sense."</p>
+<p class="p5">"You said that."</p>
+<p class="p5">"But it's true.<span class="Apple-converted-space">  </span>The <span class="s1">serverSocket</span> variable <i>can't</i> be <span class="s1">null</span>!"</p>
+<p class="p5">"Alphonse.<span class="Apple-converted-space">  </span>Let's think for a minute.<span class="Apple-converted-space">  </span>What state are all the threads in?"</p>
+<p class="p5">"Huh?"</p>
+<p class="p5">"The threads.<span class="Apple-converted-space">  </span>What are they all doing when <span class="s1">tearDown</span> gets called?"</p>
+<p class="p5">I thought about this for a minute.<span class="Apple-converted-space">  </span>Clearly the test case passed; otherwise <span class="s1">tearDown</span> would not have been called.<span class="Apple-converted-space">  </span>That meant that both socket connections were accepted, and that the <span class="s1">serverThread</span> had been around its loop twice.<span class="Apple-converted-space">  </span>The <span class="s1">serverThread</span> was either blocked on its third <span class="s1">accept</span> call, or it had not yet returned from the <span class="s1">start</span> function that kicked off the second <span class="s1">ServiceRunnable</span> thread.</p>
+<p class="p5">The first <span class="s1">ServiceRunnable</span> thread had entered <span class="s1">EchoServer</span>, which had read and written the message.<span class="Apple-converted-space">  </span>But it might not have terminated yet.<span class="Apple-converted-space">  </span>It could still be waiting to return from the <span class="s1">println</span> that sent the message back to the test case.<span class="Apple-converted-space">  </span>But the second <span class="s1">ServiceRunnable</span> thread had surely had enough time to exit. It has received and sent its message long since.</p>
+<p class="p5">I explained all this to Jerry, and he nodded. <span class="Apple-converted-space"> </span></p>
+<p class="p5">"Yes." He said.<span class="Apple-converted-space">  </span>"That's the way I figure it too."</p>
+<p class="p5">"So why the null pointer exception?" I asked.</p>
+<p class="p5">"I don't know." He said.<span class="Apple-converted-space">  </span>"But the fact that it's breaking when we close the server socket makes me think that we're leaving some thread running that is interfering with the socket library."</p>
+<p class="p5">"You mean you think there's a bug in the socket library?"</p>
+<p class="p5">Jerry just stared at the screen and said: "I'm not sure.<span class="Apple-converted-space">  </span>Let's try a few experiments."</p>
+<p class="p6"><br></p>
+<p class="p6"><br></p>
+<p class="p6"><br></p>
+<p class="p6"><br></p>
+<p class="p8"><b></b><br></p>
+<p class="p8"><b></b><br></p>
+<p class="p12"><br></p>
+<p class="p5"><i>The code that Jerry and Alphonse finished can be retrieved from:</i></p>
+<p class="p5"><i>www.objectmentor.com/resources/articles/CraftsmanCode/SDSocketServiceR3_SendAndReceive.zip</i></p>
+<p class="p6"><i></i><br></p>
+<p class="p6"><i></i><br></p>
+</body>
+</html>

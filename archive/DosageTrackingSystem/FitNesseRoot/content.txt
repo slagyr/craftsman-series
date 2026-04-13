@@ -1,0 +1,4 @@
+!path C:\Documents and Settings\Bob\Desktop\My Documents\Articles\SD\DosageTrackingSystem\fitlibrary.jar
+!path c:\cygwin\home\bob\fitnesse\classes
+
+

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<list key="installedFeatures">
+		<item value="com.aptana.ide.feature.editor.css:0.2.8.15637"/>
+		<item value="com.aptana.ide.feature.editor.html:0.2.8.15637"/>
+		<item value="com.aptana.ide.feature.editor.js:0.2.8.15637"/>
+		<item value="com.aptana.ide.feature.editors:0.2.8.15637"/>
+		<item value="com.aptana.ide.feature.rcp:0.2.8.15637"/>
+		<item value="com.aptana.ide.feature:0.2.8.15637"/>
+		<item value="com.extjs.ext.1.0:1.0.1.00001"/>
+		<item value="com.jquery.1.1:1.1.2.00001"/>
+		<item value="com.mochikit.1.4:1.4.0.00001"/>
+		<item value="com.yahoo.yui.2.2:2.2.0.00001"/>
+		<item value="net.mootools.1.1:1.1.1.00002"/>
+		<item value="org.aflax.1.0:1.0.0.00001"/>
+		<item value="org.dojotoolkit.dojo.0.4:0.4.3.00002"/>
+		<item value="org.eclipse.eclipsemonkey:0.1.10.15637"/>
+		<item value="org.eclipse.rcp.nls1:3.2.1.v200609270227"/>
+		<item value="org.eclipse.rcp.nls2:3.2.1.v200609270227"/>
+		<item value="org.eclipse.rcp.nls2a:3.2.1.v200609270227"/>
+		<item value="org.eclipse.rcp:3.2.2.r322_v20070104-8pcviKVqd8J7C1U"/>
+		<item value="org.openrico.rico.2.0:2.0.0.00001"/>
+		<item value="org.prototypejs.prototype.1.5:1.5.0.00001"/>
+		<item value="org.radrails.rails_feature:0.8.0.200704271615"/>
+		<item value="org.rubypeople.rdt.source:0.9.0.704271939NGT"/>
+		<item value="org.rubypeople.rdt:0.9.0.704271939NGT"/>
+		<item value="org.scriptaculous.1.7:1.7.0.00001"/>
+	</list>
+	<section name="org.eclipse.ui.views.task">
+	</section>
+	<section name="NewWizardAction">
+		<item key="NewWizardSelectionPage.STORE_SELECTED_ID" value="org.rubypeople.rdt.ui.wizards.RubyProjectWizard"/>
+		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
+			<item value="org.rubypeople.rdt.ui"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.views.problem">
+	</section>
+	<section name="ResourceNavigator">
+		<item key="ResourceWorkingSetFilter.STORE_WORKING_SET" value=""/>
+		<item key="ResourceViewer.STORE_SORT_TYPE" value="1"/>
+	</section>
+	<section name="ChooseWorkspaceDialogSettings">
+		<item key="DIALOG_X_ORIGIN" value="241"/>
+		<item key="DIALOG_HEIGHT" value="244"/>
+		<item key="DIALOG_FONT_NAME" value="1|Lucida Grande|11|0|CARBON|1|"/>
+		<item key="DIALOG_Y_ORIGIN" value="222"/>
+		<item key="DIALOG_WIDTH" value="543"/>
+	</section>
+</section>

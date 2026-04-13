@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>The Craftsman</title>
+  <meta name="Author" content="Robert C. Martin">
+  <meta name="LastAuthor" content="Robert C. Martin">
+  <meta name="Company" content="Object Mentor Inc.">
+  <meta name="CreationTime" content="2003-02-18T09:05:00Z">
+  <meta name="ModificationTime" content="2003-02-18T09:05:00Z">
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.4">
+  <style type="text/css">
+    p.p1 {margin: 34.0px 0.0px 34.0px 0.0px; text-align: right; line-height: 22.0px; font: 24.0px 'Times New Roman'; color: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: right; font: 10.0px 'Times New Roman'; color: #000000}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: right; font: 10.0px 'Times New Roman'; color: #000000; min-height: 11.0px}
+    p.p4 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 12.0px 'Times New Roman'; color: #000000; min-height: 15.0px}
+    p.p5 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 10.0px 'Times New Roman'; color: #000000}
+    p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #ff0000; min-height: 10.0px}
+    p.p7 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 10.0px 'Times New Roman'; color: #000000; min-height: 11.0px}
+    p.p8 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #000000}
+    p.p9 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #ff0000}
+    p.p10 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; font: 10.0px 'Times New Roman'; color: #000000; min-height: 11.0px}
+    p.p11 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #000000; min-height: 10.0px}
+    span.s1 {font: 9.0px 'Courier New'}
+    span.Apple-tab-span {white-space:pre}
+  </style>
+</head>
+<body>
+<p class="p1"><b>The Craftsman: 11<br>
+SMCRemote Part I<br>
+What's main got to do with it?</b></p>
+<p class="p2">Robert C. Martin</p>
+<p class="p2">18 Feb, 2003</p>
+<p class="p3"><i></i><br></p>
+<p class="p4"><br></p>
+<p class="p5"><i>...Continued from last month.<span class="Apple-converted-space">  </span>See &lt;&lt;link&gt;&gt; for last month's article, and the code we were working on.<span class="Apple-converted-space">  </span>You can download that code from:</i></p>
+<p class="p5"><i>www.objectmentor.com/resources/articles/CraftsmanCode/SDSocketServiceR5_DanglingThreads.zip</i></p>
+<p class="p6"><b></b><br></p>
+<p class="p5">My mind kept reviewing dangling threads as I absentmindedly ate my spaghetti.<span class="Apple-converted-space">  </span>After lunch I returned to the lab to find Jerry waiting for me.</p>
+<p class="p5">"Mr. C. thinks the <span class="s1">SocketServer</span> is ready to use now, and he'd like us to get to work on the <span class="s1">SMCRemote</span> application."</p>
+<p class="p5">"Oh right!" I said.<span class="Apple-converted-space">  </span>"That's what the <span class="s1">SocketServer</span> was for.<span class="Apple-converted-space">  </span>We were building an application that would invoke the SMC compiler remotely, and ship the source files to the server, and the compiled files back."</p>
+<p class="p5">Jerry looked at me expectantly and asked: "How do you think we should start?"</p>
+<p class="p5">"I think I'd like to know how the user will use it." I responded.</p>
+<p class="p5">"Excellent!<span class="Apple-converted-space">  </span>Starting from the user's point of view is always a good idea.<span class="Apple-converted-space">  </span>So what's the simplest thing the user can do with this tool?"</p>
+<p class="p5">"He can request that a file be compiled.<span class="Apple-converted-space">  </span>The command might look like this:"<span class="Apple-converted-space">  </span>I drew the following on the wall:</p>
+<p class="p7"><br></p>
+<p class="p8"><span class="Apple-tab-span">	</span>java SMCRemoteClient myFile.sm</p>
+<p class="p7"><br></p>
+<p class="p5">"Yes, that looks good to me." Said Jerry.<span class="Apple-converted-space">  </span>"So how should we begin?"</p>
+<p class="p5">The spaghetti was sitting warmly in my stomach, and I was feeling pretty confident after getting <span class="s1">SocketServer</span> to work, so I grabbed the keyboard and started typing:</p>
+<p class="p6"><b></b><br></p>
+<p class="p9"><b>public class SMCRemoteClient {</b></p>
+<p class="p9"><b><span class="Apple-converted-space">  </span>public static void main(String args[]) {</b></p>
+<p class="p9"><b><span class="Apple-converted-space">    </span>String fileName = args[0];</b></p>
+<p class="p9"><b><span class="Apple-converted-space">  </span>}</b></p>
+<p class="p9"><b>}</b></p>
+<p class="p5">"Excuse me!" Jerry Interrupted. "Do you have a test for that?"</p>
+<p class="p5">"Huh?<span class="Apple-converted-space">  </span>What do you mean?<span class="Apple-converted-space">  </span>This is trivial code, why should we write a test for it?"</p>
+<p class="p5">"If you don't write a test for it, how do you know you need it?"</p>
+<p class="p5">That stopped me for a second.<span class="Apple-converted-space">  </span>"I think it's kind of obvious." I said at last.</p>
+<p class="p5">"Is it?" Jerry replied.<span class="Apple-converted-space">  </span>"I'm not convinced.<span class="Apple-converted-space">  </span>Lets try a different approach."<span class="Apple-converted-space"> </span></p>
+<p class="p5">Jerry took the keyboard and deleted the code I had written. <span class="Apple-converted-space">  </span>The old anger flared for a second, but I wrestled it back.<span class="Apple-converted-space">  </span>After all, it was only four lines of code. <span class="Apple-converted-space"> </span></p>
+<p class="p5">"OK, what functions do we know we need to have?" He asked.</p>
+<p class="p5">I thought for a second and said: "We need to get the file name from the command line.<span class="Apple-converted-space">  </span>I don't see how you do that without the code you just deleted."</p>
+<p class="p5">Jerry gave me wry glance and said: "I think I do." He began to type. <span class="Apple-converted-space"> </span></p>
+<p class="p5">First he wrote the, now familiar, test framework code:</p>
+<p class="p6"><b></b><br></p>
+<p class="p9"><b>import junit.framework.*;</b></p>
+<p class="p6"><b></b><br></p>
+<p class="p9"><b>public class TestSMCRemoteClient extends TestCase {</b></p>
+<p class="p9"><b><span class="Apple-converted-space">    </span>public TestSMCRemoteClient(String name) {</b></p>
+<p class="p9"><b><span class="Apple-converted-space">        </span>super(name);</b></p>
+<p class="p9"><b><span class="Apple-converted-space">    </span>}</b></p>
+<p class="p9"><b>}</b></p>
+<p class="p6"><b></b><br></p>
+<p class="p5">He compiled and ran it, making sure it failed for lack of tests, and then he added the following test:</p>
+<p class="p7"><br></p>
+<p class="p9"><b><span class="Apple-converted-space">    </span>public void testParseCommandLine() throws Exception {</b></p>
+<p class="p9"><b><span class="Apple-converted-space">        </span>SMCRemoteClient c = new SMCRemoteClient();</b></p>
+<p class="p9"><b><span class="Apple-converted-space">        </span>c.parseCommandLine(new String[]{"filename"});</b></p>
+<p class="p9"><b><span class="Apple-converted-space">        </span>assertEquals("filename", c.filename());</b></p>
+<p class="p9"><b><span class="Apple-converted-space">    </span>}</b></p>
+<p class="p10"><br></p>
+<p class="p5">"OK." I said. "It looks like you are going to get the command line argument in some function named <span class="s1">parseCommandLine</span>, instead of from <span class="s1">main</span>. <span class="Apple-converted-space">  </span>But why bother?"</p>
+<p class="p5">"So I can test it." said Jerry.</p>
+<p class="p5">"But there's barely anything to test." I complained.</p>
+<p class="p5">"Which means the test is real cheap to write." He responded.</p>
+<p class="p5">I knew I wasn't going to win this battle.<span class="Apple-converted-space">  </span>I just heaved a sigh, took the keyboard and wrote the code that would make the test pass.</p>
+<p class="p7"><br></p>
+<p class="p9"><b>public class SMCRemoteClient {</b></p>
+<p class="p9"><b><span class="Apple-converted-space">    </span>private String itsFilename;</b></p>
+<p class="p6"><b></b><br></p>
+<p class="p9"><b><span class="Apple-converted-space">    </span>public void parseCommandLine(String[] args) {</b></p>
+<p class="p9"><b><span class="Apple-converted-space">        </span>itsFilename = args[0];</b></p>
+<p class="p9"><b><span class="Apple-converted-space">    </span>}</b></p>
+<p class="p6"><b></b><br></p>
+<p class="p9"><b><span class="Apple-converted-space">    </span>public String filename() {</b></p>
+<p class="p9"><b><span class="Apple-converted-space">        </span>return itsFilename;</b></p>
+<p class="p9"><b><span class="Apple-converted-space">    </span>}</b></p>
+<p class="p9"><b>}</b></p>
+<p class="p6"><b></b><br></p>
+<p class="p5">Jerry nodded and said: "Good!, that passes."</p>
+<p class="p5">Then he quietly wrote the next test case.</p>
+<p class="p7"><br></p>
+<p class="p9"><b><span class="Apple-converted-space">    </span>public void testParseInvalidCommandLine() {</b></p>
+<p class="p9"><b><span class="Apple-converted-space">        </span>SMCRemoteClient c = new SMCRemoteClient();</b></p>
+<p class="p9"><b><span class="Apple-converted-space">        </span>boolean result = c.parseCommandLine(new String[0]);</b></p>
+<p class="p9"><b><span class="Apple-converted-space">        </span>assertTrue("result should be false", !result);</b></p>
+<p class="p9"><b><span class="Apple-converted-space">    </span>}</b></p>
+<p class="p7"><br></p>
+<p class="p5">I should have known he would do this.<span class="Apple-converted-space">  </span>He was showing me why it was a good idea to write the test that I thought was unnecessary. <span class="Apple-converted-space"> </span></p>
+<p class="p5">"OK." I admitted.<span class="Apple-converted-space">  </span>"I guess getting the command line argument is just a bit less trivial than I thought.<span class="Apple-converted-space">  </span>It probably does deserve a test of its own."<span class="Apple-converted-space">  </span>So I took the keyboard and made the test pass.</p>
+<p class="p7"><br></p>
+<p class="p8"><span class="Apple-converted-space">    </span>public boolean parseCommandLine(String[] args) {</p>
+<p class="p9"><b><span class="Apple-converted-space">        </span>try {</b></p>
+<p class="p8"><span class="Apple-converted-space">            </span>itsFilename = args[0];</p>
+<p class="p9"><b><span class="Apple-converted-space">        </span>} catch (ArrayIndexOutOfBoundsException e) {</b></p>
+<p class="p9"><b><span class="Apple-converted-space">            </span>return false;</b></p>
+<p class="p9"><b><span class="Apple-converted-space">        </span>}</b></p>
+<p class="p9"><b><span class="Apple-converted-space">        </span>return true;</b></p>
+<p class="p8"><span class="Apple-converted-space">    </span>}</p>
+<p class="p11"><br></p>
+<p class="p5">For good measure, I refactored the <span class="s1">c</span> variable out, and initialized it in the <span class="s1">setUp</span> function.<span class="Apple-converted-space">  </span>The tests all passed.</p>
+<p class="p5">Before Jerry could suggest the next test case, I said: "It's possible that the file might not exist.<span class="Apple-converted-space">  </span>We should write a test that shows we can handle that case."</p>
+<p class="p5">"True." said Jerry; as he pried the keyboard from my clutches. "But let me show you how I like to do that."</p>
+<p class="p7"><br></p>
+<p class="p9"><b><span class="Apple-converted-space">  </span>public void testFileDoesNotExist() throws Exception {</b></p>
+<p class="p9"><b><span class="Apple-converted-space">    </span>c.setFilename("thisFileDoesNotExist");</b></p>
+<p class="p9"><b><span class="Apple-converted-space">    </span>boolean prepared = c.prepareFile();</b></p>
+<p class="p9"><b><span class="Apple-converted-space">    </span>assertEquals(false, prepared);</b></p>
+<p class="p9"><b><span class="Apple-converted-space">  </span>}</b></p>
+<p class="p6"><b></b><br></p>
+<p class="p5">"You see?" He explained. "I like to evaluate each command line argument in its own function, rather than mixing all that parsing and evaluating code together."</p>
+<p class="p5">I noted that for future reference, privately rolled my eyes, took the keyboard, and made this test pass.</p>
+<p class="p7"><br></p>
+<p class="p9"><b><span class="Apple-converted-space">  </span>public void setFilename(String itsFilename) {</b></p>
+<p class="p9"><b><span class="Apple-converted-space">    </span>this.itsFilename = itsFilename;</b></p>
+<p class="p9"><b><span class="Apple-converted-space">  </span>}</b></p>
+<p class="p6"><b></b><br></p>
+<p class="p9"><b><span class="Apple-converted-space">  </span>public boolean prepareFile() {</b></p>
+<p class="p9"><b><span class="Apple-converted-space">    </span>File f = new File(itsFilename);</b></p>
+<p class="p9"><b><span class="Apple-converted-space">    </span>if (f.exists()) {</b></p>
+<p class="p9"><b><span class="Apple-converted-space">      </span>return true;</b></p>
+<p class="p9"><b><span class="Apple-converted-space">    </span>} else</b></p>
+<p class="p9"><b><span class="Apple-converted-space">      </span>return false;</b></p>
+<p class="p9"><b><span class="Apple-converted-space">  </span>}</b></p>
+<p class="p6"><b></b><br></p>
+<p class="p5">All the tests passed.<span class="Apple-converted-space">  </span>Jerry looked at me, and then at the keyboard.<span class="Apple-converted-space">  </span>It was clear he wanted to drive.<span class="Apple-converted-space">  </span>He seemed to be infused with ideas today, so with a fatalistic shrug I passed the keyboard over to him. <span class="Apple-converted-space"> </span></p>
+<p class="p5">"OK, now watch this!" he said, his engines clearly revving.</p>
+<p class="p7"><br></p>
+<p class="p9"><b><span class="Apple-converted-space">  </span>public void testCountBytesInFile() throws Exception {</b></p>
+<p class="p9"><b><span class="Apple-converted-space">    </span>File f = new File("testFile");</b></p>
+<p class="p9"><b><span class="Apple-converted-space">    </span>FileOutputStream stream = new FileOutputStream(f);</b></p>
+<p class="p9"><b><span class="Apple-converted-space">    </span>stream.write("some text".getBytes());</b></p>
+<p class="p9"><b><span class="Apple-converted-space">    </span>stream.close();</b></p>
+<p class="p6"><b></b><br></p>
+<p class="p9"><b><span class="Apple-converted-space">    </span>c.setFilename("testFile");</b></p>
+<p class="p9"><b><span class="Apple-converted-space">    </span>boolean prepared = c.prepareFile();</b></p>
+<p class="p9"><b><span class="Apple-converted-space">    </span>f.delete();</b></p>
+<p class="p9"><b><span class="Apple-converted-space">    </span>assertTrue(prepared);</b></p>
+<p class="p9"><b><span class="Apple-converted-space">    </span>assertEquals(9, c.getFileLength());</b></p>
+<p class="p9"><b><span class="Apple-converted-space">  </span>}</b></p>
+<p class="p6"><b></b><br></p>
+<p class="p5">I studied this code for a few seconds and then I replied: "You want <span class="s1">prepareFile()</span> to find the length of the file?<span class="Apple-converted-space">  </span>Why?"</p>
+<p class="p5">"I think we're going to need it later." He said.<span class="Apple-converted-space">  </span>"And it's a good way to show that we can deal with an existing file."</p>
+<p class="p5">"What are we going to need it for?"</p>
+<p class="p5">"Well, we're going to have to ship the contents of the file through the socket to the server, right?"</p>
+<p class="p5">"Yeah."</p>
+<p class="p5">"OK, well we'll need to know how many characters to send."</p>
+<p class="p5">"Hmmm.<span class="Apple-converted-space">  </span>Maybe. "</p>
+<p class="p5">"Trust me.<span class="Apple-converted-space">  </span>I'm the Journeyman after all."</p>
+<p class="p5">"OK, never mind that.<span class="Apple-converted-space">  </span>Why are you creating the file in the test?<span class="Apple-converted-space">  </span>Why don't you just keep the file around instead of creating it every time?"</p>
+<p class="p5">Jerry sneered and got serious.<span class="Apple-converted-space">  </span>"I hate keeping external resources around for tests.<span class="Apple-converted-space">  </span>Whenever possible I have the tests create the resources they need.<span class="Apple-converted-space">  </span>That way there's no chance that I'll lose a resource, or that it will become corrupted."</p>
+<p class="p5">"OK, that makes sense to me; but I'm still not crazy about this file length stuff."</p>
+<p class="p5">"Noted.<span class="Apple-converted-space">  </span>You'll see!"</p>
+<p class="p5">So I took the keyboard and started working on making the test pass.<span class="Apple-converted-space">  </span>While I was typing, it struck me as odd that I was writing all the production code, and yet the design was all Jerry's. <span class="Apple-converted-space">  </span>And yet, all Jerry was doing was writing little test cases.<span class="Apple-converted-space">  </span>Can you really specify a design by writing test cases?</p>
+<p class="p7"><br></p>
+<p class="p9"><b><span class="Apple-converted-space">    </span>public long getFileLength() {</b></p>
+<p class="p9"><b><span class="Apple-converted-space">        </span>return itsFileLength;</b></p>
+<p class="p9"><b><span class="Apple-converted-space">    </span>}</b></p>
+<p class="p11"><br></p>
+<p class="p8"><span class="Apple-converted-space">    </span>public boolean prepareFile() {</p>
+<p class="p8"><span class="Apple-converted-space">        </span>File f = new File(itsFilename);</p>
+<p class="p8"><span class="Apple-converted-space">        </span>if (f.exists()) {</p>
+<p class="p9"><b><span class="Apple-converted-space">            </span>itsFileLength = f.length();</b></p>
+<p class="p8"><span class="Apple-converted-space">            </span>return true;</p>
+<p class="p8"><span class="Apple-converted-space">        </span>} else</p>
+<p class="p8"><span class="Apple-converted-space">            </span>return false;</p>
+<p class="p8"><span class="Apple-converted-space">    </span>}</p>
+<p class="p11"><br></p>
+<p class="p5">Jerry's next test case created a mock server, and tested the ability of <span class="s1">SMCRemoteClient</span> to connect to it.</p>
+<p class="p7"><br></p>
+<p class="p9"><b><span class="Apple-converted-space">  </span>public void testConnectToSMCRemoteServer() throws Exception {</b></p>
+<p class="p9"><b><span class="Apple-converted-space">    </span>SocketServer server = new SocketServer(){</b></p>
+<p class="p9"><b><span class="Apple-converted-space">      </span>public void serve(Socket socket) {</b></p>
+<p class="p9"><b><span class="Apple-converted-space">        </span>try {</b></p>
+<p class="p9"><b><span class="Apple-converted-space">          </span>socket.close();</b></p>
+<p class="p9"><b><span class="Apple-converted-space">        </span>} catch (IOException e) {</b></p>
+<p class="p9"><b><span class="Apple-converted-space">        </span>}</b></p>
+<p class="p9"><b><span class="Apple-converted-space">      </span>}</b></p>
+<p class="p9"><b><span class="Apple-converted-space">    </span>};</b></p>
+<p class="p9"><b><span class="Apple-converted-space">    </span>SocketService smc = new SocketService(SMCPORT, server);</b></p>
+<p class="p9"><b><span class="Apple-converted-space">    </span>boolean connection = c.connect();</b></p>
+<p class="p9"><b><span class="Apple-converted-space">    </span>assertTrue(connection);</b></p>
+<p class="p9"><b><span class="Apple-converted-space">  </span>}</b></p>
+<p class="p6"><b></b><br></p>
+<p class="p5">I was able to make that pass with very little trouble:</p>
+<p class="p7"><br></p>
+<p class="p9"><b><span class="Apple-converted-space">    </span>public boolean connect() {</b></p>
+<p class="p9"><b><span class="Apple-converted-space">        </span>try {</b></p>
+<p class="p9"><b><span class="Apple-converted-space">            </span>Socket s = new Socket("localhost", 9000);</b></p>
+<p class="p9"><b><span class="Apple-converted-space">            </span>return true;</b></p>
+<p class="p9"><b><span class="Apple-converted-space">        </span>} catch (IOException e) {</b></p>
+<p class="p9"><b><span class="Apple-converted-space">        </span>}</b></p>
+<p class="p9"><b><span class="Apple-converted-space">        </span>return false;</b></p>
+<p class="p9"><b><span class="Apple-converted-space">    </span>}</b></p>
+<p class="p6"><b></b><br></p>
+<p class="p5">"Great!", said Jerry.<span class="Apple-converted-space">  </span>"Let's take a break."</p>
+<p class="p5">"OK, but before we do, lets write <span class="s1">main()</span>."</p>
+<p class="p5">"What's <span class="s1">main()</span> got to do with anything?"</p>
+<p class="p5">"Huh?<span class="Apple-converted-space">  </span>It's the main program!"</p>
+<p class="p5">"So what.<span class="Apple-converted-space">  </span>All it's going to do is call <span class="s1">parseCommandLine()</span>, <span class="s1">parseFile()</span>, and <span class="s1">connect()</span>.<span class="Apple-converted-space">  </span>It'll be a long time before we have a test for that!</p>
+<p class="p5">I left the lab and headed for the break room.<span class="Apple-converted-space">  </span>I had always thought that <span class="s1">main()</span> was the first function to write; but Jerry was right.<span class="Apple-converted-space">  </span>In the end, <span class="s1">main()</span> is a pretty uninteresting function.</p>
+<p class="p7"><br></p>
+<p class="p7"><br></p>
+<p class="p5"><i>The code that Jerry and Alphonse finished can be retrieved from:</i></p>
+<p class="p5"><i>www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_11_SMCRemote_1_WhatsMain.zip</i></p>
+<p class="p7"><i></i><br></p>
+<p class="p7"><i></i><br></p>
+</body>
+</html>

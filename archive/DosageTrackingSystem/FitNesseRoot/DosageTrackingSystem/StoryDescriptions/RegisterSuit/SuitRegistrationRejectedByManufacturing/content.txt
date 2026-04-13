@@ -1,0 +1,25 @@
+!3 Manufacturing rejects a suit registration.
+
+''We also assume that there are no suits in inventory.''
+!|Suit inventory parameters|
+|Number of suits?|
+|0|
+
+''We attempt to register suit 314159.''
+!|Suit Registration Request|
+|bar code|
+|314159|
+
+''DTrack sends the registration confirmation to Manufacturing.''
+!|Message sent to manufacturing|
+|Suit Registration Approval Request?|message argument?|message sender?|
+|true|314159|Outside Maintenance|
+
+''Manufacturing rejects the confirmation.''
+!|Message received from manufacturing|
+|message id|message argument|message sender|message recipient|
+|Suit Registration Rejected|314159|Manufacturing|Outside Maintenance|
+
+''The rejected suit should not be in the registered inventory.''
+!|Suits in inventory|
+|bar code?|next inspection date?|

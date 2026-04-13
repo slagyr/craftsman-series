@@ -1,0 +1,12 @@
+require 'employee'
+
+class SalariedEmployee < Employee
+  def initialize(name, salary)
+    super(name)
+    @salary = salary
+  end
+  
+  def getSalary
+    @salary
+  end
+end

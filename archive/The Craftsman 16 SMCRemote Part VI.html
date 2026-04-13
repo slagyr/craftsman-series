@@ -1,0 +1,309 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>The Craftsman</title>
+  <meta name="Author" content="Robert C. Martin">
+  <meta name="LastAuthor" content="Robert C. Martin">
+  <meta name="Company" content="Object Mentor Inc.">
+  <meta name="CreationTime" content="2003-07-18T08:57:00Z">
+  <meta name="ModificationTime" content="2003-07-18T08:57:00Z">
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.4">
+  <style type="text/css">
+    p.p1 {margin: 34.0px 0.0px 34.0px 0.0px; text-align: right; line-height: 22.0px; font: 24.0px 'Times New Roman'; color: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: right; font: 10.0px 'Times New Roman'; color: #000000}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: right; font: 10.0px 'Times New Roman'; color: #000000; min-height: 11.0px}
+    p.p4 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 12.0px 'Times New Roman'; color: #000000; min-height: 15.0px}
+    p.p5 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 10.0px 'Times New Roman'; color: #000000}
+    p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #ff0000; min-height: 10.0px}
+    p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #000000; min-height: 10.0px}
+    p.p8 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 10.0px 'Times New Roman'; color: #000000; min-height: 11.0px}
+    p.p9 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #000000}
+    p.p10 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: center; text-indent: 18.0px; font: 10.0px 'Times New Roman'; color: #000000}
+    p.p11 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: center; text-indent: 18.0px; font: 10.0px 'Times New Roman'; color: #000000; min-height: 11.0px}
+    span.s1 {font: 9.0px 'Courier New'}
+  </style>
+</head>
+<body>
+<p class="p1"><b>The Craftsman: 16<br>
+SMCRemote Part VI<br>
+Wham Bam</b></p>
+<p class="p2">Robert C. Martin</p>
+<p class="p2">18 July, 2003</p>
+<p class="p3"><i></i><br></p>
+<p class="p4"><br></p>
+<p class="p5"><i>...Continued from last month.<span class="Apple-converted-space">  </span>See &lt;&lt;link&gt;&gt; for last month's article, and the code we were working on.<span class="Apple-converted-space">  </span>You can download that code from:</i></p>
+<p class="p5"><i>www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_15_SMCRemote_V_EssArePee.zip p</i></p>
+<p class="p6"><b></b><br></p>
+<p class="p7"><br></p>
+<p class="p5">Jasmine just stood there staring daggers at me.<span class="Apple-converted-space">  </span>I tried to lower my head, but I couldn't break contact with her eyes.<span class="Apple-converted-space">  </span>After about half a minute she rolled those eyes, and stared at the ceiling, tapping her foot.<span class="Apple-converted-space">  </span>Finally, she shook her head, squared her shoulders and strode over to me.<span class="Apple-converted-space">  </span>She had an odd, sad, look on her face.</p>
+<p class="p5">"Alphonse," she said sternly, "that is territory that you are never to tread again.<span class="Apple-converted-space">  </span>Do you understand me?"</p>
+<p class="p5">Thoroughly ashamed of myself, I nodded and said: "Yes Jasmine.<span class="Apple-converted-space">  </span>I'm -- uh -- I'm sorry."</p>
+<p class="p5">"And from now on, call me Ma'am."</p>
+<p class="p5">"Yes,... Ma'am."<span class="Apple-converted-space">  </span>Oh god this was excruciating.</p>
+<p class="p5">She gave an wry little snort that made her hair bounce and shimmer and then she said: "OK, let's see what you've done." <span class="Apple-converted-space"> </span></p>
+<p class="p5">I showed her the <span class="s1">FileCarrier</span> code, and the tests I had written. <span class="Apple-converted-space">  </span>She seemed satisfied at first but then said: "Look at the way <span class="s1">FileCarrier</span> reads and writes the file.</p>
+<p class="p8"><br></p>
+<p class="p9">public class FileCarrier implements Serializable {</p>
+<p class="p9"><span class="Apple-converted-space">  </span>private String fileName;</p>
+<p class="p9"><span class="Apple-converted-space">  </span>private char[] contents;</p>
+<p class="p7"><br></p>
+<p class="p9"><span class="Apple-converted-space">  </span>public FileCarrier(String fileName) throws Exception {</p>
+<p class="p9"><span class="Apple-converted-space">    </span>File f = new File(fileName);</p>
+<p class="p9"><span class="Apple-converted-space">    </span>this.fileName = fileName;</p>
+<p class="p9"><span class="Apple-converted-space">    </span>int fileSize = (int)f.length();</p>
+<p class="p9"><span class="Apple-converted-space">    </span>contents = new char[fileSize];</p>
+<p class="p9"><span class="Apple-converted-space">    </span>FileReader reader = new FileReader(f);</p>
+<p class="p9"><span class="Apple-converted-space">    </span>reader.read(contents);</p>
+<p class="p9"><span class="Apple-converted-space">    </span>reader.close();</p>
+<p class="p9"><span class="Apple-converted-space">  </span>}</p>
+<p class="p7"><br></p>
+<p class="p9"><span class="Apple-converted-space">  </span>public void write() throws Exception {</p>
+<p class="p9"><span class="Apple-converted-space">    </span>FileWriter writer = new FileWriter(fileName);</p>
+<p class="p9"><span class="Apple-converted-space">    </span>writer.write(contents);</p>
+<p class="p9"><span class="Apple-converted-space">    </span>writer.close();</p>
+<p class="p9"><span class="Apple-converted-space">  </span>}</p>
+<p class="p7"><br></p>
+<p class="p9"><span class="Apple-converted-space">  </span>public String getFileName() {</p>
+<p class="p9"><span class="Apple-converted-space">    </span>return fileName;</p>
+<p class="p9"><span class="Apple-converted-space">  </span>}</p>
+<p class="p9"><span class="Apple-converted-space">  </span>public char[] getContents() {</p>
+<p class="p9"><span class="Apple-converted-space">    </span>return contents;</p>
+<p class="p9"><span class="Apple-converted-space">  </span>}</p>
+<p class="p9">}</p>
+<p class="p5">"<span class="s1">FileCarrier</span> reads the file with a single read, and writes it with a single write.<span class="Apple-converted-space">  </span>This works for small examples, but there are a few problems with it.<span class="Apple-converted-space">  </span>First of all, I'm not convinced that the read won't abort early, filling only part of the array.<span class="Apple-converted-space">  </span>Secondly, the carried file is going to be transmitted over a socket to another system.<span class="Apple-converted-space">  </span>That system may use a different line-end character.<span class="Apple-converted-space">  </span>So I don't think <span class="s1">FileCarrier</span> will work well across foreign systems."</p>
+<p class="p5">I was listening.<span class="Apple-converted-space">  </span>I was listening <i>hard</i>.<span class="Apple-converted-space">  </span>But some disconnected part of me watched raptly as she focused those black eyes on the screen.<span class="Apple-converted-space">  </span>Her lashes, nose, and lips danced as she spoke.</p>
+<p class="p5">"What do you think we should do about that Alphonse?"</p>
+<p class="p5">I didn't miss a beat.<span class="Apple-converted-space">  </span>"Well, -- er -- <i>Ma'am</i>, we should probably read and write the files a line at a time, and carry the files in a list of lines."<span class="Apple-converted-space"> </span></p>
+<p class="p5">"All right Alphonse, why don't you make that change?"</p>
+<p class="p5">I directed my attention to the keyboard and, bit-by-bit, I made the appropriate changes to the <span class="s1">FileCarrier</span>.<span class="Apple-converted-space">  </span>I took special care to keep the tests running.<span class="Apple-converted-space">  </span>Once everything was working I refactored the class so that it read as clearly and cleanly as I could make it.<span class="Apple-converted-space">  </span>I was on my very best behavior.</p>
+<p class="p7"><br></p>
+<p class="p9">public class FileCarrier implements Serializable {</p>
+<p class="p9"><span class="Apple-converted-space">  </span>private String fileName;</p>
+<p class="p9"><span class="Apple-converted-space">  </span>private LinkedList lines = new LinkedList();</p>
+<p class="p7"><br></p>
+<p class="p9"><span class="Apple-converted-space">  </span>public FileCarrier(String fileName) throws Exception {</p>
+<p class="p9"><span class="Apple-converted-space">    </span>this.fileName = fileName;</p>
+<p class="p9"><span class="Apple-converted-space">    </span>loadLines();</p>
+<p class="p9"><span class="Apple-converted-space">  </span>}</p>
+<p class="p7"><br></p>
+<p class="p9"><span class="Apple-converted-space">  </span>private void loadLines() throws IOException {</p>
+<p class="p9"><span class="Apple-converted-space">    </span>BufferedReader br = makeBufferedReader();</p>
+<p class="p9"><span class="Apple-converted-space">    </span>String line;</p>
+<p class="p9"><span class="Apple-converted-space">    </span>while ((line = br.readLine()) != null)</p>
+<p class="p9"><span class="Apple-converted-space">      </span>lines.add(line);</p>
+<p class="p9"><span class="Apple-converted-space">    </span>br.close();</p>
+<p class="p9"><span class="Apple-converted-space">  </span>}</p>
+<p class="p7"><br></p>
+<p class="p9"><span class="Apple-converted-space">  </span>private BufferedReader makeBufferedReader()</p>
+<p class="p9"><span class="Apple-converted-space">    </span>throws FileNotFoundException {</p>
+<p class="p9"><span class="Apple-converted-space">    </span>return new BufferedReader(</p>
+<p class="p9"><span class="Apple-converted-space">      </span>new InputStreamReader(</p>
+<p class="p9"><span class="Apple-converted-space">        </span>new FileInputStream(fileName)));</p>
+<p class="p9"><span class="Apple-converted-space">  </span>}</p>
+<p class="p7"><br></p>
+<p class="p9"><span class="Apple-converted-space">  </span>public void write() throws Exception {</p>
+<p class="p9"><span class="Apple-converted-space">    </span>PrintStream ps = makePrintStream();</p>
+<p class="p9"><span class="Apple-converted-space">    </span>for (Iterator i = lines.iterator(); i.hasNext();)</p>
+<p class="p9"><span class="Apple-converted-space">      </span>ps.println((String) i.next());</p>
+<p class="p9"><span class="Apple-converted-space">    </span>ps.close();</p>
+<p class="p9"><span class="Apple-converted-space">  </span>}</p>
+<p class="p7"><br></p>
+<p class="p9"><span class="Apple-converted-space">  </span>private PrintStream makePrintStream() throws FileNotFoundException {</p>
+<p class="p9"><span class="Apple-converted-space">    </span>return new PrintStream(</p>
+<p class="p9"><span class="Apple-converted-space">      </span>new FileOutputStream(fileName));</p>
+<p class="p9"><span class="Apple-converted-space">  </span>}</p>
+<p class="p7"><br></p>
+<p class="p9"><span class="Apple-converted-space">  </span>public String getFileName() {</p>
+<p class="p9"><span class="Apple-converted-space">    </span>return fileName;</p>
+<p class="p9"><span class="Apple-converted-space">  </span>}</p>
+<p class="p9">}</p>
+<p class="p6"><b></b><br></p>
+<p class="p5">"That's very good, Alphonse."</p>
+<p class="p5">"Thank you Ma'am."<span class="Apple-converted-space">  </span>I suppressed a cringe.<span class="Apple-converted-space">   </span></p>
+<p class="p5">"However, I don't think <span class="s1">FileCarrierTest</span> really ensures that <span class="s1">FileCarrier</span> faithfully reproduces the file.<span class="Apple-converted-space">  </span>I'd like to see some more tests."</p>
+<p class="p5">She was being too polite.<span class="Apple-converted-space">  </span>I was starting to wish she'd call me Hot Shot again. <span class="Apple-converted-space"> </span></p>
+<p class="p5">"I agree, Ma'am.<span class="Apple-converted-space">  </span>I'll improve the test."</p>
+<p class="p5">Once again I build the code bit-by-bit, keeping the tests running as I made the changes.<span class="Apple-converted-space">  </span>Once again I refactored with great care until I was very sure that the code was as clean and expressive as I could make it.<span class="Apple-converted-space">  </span>I didn't want to give Ma'am any more reason to be angry or disappointed. <span class="Apple-converted-space"> </span></p>
+<p class="p8"><br></p>
+<p class="p9">public class FileCarrierTest extends TestCase {</p>
+<p class="p9"><span class="Apple-converted-space">  </span>public void testFileCarrier() throws Exception {</p>
+<p class="p9"><span class="Apple-converted-space">    </span>final String ORIGINAL_FILENAME = "testFileCarrier.txt";</p>
+<p class="p9"><span class="Apple-converted-space">    </span>final String RENAMED_FILENAME = "testFileCarrierRenamed.txt";</p>
+<p class="p9"><span class="Apple-converted-space">    </span>File originalFile = new File(ORIGINAL_FILENAME);</p>
+<p class="p9"><span class="Apple-converted-space">    </span>File renamedOriginal = new File(RENAMED_FILENAME);</p>
+<p class="p7"><br></p>
+<p class="p9"><span class="Apple-converted-space">    </span>ensureFileIsRemoved(originalFile);</p>
+<p class="p9"><span class="Apple-converted-space">    </span>ensureFileIsRemoved(renamedOriginal);</p>
+<p class="p7"><br></p>
+<p class="p9"><span class="Apple-converted-space">    </span>createTestFile(originalFile);</p>
+<p class="p9"><span class="Apple-converted-space">    </span>FileCarrier fc = new FileCarrier(ORIGINAL_FILENAME);</p>
+<p class="p9"><span class="Apple-converted-space">    </span>rename(originalFile, renamedOriginal);</p>
+<p class="p9"><span class="Apple-converted-space">    </span>fc.write();</p>
+<p class="p7"><br></p>
+<p class="p9"><span class="Apple-converted-space">    </span>assertTrue(originalFile.exists());</p>
+<p class="p9"><span class="Apple-converted-space">    </span>assertTrue(filesAreTheSame(originalFile, renamedOriginal));</p>
+<p class="p7"><br></p>
+<p class="p9"><span class="Apple-converted-space">    </span>originalFile.delete();</p>
+<p class="p9"><span class="Apple-converted-space">    </span>renamedOriginal.delete();</p>
+<p class="p9"><span class="Apple-converted-space">  </span>}</p>
+<p class="p7"><br></p>
+<p class="p9"><span class="Apple-converted-space">  </span>private void rename(File oldFile, File newFile) {</p>
+<p class="p9"><span class="Apple-converted-space">    </span>oldFile.renameTo(newFile);</p>
+<p class="p9"><span class="Apple-converted-space">    </span>assertTrue(oldFile.exists() == false);</p>
+<p class="p9"><span class="Apple-converted-space">    </span>assertTrue(newFile.exists());</p>
+<p class="p9"><span class="Apple-converted-space">  </span>}</p>
+<p class="p7"><br></p>
+<p class="p9"><span class="Apple-converted-space">  </span>private void createTestFile(File file) throws IOException {</p>
+<p class="p9"><span class="Apple-converted-space">    </span>PrintWriter w = new PrintWriter(new FileWriter(file));</p>
+<p class="p9"><span class="Apple-converted-space">    </span>w.println("line one");</p>
+<p class="p9"><span class="Apple-converted-space">    </span>w.println("line two");</p>
+<p class="p9"><span class="Apple-converted-space">    </span>w.println("line three");</p>
+<p class="p9"><span class="Apple-converted-space">    </span>w.close();</p>
+<p class="p9"><span class="Apple-converted-space">  </span>}</p>
+<p class="p7"><br></p>
+<p class="p9"><span class="Apple-converted-space">  </span>private void ensureFileIsRemoved(File file) {</p>
+<p class="p9"><span class="Apple-converted-space">    </span>if (file.exists()) file.delete();</p>
+<p class="p9"><span class="Apple-converted-space">    </span>assertTrue(file.exists() == false);</p>
+<p class="p9"><span class="Apple-converted-space">  </span>}</p>
+<p class="p7"><br></p>
+<p class="p9"><span class="Apple-converted-space">  </span>private boolean filesAreTheSame(File f1, File f2) throws Exception {</p>
+<p class="p9"><span class="Apple-converted-space">    </span>FileInputStream r1 = new FileInputStream(f1);</p>
+<p class="p9"><span class="Apple-converted-space">    </span>FileInputStream r2 = new FileInputStream(f2);</p>
+<p class="p9"><span class="Apple-converted-space">    </span>try {</p>
+<p class="p9"><span class="Apple-converted-space">      </span>int c;</p>
+<p class="p9"><span class="Apple-converted-space">      </span>while ((c = r1.read()) != -1) {</p>
+<p class="p9"><span class="Apple-converted-space">        </span>if (r2.read() != c) {</p>
+<p class="p9"><span class="Apple-converted-space">          </span>return false;</p>
+<p class="p9"><span class="Apple-converted-space">        </span>}</p>
+<p class="p9"><span class="Apple-converted-space">      </span>}</p>
+<p class="p9"><span class="Apple-converted-space">      </span>if (r2.read() != -1)</p>
+<p class="p9"><span class="Apple-converted-space">        </span>return false;</p>
+<p class="p9"><span class="Apple-converted-space">      </span>else</p>
+<p class="p9"><span class="Apple-converted-space">        </span>return true;</p>
+<p class="p9"><span class="Apple-converted-space">    </span>} finally {</p>
+<p class="p9"><span class="Apple-converted-space">      </span>r1.close();</p>
+<p class="p9"><span class="Apple-converted-space">      </span>r2.close();</p>
+<p class="p9"><span class="Apple-converted-space">    </span>}</p>
+<p class="p9"><span class="Apple-converted-space">  </span>}</p>
+<p class="p9">}</p>
+<p class="p7"><br></p>
+<p class="p5">Ma'am studied the code as I wrote it.<span class="Apple-converted-space">  </span>She never looked at me -- never once.<span class="Apple-converted-space">  </span>As uncomfortable as they had made me, her penetrating glares and snide remarks were better than this formal etiquette.<span class="Apple-converted-space">  </span>The tension between us was palpable.</p>
+<p class="p5">"That's very nice, Alphonse.<span class="Apple-converted-space">  </span>Good clean code.<span class="Apple-converted-space">  </span>I especially like the way you made sure that the original file was renamed, and that the new file was created.<span class="Apple-converted-space">  </span>The way you've written it, there can't be any doubt that the <span class="s1">FileCarrier</span> is creating the file.<span class="Apple-converted-space">  </span>There's no way the old file could have been left behind. <span class="Apple-converted-space"> </span></p>
+<p class="p5">"The one problem I have with it is that I haven't seen the <span class="s1">filesAreTheSame</span> method fail.<span class="Apple-converted-space">  </span>Do you think it really works properly?"</p>
+<p class="p5">I carefully examined the code.<span class="Apple-converted-space">  </span>I couldn't see any flaw.<span class="Apple-converted-space">  </span>I was pretty sure it had to work.<span class="Apple-converted-space">  </span>But I wasn't going to make any assertions without evidence.<span class="Apple-converted-space">  </span>So I started writing some tests for the <span class="s1">filesAreTheSame</span> method.</p>
+<p class="p5">I began by writing a test that showed that the method worked for two files that were equal.<span class="Apple-converted-space">  </span>Then I wrote a test that showed that two different files did not compare the same.<span class="Apple-converted-space">  </span>I wrote a test that showed that if one file were a prefix of the other, they would not compare.<span class="Apple-converted-space">  </span>In the end I wrote five different test cases. <span class="Apple-converted-space"> </span></p>
+<p class="p5">These five test cases had a <i>lot</i> of duplicate code.<span class="Apple-converted-space">  </span>Each wrote two files.<span class="Apple-converted-space">  </span>Each compared the two files.<span class="Apple-converted-space">  </span>Each deleted the two files.<span class="Apple-converted-space">  </span>To get rid of this duplication I used the Template Method pattern.<span class="Apple-converted-space">  </span>I moved all the common code into an abstract base class called <span class="s1">FileComparator</span>.<span class="Apple-converted-space">  </span>I moved all the differentiating code into simple anonymous derivatives.<span class="Apple-converted-space">  </span>Thus, each test case created a new anonymous derivative that specified nothing more than the contents of the two files, and the sense of the comparison. <span class="Apple-converted-space"> </span></p>
+<p class="p5">As always, I wrote this code one tiny step at a time, running the tests between each step, and carefully refactoring whenever I could. <span class="Apple-converted-space">  </span>Ma'am never took her eyes off the screen.<span class="Apple-converted-space">  </span>She was purposefully avoiding any informal contact.<span class="Apple-converted-space">  </span>Once, our elbows accidentally touched.<span class="Apple-converted-space">  </span>Shivers ran through me; but she didn't show any reaction at all.<span class="Apple-converted-space">  </span>A few minutes later she moved her chair a few centimeters further from mine.</p>
+<p class="p8"><br></p>
+<p class="p9">public class FileCarrierTest extends TestCase {</p>
+<p class="p9"><span class="Apple-converted-space">  </span>private abstract class FileComparator {</p>
+<p class="p9"><span class="Apple-converted-space">    </span>abstract void writeFirstFile(PrintWriter w);</p>
+<p class="p9"><span class="Apple-converted-space">    </span>abstract void writeSecondFile(PrintWriter w);</p>
+<p class="p7"><br></p>
+<p class="p9"><span class="Apple-converted-space">    </span>void compare(boolean expected) throws Exception {</p>
+<p class="p9"><span class="Apple-converted-space">      </span>File f1 = new File("f1");</p>
+<p class="p9"><span class="Apple-converted-space">      </span>File f2 = new File("f2");</p>
+<p class="p9"><span class="Apple-converted-space">      </span>PrintWriter w1 = new PrintWriter(new FileWriter(f1));</p>
+<p class="p9"><span class="Apple-converted-space">      </span>PrintWriter w2 = new PrintWriter(new FileWriter(f2));</p>
+<p class="p9"><span class="Apple-converted-space">      </span>writeFirstFile(w1);</p>
+<p class="p9"><span class="Apple-converted-space">      </span>writeSecondFile(w2);</p>
+<p class="p9"><span class="Apple-converted-space">      </span>w1.close();</p>
+<p class="p9"><span class="Apple-converted-space">      </span>w2.close();</p>
+<p class="p9"><span class="Apple-converted-space">      </span>assertEquals("(f1,f2)", expected, filesAreTheSame(f1, f2));</p>
+<p class="p9"><span class="Apple-converted-space">      </span>assertEquals("(f2,f1)", expected, filesAreTheSame(f2, f1));</p>
+<p class="p9"><span class="Apple-converted-space">      </span>f1.delete();</p>
+<p class="p9"><span class="Apple-converted-space">      </span>f2.delete();</p>
+<p class="p9"><span class="Apple-converted-space">    </span>}</p>
+<p class="p9"><span class="Apple-converted-space">  </span>}</p>
+<p class="p7"><br></p>
+<p class="p9"><span class="Apple-converted-space">  </span>public void testOneFileLongerThanTheOther() throws Exception {</p>
+<p class="p9"><span class="Apple-converted-space">    </span>FileComparator c = new FileComparator() {</p>
+<p class="p9"><span class="Apple-converted-space">      </span>void writeFirstFile(PrintWriter w) {</p>
+<p class="p9"><span class="Apple-converted-space">        </span>w.println("hi there");</p>
+<p class="p9"><span class="Apple-converted-space">      </span>}</p>
+<p class="p7"><br></p>
+<p class="p9"><span class="Apple-converted-space">      </span>void writeSecondFile(PrintWriter w) {</p>
+<p class="p9"><span class="Apple-converted-space">        </span>w.println("hi there you");</p>
+<p class="p9"><span class="Apple-converted-space">      </span>}</p>
+<p class="p9"><span class="Apple-converted-space">    </span>};</p>
+<p class="p9"><span class="Apple-converted-space">    </span>c.compare(false);</p>
+<p class="p9"><span class="Apple-converted-space">  </span>}</p>
+<p class="p7"><br></p>
+<p class="p9"><span class="Apple-converted-space">  </span>public void testFilesAreDifferentInTheMiddle() throws Exception {</p>
+<p class="p9"><span class="Apple-converted-space">    </span>FileComparator c = new FileComparator() {</p>
+<p class="p9"><span class="Apple-converted-space">      </span>void writeFirstFile(PrintWriter w) {</p>
+<p class="p9"><span class="Apple-converted-space">        </span>w.println("hi there");</p>
+<p class="p9"><span class="Apple-converted-space">      </span>}</p>
+<p class="p7"><br></p>
+<p class="p9"><span class="Apple-converted-space">      </span>void writeSecondFile(PrintWriter w) {</p>
+<p class="p9"><span class="Apple-converted-space">        </span>w.println("hi their");</p>
+<p class="p9"><span class="Apple-converted-space">      </span>}</p>
+<p class="p9"><span class="Apple-converted-space">    </span>};</p>
+<p class="p9"><span class="Apple-converted-space">    </span>c.compare(false);</p>
+<p class="p9"><span class="Apple-converted-space">  </span>}</p>
+<p class="p7"><br></p>
+<p class="p9"><span class="Apple-converted-space">  </span>public void testSecondLineDifferent() throws Exception {</p>
+<p class="p9"><span class="Apple-converted-space">    </span>FileComparator c = new FileComparator() {</p>
+<p class="p9"><span class="Apple-converted-space">      </span>void writeFirstFile(PrintWriter w) {</p>
+<p class="p9"><span class="Apple-converted-space">        </span>w.println("hi there");</p>
+<p class="p9"><span class="Apple-converted-space">        </span>w.println("This is fun");</p>
+<p class="p9"><span class="Apple-converted-space">      </span>}</p>
+<p class="p7"><br></p>
+<p class="p9"><span class="Apple-converted-space">      </span>void writeSecondFile(PrintWriter w) {</p>
+<p class="p9"><span class="Apple-converted-space">        </span>w.println("hi there");</p>
+<p class="p9"><span class="Apple-converted-space">        </span>w.println("This isn't fun");</p>
+<p class="p9"><span class="Apple-converted-space">      </span>}</p>
+<p class="p9"><span class="Apple-converted-space">    </span>};</p>
+<p class="p9"><span class="Apple-converted-space">    </span>c.compare(false);</p>
+<p class="p9"><span class="Apple-converted-space">  </span>}</p>
+<p class="p7"><br></p>
+<p class="p9"><span class="Apple-converted-space">  </span>public void testFilesSame() throws Exception {</p>
+<p class="p9"><span class="Apple-converted-space">    </span>FileComparator c = new FileComparator() {</p>
+<p class="p9"><span class="Apple-converted-space">      </span>void writeFirstFile(PrintWriter w) {</p>
+<p class="p9"><span class="Apple-converted-space">        </span>w.println("hi there");</p>
+<p class="p9"><span class="Apple-converted-space">      </span>}</p>
+<p class="p7"><br></p>
+<p class="p9"><span class="Apple-converted-space">      </span>void writeSecondFile(PrintWriter w) {</p>
+<p class="p9"><span class="Apple-converted-space">        </span>w.println("hi there");</p>
+<p class="p9"><span class="Apple-converted-space">      </span>}</p>
+<p class="p9"><span class="Apple-converted-space">    </span>};</p>
+<p class="p9"><span class="Apple-converted-space">    </span>c.compare(true);</p>
+<p class="p9"><span class="Apple-converted-space">  </span>}</p>
+<p class="p7"><br></p>
+<p class="p9"><span class="Apple-converted-space">  </span>public void testMultipleLinesSame() throws Exception {</p>
+<p class="p9"><span class="Apple-converted-space">    </span>FileComparator c = new FileComparator() {</p>
+<p class="p9"><span class="Apple-converted-space">      </span>void writeFirstFile(PrintWriter w) {</p>
+<p class="p9"><span class="Apple-converted-space">        </span>w.println("hi there");</p>
+<p class="p9"><span class="Apple-converted-space">        </span>w.println("this is fun");</p>
+<p class="p9"><span class="Apple-converted-space">        </span>w.println("Lots of fun");</p>
+<p class="p9"><span class="Apple-converted-space">      </span>}</p>
+<p class="p7"><br></p>
+<p class="p9"><span class="Apple-converted-space">      </span>void writeSecondFile(PrintWriter w) {</p>
+<p class="p9"><span class="Apple-converted-space">        </span>w.println("hi there");</p>
+<p class="p9"><span class="Apple-converted-space">        </span>w.println("this is fun");</p>
+<p class="p9"><span class="Apple-converted-space">        </span>w.println("Lots of fun");</p>
+<p class="p9"><span class="Apple-converted-space">      </span>}</p>
+<p class="p9"><span class="Apple-converted-space">    </span>};</p>
+<p class="p9"><span class="Apple-converted-space">    </span>c.compare(true);</p>
+<p class="p9"><span class="Apple-converted-space">  </span>}</p>
+<p class="p7"><br></p>
+<p class="p5">"Alphonse, this is very nice." <span class="Apple-converted-space"> </span></p>
+<p class="p5">I wanted to scream.</p>
+<p class="p5">"I love the way you used the Template Method pattern to eliminate duplication.<span class="Apple-converted-space">  </span>I'm glad you are taking your studies so seriously.<span class="Apple-converted-space">  </span>Many apprentices don't learn their patterns until their journeymen force them to. <span class="Apple-converted-space"> </span></p>
+<p class="p5">"I also like the way you tested the commutivity of equality. <span class="Apple-converted-space">  </span>Every comparison happens in both directions.<span class="Apple-converted-space">  </span>Splendid!"</p>
+<p class="p5">Egad!<span class="Apple-converted-space">  </span>When was she going to complain about something?<span class="Apple-converted-space">  </span>Where had Jasmine gone?</p>
+<p class="p5">"Thank you, Ma'am."</p>
+<p class="p8"><br></p>
+<p class="p10"><i>To be continued...</i></p>
+<p class="p6"><b></b><br></p>
+<p class="p11"><br></p>
+<p class="p8"><br></p>
+<p class="p5"><i>The code that Alphonse and Jasmine finished can be retrieved from:</i></p>
+<p class="p5"><i>www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_16_SMCRemote_VI_Wham_Bam.zip</i></p>
+<p class="p8"><i></i><br></p>
+<p class="p8"><i></i><br></p>
+</body>
+</html>

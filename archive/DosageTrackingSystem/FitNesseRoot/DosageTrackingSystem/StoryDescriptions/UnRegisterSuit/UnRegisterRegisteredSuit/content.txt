@@ -1,0 +1,7 @@
+!3 Unregister a suit.  
+Users can unregister a suit that has been properly registered.  This will remove the suit from inventory.
+
+!|set suit|314159|as registered|
+|check|unregister suit|314159|true|
+|check|count of registered suits is|0|
+|check|message|Suit 314159 unregistered.|was printed|true|

@@ -1,0 +1,6 @@
+!3 You can't unregister a suit that's not already registered.
+Any attempt to do so should be ignored with an appropriate error message.
+
+!|check|unregister suit|314159|true|
+|check|count of registered suits is|0|
+|check|message|Suit 314159 was not registered.|was printed|true|

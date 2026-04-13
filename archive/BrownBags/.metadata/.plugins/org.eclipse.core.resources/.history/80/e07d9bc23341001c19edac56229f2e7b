@@ -1,0 +1,9 @@
+class EmployeeReportVisitor
+  def visitHourly(hourlyEmployee)
+    
+  end
+  
+  def getReportLine 
+    ""
+  end
+end

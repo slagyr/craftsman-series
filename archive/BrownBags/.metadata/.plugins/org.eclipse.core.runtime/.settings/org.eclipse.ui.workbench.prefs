@@ -1,0 +1,5 @@
+#Thu Jun 14 12:27:35 CDT 2007
+ColorsAndFontsPreferencePage.expandedCategories=Torg.rubypeople.rdt.ui.presentation
+eclipse.preferences.version=1
+ENABLED_DECORATORS=com.aptana.ide.debug.ui.decorators.StartPageDecorator\:true,com.aptana.ide.syncing.SyncConnectionDecorator\:true,com.aptana.ide.syncing.VirtualFileCloakedDecorator\:true,com.aptana.ide.syncing.VirtualFileManagerSyncDecorator\:true,com.aptana.ide.syncing.SyncProjectConnectionDecorator\:true,com.aptana.ide.syncing.VirtualProjectCloakedDecorator\:true,org.eclipse.ui.LinkedResourceDecorator\:true,
+ColorsAndFontsPreferencePage.selectedElement=Forg.rubypeople.rdt.ui.editors.textfont

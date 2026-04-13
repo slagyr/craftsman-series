@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>The Craftsman</title>
+  <meta name="Author" content="Robert C. Martin">
+  <meta name="LastAuthor" content="Robert C. Martin">
+  <meta name="Company" content="Object Mentor Inc.">
+  <meta name="CreationTime" content="2003-11-28T11:03:00Z">
+  <meta name="ModificationTime" content="2003-11-28T11:03:00Z">
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.4">
+  <style type="text/css">
+    p.p1 {margin: 34.0px 0.0px 34.0px 0.0px; text-align: right; line-height: 22.0px; font: 24.0px 'Times New Roman'; color: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: right; font: 10.0px 'Times New Roman'; color: #000000}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: right; font: 10.0px 'Times New Roman'; color: #000000; min-height: 11.0px}
+    p.p4 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 12.0px 'Times New Roman'; color: #000000; min-height: 15.0px}
+    p.p5 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 10.0px 'Times New Roman'; color: #000000}
+    p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #ff0000; min-height: 10.0px}
+    p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #000000; min-height: 10.0px}
+    p.p8 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 10.0px 'Times New Roman'; color: #000000; min-height: 11.0px}
+    p.p9 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #000000}
+    p.p10 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #ff0000}
+    p.p11 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; font: 10.0px 'Times New Roman'; color: #000000; min-height: 11.0px}
+    p.p12 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: center; text-indent: 18.0px; font: 10.0px 'Times New Roman'; color: #000000}
+    p.p13 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: center; text-indent: 18.0px; font: 10.0px 'Times New Roman'; color: #000000; min-height: 11.0px}
+    span.s1 {font: 9.0px 'Courier New'}
+    span.s2 {color: #ff0000}
+    span.Apple-tab-span {white-space:pre}
+  </style>
+</head>
+<body>
+<p class="p1"><b>The Craftsman: 20<br>
+SMCRemote Part X<br>
+Backslide.</b></p>
+<p class="p2">Robert C. Martin</p>
+<p class="p2">28, Nov, 2003</p>
+<p class="p3"><i></i><br></p>
+<p class="p4"><br></p>
+<p class="p5"><i>...Continued from last month.<span class="Apple-converted-space">  </span>You can download last month's code from:</i></p>
+<p class="p5"><i>www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_19_Tolerance.zip</i></p>
+<p class="p6"><b></b><br></p>
+<p class="p7"><br></p>
+<p class="p5">I returned to the lab after lunch, but Jean was not there.<span class="Apple-converted-space">  </span>There was neither note, nor email from her; and her knitting basket was nowhere to be seen. After waiting a few minutes, I decided to sit down and continue working on the <span class="s1">SCMRemoteServer</span>.<span class="Apple-converted-space"> </span></p>
+<p class="p5">So far the server doesn't serve anything.<span class="Apple-converted-space">  </span>It's just a couple of functions that build and execute the SMC command line.<span class="Apple-converted-space">  </span>It seemed reasonable to me that the server code should open a socket and accept connections from the <span class="s1">SMCRemoteClient</span> that we wrote earlier.</p>
+<p class="p5">I was pretty frustrated with our pace today.<span class="Apple-converted-space">  </span>We'd worked the whole morning and only gotten two small functions, and their attendant unit tests written.<span class="Apple-converted-space">  </span>I felt like making <i>progress</i>.<span class="Apple-converted-space">  </span>So I grabbed the keyboard and began to type.</p>
+<p class="p5">"First," I thought,<span class="Apple-converted-space">  </span>"this server needs to serve something.<span class="Apple-converted-space">  </span>So lets use the <span class="s1">SocketServer</span> class that Jerry and I built last week."</p>
+<p class="p5">Getting the server to serve was pretty simple.<span class="Apple-converted-space">  </span>I just needed to write a constructor that created a <span class="s1">SocketService</span> object and passed in a <span class="s1">SocketServer</span>.<span class="Apple-converted-space">  </span>Then the <span class="s1">SocketServer</span>.<span class="s1">serve</span> method would automatically be called as soon as <span class="s1">SMCRemoteClient</span> tried to connect.</p>
+<p class="p8"><br></p>
+<p class="p9"><span class="Apple-converted-space">  </span>public SMCRemoteServer() throws Exception {</p>
+<p class="p9"><span class="Apple-converted-space">    </span>service = new SocketService(9000, new SocketServer(){</p>
+<p class="p9"><span class="Apple-converted-space">          </span>public void serve(Socket socket) {</p>
+<p class="p9"><span class="Apple-converted-space">            </span>// SMCRemoteClient has connected. <span class="Apple-converted-space"> </span></p>
+<p class="p9"><span class="Apple-converted-space">          </span>}</p>
+<p class="p9"><span class="Apple-converted-space">        </span>});</p>
+<p class="p9"><span class="Apple-converted-space">  </span>}</p>
+<p class="p7"><br></p>
+<p class="p5">I looked in the <span class="s1">SMCRemoteClient</span> code and saw that the client expects a string to be sent upon connection.<span class="Apple-converted-space">  </span>That string should begin with "SMCR".<span class="Apple-converted-space">  </span>So I wrote that string in the <span class="s1">serve()</span> method.</p>
+<p class="p8"><br></p>
+<p class="p9"><span class="Apple-converted-space">          </span>public void serve(Socket socket) {</p>
+<p class="p9"><span class="Apple-converted-space">            </span>// SMCRemoteClient has connected.</p>
+<p class="p10"><b><span class="Apple-converted-space">            </span>try {</b></p>
+<p class="p10"><b><span class="Apple-converted-space">              </span>ObjectOutputStream os =<span class="Apple-converted-space"> </span></b></p>
+<p class="p10"><b><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>new ObjectOutputStream(socket.getOutputStream());</b></p>
+<p class="p10"><b><span class="Apple-converted-space">              </span>os.writeObject("SMCR");</b></p>
+<p class="p10"><b><span class="Apple-converted-space">            </span>} catch (IOException e) {</b></p>
+<p class="p6"><b><span class="Apple-converted-space">              </span></b></p>
+<p class="p10"><b><span class="Apple-converted-space">            </span>}</b></p>
+<p class="p9"><span class="Apple-converted-space">          </span>}</p>
+<p class="p7"><br></p>
+<p class="p5">Next the server needs to read a <span class="s1">CompileFileTransaction</span> from the client.<span class="Apple-converted-space">  </span>It needs so write the files contained in that transaction, invoke the compiler, and then return the resulting files in a <span class="s1">CompilerResultsTransaction</span>.<span class="Apple-converted-space">  </span>This didn't seem like a hard thing to write so...</p>
+<p class="p8"><br></p>
+<p class="p9"><span class="Apple-converted-space">          </span>public void serve(Socket socket) {</p>
+<p class="p9"><span class="Apple-converted-space">            </span>// SMCRemoteClient has connected.</p>
+<p class="p9"><span class="Apple-converted-space">            </span>try {</p>
+<p class="p9"><span class="Apple-converted-space">              </span>ObjectOutputStream os =<span class="Apple-converted-space"> </span></p>
+<p class="p9"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>new ObjectOutputStream(socket.getOutputStream());</p>
+<p class="p9"><span class="Apple-converted-space">              </span>os.writeObject("SMCR");</p>
+<p class="p10"><b><span class="Apple-converted-space">              </span>ObjectInputStream is =<span class="Apple-converted-space"> </span></b></p>
+<p class="p10"><b><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>new ObjectInputStream(socket.getInputStream());</b></p>
+<p class="p10"><b><span class="Apple-converted-space">              </span>CompileFileTransaction cft =<span class="Apple-converted-space"> </span></b></p>
+<p class="p10"><b><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>(CompileFileTransaction)is.readObject();</b></p>
+<p class="p10"><b><span class="Apple-converted-space">              </span>String filename = cft.getFilename();</b></p>
+<p class="p10"><b><span class="Apple-converted-space">              </span>cft.sourceFile.write();</b></p>
+<p class="p10"><b><span class="Apple-converted-space">              </span>String command = buildCommandLine(filename);</b></p>
+<p class="p10"><b><span class="Apple-converted-space">              </span>executeCommand(command);</b></p>
+<p class="p10"><b><span class="Apple-converted-space">              </span>//OK, what file do I put into the Result?</b></p>
+<p class="p9"><span class="Apple-converted-space">            </span>} catch (<span class="s2"><b>Exception</b></span> e) {</p>
+<p class="p7"><br></p>
+<p class="p9"><span class="Apple-converted-space">            </span>}</p>
+<p class="p9"><span class="Apple-converted-space">          </span>}</p>
+<p class="p7"><br></p>
+<p class="p5">Hmmm.<span class="Apple-converted-space">  </span>Compiling the file didn't seem very difficult, but what output file should I put into the result transaction?<span class="Apple-converted-space">  </span>What is its name?<span class="Apple-converted-space">  </span>I remember from this morning that Jean had coached me in writing a test for invoking a compile.<span class="Apple-converted-space">  </span>I looked at that test and found that the input file has a <span class="s1">.sm</span> suffix, and the output file as a <span class="s1">.java</span> suffix.<span class="Apple-converted-space">  </span>So all I had to do is replace "<span class="s1">.sm"</span> with "<span class="s1">.java"</span> in the filename.</p>
+<p class="p8"><br></p>
+<p class="p9"><span class="Apple-converted-space">          </span>public void serve(Socket socket) {</p>
+<p class="p9"><span class="Apple-converted-space">            </span>// SMCRemoteClient has connected.</p>
+<p class="p9"><span class="Apple-converted-space">            </span>try {</p>
+<p class="p9"><span class="Apple-converted-space">              </span>ObjectOutputStream os =<span class="Apple-converted-space"> </span></p>
+<p class="p9"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>new ObjectOutputStream(socket.getOutputStream());</p>
+<p class="p9"><span class="Apple-converted-space">              </span>os.writeObject("SMCR");</p>
+<p class="p9"><span class="Apple-converted-space">              </span>ObjectInputStream is =<span class="Apple-converted-space"> </span></p>
+<p class="p9"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>new ObjectInputStream(socket.getInputStream());</p>
+<p class="p9"><span class="Apple-converted-space">              </span>CompileFileTransaction cft =<span class="Apple-converted-space"> </span></p>
+<p class="p9"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>(CompileFileTransaction)is.readObject();</p>
+<p class="p9"><span class="Apple-converted-space">              </span>String filename = cft.getFilename();</p>
+<p class="p9"><span class="Apple-converted-space">              </span>cft.sourceFile.write();</p>
+<p class="p9"><span class="Apple-converted-space">              </span>String command = buildCommandLine(filename);</p>
+<p class="p9"><span class="Apple-converted-space">              </span>executeCommand(command);</p>
+<p class="p10"><b><span class="Apple-converted-space">              </span>//Figure out the file name.</b></p>
+<p class="p10"><b><span class="Apple-converted-space">              </span>String compiledFile = filename.replaceAll("\\.sm", ".java");</b></p>
+<p class="p10"><b><span class="Apple-converted-space">              </span>CompilerResultsTransaction crt =<span class="Apple-converted-space"> </span></b></p>
+<p class="p10"><b><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>new CompilerResultsTransaction(compiledFile);</b></p>
+<p class="p10"><b><span class="Apple-converted-space">              </span>os.writeObject(crt);</b></p>
+<p class="p10"><b><span class="Apple-converted-space">              </span>socket.close();</b></p>
+<p class="p9"><span class="Apple-converted-space">            </span>} catch (Exception e) {</p>
+<p class="p7"><br></p>
+<p class="p9"><span class="Apple-converted-space">            </span>}</p>
+<p class="p9"><span class="Apple-converted-space">          </span>}</p>
+<p class="p8"><br></p>
+<p class="p5">This looked like it should work. All I needed to do was to start up the server and run the client.<span class="Apple-converted-space">  </span>That should be pretty simple.<span class="Apple-converted-space">  </span>So I created a source file in my directory named F.sm, just like the one that Jean had me create this morning.</p>
+<p class="p8"><br></p>
+<p class="p9">Context C</p>
+<p class="p9">FSMName F</p>
+<p class="p9">Initial I</p>
+<p class="p9">{I{E I A}}</p>
+<p class="p7"><br></p>
+<p class="p5">And then I wrote a simple main function in <span class="s1">SMCRemoteServer</span>. <span class="Apple-converted-space"> </span></p>
+<p class="p8"><br></p>
+<p class="p9"><span class="Apple-converted-space">  </span>public static void main(String[] args) throws Exception {</p>
+<p class="p9"><span class="Apple-converted-space">    </span>SMCRemoteServer server = new SMCRemoteServer();</p>
+<p class="p9"><span class="Apple-converted-space">  </span>}</p>
+<p class="p7"><br></p>
+<p class="p5">And then I ran it.<span class="Apple-converted-space">  </span>And it just hung there, waiting for a client to connect.<span class="Apple-converted-space">  </span>Now <i>this</i> was exciting!<span class="Apple-converted-space">  </span>I was getting something <i>done</i>!<span class="Apple-converted-space">  </span>So next I ran the client with "<span class="s1">F.sm</span>" as its argument.<span class="Apple-converted-space">  </span>And it <i>RAN!<span class="Apple-converted-space">  </span></i>Or rather it exited after several seconds with a normal exit code, and without any error messages either from the client or the server.<span class="Apple-converted-space">  </span>Cool!</p>
+<p class="p5">But what had it done?<span class="Apple-converted-space">  </span>I couldn't immediately tell. So I checked the directory and found an <span class="s1">F.java </span>file sitting there!<span class="Apple-converted-space">  </span>It had the right date on it, so it must have been created by my run of the client.<span class="Apple-converted-space">  </span>Way cool!<span class="Apple-converted-space">  </span>I opened the file and it looked like generated Java code.<span class="Apple-converted-space">  </span>It even said it was generated by SMC.<span class="Apple-converted-space">  </span>My code worked! <span class="Apple-converted-space"> </span></p>
+<p class="p5">It had been a couple of weeks since I had felt this good; since before working with Jerry as a matter of fact.<span class="Apple-converted-space">  </span><i>This</i> was what programming was all about!<span class="Apple-converted-space">  </span>I was filled with the rush of getting code working.<span class="Apple-converted-space">  </span>I was <i>invincible</i>!<span class="Apple-converted-space">  </span>I got up and did a little jig around my seat chanting "Oh yes!<span class="Apple-converted-space">  </span>Oh yes!<span class="Apple-converted-space">  </span>I'm a programmer.<span class="Apple-converted-space">  </span>Oh yes!"</p>
+<p class="p5">Jerry must have been nearby, because he came into the lab at that point.<span class="Apple-converted-space">  </span>"Hay, Alphonse, what's are you celebrating?"</p>
+<p class="p5">"Oh, hi Jerry!<span class="Apple-converted-space">  </span>Look at this! I just got the <span class="s1">SMCRemoteServer</span> working!" <span class="Apple-converted-space"> </span></p>
+<p class="p5">"Really?<span class="Apple-converted-space">  </span>That's great Alphonse."<span class="Apple-converted-space">  </span>The look on his face was funny -- as if he didn't believe me.<span class="Apple-converted-space">  </span>So I showed him.<span class="Apple-converted-space">  </span>I showed him how the server was sitting there running.<span class="Apple-converted-space">  </span>I ran the client again.<span class="Apple-converted-space">  </span>I showed him that an <span class="s1">F.java</span> file with the right date was created.<span class="Apple-converted-space">  </span>I even showed him that it contained generated java code.</p>
+<p class="p5">Jerry looked at me almost fearfully, and then nervously glanced at the door.<span class="Apple-converted-space">  </span>"Alphonse, where are your tests?"</p>
+<p class="p5">"Jerry, you don't need unit tests for something this simple.<span class="Apple-converted-space">  </span>Look, it was just a dozen lines of code or so.<span class="Apple-converted-space">  </span>Jerry, I made <i>progress</i> here.<span class="Apple-converted-space">  </span>I got something <i>done</i>.<span class="Apple-converted-space">  </span>And it didn't have to take all day!<span class="Apple-converted-space">  </span>I think you guys waste too much time on all those unit tests!"</p>
+<p class="p5">Jerry just stared at me for a few seconds, as if he couldn't quite process what I was telling him.<span class="Apple-converted-space">  </span>Then he shut the door to the lab and sat down next to me.</p>
+<p class="p5">"Alphonse, has Jean seen this?"</p>
+<p class="p5">"No, she hasn't come back from lunch yet."</p>
+<p class="p5">"Delete it, Alphonse."</p>
+<p class="p5">"Delete what?"</p>
+<p class="p5">"Delete the code you just wrote.<span class="Apple-converted-space">  </span>It's worthless."</p>
+<p class="p5">I had half expected this kind of reaction from someone.<span class="Apple-converted-space">  </span>I drew my mouth into a sneer and said: "Oh, come on Jerry!<span class="Apple-converted-space">  </span>It works!<span class="Apple-converted-space">  </span>How could it be worthless?"</p>
+<p class="p5">"Are you sure it works, Alphonse?"</p>
+<p class="p5">"You saw it for yourself!"</p>
+<p class="p5">"Are YOU sure it works?"</p>
+<p class="p5">"Of course it works.<span class="Apple-converted-space">  </span>The <span class="s1">F.java</span> file is proof!"</p>
+<p class="p5">"Alphonse, why is the date of the <span class="s1">F.sm</span> file exactly the same as the date on the <span class="s1">F.java</span> file?</p>
+<p class="p5">"What?"<span class="Apple-converted-space">  </span>I looked at the directory, and sure enough they were identical to the second.<span class="Apple-converted-space">  </span>But that didn't make any sense.<span class="Apple-converted-space">  </span>I had written the <span class="s1">F.sm</span> file by hand several minutes ago.<span class="Apple-converted-space">  </span>Why did it have the same date as the <span class="s1">F.Java</span> file that was created seconds ago when I demonstrated the system to Jerry?<span class="Apple-converted-space">  </span>I stared at it for awhile, and then admitted that I didn't know.</p>
+<p class="p5">"Delete the code, Alphonse.<span class="Apple-converted-space">  </span>You don't understand it."</p>
+<p class="p5">"Aw, come one Jerry, I understand it.<span class="Apple-converted-space">  </span>I just can't figure out why the dates don't look right.<span class="Apple-converted-space">  </span>It works Jerry...it works."<span class="Apple-converted-space">  </span>But I wasn't as sure any more.<span class="Apple-converted-space">  </span><i>Why was that date different?</i></p>
+<p class="p5">"Alphonse, by any chance did you happen to run the client and server in the same directory?"</p>
+<p class="p5">"Uh..." I hadn't specified a different directory for them so I guessed they must have been running in the same place.<span class="Apple-converted-space">  </span>"...I guess so."</p>
+<p class="p5">"So the client and the server were both reading and writing the same files in the same directory?"</p>
+<p class="p5">"...oh..."</p>
+<p class="p5">Jerry nodded grimly.<span class="Apple-converted-space">  </span>"Yeah."</p>
+<p class="p5">I shook my head. "OK, Jerry, you've got a point.<span class="Apple-converted-space">  </span>I don't understand everything that's going on.<span class="Apple-converted-space">  </span>But look, there's an <span class="s1">F.java</span> file there.<span class="Apple-converted-space">  </span><i>Something</i> had to be working!"</p>
+<p class="p5">"So what?<span class="Apple-converted-space">  </span>You don't know what is and what isn't working.<span class="Apple-converted-space">  </span>You don't understand what you've done.<span class="Apple-converted-space">  </span>The things that appear to be working may be working by accident.<span class="Apple-converted-space">  </span>Is it possible, for example, that that <span class="s1">F.java</span> file was left over from a previous unit test?"</p>
+<p class="p5">It <i>was</i> possible!<span class="Apple-converted-space">  </span>Yikes, Jean and I had caused the system to write an <span class="s1">F.java</span> file this morning!<span class="Apple-converted-space">  </span>"Damn!<span class="Apple-converted-space">  </span>Yes, it's <i>possible</i> -- but it's not very likely!"</p>
+<p class="p5">"Delete the code, Alphonse.<span class="Apple-converted-space">  </span>It's crap."</p>
+<p class="p5">I just stared at him.<span class="Apple-converted-space">  </span>I had made <i>progress</i> damn it!<span class="Apple-converted-space">  </span>Now he wanted me to delete all that progress.<span class="Apple-converted-space">  </span>But he was right.<span class="Apple-converted-space">  </span>I didn't understand this code.<span class="Apple-converted-space">  </span>And I had no tests that would demonstrate, step by step, that everything was working as it should.<span class="Apple-converted-space">  </span>If my code was working<span class="Apple-converted-space">  </span>(and now I was really starting to wonder just how much of it was working) it was working more by accident than by design.</p>
+<p class="p5">"Delete the code, Alphonse.<span class="Apple-converted-space">  </span>You don't want Jean to see this.<span class="Apple-converted-space">  </span>Right now she things the world of you, and this would be very disappointing for her."</p>
+<p class="p5">My resolve finally failed.<span class="Apple-converted-space">  </span>My shoulders fell, my head hung, and I reached over and deleted the code. <span class="Apple-converted-space"> </span></p>
+<p class="p5">Jerry walked out of the room, shaking his head.</p>
+<p class="p5">A few minutes later, Jean walked in.<span class="Apple-converted-space">  </span>"Hello Alphonse dear.<span class="Apple-converted-space">  </span>I'm sorry I'm late, but I got into a conversation with an old friend of mine and we started comparing pictures of our grandchildren.<span class="Apple-converted-space">  </span>I love showing the pictures of my grandchildren.<span class="Apple-converted-space">  </span>Have you seen them dear?<span class="Apple-converted-space">  </span>Oh, never mind dear, we've got work to do you and I.<span class="Apple-converted-space">  </span>What have you been up to while I was detained?"</p>
+<p class="p5">"Nothing, Jean, I was just waiting for you."</p>
+<p class="p8"><br></p>
+<p class="p11"><br></p>
+<p class="p12"><i>To be continued...</i></p>
+<p class="p6"><b></b><br></p>
+<p class="p13"><br></p>
+<p class="p8"><br></p>
+<p class="p5"><i>The code that Alphonse and Jean finished can be retrieved from:</i></p>
+<p class="p5"><i>www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_20_Backslide.zip</i></p>
+<p class="p8"><i></i><br></p>
+<p class="p8"><i></i><br></p>
+</body>
+</html>

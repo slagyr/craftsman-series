@@ -1,0 +1,22 @@
+require 'rubygems'
+gem 'rspec'
+require 'spec'
+
+require 'employee_report_visitor'
+require 'hourly_employee'
+require 'salaried_employee'
+
+describe EmployeeReportVisitor do
+  before do
+    @hal = HourlyEmployee.new("Hal");
+    @hal.addTimeCard(8);
+    @sam = SalariedEmployee("Sam", 500);
+    @v = EmployeeReportVisitor.new;
+  end
+  
+  it "should generate hourly report for hourly employee" do
+  end
+  
+  it "should generate salaried report for salaried employee" do
+  end
+end

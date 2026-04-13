@@ -1,0 +1,25 @@
+require 'rubygems'
+gem 'rspec'
+require 'spec'
+
+require 'employee_report_visitor'
+require 'hourly_employee'
+require 'salaried_employee'
+require 'time_card'
+
+describe EmployeeReportVisitor do
+  before do
+    @hal = HourlyEmployee.new("Hal")
+    @hal.addTimeCard(TimeCard.new(8))
+    @sam = SalariedEmployee.new("Sam", 500)
+    @v = EmployeeReportVisitor.new
+  end
+  
+  it "should generate hourly report for hourly employee" do
+    @hal.accept(@v)
+    @v.getReportLine.should == "Hourly Hal worked 8 hours."
+  end
+  
+  it "should generate salaried report for salaried employee" do
+  end
+end

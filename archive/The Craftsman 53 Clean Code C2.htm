@@ -1,0 +1,889 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"
+xmlns:css="http://macVmlSchemaUri" xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta name=Title content="The Craftsman">
+<meta name=Keywords content="">
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 2008">
+<meta name=Originator content="Microsoft Word 2008">
+<link rel=File-List href="The%20Craftsman%2053%20Clean%20Code%20C2_files/filelist.xml">
+<title>The Craftsman</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>Robert C. Martin</o:Author>
+  <o:Template>Normal.dotm</o:Template>
+  <o:LastAuthor>Robert Martin</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>88</o:TotalTime>
+  <o:LastPrinted>2006-10-18T18:17:00Z</o:LastPrinted>
+  <o:Created>2009-02-09T17:04:00Z</o:Created>
+  <o:LastSaved>2009-02-09T17:04:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>808</o:Words>
+  <o:Characters>4611</o:Characters>
+  <o:Company>Object Mentor Inc.</o:Company>
+  <o:Lines>38</o:Lines>
+  <o:Paragraphs>9</o:Paragraphs>
+  <o:CharactersWithSpaces>5662</o:CharactersWithSpaces>
+  <o:Version>12.0</o:Version>
+ </o:DocumentProperties>
+ <o:OfficeDocumentSettings>
+  <o:PixelsPerInch>96</o:PixelsPerInch>
+  <o:TargetScreenSize>800x600</o:TargetScreenSize>
+ </o:OfficeDocumentSettings>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:SpellingState>Clean</w:SpellingState>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:TrackMoves>false</w:TrackMoves>
+  <w:TrackFormatting/>
+  <w:DefaultTableStyle>Fitnesse Table</w:DefaultTableStyle>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:Compatibility>
+   <w:UseNormalStyleForList/>
+   <w:DontUseIndentAsNumberingTabStop/>
+   <w:FELineBreak11/>
+   <w:WW11IndentRules/>
+   <w:DontAutofitConstrainedTables/>
+   <w:AutofitLikeWW11/>
+   <w:HangulWidthLikeWW11/>
+  </w:Compatibility>
+ </w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" LatentStyleCount="276">
+ </w:LatentStyles>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+@font-face
+	{font-family:"Courier New";
+	panose-1:2 7 3 9 2 2 5 2 4 4;
+	mso-font-charset:0;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 0 0 0 1 0;}
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 2 1 2 1 8 4 8 7 8;
+	mso-font-charset:2;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:0 0 65536 0 -2147483648 0;}
+@font-face
+	{font-family:Verdana;
+	panose-1:2 11 6 4 3 5 4 4 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 0 0 0 1 0;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 0 0 0 1 0;}
+ /* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+h3
+	{mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	mso-outline-level:3;
+	font-size:13.5pt;
+	font-family:"Times New Roman";
+	mso-bidi-font-weight:bold;}
+p.MsoFootnoteText, li.MsoFootnoteText, div.MsoFootnoteText
+	{mso-style-noshow:yes;
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+p.MsoCommentText, li.MsoCommentText, div.MsoCommentText
+	{mso-style-noshow:yes;
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+span.MsoFootnoteReference
+	{mso-style-noshow:yes;
+	vertical-align:super;}
+span.MsoCommentReference
+	{mso-style-noshow:yes;
+	mso-ansi-font-size:8.0pt;
+	mso-bidi-font-size:8.0pt;}
+p.MsoBodyTextIndent, li.MsoBodyTextIndent, div.MsoBodyTextIndent
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:.25in;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+p.MsoBodyTextFirstIndent2, li.MsoBodyTextFirstIndent2, div.MsoBodyTextFirstIndent2
+	{mso-style-parent:"Body Text Indent";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:.25in;
+	text-indent:10.5pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+p.MsoBodyText3, li.MsoBodyText3, div.MsoBodyText3
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:8.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;
+	text-underline:single;}
+pre
+	{margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Courier New";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Courier New";}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-noshow:yes;
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:8.0pt;
+	font-family:Tahoma;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:Tahoma;}
+p.BODY3, li.BODY3, div.BODY3
+	{mso-style-name:"BODY 3";
+	mso-style-link:"BODY 3 Char";
+	margin-top:3.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-indent:.25in;
+	mso-pagination:none;
+	tab-stops:1.0in;
+	mso-layout-grid-align:none;
+	text-autospace:none;
+	font-size:10.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	color:black;}
+p.CHAPTITLE, li.CHAPTITLE, div.CHAPTITLE
+	{mso-style-name:"CHAP TITLE";
+	margin:0in;
+	margin-bottom:.0001pt;
+	text-align:right;
+	mso-line-height-alt:22.0pt;
+	mso-pagination:none;
+	mso-layout-grid-align:none;
+	text-autospace:none;
+	font-size:24.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	color:black;
+	font-weight:bold;
+	mso-bidi-font-weight:normal;}
+p.QUOTES, li.QUOTES, div.QUOTES
+	{mso-style-name:QUOTES;
+	margin:0in;
+	margin-bottom:.0001pt;
+	text-align:right;
+	mso-pagination:none;
+	mso-layout-grid-align:none;
+	text-autospace:none;
+	font-size:10.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	color:black;
+	font-style:italic;
+	mso-bidi-font-style:normal;}
+p.Code, li.Code, div.Code
+	{mso-style-name:Code;
+	mso-style-parent:"BODY 3";
+	mso-style-link:"Code Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	tab-stops:.25in 1.0in;
+	mso-layout-grid-align:none;
+	text-autospace:none;
+	font-size:9.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Courier New";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Courier New";
+	color:black;
+	mso-no-proof:yes;}
+p.ModCode, li.ModCode, div.ModCode
+	{mso-style-name:ModCode;
+	mso-style-parent:Code;
+	mso-style-link:"ModCode Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	tab-stops:.25in 1.0in;
+	mso-layout-grid-align:none;
+	text-autospace:none;
+	font-size:9.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Courier New";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Courier New";
+	color:red;
+	font-weight:bold;
+	mso-bidi-font-weight:normal;
+	mso-no-proof:yes;}
+span.BODY3Char
+	{mso-style-name:"BODY 3 Char";
+	mso-style-locked:yes;
+	mso-style-link:"BODY 3";
+	mso-bidi-font-size:12.0pt;
+	color:black;
+	mso-ansi-language:EN-US;
+	mso-fareast-language:EN-US;}
+span.CodeChar
+	{mso-style-name:"Code Char";
+	mso-style-locked:yes;
+	mso-style-parent:"BODY 3 Char";
+	mso-style-link:Code;
+	mso-ansi-font-size:9.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Courier New";
+	mso-ascii-font-family:"Courier New";
+	mso-hansi-font-family:"Courier New";
+	mso-bidi-font-family:"Courier New";
+	color:black;
+	mso-ansi-language:EN-US;
+	mso-fareast-language:EN-US;
+	mso-no-proof:yes;}
+span.ModCodeChar
+	{mso-style-name:"ModCode Char";
+	mso-style-locked:yes;
+	mso-style-parent:"Code Char";
+	mso-style-link:ModCode;
+	mso-ansi-font-size:9.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Courier New";
+	mso-ascii-font-family:"Courier New";
+	mso-hansi-font-family:"Courier New";
+	mso-bidi-font-family:"Courier New";
+	color:red;
+	mso-ansi-language:EN-US;
+	mso-fareast-language:EN-US;
+	font-weight:bold;
+	mso-bidi-font-weight:normal;
+	mso-no-proof:yes;}
+span.meta
+	{mso-style-name:meta;}
+span.fitlabel
+	{mso-style-name:fit_label;
+	font-family:Verdana;
+	mso-ascii-font-family:Verdana;
+	mso-hansi-font-family:Verdana;}
+span.StylefitlabelVerdana9ptItalicGray-80
+	{mso-style-name:"Style fit_label + Verdana 9 pt Italic Gray-80%";
+	mso-style-parent:fit_label;
+	mso-ansi-font-size:9.0pt;
+	mso-bidi-font-size:9.0pt;
+	font-family:"Times New Roman";
+	mso-ascii-font-family:"Times New Roman";
+	mso-hansi-font-family:"Times New Roman";
+	color:gray;
+	font-style:italic;}
+p.Pattern, li.Pattern, div.Pattern
+	{mso-style-name:Pattern;
+	mso-style-parent:"BODY 3";
+	mso-style-link:"Pattern Char";
+	margin-top:3.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-indent:.25in;
+	mso-pagination:none;
+	tab-stops:1.0in;
+	mso-layout-grid-align:none;
+	text-autospace:none;
+	font-size:10.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	font-variant:small-caps;
+	color:black;}
+span.PatternChar
+	{mso-style-name:"Pattern Char";
+	mso-style-locked:yes;
+	mso-style-parent:"BODY 3 Char";
+	mso-style-link:Pattern;
+	mso-bidi-font-size:12.0pt;
+	font-variant:small-caps;
+	color:black;
+	mso-ansi-language:EN-US;
+	mso-fareast-language:EN-US;}
+span.fitgrey
+	{mso-style-name:fit_grey;}
+span.body
+	{mso-style-name:body;}
+span.pagetitle
+	{mso-style-name:page_title;}
+span.SpellE
+	{mso-style-name:"";
+	mso-spl-e:yes;}
+span.GramE
+	{mso-style-name:"";
+	mso-gram-e:yes;}
+ /* Page Definitions */
+@page
+	{mso-footnote-separator:url(":The Craftsman 53 Clean Code C2_files:header.htm") fs;
+	mso-footnote-continuation-separator:url(":The Craftsman 53 Clean Code C2_files:header.htm") fcs;
+	mso-endnote-separator:url(":The Craftsman 53 Clean Code C2_files:header.htm") es;
+	mso-endnote-continuation-separator:url(":The Craftsman 53 Clean Code C2_files:header.htm") ecs;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+@list l0
+	{mso-list-id:31925269;
+	mso-list-template-ids:-481131650;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l1
+	{mso-list-id:563413980;
+	mso-list-template-ids:1622043126;}
+@list l1:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l2
+	{mso-list-id:565381069;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1645571134 67698705 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l2:level1
+	{mso-level-text:"%1\)";
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3
+	{mso-list-id:646782512;
+	mso-list-template-ids:-1182737964;}
+@list l3:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l4
+	{mso-list-id:970749122;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-919546364 67698703 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l4:level1
+	{mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5
+	{mso-list-id:1060053805;
+	mso-list-template-ids:1625817432;}
+@list l5:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l6
+	{mso-list-id:1128546385;
+	mso-list-template-ids:1040341674;}
+@list l6:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l7
+	{mso-list-id:1578706892;
+	mso-list-type:hybrid;
+	mso-list-template-ids:82345816 954136472 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l7:level1
+	{mso-level-start-at:22;
+	mso-level-number-format:bullet;
+	mso-level-text:-;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+@list l7:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Courier New";}
+@list l8
+	{mso-list-id:1647053381;
+	mso-list-template-ids:1429089694;}
+@list l8:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l9
+	{mso-list-id:1875189953;
+	mso-list-template-ids:-2056903076;}
+@list l9:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l10
+	{mso-list-id:1916551088;
+	mso-list-template-ids:-352012062;}
+@list l10:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l11
+	{mso-list-id:2047681249;
+	mso-list-template-ids:-1289184880;}
+@list l11:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l12
+	{mso-list-id:2095591514;
+	mso-list-type:hybrid;
+	mso-list-template-ids:340670874 67698705 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l12:level1
+	{mso-level-text:"%1\)";
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+table.MsoNormalTable
+	{mso-style-name:"Table Normal";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0in 5.4pt 0in 5.4pt;
+	mso-para-margin:0in;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";}
+table.FitnesseTable
+	{mso-style-name:"Fitnesse Table";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-padding-alt:0in 5.4pt 0in 5.4pt;
+	mso-tstyle-shading:#E0E0E0;
+	mso-para-margin:0in;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:9.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-ascii-font-family:Verdana;
+	mso-hansi-font-family:Verdana;}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="2050" fillcolor="white">
+  <v:fill color="white"/>
+  <v:shadow color="gray" opacity="1" offset="2pt,2pt"/>
+ </o:shapedefaults></xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body lang=EN-US link=blue vlink=purple style='tab-interval:.5in'>
+
+<div class=Section1>
+
+<p class=CHAPTITLE style='margin-top:34.0pt;margin-right:0in;margin-bottom:
+34.0pt;margin-left:0in'><span style='mso-no-proof:yes'>The Craftsman: 53<br>
+Clean Code: C2<br>
+Inappropriate Information<o:p></o:p></span></p>
+
+<p class=QUOTES><span style='font-style:normal;mso-no-proof:yes'>Robert C.
+Martin<o:p></o:p></span></p>
+
+<p class=QUOTES><span style='font-style:normal;mso-no-proof:yes'>9 February
+2009<o:p></o:p></span></p>
+
+<p class=QUOTES><span style='mso-no-proof:yes'><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><o:p></o:p></span></p>
+
+<div style='mso-element:para-border-div;border:none;border-bottom:solid windowtext 1.0pt;
+mso-border-bottom-alt:solid windowtext .75pt;padding:0in 0in 1.0pt 0in'>
+
+<p class=ModCode style='border:none;mso-border-bottom-alt:solid windowtext .75pt;
+padding:0in;mso-padding-alt:0in 0in 1.0pt 0in'><o:p>&nbsp;</o:p></p>
+
+</div>
+
+<p class=BODY3 style='text-indent:0in'><i style='mso-bidi-font-style:normal'>Jan
+15, 1945, 14:22:00 GMT<o:p></o:p></i></p>
+
+<p class=BODY3 style='text-indent:0in'><i style='mso-bidi-font-style:normal'>Crewmen
+Yeager and O’Hare stood at the observation port and gazed out into the vast emptiness.<span
+style="mso-spacerun: yes">&nbsp; </span>Crewing the massive Orion vessel, as
+she plied her way towards Clyde, was a demanding job; so times like these were
+few and far between.<span style="mso-spacerun: yes">&nbsp; </span>From a
+distance of five million kilometers the Earth was a tiny crescent sapphire
+blazing amidst an impossibly starry background.<span style="mso-spacerun:
+yes">&nbsp; </span>The brilliant white spark of Luna nestled nearby was too
+small for its crescent to be resolved.<span style="mso-spacerun: yes">&nbsp;
+</span><o:p></o:p></i></p>
+
+<p class=BODY3 style='text-indent:0in'><i style='mso-bidi-font-style:normal'>Chuck
+and Butch were racing away from home at 4km/s toward a destination many months
+and many millions more kilometers away.<span style="mso-spacerun: yes">&nbsp;
+</span>Though there were 18 other men aboard, the view out the portal left them
+feeling very, very alone.<o:p></o:p></i></p>
+
+<div style='mso-element:para-border-div;border:none;border-bottom:solid windowtext 1.0pt;
+mso-border-bottom-alt:solid windowtext .75pt;padding:0in 0in 2.0pt 0in'>
+
+<p class=BODY3 style='text-indent:0in;border:none;mso-border-bottom-alt:solid windowtext .75pt;
+padding:0in;mso-padding-alt:0in 0in 2.0pt 0in'><i style='mso-bidi-font-style:
+normal'><o:p>&nbsp;</o:p></i></p>
+
+</div>
+
+<p class=BODY3 style='text-indent:0in'><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=BODY3><i>Friday, 8 Mar 2002, 08:00<o:p></o:p></i></p>
+
+<p class=BODY3><span class=body>Yesterday’s session with Adelaide went pretty
+well.<span style="mso-spacerun: yes">&nbsp; </span>She’s a bit nervous, but
+very smart.<span style="mso-spacerun: yes">&nbsp; </span>I sat down with her
+again this morning for an hour or so.<span style="mso-spacerun: yes">&nbsp;
+</span>We were working together on fixing a bug in an old module.<span
+style="mso-spacerun: yes">&nbsp; </span>As we scrolled through this module on
+the screen I noted a strange comment above a stretch of code.<o:p></o:p></span></p>
+
+<p class=Code><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun: yes">&nbsp; </span>//
+Slim sockets go from 9020-9025<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun: yes">&nbsp; </span><o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun: yes">&nbsp;
+</span>public String getCommandLine() {<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp; </span>return slimCommand;<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun: yes">&nbsp; </span>}<o:p></o:p></span></p>
+
+<p class=Code><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun: yes">&nbsp; </span>public
+int getNextSlimSocket() {<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp; </span>synchronized (slimSocketOffset) {<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>int base = slimSocketOffset.get();<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>base++;<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>if (base &gt;= 10)<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>base = 0;<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>slimSocketOffset.set(base);<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>return base + 8085;<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp; </span>}<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun: yes">&nbsp; </span>}<o:p></o:p></span></p>
+
+<p class=Code><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=BODY3><span class=body>Adelaide scrolled right past that code, so I
+motioned for her to stop.<span style="mso-spacerun: yes">&nbsp; </span><o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Did you see that?” I asked.<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>She kept her eyes on the screen and said: “See
+what?”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“That comment.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“What comment?”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“You didn’t see it?”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>She hung her head a little and then looked over
+at me.<span style="mso-spacerun: yes">&nbsp; </span>“I usually don’t bother to
+read the comments when I’m skimming the code. “ She said.<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Yeah,” I said.<span style="mso-spacerun:
+yes">&nbsp; </span>“What good are they if you don’t read them?<span
+style="mso-spacerun: yes">&nbsp; </span>Scroll back a little.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>She winced, but waved her hand at the screen
+and the code scrolled back to where the comment was.<span style="mso-spacerun:
+yes">&nbsp; </span><o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Oh!” She said.<span style="mso-spacerun:
+yes">&nbsp; </span>“The comment is wrong! The ports go from 8085 to 8095.”<span
+style="mso-spacerun: yes">&nbsp; </span><o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>I looked at her and said: “Not only that, it’s
+in the wrong place.<span style="mso-spacerun: yes">&nbsp; </span>It looks like
+someone plopped that </span><span class=CodeChar><span style='font-size:9.0pt;
+mso-bidi-font-size:12.0pt'>getCommandLine()</span></span><span class=body>
+function between the comment and the </span><span class=GramE><span
+class=CodeChar><span style='font-size:9.0pt;mso-bidi-font-size:12.0pt'>getNextSlimSocket</span></span><span
+class=body>(</span></span><span class=body>) function.<span
+style="mso-spacerun: yes">&nbsp; </span>I wonder how old that comment is.<span
+style="mso-spacerun: yes">&nbsp; </span>Someone must have changed the code
+after the comment was written.”<span style="mso-spacerun: yes">&nbsp; </span>I
+looked at her pointedly and said:<span style="mso-spacerun: yes">&nbsp;
+</span>“Someone who didn’t read comments.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>She looked at me crossly, but then softened. <o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“We could look in the <span class=SpellE>git</span>
+logs” She offered “and see who did this and when.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“There’s no point.” I said.<span
+style="mso-spacerun: yes">&nbsp; </span>And I grabbed the keyboard and deleted
+the comment.<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Wait!<span style="mso-spacerun: yes">&nbsp;
+</span>Why’d you do that?” She blurted.<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“The comment wasn’t just wrong and misplaced,”
+I said.<span style="mso-spacerun: yes">&nbsp; </span>“It was worthless.<span
+style="mso-spacerun: yes">&nbsp; </span>The code tells us what’s really going
+on, and it’s pretty clear.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>She looked at me skeptically.<span
+style="mso-spacerun: yes">&nbsp; </span>“Why do you think it’s worthless?<span
+style="mso-spacerun: yes">&nbsp; </span>We can make it right.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Look,” I said.<span style="mso-spacerun:
+yes">&nbsp; </span>“This code was modified at least twice, and both times the
+modifier ignored the comment.<span style="mso-spacerun: yes">&nbsp; </span>In
+once case they separated the comment from the function it described.<span
+style="mso-spacerun: yes">&nbsp; </span>In the second case they changed the
+algorithm to disagree with the comment.<span style="mso-spacerun: yes">&nbsp;
+</span>Since nobody apparently bothered to read the comment, the comment must
+be useless.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>She shook her head and said: “I don’t get that.
+Once we fix it the comment will be right, and will help other people who read
+through this module.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Like it helped you?” I prodded?<span
+style="mso-spacerun: yes">&nbsp; </span>“People don’t tend to read comment
+unless they are stuck.<span style="mso-spacerun: yes">&nbsp; </span>If the code
+is understandable, like this code is, then they’ll just ignore the
+comment.<span style="mso-spacerun: yes">&nbsp; </span>They’ll assume they know
+what it says.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>She scrunched up her shoulders and stared at
+the screen.<span style="mso-spacerun: yes">&nbsp; </span><o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Fine.” She said.<span style="mso-spacerun:
+yes">&nbsp; </span><o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>I sighed and brought up Clean Code rule C2 on
+the screen.<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=BODY3 style='margin-top:3.0pt;margin-right:.5in;margin-bottom:0in;
+margin-left:.5in;margin-bottom:.0001pt;text-indent:0in'><span class=body><b
+style='mso-bidi-font-weight:normal'><i style='mso-bidi-font-style:normal'>C2:
+Obsolete Comment<o:p></o:p></i></b></span></p>
+
+<p class=BODY3 style='margin-top:3.0pt;margin-right:.5in;margin-bottom:0in;
+margin-left:.5in;margin-bottom:.0001pt;text-indent:0in'><span class=body><i
+style='mso-bidi-font-style:normal'>A comment that has gotten old, irrelevant,
+and incorrect is obsolete.<span style="mso-spacerun: yes">&nbsp;
+</span>Comments get old quickly.<span style="mso-spacerun: yes">&nbsp;
+</span>It is best not to write a comment that will become obsolete.<span
+style="mso-spacerun: yes">&nbsp; </span>If you find an obsolete comment, it is
+best to update it or get rid of it as quickly as possible.<span
+style="mso-spacerun: yes">&nbsp; </span>Obsolete comments tend to migrate away
+from the code they once described.<span style="mso-spacerun: yes">&nbsp;
+</span>They become floating islands of irrelevance and misdirection in the
+code. <o:p></o:p></i></span></p>
+
+<p class=BODY3><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=BODY3><span class=body>“See?” I said.<span style="mso-spacerun:
+yes">&nbsp; </span>“It’s part of Mr. C’s rules.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“He doesn’t say to delete it, he says to update
+it.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Actually, he says not to write a comment that
+will become obsolete. Since this comment became obsolete, it shouldn’t have
+been written.<span style="mso-spacerun: yes">&nbsp; </span>So I deleted it.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“You just don’t like comments.” She pouted.<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>I wasn’t getting anywhere this way.<span
+style="mso-spacerun: yes">&nbsp; </span>I was about to shrug my shoulders and
+move on when I notice that Jean had moved in behind us and had been following
+the whole conversation.<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Goodness, Gracious, what a fuss!” She
+coddled.<span style="mso-spacerun: yes">&nbsp; </span>“Dear Adelaide it’s good
+that you want to help other people read your code.<span style="mso-spacerun:
+yes">&nbsp; </span>And comments can be a powerful way to help others.<span
+style="mso-spacerun: yes">&nbsp; </span>But, my dear, I’m sorry to say that
+Alphonse is right in this case.<span style="mso-spacerun: yes">&nbsp;
+</span>He’s such a fine young developer, just like you are dear.<span
+style="mso-spacerun: yes">&nbsp; </span>You see<span class=GramE>,</span> a
+comment’s true value is to clarify something that’s unclear.<span
+style="mso-spacerun: yes">&nbsp; </span>If that thing is clear already, like
+the code you two have been bickering over, then the comment serves no good
+purpose and should be removed.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>Adelaide hung her head and nodded, but kept her
+eyes on her hands.<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Alphonse, dear,” Jean said.<span
+style="mso-spacerun: yes">&nbsp; </span>“I’m sure you’ve got lots of your own
+work to do.<span style="mso-spacerun: yes">&nbsp; </span>I’d like to spend some
+time working with Adelaide now.<span style="mso-spacerun: yes">&nbsp;
+</span>Why don’t you find Avery and get him to help you?”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>I thanked Jean and Adelaide, and wandered back
+to my workstation.<span style="mso-spacerun: yes">&nbsp; </span><o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“What was that all about?” I asked myself.<span
+style="mso-spacerun: yes">&nbsp; </span><o:p></o:p></span></p>
+
+<p class=BODY3><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=BODY3><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=BODY3><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=BODY3><span class=body><br style='mso-special-character:line-break'>
+<![if !supportLineBreakNewLine]><br style='mso-special-character:line-break'>
+<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span class=body><o:p>&nbsp;</o:p></span></p>
+
+</div>
+
+</body>
+
+</html>

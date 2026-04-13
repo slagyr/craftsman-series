@@ -1,0 +1,3 @@
+The outside maintenance people must not exceed their monthly and yearly dosage.  We track the dosage for a person by accumluating the readings from the dosimeters of the suits they have used.  However, this only gets accumulated when the is checked in.  Thus if a worker is close it his limit there is a chance that he may remain outside too before coming back in.
+
+To control this, whenever a suit is checked out the system calculates how much time the user can remain outside before reaching his limit.  This time is calculated based on the current day's dose rate.  Every minute the system looks at the times for all the checked out suits and if any of them has passed their limit, it sends a message to the manager of that worker.

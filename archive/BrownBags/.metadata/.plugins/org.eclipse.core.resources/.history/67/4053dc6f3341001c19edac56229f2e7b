@@ -1,0 +1,12 @@
+require 'employee'
+
+class HourlyEmployee < Employee
+  def initialize(name) 
+    super(name)
+    @timeCards = []
+  end
+  
+  def addTimeCard(timeCard)
+    @timeCards << timeCard;
+  end
+end

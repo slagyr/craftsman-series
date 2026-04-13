@@ -1,0 +1,668 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workbench version="2.0">
+<workbenchAdvisor/>
+<window height="1024" width="1680" x="0" y="22">
+<fastViewData fastViewLocation="1024"/>
+<perspectiveBar>
+<itemSize x="160"/>
+</perspectiveBar>
+<coolbarLayout locked="0">
+<coolItem id="group.file" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.ui.workbench.file" itemType="typeToolBarContribution" x="85" y="22"/>
+<coolItem id="additions" itemType="typeGroupMarker"/>
+<coolItem id="com.aptana.ide.editors.actionSet" itemType="typeToolBarContribution" x="98" y="22"/>
+<coolItem id="com.aptana.ide.extras.plugin.actionSet" itemType="typeToolBarContribution" x="32" y="22"/>
+<coolItem id="com.aptana.ide.rcp.plugin.actionSet" itemType="typeToolBarContribution" x="32" y="22"/>
+<coolItem id="com.aptana.ide.scripting.actionSet" itemType="typeToolBarContribution" x="32" y="22"/>
+<coolItem id="com.aptana.ide.server.ui.launchActionSet" itemType="typeToolBarContribution" x="41" y="22"/>
+<coolItem id="org.eclipse.debug.ui.launchActionSet" itemType="typeToolBarContribution" x="103" y="22"/>
+<coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="32" y="22"/>
+<coolItem id="org.eclipse.ui.WorkingSetActionSet" itemType="typeToolBarContribution" x="41" y="22"/>
+<coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="32" y="22"/>
+<coolItem id="org.rubypeople.rdt.ui.RubyElementCreationActionSet" itemType="typeToolBarContribution" x="54" y="22"/>
+<coolItem id="group.nav" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="156" y="22"/>
+<coolItem id="group.editor" itemType="typeGroupMarker"/>
+<coolItem id="org.rubypeople.rdt.ui.EditorRubyFile" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="org.eclipse.ui.browser.editor" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="group.help" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.ui.workbench.help" itemType="typeToolBarContribution" x="-1" y="-1"/>
+</coolbarLayout>
+<page focus="true" label="Workspace - Ruby">
+<editors>
+<editorArea activeWorkbook="DefaultEditorWorkbook">
+<info part="DefaultEditorWorkbook">
+<folder appearance="1" expanded="2">
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="1"/>
+<part id="2"/>
+<part id="3"/>
+<part id="4"/>
+<part id="5"/>
+<part id="6"/>
+<part id="7"/>
+<part id="8"/>
+<part id="9"/>
+<part id="10"/>
+<part id="11"/>
+<part id="12"/>
+</presentation>
+</folder>
+</info>
+</editorArea>
+<editor id="org.rubypeople.rdt.ui.EditorRubyFile" name="factory_spec.rb" partName="factory_spec.rb" path="/Users/unclebob/Documents/Articles/Craftsman/BrownBags/AbstractFactory/factory_spec.rb" title="factory_spec.rb" tooltip="AbstractFactory/factory_spec.rb" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/AbstractFactory/factory_spec.rb"/>
+</editor>
+<editor id="org.rubypeople.rdt.ui.EditorRubyFile" name="generator_factory.rb" partName="generator_factory.rb" path="/Users/unclebob/Documents/Articles/Craftsman/BrownBags/AbstractFactory/generator_factory.rb" title="generator_factory.rb" tooltip="AbstractFactory/generator_factory.rb" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/AbstractFactory/generator_factory.rb"/>
+</editor>
+<editor id="org.rubypeople.rdt.ui.EditorRubyFile" name="cpp_generator.rb" partName="cpp_generator.rb" path="/Users/unclebob/Documents/Articles/Craftsman/BrownBags/AbstractFactory/cpp_generator.rb" title="cpp_generator.rb" tooltip="AbstractFactory/cpp_generator.rb" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/AbstractFactory/cpp_generator.rb"/>
+</editor>
+<editor id="org.rubypeople.rdt.ui.EditorRubyFile" name="java_generator.rb" partName="java_generator.rb" path="/Users/unclebob/Documents/Articles/Craftsman/BrownBags/AbstractFactory/java_generator.rb" title="java_generator.rb" tooltip="AbstractFactory/java_generator.rb" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/AbstractFactory/java_generator.rb"/>
+</editor>
+<editor id="org.rubypeople.rdt.ui.EditorRubyFile" name="smc_remote.rb" partName="smc_remote.rb" path="/Users/unclebob/Documents/Articles/Craftsman/BrownBags/AbstractFactory/smc_remote.rb" title="smc_remote.rb" tooltip="AbstractFactory/smc_remote.rb" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/AbstractFactory/smc_remote.rb"/>
+</editor>
+<editor id="org.rubypeople.rdt.ui.EditorRubyFile" name="smc_remote_spec.rb" partName="smc_remote_spec.rb" path="/Users/unclebob/Documents/Articles/Craftsman/BrownBags/AbstractFactory/smc_remote_spec.rb" title="smc_remote_spec.rb" tooltip="AbstractFactory/smc_remote_spec.rb" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/AbstractFactory/smc_remote_spec.rb"/>
+</editor>
+<editor id="org.rubypeople.rdt.ui.EditorRubyFile" name="employee_visitor_spec.rb" partName="employee_visitor_spec.rb" path="/Users/unclebob/Documents/Articles/Craftsman/BrownBags/EmployeeVisitor/employee_visitor_spec.rb" title="employee_visitor_spec.rb" tooltip="EmployeeVisitor/employee_visitor_spec.rb" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/EmployeeVisitor/employee_visitor_spec.rb"/>
+</editor>
+<editor activePart="true" focus="true" id="org.rubypeople.rdt.ui.EditorRubyFile" name="employee_report_visitor.rb" partName="employee_report_visitor.rb" path="/Users/unclebob/Documents/Articles/Craftsman/BrownBags/EmployeeVisitor/employee_report_visitor.rb" title="employee_report_visitor.rb" tooltip="EmployeeVisitor/employee_report_visitor.rb" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/EmployeeVisitor/employee_report_visitor.rb"/>
+</editor>
+<editor id="org.rubypeople.rdt.ui.EditorRubyFile" name="hourly_employee.rb" partName="hourly_employee.rb" path="/Users/unclebob/Documents/Articles/Craftsman/BrownBags/EmployeeVisitor/hourly_employee.rb" title="hourly_employee.rb" tooltip="EmployeeVisitor/hourly_employee.rb" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/EmployeeVisitor/hourly_employee.rb"/>
+</editor>
+<editor id="org.rubypeople.rdt.ui.EditorRubyFile" name="salaried_employee.rb" partName="salaried_employee.rb" path="/Users/unclebob/Documents/Articles/Craftsman/BrownBags/EmployeeVisitor/salaried_employee.rb" title="salaried_employee.rb" tooltip="EmployeeVisitor/salaried_employee.rb" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/EmployeeVisitor/salaried_employee.rb"/>
+</editor>
+<editor id="org.rubypeople.rdt.ui.EditorRubyFile" name="employee.rb" partName="employee.rb" path="/Users/unclebob/Documents/Articles/Craftsman/BrownBags/EmployeeVisitor/employee.rb" title="employee.rb" tooltip="EmployeeVisitor/employee.rb" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/EmployeeVisitor/employee.rb"/>
+</editor>
+<editor id="org.rubypeople.rdt.ui.EditorRubyFile" name="time_card.rb" partName="time_card.rb" path="/Users/unclebob/Documents/Articles/Craftsman/BrownBags/EmployeeVisitor/time_card.rb" title="time_card.rb" tooltip="EmployeeVisitor/time_card.rb" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/EmployeeVisitor/time_card.rb"/>
+</editor>
+</editors>
+<views>
+<view id="com.aptana.ide.js.ui.views.profilesView" partName="Code Assist Profiles">
+<viewState/>
+</view>
+<view id="com.aptana.ide.js.ui.views.problemsView" partName="Validation">
+<viewState/>
+</view>
+<view id="com.aptana.ide.js.ui.views.FileExplorerView" partName="File">
+<viewState/>
+</view>
+<view id="org.eclipse.ui.views.TaskList" partName="Tasks">
+<viewState columnWidth0="64" columnWidth1="40" columnWidth2="274" columnWidth3="99" columnWidth4="174" columnWidth5="84" columnWidth6="0" horizontalPosition="0" verticalPosition="0">
+<columnOrder columnOrderIndex="0"/>
+<columnOrder columnOrderIndex="1"/>
+<columnOrder columnOrderIndex="2"/>
+<columnOrder columnOrderIndex="3"/>
+<columnOrder columnOrderIndex="4"/>
+<columnOrder columnOrderIndex="5"/>
+<columnOrder columnOrderIndex="6"/>
+</viewState>
+</view>
+<view id="org.rubypeople.rdt.ui.views.RIView" partName="RI">
+<viewState/>
+</view>
+<view id="org.epic.regexp.views.RegExpView" partName="RegExp">
+<viewState/>
+</view>
+<view id="org.eclipse.eclipsemonkey.views.ScriptsView" partName="Scripts"/>
+<view id="com.aptana.ide.scripting.SnippetsView" partName="Snippets">
+<viewState/>
+</view>
+<view id="org.rubypeople.rdt.ui.ProjectsView" partName="Projects">
+<viewState org.rubypeople.rdt.ui.browsing.projectstoeditor="1">
+<customFilters userDefinedPatternsEnabled="false"/>
+</viewState>
+</view>
+<view id="com.aptana.ide.core.ui.AptanaNavigator" partName="Project"/>
+<view id="com.aptana.ide.syncing.SyncView" partName="Sync Manager"/>
+<view id="org.eclipse.ui.views.ContentOutline" partName="Outline">
+<viewState/>
+</view>
+<view id="org.eclipse.ui.console.ConsoleView" partName="Console">
+<viewState/>
+</view>
+<view id="org.rubypeople.rdt.ui.ViewRubyResources" partName="Ruby Resources">
+<viewState LINK_NAVIGATOR_TO_EDITOR="0" isRubyFilesOnlyFilterActivated="0" sorter="1">
+<filters>
+<filter element=".*" isEnabled="true"/>
+<filter element=".*" isEnabled="true"/>
+<filter element="*.xml" isEnabled="false"/>
+<filter element="*.yml" isEnabled="false"/>
+<filter element="*.gem" isEnabled="false"/>
+<filter element="*.so" isEnabled="false"/>
+</filters>
+<expanded>
+<element path="/AbstractFactory"/>
+<element path="/EmployeeVisitor"/>
+</expanded>
+<selection>
+<element path="/EmployeeVisitor/employee_report_visitor.rb"/>
+</selection>
+</viewState>
+</view>
+<view id="org.rubypeople.rdt.ui.TypesView" partName="Types">
+<viewState org.rubypeople.rdt.ui.browsing.typestoeditor="1">
+<customFilters userDefinedPatternsEnabled="false"/>
+</viewState>
+</view>
+<view id="org.rubypeople.rdt.testunit.views.TestUnitView" partName="Test::Unit">
+<viewState/>
+</view>
+<view id="org.rubypeople.rdt.ui.MembersView" partName="Members">
+<viewState org.rubypeople.rdt.ui.browsing.memberstoeditor="1">
+<customFilters userDefinedPatternsEnabled="false"/>
+</viewState>
+</view>
+<view id="org.eclipse.ui.views.ProblemView" partName="Problems">
+<viewState columnWidth0="322" columnWidth1="147" columnWidth2="222" columnWidth3="132" columnWidth4="0" horizontalPosition="0" verticalPosition="0">
+<columnOrder columnOrderIndex="0"/>
+<columnOrder columnOrderIndex="1"/>
+<columnOrder columnOrderIndex="2"/>
+<columnOrder columnOrderIndex="3"/>
+<columnOrder columnOrderIndex="4"/>
+</viewState>
+</view>
+</views>
+<perspectives activePart="org.rubypeople.rdt.ui.EditorRubyFile" activePerspective="org.rubypeople.rdt.ui.PerspectiveRuby">
+<perspective editorAreaVisible="1" fixed="0" version="0.016">
+<descriptor class="com.aptana.ide.core.ui.WebPerspectiveFactory" id="com.aptana.ide.js.ui.WebPerspective" label="Aptana"/>
+<alwaysOnActionSet id="org.eclipse.search.searchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.openExternalFile"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.annotationNavigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.navigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.convertLineDelimitersTo"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.keyBindings"/>
+<alwaysOnActionSet id="org.eclipse.ui.WorkingSetActionSet"/>
+<alwaysOnActionSet id="org.eclipse.update.ui.softwareUpdates"/>
+<alwaysOnActionSet id="org.radrails.rails.ui.railsMVCActions"/>
+<alwaysOnActionSet id="org.rubypeople.rdt.debug.ui.RDTDebugActionSet"/>
+<alwaysOnActionSet id="com.aptana.ide.core.ui.actionSet"/>
+<alwaysOnActionSet id="com.aptana.ide.editors.actionSet"/>
+<alwaysOnActionSet id="com.aptana.ide.rcp.actionSet"/>
+<alwaysOnActionSet id="com.aptana.ide.rcp.plugin.actionSet"/>
+<alwaysOnActionSet id="eclipsemonkeyAction.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.externaltools.ExternalToolsSet"/>
+<alwaysOnActionSet id="com.aptana.ide.server.ui.launchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.NavigateActionSet"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.launchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.breakpointActionSet"/>
+<alwaysOnActionSet id="com.aptana.ide.debug.ui.JSDebugActionSet"/>
+<alwaysOnActionSet id="com.aptana.ide.scripting.actionSet"/>
+<show_view_action id="com.aptana.ide.scripting.SnippetsView"/>
+<show_view_action id="com.aptana.ide.core.ui.AptanaNavigator"/>
+<show_view_action id="com.aptana.ide.js.ui.views.FileExplorerView"/>
+<show_view_action id="com.aptana.ide.js.ui.views.profilesView"/>
+<show_view_action id="org.eclipse.ui.views.ContentOutline"/>
+<show_view_action id="com.aptana.ide.js.ui.views.problemsView"/>
+<show_view_action id="org.eclipse.ui.console.ConsoleView"/>
+<show_view_action id="org.eclipse.ui.views.BookmarkView"/>
+<show_view_action id="org.eclipse.ui.views.TaskList"/>
+<show_view_action id="org.eclipse.ui.views.PropertySheet"/>
+<show_view_action id="com.aptana.ide.syncing.SyncView"/>
+<show_view_action id="com.aptana.ide.debug.ui.AJAXMonitorView"/>
+<new_wizard_action id="com.aptana.ide.editors.wizards.file.CssUntitledWizard"/>
+<new_wizard_action id="com.aptana.ide.editors.wizards.file.HtmlUntitledWizard"/>
+<new_wizard_action id="com.aptana.ide.editors.wizards.file.JsUntitledWizard"/>
+<new_wizard_action id="com.aptana.ide.editors.wizards.file.ScriptDocUntitledWizard"/>
+<new_wizard_action id="com.aptana.ide.editors.wizards.file.UntitledTextFileWizard"/>
+<new_wizard_action id="com.aptana.ide.editors.wizards.file.XmlUntitledWizard"/>
+<perspective_action id="com.aptana.ide.js.ui.WebPerspective"/>
+<view id="com.aptana.ide.js.ui.views.profilesView"/>
+<view id="com.aptana.ide.syncing.SyncView"/>
+<view id="com.aptana.ide.js.ui.views.FileExplorerView"/>
+<view id="com.aptana.ide.core.ui.AptanaNavigator"/>
+<view id="org.eclipse.ui.views.ContentOutline"/>
+<view id="com.aptana.ide.scripting.SnippetsView"/>
+<view id="org.eclipse.eclipsemonkey.views.ScriptsView"/>
+<view id="com.aptana.ide.js.ui.views.problemsView"/>
+<view id="org.eclipse.ui.console.ConsoleView"/>
+<layout>&#x0A;<mainWindow>&#x0A;<info folder="true" part="leftTop">&#x0A;<folder activePageID="com.aptana.ide.js.ui.views.profilesView" appearance="2" expanded="2">&#x0A;<page content="com.aptana.ide.js.ui.views.profilesView" label="Code Assist Profiles"/>
+<page content="com.aptana.ide.syncing.SyncView" label="Sync Manager"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+<part id="1"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="stickyFolderRight" ratio="0.7495069" ratioLeft="760" ratioRight="254" relationship="2" relative="leftTop">&#x0A;<folder appearance="2" expanded="2">&#x0A;<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
+<page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
+</folder>
+</info>
+<info part="org.eclipse.ui.editorss" ratio="0.19921105" ratioLeft="202" ratioRight="812" relationship="2" relative="leftTop"/>
+<info folder="true" part="right" ratio="0.7992611" ratioLeft="649" ratioRight="163" relationship="2" relative="org.eclipse.ui.editorss">&#x0A;<folder activePageID="org.eclipse.ui.views.ContentOutline" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
+<page content="com.aptana.ide.js.ui.views.walkthrough.WalkthroughView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="rightBottom" ratio="0.79970974" ratioLeft="551" ratioRight="138" relationship="4" relative="right">&#x0A;<folder activePageID="com.aptana.ide.scripting.SnippetsView" appearance="2" expanded="2">&#x0A;<page content="com.aptana.ide.scripting.SnippetsView" label="Snippets"/>
+<page content="org.eclipse.eclipsemonkey.views.ScriptsView" label="Scripts"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+<part id="1"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="bottom" ratio="0.79970974" ratioLeft="551" ratioRight="138" relationship="4" relative="org.eclipse.ui.editorss">&#x0A;<folder activePageID="com.aptana.ide.js.ui.views.problemsView" appearance="2" expanded="2">&#x0A;<page content="com.aptana.ide.js.ui.views.problemsView" label="Validation"/>
+<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
+<page content="com.aptana.ide.ui.ViewPlugins" label="LabelNotFound"/>
+<page content="com.aptana.ide.js.ui.views.GenericScriptableView:*" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+<part id="1"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="left" ratio="0.29898402" ratioLeft="206" ratioRight="483" relationship="4" relative="leftTop">&#x0A;<folder activePageID="com.aptana.ide.js.ui.views.FileExplorerView" appearance="2" expanded="2">&#x0A;<page content="com.aptana.ide.js.ui.views.FileExplorerView" label="File"/>
+<page content="com.aptana.ide.js.ui.views.FileExplorerView:*" label="LabelNotFound"/>
+<page content="com.aptana.ide.core.ui.AptanaNavigator" label="Project"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+<part id="1"/>
+</presentation>
+</folder>
+</info>
+</mainWindow>
+</layout>
+</perspective>
+<perspective editorAreaVisible="1" fixed="0" version="0.016">
+<descriptor class="org.rubypeople.rdt.internal.ui.RdtPerspectiveFactory" id="org.rubypeople.rdt.ui.PerspectiveRuby" label="Ruby"/>
+<alwaysOnActionSet id="org.eclipse.search.searchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.openExternalFile"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.annotationNavigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.navigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.convertLineDelimitersTo"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.keyBindings"/>
+<alwaysOnActionSet id="org.eclipse.ui.WorkingSetActionSet"/>
+<alwaysOnActionSet id="org.eclipse.update.ui.softwareUpdates"/>
+<alwaysOnActionSet id="org.radrails.rails.ui.railsMVCActions"/>
+<alwaysOnActionSet id="org.rubypeople.rdt.debug.ui.RDTDebugActionSet"/>
+<alwaysOnActionSet id="com.aptana.ide.core.ui.actionSet"/>
+<alwaysOnActionSet id="com.aptana.ide.editors.actionSet"/>
+<alwaysOnActionSet id="com.aptana.ide.rcp.actionSet"/>
+<alwaysOnActionSet id="eclipsemonkeyAction.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.externaltools.ExternalToolsSet"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.launchActionSet"/>
+<alwaysOnActionSet id="org.rubypeople.rdt.ui.rubyActionSet"/>
+<alwaysOnActionSet id="org.rubypeople.rdt.ui.RubyElementCreationActionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.NavigateActionSet"/>
+<alwaysOnActionSet id="com.aptana.ide.extras.plugin.actionSet"/>
+<show_view_action id="org.eclipse.ui.console.ConsoleView"/>
+<show_view_action id="org.eclipse.ui.views.ContentOutline"/>
+<show_view_action id="org.eclipse.ui.views.ProblemView"/>
+<show_view_action id="org.eclipse.ui.views.ResourceNavigator"/>
+<show_view_action id="org.epic.regexp.views.RegExpView"/>
+<show_view_action id="org.rubypeople.rdt.testunit.views.TestUnitView"/>
+<show_view_action id="org.rubypeople.rdt.ui.ViewRubyResources"/>
+<show_view_action id="org.eclipse.ui.views.TaskList"/>
+<show_view_action id="org.rubypeople.rdt.ui.views.RIView"/>
+<new_wizard_action id="org.rubypeople.rdt.ui.wizards.RubyNewClassWizard"/>
+<new_wizard_action id="org.eclipse.ui.wizards.new.folder"/>
+<new_wizard_action id="org.eclipse.ui.wizards.new.file"/>
+<new_wizard_action id="org.eclipse.ui.editors.wizards.UntitledTextFileWizard"/>
+<new_wizard_action id="org.rubypeople.rdt.ui.wizards.NewWizardProjectCreation"/>
+<perspective_action id="org.rubypeople.rdt.ui.RubyBrowsingPerspective"/>
+<perspective_action id="org.eclipse.debug.ui.DebugPerspective"/>
+<perspective_action id="org.rubypeople.rdt.ui.PerspectiveRuby"/>
+<perspective_action id="org.eclipse.ui.resourcePerspective"/>
+<view id="org.rubypeople.rdt.ui.ViewRubyResources"/>
+<view id="org.eclipse.ui.views.ProblemView"/>
+<view id="org.rubypeople.rdt.ui.views.RIView"/>
+<view id="org.eclipse.ui.console.ConsoleView"/>
+<view id="org.eclipse.ui.views.TaskList"/>
+<view id="org.epic.regexp.views.RegExpView"/>
+<view id="org.eclipse.ui.views.ContentOutline"/>
+<view id="org.rubypeople.rdt.testunit.views.TestUnitView"/>
+<layout>
+<mainWindow>
+<info folder="true" part="rubyResourcesArea">
+<folder activePageID="org.rubypeople.rdt.ui.ViewRubyResources" appearance="2" expanded="2">
+<page content="org.rubypeople.rdt.ui.ViewRubyResources" label="Ruby Resources"/>
+<page content="org.eclipse.ui.views.ResourceNavigator" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="stickyFolderRight" ratio="0.7495069" ratioLeft="760" ratioRight="254" relationship="2" relative="rubyResourcesArea">
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
+<page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
+</folder>
+</info>
+<info part="org.eclipse.ui.editorss" ratio="0.25936884" ratioLeft="263" ratioRight="751" relationship="2" relative="rubyResourcesArea"/>
+<info folder="true" part="consoleArea" ratio="0.64876634" ratioLeft="447" ratioRight="242" relationship="4" relative="org.eclipse.ui.editorss">
+<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
+<page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
+<page content="org.rubypeople.rdt.ui.views.RIView" label="RI"/>
+<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
+<page content="org.eclipse.ui.views.TaskList" label="Tasks"/>
+<page content="org.eclipse.ui.views.ProgressView" label="LabelNotFound"/>
+<page content="org.epic.regexp.views.RegExpView" label="RegExp"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="1"/>
+<part id="2"/>
+<part id="3"/>
+<part id="4"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="bottomLeft" ratio="0.4992743" ratioLeft="344" ratioRight="345" relationship="4" relative="rubyResourcesArea">
+<folder activePageID="org.eclipse.ui.views.ContentOutline" appearance="2" expanded="2">
+<page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
+<page content="org.rubypeople.rdt.testunit.views.TestUnitView" label="Test::Unit"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="1"/>
+</presentation>
+</folder>
+</info>
+</mainWindow>
+</layout>
+</perspective>
+<perspective editorAreaVisible="1" fixed="0" version="0.016">
+<descriptor class="org.rubypeople.rdt.internal.ui.browsing.RubyBrowsingPerspectiveFactory" id="org.rubypeople.rdt.ui.RubyBrowsingPerspective" label="Ruby Browsing"/>
+<alwaysOnActionSet id="org.eclipse.search.searchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.openExternalFile"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.annotationNavigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.navigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.convertLineDelimitersTo"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.keyBindings"/>
+<alwaysOnActionSet id="org.eclipse.ui.WorkingSetActionSet"/>
+<alwaysOnActionSet id="org.eclipse.update.ui.softwareUpdates"/>
+<alwaysOnActionSet id="org.radrails.rails.ui.railsMVCActions"/>
+<alwaysOnActionSet id="org.rubypeople.rdt.debug.ui.RDTDebugActionSet"/>
+<alwaysOnActionSet id="com.aptana.ide.core.ui.actionSet"/>
+<alwaysOnActionSet id="com.aptana.ide.editors.actionSet"/>
+<alwaysOnActionSet id="com.aptana.ide.rcp.actionSet"/>
+<alwaysOnActionSet id="com.aptana.ide.rcp.plugin.actionSet"/>
+<alwaysOnActionSet id="eclipsemonkeyAction.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.externaltools.ExternalToolsSet"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.launchActionSet"/>
+<alwaysOnActionSet id="org.rubypeople.rdt.ui.RubyElementCreationActionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.NavigateActionSet"/>
+<show_view_action id="org.rubypeople.rdt.ui.ProjectsView"/>
+<show_view_action id="org.rubypeople.rdt.ui.TypesView"/>
+<show_view_action id="org.rubypeople.rdt.ui.MembersView"/>
+<show_view_action id="org.eclipse.search.ui.views.SearchView"/>
+<show_view_action id="org.eclipse.ui.console.ConsoleView"/>
+<show_view_action id="org.eclipse.ui.views.ContentOutline"/>
+<show_view_action id="org.eclipse.ui.views.ProblemView"/>
+<show_view_action id="org.eclipse.ui.views.ResourceNavigator"/>
+<new_wizard_action id="org.rubypeople.rdt.ui.wizards.RubyProjectWizard"/>
+<new_wizard_action id="org.rubypeople.rdt.ui.wizards.NewClassCreationWizard"/>
+<new_wizard_action id="org.eclipse.ui.wizards.new.folder"/>
+<new_wizard_action id="org.eclipse.ui.wizards.new.file"/>
+<new_wizard_action id="org.eclipse.ui.editors.wizards.UntitledTextFileWizard"/>
+<perspective_action id="org.rubypeople.rdt.ui.PerspectiveRuby"/>
+<perspective_action id="org.rubypeople.rdt.ui.RubyBrowsingPerspective"/>
+<perspective_action id="org.eclipse.debug.ui.DebugPerspective"/>
+<view id="org.rubypeople.rdt.ui.ProjectsView"/>
+<view id="org.rubypeople.rdt.ui.TypesView"/>
+<view id="org.rubypeople.rdt.ui.MembersView"/>
+<layout>&#x0A;<mainWindow>&#x0A;<info folder="true" part="org.eclipse.ui.internal.ViewStack@24efc2">&#x0A;<folder activePageID="org.rubypeople.rdt.ui.ProjectsView" appearance="2" expanded="2">&#x0A;<page content="org.rubypeople.rdt.ui.ProjectsView" label="Projects"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="stickyFolderRight" ratio="0.7495069" ratioLeft="760" ratioRight="254" relationship="2" relative="org.eclipse.ui.internal.ViewStack@24efc2">&#x0A;<folder appearance="2" expanded="2">&#x0A;<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
+<page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
+</folder>
+</info>
+<info folder="true" part="left" ratio="0.24963716" ratioLeft="172" ratioRight="517" relationship="4" relative="org.eclipse.ui.internal.ViewStack@24efc2">&#x0A;<folder appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.views.ContentOutline" label="LabelNotFound"/>
+<page content="org.eclipse.ui.views.ResourceNavigator" label="LabelNotFound"/>
+</folder>
+</info>
+<info part="org.eclipse.ui.editorss" ratio="0.2495069" ratioLeft="253" ratioRight="761" relationship="2" relative="left"/>
+<info folder="true" part="bottom" ratio="0.74854934" ratioLeft="387" ratioRight="130" relationship="4" relative="org.eclipse.ui.editorss">&#x0A;<folder appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.views.ProblemView" label="LabelNotFound"/>
+<page content="org.eclipse.search.ui.views.SearchView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.console.ConsoleView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.views.BookmarkView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.views.ProgressView" label="LabelNotFound"/>
+</folder>
+</info>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@f8aa24" ratio="0.32938856" ratioLeft="334" ratioRight="680" relationship="2" relative="org.eclipse.ui.internal.ViewStack@24efc2">&#x0A;<folder activePageID="org.rubypeople.rdt.ui.TypesView" appearance="2" expanded="2">&#x0A;<page content="org.rubypeople.rdt.ui.TypesView" label="Types"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@6a31e1" ratio="0.5" ratioLeft="340" ratioRight="340" relationship="2" relative="org.eclipse.ui.internal.ViewStack@f8aa24">&#x0A;<folder activePageID="org.rubypeople.rdt.ui.MembersView" appearance="2" expanded="2">&#x0A;<page content="org.rubypeople.rdt.ui.MembersView" label="Members"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+</presentation>
+</folder>
+</info>
+</mainWindow>
+</layout>
+</perspective>
+</perspectives>
+<workingSets/>
+<navigationHistory>
+<editors>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.rubypeople.rdt.ui.EditorRubyFile" path="/EmployeeVisitor/employee_visitor_spec.rb"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.rubypeople.rdt.ui.EditorRubyFile" path="/EmployeeVisitor/employee_report_visitor.rb"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.rubypeople.rdt.ui.EditorRubyFile" path="/EmployeeVisitor/hourly_employee.rb"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.rubypeople.rdt.ui.EditorRubyFile" path="/EmployeeVisitor/salaried_employee.rb"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.rubypeople.rdt.ui.EditorRubyFile" path="/EmployeeVisitor/time_card.rb"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.rubypeople.rdt.ui.EditorRubyFile" path="/EmployeeVisitor/employee.rb"/>
+</editors>
+<item historyLabel="hourly_employee.rb" index="2">
+<position info="not_deleted" x="147" y="0"/>
+</item>
+<item historyLabel="hourly_employee.rb" index="2">
+<position info="not_deleted" x="159" y="0"/>
+</item>
+<item historyLabel="salaried_employee.rb" index="3">
+<position/>
+</item>
+<item historyLabel="employee_visitor_spec.rb" index="0">
+<position info="not_deleted" x="285" y="0"/>
+</item>
+<item historyLabel="salaried_employee.rb" index="3">
+<position info="not_deleted" x="53" y="0"/>
+</item>
+<item historyLabel="hourly_employee.rb" index="2">
+<position info="not_deleted" x="51" y="0"/>
+</item>
+<item historyLabel="hourly_employee.rb" index="2">
+<position info="not_deleted" x="91" y="0"/>
+</item>
+<item historyLabel="salaried_employee.rb" index="3">
+<position info="not_deleted" x="227" y="0"/>
+</item>
+<item historyLabel="salaried_employee.rb" index="3">
+<position info="not_deleted" x="158" y="0"/>
+</item>
+<item historyLabel="employee_visitor_spec.rb" index="0">
+<position info="not_deleted" x="355" y="0"/>
+</item>
+<item historyLabel="salaried_employee.rb" index="3">
+<position info="not_deleted" x="158" y="0"/>
+</item>
+<item historyLabel="hourly_employee.rb" index="2">
+<position info="not_deleted" x="91" y="0"/>
+</item>
+<item historyLabel="salaried_employee.rb" index="3">
+<position info="not_deleted" x="19" y="0"/>
+</item>
+<item historyLabel="employee_report_visitor.rb" index="1">
+<position/>
+</item>
+<item historyLabel="employee_visitor_spec.rb" index="0">
+<position info="not_deleted" x="355" y="0"/>
+</item>
+<item historyLabel="employee_visitor_spec.rb" index="0">
+<position info="not_deleted" x="443" y="0"/>
+</item>
+<item historyLabel="employee_visitor_spec.rb" index="0">
+<position info="not_deleted" x="504" y="0"/>
+</item>
+<item historyLabel="hourly_employee.rb" index="2">
+<position info="not_deleted" x="91" y="0"/>
+</item>
+<item historyLabel="hourly_employee.rb" index="2">
+<position info="not_deleted" x="206" y="0"/>
+</item>
+<item historyLabel="hourly_employee.rb" index="2">
+<position info="not_deleted" x="237" y="0"/>
+</item>
+<item historyLabel="hourly_employee.rb" index="2">
+<position info="not_deleted" x="236" y="0"/>
+</item>
+<item historyLabel="employee_report_visitor.rb" index="1">
+<position info="not_deleted" x="67" y="0"/>
+</item>
+<item historyLabel="employee_report_visitor.rb" index="1">
+<position info="not_deleted" x="422" y="0"/>
+</item>
+<item historyLabel="employee_report_visitor.rb" index="1">
+<position info="not_deleted" x="416" y="0"/>
+</item>
+<item historyLabel="employee_report_visitor.rb" index="1">
+<position/>
+</item>
+<item historyLabel="employee_report_visitor.rb" index="1">
+<position info="not_deleted" x="205" y="0"/>
+</item>
+<item historyLabel="hourly_employee.rb" index="2">
+<position info="not_deleted" x="208" y="29"/>
+</item>
+<item historyLabel="hourly_employee.rb" index="2">
+<position info="not_deleted" x="334" y="0"/>
+</item>
+<item historyLabel="hourly_employee.rb" index="2">
+<position info="not_deleted" x="277" y="47"/>
+</item>
+<item historyLabel="time_card.rb" index="4">
+<position info="not_deleted" x="92" y="0"/>
+</item>
+<item historyLabel="employee_visitor_spec.rb" index="0">
+<position info="not_deleted" x="504" y="0"/>
+</item>
+<item historyLabel="employee_visitor_spec.rb" index="0">
+<position info="not_deleted" x="154" y="0"/>
+</item>
+<item historyLabel="hourly_employee.rb" index="2">
+<position info="not_deleted" x="277" y="47"/>
+</item>
+<item historyLabel="employee_visitor_spec.rb" index="0">
+<position info="not_deleted" x="154" y="0"/>
+</item>
+<item historyLabel="employee_visitor_spec.rb" index="0">
+<position info="not_deleted" x="596" y="0"/>
+</item>
+<item historyLabel="employee_visitor_spec.rb" index="0">
+<position info="not_deleted" x="655" y="0"/>
+</item>
+<item historyLabel="salaried_employee.rb" index="3">
+<position info="not_deleted" x="19" y="0"/>
+</item>
+<item historyLabel="salaried_employee.rb" index="3">
+<position info="not_deleted" x="227" y="0"/>
+</item>
+<item historyLabel="salaried_employee.rb" index="3">
+<position info="not_deleted" x="220" y="0"/>
+</item>
+<item historyLabel="employee_visitor_spec.rb" index="0">
+<position info="not_deleted" x="655" y="0"/>
+</item>
+<item historyLabel="employee_report_visitor.rb" index="1">
+<position info="not_deleted" x="416" y="0"/>
+</item>
+<item historyLabel="employee_report_visitor.rb" index="1">
+<position info="not_deleted" x="238" y="0"/>
+</item>
+<item historyLabel="employee_report_visitor.rb" index="1">
+<position info="not_deleted" x="350" y="0"/>
+</item>
+<item historyLabel="employee_report_visitor.rb" index="1">
+<position info="not_deleted" x="369" y="0"/>
+</item>
+<item historyLabel="employee_visitor_spec.rb" index="0">
+<position info="not_deleted" x="156" y="509"/>
+</item>
+<item historyLabel="employee.rb" index="5">
+<position info="not_deleted" x="0" y="99"/>
+</item>
+<item historyLabel="hourly_employee.rb" index="2">
+<position info="not_deleted" x="20" y="324"/>
+</item>
+<item historyLabel="salaried_employee.rb" index="3">
+<position info="not_deleted" x="20" y="211"/>
+</item>
+<item historyLabel="time_card.rb" index="4">
+<position info="not_deleted" x="0" y="102"/>
+</item>
+<item active="true" historyLabel="employee_report_visitor.rb" index="1">
+<position info="not_deleted" x="369" y="0"/>
+</item>
+</navigationHistory>
+<stickyState>
+<perspective IMemento.internal.id="com.aptana.ide.js.ui.WebPerspective"/>
+<perspective IMemento.internal.id="org.rubypeople.rdt.ui.RubyBrowsingPerspective"/>
+<perspective IMemento.internal.id="org.rubypeople.rdt.ui.PerspectiveRuby"/>
+</stickyState>
+<input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
+</page>
+<workbenchWindowAdvisor/>
+<actionBarAdvisor/>
+<trimLayout>
+<trimArea IMemento.internal.id="128">
+<trimItem IMemento.internal.id="org.eclipse.ui.internal.WorkbenchWindow.topBar"/>
+</trimArea>
+<trimArea IMemento.internal.id="1024">
+<trimItem IMemento.internal.id="org.eclise.ui.internal.FastViewBar"/>
+<trimItem IMemento.internal.id="org.eclipse.jface.action.StatusLineManager"/>
+<trimItem IMemento.internal.id="org.eclipse.ui.internal.progress.ProgressRegion"/>
+</trimArea>
+</trimLayout>
+</window>
+<mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.rubypeople.rdt.ui.EditorRubyFile" name="time_card.rb" tooltip="EmployeeVisitor/time_card.rb">
+<persistable path="/EmployeeVisitor/time_card.rb"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.rubypeople.rdt.ui.EditorRubyFile" name="employee.rb" tooltip="EmployeeVisitor/employee.rb">
+<persistable path="/EmployeeVisitor/employee.rb"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.rubypeople.rdt.ui.EditorRubyFile" name="salaried_employee.rb" tooltip="EmployeeVisitor/salaried_employee.rb">
+<persistable path="/EmployeeVisitor/salaried_employee.rb"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.rubypeople.rdt.ui.EditorRubyFile" name="hourly_employee.rb" tooltip="EmployeeVisitor/hourly_employee.rb">
+<persistable path="/EmployeeVisitor/hourly_employee.rb"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.rubypeople.rdt.ui.EditorRubyFile" name="employee_report_visitor.rb" tooltip="EmployeeVisitor/employee_report_visitor.rb">
+<persistable path="/EmployeeVisitor/employee_report_visitor.rb"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.rubypeople.rdt.ui.EditorRubyFile" name="employee_visitor_spec.rb" tooltip="EmployeeVisitor/employee_visitor_spec.rb">
+<persistable path="/EmployeeVisitor/employee_visitor_spec.rb"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.rubypeople.rdt.ui.EditorRubyFile" name="smc_remote_spec.rb" tooltip="AbstractFactory/smc_remote_spec.rb">
+<persistable path="/AbstractFactory/smc_remote_spec.rb"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.rubypeople.rdt.ui.EditorRubyFile" name="smc_remote.rb" tooltip="AbstractFactory/smc_remote.rb">
+<persistable path="/AbstractFactory/smc_remote.rb"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.rubypeople.rdt.ui.EditorRubyFile" name="java_generator.rb" tooltip="AbstractFactory/java_generator.rb">
+<persistable path="/AbstractFactory/java_generator.rb"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.rubypeople.rdt.ui.EditorRubyFile" name="cpp_generator.rb" tooltip="AbstractFactory/cpp_generator.rb">
+<persistable path="/AbstractFactory/cpp_generator.rb"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.rubypeople.rdt.ui.EditorRubyFile" name="generator_factory.rb" tooltip="AbstractFactory/generator_factory.rb">
+<persistable path="/AbstractFactory/generator_factory.rb"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.rubypeople.rdt.ui.EditorRubyFile" name="factory_spec.rb" tooltip="AbstractFactory/factory_spec.rb">
+<persistable path="/AbstractFactory/factory_spec.rb"/>
+</file>
+</mruList>
+</workbench>

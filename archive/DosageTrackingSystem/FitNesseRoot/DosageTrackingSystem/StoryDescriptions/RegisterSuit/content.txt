@@ -1,0 +1,6 @@
+|^RegisterNormalSuit|                     ''The Happy Path.''|
+|^SuitRegistrationRejectedByManufacturing|''Manufacturing rejects the registration.''|
+|^RejectDuplicateRegistration            |''You can't register a suit that's already registered.''|
+
+
+

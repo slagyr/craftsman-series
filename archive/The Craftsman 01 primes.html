@@ -1,0 +1,629 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>________________________</title>
+  <meta name="Author" content="Robert C. Martin">
+  <meta name="LastAuthor" content="Robert C. Martin">
+  <meta name="Company" content="Object Mentor Inc.">
+  <meta name="CreationTime" content="2002-02-13T18:08:00Z">
+  <meta name="ModificationTime" content="2002-02-13T18:08:00Z">
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.4">
+  <style type="text/css">
+    p.p1 {margin: 34.0px 0.0px 34.0px 0.0px; text-align: right; line-height: 22.0px; font: 24.0px 'Times New Roman'; color: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: right; font: 12.0px 'Times New Roman'; color: #000000}
+    p.p3 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 12.0px 'Times New Roman'; color: #000000; min-height: 15.0px}
+    p.p4 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 12.0px 'Times New Roman'; color: #000000}
+    p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: justify; font: 12.0px 'Times New Roman'; color: #000000; min-height: 15.0px}
+    p.p6 {margin: 3.0px 0.0px 0.0px 0.0px; font: 12.0px 'Times New Roman'; color: #000000}
+    p.p7 {margin: 0.0px 0.0px 0.0px 18.0px; text-indent: -18.0px; font: 9.0px 'Courier New'; color: #000000}
+    p.p8 {margin: 0.0px 0.0px 0.0px 18.0px; font: 9.0px 'Courier New'; color: #000000}
+    p.p9 {margin: 0.0px 0.0px 0.0px 18.0px; font: 9.0px 'Courier New'; color: #000000; min-height: 10.0px}
+    p.p10 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: center; text-indent: 18.0px; font: 12.0px 'Times New Roman'; color: #000000}
+    p.p11 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; font: 12.0px 'Times New Roman'; color: #000000; min-height: 15.0px}
+    span.s1 {font: 9.0px 'Courier New'}
+    table.t1 {border-collapse: collapse}
+    td.td1 {min-width: 361.2px; border-style: solid; border-width: 1.0px 0.0px 1.0px 0.0px; border-color: #bfbfbf transparent #bfbfbf transparent; padding: 0.0px 5.0px 0.0px 5.0px}
+    td.td2 {min-width: 361.2px; padding: 0.0px 5.0px 0.0px 5.0px}
+    td.td3 {min-width: 361.2px; border-style: solid; border-width: 0.0px 0.0px 1.0px 0.0px; border-color: transparent transparent #bfbfbf transparent; padding: 0.0px 5.0px 0.0px 5.0px}
+  </style>
+</head>
+<body>
+<p class="p1"><b>The Craftsman:<br>
+One.</b></p>
+<p class="p2">Robert C. Martin</p>
+<p class="p2">13 February 2002</p>
+<p class="p2"><i>This chapter is derived from a chapter of </i>Principles, Patterns, and Practices of Agile Software Development<i>, Robert C. Martin, Prentice Hall, 2002.<span class="Apple-converted-space"> </span></i></p>
+<p class="p3"><br></p>
+<p class="p4">Dear Diary,<span class="Apple-converted-space"> </span></p>
+<p class="p4">13 February 2002,</p>
+<p class="p4">Today was a disaster – I really messed it up.<span class="Apple-converted-space">  </span>I wanted so much to impress the journeymen here, but all I did was make a mess.</p>
+<p class="p4">It was my first day on the job as an apprentice to Mr. C.<span class="Apple-converted-space">  </span>I was lucky to get this apprenticeship.<span class="Apple-converted-space">  </span>Mr. C is a well recognized master of software development.<span class="Apple-converted-space">  </span>The competition for this position was fierce. <span class="Apple-converted-space">  </span>Mr. C’s apprentices often become journeymen in high demand.<span class="Apple-converted-space">  </span>It <i>means</i> something to have worked with Mr. C.</p>
+<p class="p4"><span class="Apple-converted-space"> </span>I thought I was going to meet him today, but instead a journeyman named Jerry took me aside.<span class="Apple-converted-space">  </span>He told me that Mr. C always puts his apprentices through an orientation during their first few days.<span class="Apple-converted-space">  </span>He said this orientation was to introduce apprentices to the practices that Mr. C insists we use, and to the level of quality he expects from our code.</p>
+<p class="p4">This excited me greatly.<span class="Apple-converted-space">  </span>It was an opportunity to show them how good a programmer I am.<span class="Apple-converted-space">  </span>So I told Jerry I couldn’t wait to start.<span class="Apple-converted-space">  </span>He responded by asking me to write a simple program for him.<span class="Apple-converted-space">  </span>He wanted me to use the Sieve of Eratosthenes to calculate prime numbers. <span class="Apple-converted-space">  </span>He told me to have the program, including all unit tests, ready for review just after lunch.</p>
+<p class="p4">This was great!<span class="Apple-converted-space">  </span>I had almost four hours to whip together a simple program like the Sieve.<span class="Apple-converted-space">  </span>I determined to do a really impressive job. <span class="Apple-converted-space">  </span>Listing 1 shows what I wrote.<span class="Apple-converted-space">  </span>I made sure it was well commented, and neatly formatted.<span class="Apple-converted-space">   </span></p>
+<p class="p5"><span class="Apple-converted-space"> </span></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p6"><b>Listing 1</b><b></b></p>
+        <p class="p7">GeneratePrimes.java version 1.</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8">/**</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space"> </span>* This class Generates prime numbers up to a user specified</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space"> </span>* maximum.<span class="Apple-converted-space">  </span>The algorithm used is the Sieve of Eratosthenes.</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space"> </span>* &lt;p&gt;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space"> </span>* Eratosthenes of Cyrene, b. c. 276 BC, Cyrene, Libya --</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space"> </span>* d. c. 194, Alexandria.<span class="Apple-converted-space">  </span>The first man to calculate the</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space"> </span>* circumference of the Earth.<span class="Apple-converted-space">  </span>Also known for working on</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space"> </span>* calendars with leap years and ran the library at Alexandria.</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space"> </span>* &lt;p&gt;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space"> </span>* The algorithm is quite simple.<span class="Apple-converted-space">  </span>Given an array of integers</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space"> </span>* starting at 2.<span class="Apple-converted-space">  </span>Cross out all multiples of 2.<span class="Apple-converted-space">  </span>Find the next</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space"> </span>* uncrossed integer, and cross out all of its multiples.</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space"> </span>* Repeat untilyou have passed the square root of the maximum</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space"> </span>* value.</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space"> </span>*</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space"> </span>* @author Alphonse</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space"> </span>* @version 13 Feb 2002 atp</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space"> </span>*/</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8">import java.util.*;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p9"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8">public class GeneratePrimes</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8">{</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">  </span>/**</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">   </span>* @param maxValue is the generation limit.</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">   </span>*/</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">  </span>public static int[] generatePrimes(int maxValue)</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">  </span>{</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">    </span>if (maxValue &gt;= 2) // the only valid case</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">    </span>{</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">      </span>// declarations</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">      </span>int s = maxValue + 1; // size of array</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">      </span>boolean[] f = new boolean[s];</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">      </span>int i;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p9"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">      </span>// initialize array to true.</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">      </span>for (i = 0; i &lt; s; i++)</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">        </span>f[i] = true;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p9"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">      </span>// get rid of known non-primes</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">      </span>f[0] = f[1] = false;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p9"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">      </span>// sieve</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">      </span>int j;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">      </span>for (i = 2; i &lt; Math.sqrt(s) + 1; i++)</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">      </span>{</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">        </span>if (f[i]) // if i is uncrossed, cross its multiples.</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">        </span>{</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">          </span>for (j = 2 * i; j &lt; s; j += i)</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">            </span>f[j] = false; // multiple is not prime</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">        </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">      </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p9"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">      </span>// how many primes are there?</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">      </span>int count = 0;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">      </span>for (i = 0; i &lt; s; i++)</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">      </span>{</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">        </span>if (f[i])</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">          </span>count++; // bump count.</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">      </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p9"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">      </span>int[] primes = new int[count];</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p9"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">      </span>// move the primes into the result</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">      </span>for (i = 0, j = 0; i &lt; s; i++)</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">      </span>{</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">        </span>if (f[i]) <span class="Apple-converted-space">            </span>// if prime</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">          </span>primes[j++] = i;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">      </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p9"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">      </span>return primes;<span class="Apple-converted-space">  </span>// return the primes</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">    </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">    </span>else // maxValue &lt; 2</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">      </span>return new int[0]; // return null array if bad input.</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td3">
+        <p class="p8">}</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p5"><br></p>
+<p class="p4">Then I wrote a unit test for <span class="s1">GeneratePrimes</span>.<span class="Apple-converted-space">  </span>It is shown in REF X64870 \n<span class="Apple-converted-space">  </span>\* MERGEFORMAT Listing 2. It uses the uses the JUnit framework as Jerry had instructed.<span class="Apple-converted-space">  </span>It takes a statistical approach; checking to see if the generator can generate primes up to 0, 2, 3, and 100. In the first case there should be no primes. In the second there should be one prime, and it should be 2. In the third there should be two primes and they should be 2 and 3. In the last case there should be 25 primes the last of which is 97. If all these tests pass, then I assumed that the generator was working. I doubt this is foolproof, but I couldn’t think of a reasonable scenario where these tests would pass and yet the function would fail.</p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p6"><b>Listing 2<span class="Apple-converted-space"> </span></b><b></b></p>
+        <p class="p7">TestGeneratePrimes.java</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8">import junit.framework.*;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8">import java.util.*;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p9"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8">public class TestGeneratePrimes extends TestCase</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8">{</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">  </span>public static void main(String args[])</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">  </span>{</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">      </span>junit.swingui.TestRunner.main(</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">        </span>new String[] {"TestGeneratePrimes"});</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">  </span>public TestGeneratePrimes(String name)</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">  </span>{</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">    </span>super(name);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p9"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">  </span>public void testPrimes()</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">  </span>{</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">    </span>int[] nullArray = GeneratePrimes.generatePrimes(0);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">    </span>assertEquals(nullArray.length, 0);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p9"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">    </span>int[] minArray = GeneratePrimes.generatePrimes(2);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">    </span>assertEquals(minArray.length, 1);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">    </span>assertEquals(minArray[0], 2);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p9"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">    </span>int[] threeArray = GeneratePrimes.generatePrimes(3);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">    </span>assertEquals(threeArray.length, 2);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">    </span>assertEquals(threeArray[0], 2);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">    </span>assertEquals(threeArray[1], 3);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p9"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">    </span>int[] centArray = GeneratePrimes.generatePrimes(100);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">    </span>assertEquals(centArray.length, 25);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">    </span>assertEquals(centArray[24], 97);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td3">
+        <p class="p8">}</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p3"><br></p>
+<p class="p4">I got all this to work in about an hour.<span class="Apple-converted-space">  </span>Jerry didnt’ want to see me until after lunch, so I spent the rest of my time reading the <i>Design Patterns</i> book that Jerry gave me. <span class="Apple-converted-space"> </span></p>
+<p class="p4">After lunch I stopped by Jerry’s office, and told him I was done with the program.<span class="Apple-converted-space">  </span>He looked up at me with a funny grin on his face and said:<span class="Apple-converted-space">  </span>“Good, lets go check it out.”</p>
+<p class="p4">He took me out into the lab and sat me down in front of a workstation.<span class="Apple-converted-space">  </span>He sat next to me.<span class="Apple-converted-space">  </span>He asked me to bring up my program on this machine.<span class="Apple-converted-space">  </span>So I navigated to my laptop on the network and brought up the source files.</p>
+<p class="p4">Jerry looked at the two source files for about five minutes.<span class="Apple-converted-space">  </span>Then he shook his head and<span class="Apple-converted-space">  </span>said: “You can’t show something like this to Mr. C!<span class="Apple-converted-space">  </span>If I let him see this, he’d probably fire both of us.<span class="Apple-converted-space">  </span>He’s not a very patient man.”</p>
+<p class="p4">I was startled, but managed keep my cool enough to ask: “What’s wrong with it?”<span class="Apple-converted-space"> </span></p>
+<p class="p4">Jerry sighed.<span class="Apple-converted-space">  </span>“Lets walk through this together.” he said.<span class="Apple-converted-space">  </span>“I’ll show you, point by point, how Mr. C wants things done.”</p>
+<p class="p4">“It seems pretty clear” he continued, “that the main function wants to be three separate functions. The first initializes all the variables and sets up the sieve. The second actually executes the sieve, the third loads the sieved results into an integer array.”</p>
+<p class="p4">I could see what he meant.<span class="Apple-converted-space">  </span>There <i>were</i> three concepts buried in that function.<span class="Apple-converted-space">  </span>Still, I didn’t see what he wanted me to do about it.<span class="Apple-converted-space"> </span></p>
+<p class="p4">He looked at me for awhile, clearly expecting me to do something.<span class="Apple-converted-space">  </span>But finally he heaved a sigh, shook his head, and...</p>
+<p class="p3"><br></p>
+<p class="p10"><b><i>To Be Continued Next Month</i></b></p>
+<p class="p11"><br></p>
+</body>
+</html>

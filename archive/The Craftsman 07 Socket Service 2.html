@@ -1,0 +1,1365 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>The Craftsman</title>
+  <meta name="Author" content="Robert C. Martin">
+  <meta name="LastAuthor" content="Robert C. Martin">
+  <meta name="Company" content="Object Mentor Inc.">
+  <meta name="CreationTime" content="2002-10-15T12:07:00Z">
+  <meta name="ModificationTime" content="2002-10-15T12:07:00Z">
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.4">
+  <style type="text/css">
+    p.p1 {margin: 34.0px 0.0px 34.0px 0.0px; text-align: right; line-height: 22.0px; font: 24.0px 'Times New Roman'; color: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: right; font: 10.0px 'Times New Roman'; color: #000000}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: right; font: 10.0px 'Times New Roman'; color: #000000; min-height: 11.0px}
+    p.p4 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 12.0px 'Times New Roman'; color: #000000; min-height: 15.0px}
+    p.p5 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 10.0px 'Times New Roman'; color: #000000}
+    p.p6 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: center; text-indent: 18.0px; font: 10.0px 'Times New Roman'; color: #000000}
+    p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #000000}
+    p.p8 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #000000; min-height: 10.0px}
+    p.p9 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 9.0px 'Courier New'; color: #000000}
+    p.p10 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 10.0px 'Times New Roman'; color: #000000; min-height: 11.0px}
+    p.p11 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #ff0000}
+    p.p12 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #ff0000; min-height: 10.0px}
+    p.p13 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; font: 10.0px 'Times New Roman'; color: #000000; min-height: 11.0px}
+    span.s1 {font: 9.0px 'Courier New'}
+    span.s2 {color: #ff0000}
+    table.t1 {border-collapse: collapse}
+    td.td1 {min-width: 442.8px; border-style: solid; border-width: 1.0px 1.0px 1.0px 1.0px; border-color: #bfbfbf #bfbfbf #bfbfbf #bfbfbf; padding: 0.0px 5.0px 0.0px 5.0px}
+  </style>
+</head>
+<body>
+<p class="p1"><b>The Craftsman: 7<br>
+SocketService 2</b></p>
+<p class="p2">Robert C. Martin</p>
+<p class="p2">15 Oct 2002</p>
+<p class="p3"><i></i><br></p>
+<p class="p4"><br></p>
+<p class="p5"><i>Last time, Alphonse and Jerry started working on a simple java framework for supporting socket services.<span class="Apple-converted-space">  </span>Their first test case uncovered a race condition that they were able to resolve.<span class="Apple-converted-space">  </span>The current suite of unit tests is shown in Listing 1, and the production code is in Listing 2.</i></p>
+<p class="p6">Listing 1.</p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7">import junit.framework.TestCase;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7">import junit.swingui.TestRunner;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p8"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7">import java.io.IOException;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7">import java.net.Socket;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p8"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7">public class TestSocketServer extends TestCase {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>public static void main(String[] args) {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>TestRunner.main(new String[]{"TestSocketServer"});</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p8"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>public TestSocketServer(String name) {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>super(name);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p8"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>public void testOneConnection() throws Exception {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>SocketService ss = new SocketService();</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>ss.serve(999);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>connect(999);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>ss.close();</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>assertEquals(1, ss.connections());</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p8"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>private void connect(int port) {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>try {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">      </span>Socket s = new Socket("localhost", port);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">      </span>try {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">        </span>Thread.sleep(100);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">      </span>} catch (InterruptedException e) {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">      </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">      </span>s.close();</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>} catch (IOException e) {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">      </span>fail("could not connect");</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7">}</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p8"><br></p>
+<p class="p8"><br></p>
+<p class="p8"><br></p>
+<p class="p9">Listing 2.</p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7">import java.io.IOException;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7">import java.net.*;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p8"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7">public class SocketService {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>private ServerSocket serverSocket = null;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>private int connections = 0;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>private Thread serverThread = null;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p8"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>public void serve(int port) throws Exception {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>serverSocket = new ServerSocket(port);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>serverThread = new Thread(</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">      </span>new Runnable() {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">        </span>public void run() {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">          </span>try {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">            </span>Socket s = serverSocket.accept();</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">            </span>s.close();</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">            </span>connections++;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">          </span>} catch (IOException e) {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">          </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">        </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">      </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>serverThread.start();</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p8"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>public void close() throws Exception {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>serverSocket.close();</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p8"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>public int connections() {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>return connections;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7">}</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p8"><br></p>
+<p class="p5">We came back from our break, ready to continue the <span class="s1">SocketService</span>. <span class="Apple-converted-space"> </span></p>
+<p class="p5">“We’ve proven that we can connect once.<span class="Apple-converted-space">  </span>Lets try to connect several times.” said Jerry.</p>
+<p class="p5">“Sounds good.” I said.<span class="Apple-converted-space">  </span>So I wrote the following test case.</p>
+<p class="p10"><br></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b><span class="Apple-converted-space">  </span>public void testManyConnections() throws Exception {</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b><span class="Apple-converted-space">    </span>SocketService ss = new SocketService();</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b><span class="Apple-converted-space">    </span>ss.serve(999);</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b><span class="Apple-converted-space">    </span>for (int i = 0; i &lt; 10; i++)</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b><span class="Apple-converted-space">      </span>connect(999);</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b><span class="Apple-converted-space">    </span>ss.close();</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b><span class="Apple-converted-space">    </span>assertEquals(10, ss.connections());</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b><span class="Apple-converted-space">  </span>}</b></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p8"><br></p>
+<p class="p5">“OK, this fails.” I said. <span class="Apple-converted-space"> </span></p>
+<p class="p5">“As it should.” Jerry replied.<span class="Apple-converted-space">  </span>“The <span class="s1">SocketService</span> only calls <span class="s1">accept</span> once.<span class="Apple-converted-space">  </span>We need to put that call into a loop.”</p>
+<p class="p5">“When should the loop terminate?” I asked.</p>
+<p class="p5">Jerry thought for a second and said: “When we call <span class="s1">close</span> on the <span class="s1">SocketService</span>.”.</p>
+<p class="p5">“Like this?”<span class="Apple-converted-space">  </span>And I made the following changes:</p>
+<p class="p10"><br></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7">public class SocketService {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>private ServerSocket serverSocket = null;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>private int connections = 0;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>private Thread serverThread = null;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><span class="Apple-converted-space"> </span><b> private boolean running = false;</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p8"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>public void serve(int port) throws Exception {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>serverSocket = new ServerSocket(port);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>serverThread = new Thread(</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">      </span>new Runnable() {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">        </span>public void run() {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b><span class="Apple-converted-space">          </span>running = true;</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b><span class="Apple-converted-space">          </span>while (running) {</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">            </span>try {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">              </span>Socket s = serverSocket.accept();</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">              </span>s.close();</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">              </span>connections++;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">            </span>} catch (IOException e) {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">            </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b><span class="Apple-converted-space">          </span>}</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">        </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">      </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>serverThread.start();</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p8"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>public void close() throws Exception {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b><span class="Apple-converted-space">    </span>running = false;</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>serverSocket.close();</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7">}</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p8"><br></p>
+<p class="p5">I ran the tests, and they both passed.</p>
+<p class="p5">“Good.” I said.<span class="Apple-converted-space">  </span>“Now we can connect as many times as we like.<span class="Apple-converted-space">  </span>Unfortunately the <span class="s1">SocketService</span> doesn’t do very much when we connect to it.<span class="Apple-converted-space">  </span>It just closes.”<span class="Apple-converted-space"> </span></p>
+<p class="p5">“Yeah, let’s change that.” said Jerry.<span class="Apple-converted-space">  </span>“Lets have the <span class="s1">SocketService</span> send us a “Hello” message when we connect to it.”</p>
+<p class="p5">I didn’t care for that.<span class="Apple-converted-space">  </span>I said: “Why should we pollute <span class="s1">SocketService</span> with a “Hello” message just to satisfy our tests?<span class="Apple-converted-space">  </span>It would be good to test that the <span class="s1">SocketService</span> can send a message, but we don’t want the message to be part of the <span class="s1">SocketService</span> code!”</p>
+<p class="p5">“Right!” Jerry agreed.<span class="Apple-converted-space">  </span>“We want the message to be specified by, and verified by, the test.”</p>
+<p class="p5">“How do we do that?” I asked.<span class="Apple-converted-space"> </span></p>
+<p class="p5">Jerry smiled and said: “We’ll use the <i>Mock Object</i> pattern.<span class="Apple-converted-space">  </span>In short, we create an interface that the <span class="s1">SocketService</span> will execute after receiving a connection.<span class="Apple-converted-space">  </span>We’ll have the test implement that interface to send the “Hello” message.<span class="Apple-converted-space">  </span>Then we’ll have the test read the message from the client socket and verify that it was sent correctly.”</p>
+<p class="p5">I didn’t know what the <i>Mock Object</i> pattern was, and his description of interfaces confused me.<span class="Apple-converted-space">  </span>“Can you show me?” I asked.</p>
+<p class="p5">So Jerry took the keyboard and began to type.</p>
+<p class="p5">“First we’ll write the test.”</p>
+<p class="p10"><br></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b><span class="Apple-converted-space">  </span>public void testSendMessage() throws Exception</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b><span class="Apple-converted-space">  </span>{</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b><span class="Apple-converted-space">    </span>SocketService ss = new SocketService();</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b><span class="Apple-converted-space">    </span>ss.serve(999, new HelloServer());</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b><span class="Apple-converted-space">    </span>Socket s = new Socket("localhost", 999);</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b><span class="Apple-converted-space">    </span>InputStream is = s.getInputStream();</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b><span class="Apple-converted-space">    </span>InputStreamReader isr = new InputStreamReader(is);</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b><span class="Apple-converted-space">    </span>BufferedReader br = new BufferedReader(isr);</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b><span class="Apple-converted-space">    </span>String answer = br.readLine();</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b><span class="Apple-converted-space">    </span>s.close();</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b><span class="Apple-converted-space">    </span>assertEquals("Hello", answer);</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b><span class="Apple-converted-space">  </span>}</b></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p8"><br></p>
+<p class="p5">I examined this code carefully.<span class="Apple-converted-space">  </span>“OK, so you’re creating something called a <span class="s1">HelloServer</span> and passing it into the <span class="s1">serve</span> method.<span class="Apple-converted-space">  </span>That’s going to break all the other tests!”</p>
+<p class="p5">“Good Point!” Jerry exclaimed. “That means we need to refactor those other tests before we continue.”</p>
+<p class="p5">“But the services in the other two tests don’t <i>do</i> anything.” I complained.</p>
+<p class="p5">“Of course they do – they count connections!<span class="Apple-converted-space">  </span>Remember how much you didn’t like that connections variable, and it’s accessor?<span class="Apple-converted-space">  </span>Well now we’re going to get rid of them.”</p>
+<p class="p5">“We are?”</p>
+<p class="p5">“Just watch.” Jerry laughed.<span class="Apple-converted-space">  </span>“First we’ll change the two tests, and add a <span class="s1">connections</span> variable to the test case.”</p>
+<p class="p10"><br></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>public void testOneConnection() throws Exception</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>{</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>ss.serve(999, <span class="s2"><b>connectionCounter</b></span>);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>connect(999);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>assertEquals(1, <span class="s2"><b>connections</b></span>);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p8"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>public void testManyConnections() throws Exception</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>{</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>ss.serve(999, <span class="s2"><b>connectionCounter</b></span>);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>for (int i=0; i&lt;10; i++)</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">      </span>connect(999);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>assertEquals(10, <span class="s2"><b>connections</b></span>);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p12"><b></b><br></p>
+<p class="p5">“Next we’ll make the interface.”</p>
+<p class="p10"><br></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b>import java.net.Socket;</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p12"><b></b><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b>public interface SocketServer {</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b><span class="Apple-converted-space">  </span>public void serve(Socket s);</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b>}</b></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p8"><br></p>
+<p class="p5">“Next we’ll create the <span class="s1">connectionCounter</span> variable and initialize it in the <span class="s1">TestSocketServer</span> constructor with an anonymous inner class that bumps the <span class="s1">connections</span> variable.</p>
+<p class="p10"><br></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7">public class TestSocketServer extends TestCase {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b><span class="Apple-converted-space">  </span>private int connections = 0;</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b><span class="Apple-converted-space">  </span>private SocketServer connectionCounter;</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p8"><span class="Apple-converted-space">  </span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>public static void main(String[] args) {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>TestRunner.main(new String[]{"TestSocketServer"});</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p8"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>public TestSocketServer(String name) {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>super(name);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b><span class="Apple-converted-space">    </span>connectionCounter = new<span class="Apple-converted-space">  </span>SocketServer() {</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b><span class="Apple-converted-space">      </span>public void serve(Socket s) {</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b><span class="Apple-converted-space">        </span>connections++;</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b><span class="Apple-converted-space">      </span>}</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b><span class="Apple-converted-space">    </span>};</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>...</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p8"><br></p>
+<p class="p5">“Finally, we’ll make it all compile by adding the extra argument to the <span class="s1">serve</span> method of the <span class="s1">SocketService</span>, and commenting out the new test.</p>
+<p class="p10"><br></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p13"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>public void serve(int port, <span class="s2"><b>SocketServer server</b></span>) throws Exception {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">      </span>...</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p8"><br></p>
+<p class="p5">“OK, I see what you are doing.” I said.<span class="Apple-converted-space">  </span>The two old tests should fail now because <span class="s1">SocketService</span> never invokes the <span class="s1">serve</span> method of its <span class="s1">SocketServer</span> argument.”</p>
+<p class="p5">Sure enough the tests failed for exactly that reason. <span class="Apple-converted-space"> </span></p>
+<p class="p5">I knew what to do next.<span class="Apple-converted-space">  </span>I grabbed the keyboard and made the following change:</p>
+<p class="p10"><br></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7">public class SocketService {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>private ServerSocket serverSocket = null;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>private int connections = 0;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>private Thread serverThread = null;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>private boolean running = false;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b><span class="Apple-converted-space">  </span>private SocketServer itsServer;</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p8"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>public void serve(int port, SocketServer server) throws Exception {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b><span class="Apple-converted-space">    </span>itsServer = server;</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>serverSocket = new ServerSocket(port);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>serverThread = new Thread(</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">      </span>new Runnable() {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">        </span>public void run() {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">          </span>running = true;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">          </span>while (running) {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">            </span>try {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">              </span>Socket s = serverSocket.accept();</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b><span class="Apple-converted-space">              </span>itsServer.serve(s);</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">              </span>s.close();</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">              </span>connections++;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">            </span>} catch (IOException e) {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">            </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">          </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">        </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">      </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>serverThread.start();</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+        <p class="p7"><span class="Apple-converted-space">  </span>...</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p10"><br></p>
+<p class="p5">This made all the tests run.</p>
+<p class="p5">“Great!” Said Jerry.<span class="Apple-converted-space">  </span>Now we’ve got to make the new test work.”</p>
+<p class="p5">So I uncommented the test and compiled it.<span class="Apple-converted-space">  </span>It complained about <span class="s1">HelloServer</span>.</p>
+<p class="p5">“Oh, right.<span class="Apple-converted-space">  </span>We need to implement the HelloServer.<span class="Apple-converted-space">  </span>It’s just going to spit the word “hello” out the socket, right?”</p>
+<p class="p5">“Right.” Jerry confirmed.</p>
+<p class="p5">So I wrote the following new class in the <span class="s1">TestSocketServer.java</span> file.</p>
+<p class="p10"><br></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b>class HelloServer implements SocketServer {</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b><span class="Apple-converted-space">  </span>public void serve(Socket s) {</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b><span class="Apple-converted-space">    </span>try {</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b><span class="Apple-converted-space">      </span>PrintStream ps = new PrintStream(s.getOutputStream());</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b><span class="Apple-converted-space">      </span>ps.println("Hello");</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b><span class="Apple-converted-space">    </span>} catch (IOException e) {</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b><span class="Apple-converted-space">    </span>}</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b><span class="Apple-converted-space">  </span>}</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b>}</b></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p12"><b></b><br></p>
+<p class="p5">The tests all passed.<span class="Apple-converted-space"> </span></p>
+<p class="p5">“That was pretty easy.” Said Jerry. <span class="Apple-converted-space"> </span></p>
+<p class="p5">“Yeah.<span class="Apple-converted-space">  </span>That <i>Mock Object</i> pattern is pretty useful.<span class="Apple-converted-space">  </span>It let us keep all the test code in the test module.<span class="Apple-converted-space">  </span>The <span class="s1">SocketService</span> doesn’t know anything about it.”</p>
+<p class="p5">“It’s even more useful than that.” Jerry replied.<span class="Apple-converted-space">  </span>“Real servers will also implement the <span class="s1">SocketServer</span> interface.”</p>
+<p class="p5">“I can see that.” I said.<span class="Apple-converted-space">  </span>“Interesting that the needs of a unit test drove us to create a design that would be generally useful.</p>
+<p class="p5">“That happens all the time.” Said Jerry.<span class="Apple-converted-space">  </span>“Tests are users too.<span class="Apple-converted-space">  </span>The needs of the tests are often the same as the needs of the real users.”</p>
+<p class="p5">“But why is it called <i>Mock Objec</i>t?”</p>
+<p class="p5">“Think of it this way.<span class="Apple-converted-space">  </span>The HelloServer is a substitute for, or a mock-up of, a real server.<span class="Apple-converted-space">  </span>The pattern allows us to substitute test mock-ups into real application code.”</p>
+<p class="p5">“I see.”<span class="Apple-converted-space">  </span>I said.<span class="Apple-converted-space">  </span>“Well, we should clean this code up now and get rid of that useless connections variable.”</p>
+<p class="p5">“Agreed.”</p>
+<p class="p5">So we did a little cleanup and took another break.<span class="Apple-converted-space">  </span>The resulting <span class="s1">SocketService</span> is shown below.</p>
+<p class="p10"><br></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7">import java.io.IOException;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7">import java.net.*;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p8"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7">public class SocketService {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>private ServerSocket serverSocket = null;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>private Thread serverThread = null;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>private boolean running = false;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>private SocketServer itsServer;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p8"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>public void serve(int port, SocketServer server) throws Exception {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>itsServer = server;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>serverSocket = new ServerSocket(port);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>serverThread = <span class="s2"><b>makeServerThread();</b><b></b></span></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>serverThread.start();</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p8"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b><span class="Apple-converted-space">  </span>private Thread makeServerThread() {</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>return new Thread(</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">      </span>new Runnable() {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">        </span>public void run() {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">          </span>running = true;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">          </span>while (running) {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">            </span>acceptAndServeConnection();</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">          </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">        </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">      </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b><span class="Apple-converted-space">  </span>}</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p8"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b><span class="Apple-converted-space">  </span>private void acceptAndServeConnection() {</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>try {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">      </span>Socket s = serverSocket.accept();</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">      </span>itsServer.serve(s);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">      </span>s.close();</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>} catch (IOException e) {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><b><span class="Apple-converted-space">  </span>}</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p8"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>public void close() throws Exception {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>running = false;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>serverSocket.close();</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7">}</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p8"><br></p>
+</body>
+</html>

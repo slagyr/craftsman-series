@@ -1,0 +1,261 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>The Craftsman</title>
+  <meta name="Author" content="Robert C. Martin">
+  <meta name="LastAuthor" content="Robert C. Martin">
+  <meta name="Company" content="Object Mentor Inc.">
+  <meta name="CreationTime" content="2003-06-18T18:15:00Z">
+  <meta name="ModificationTime" content="2003-06-18T18:15:00Z">
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.4">
+  <style type="text/css">
+    p.p1 {margin: 34.0px 0.0px 34.0px 0.0px; text-align: right; line-height: 22.0px; font: 24.0px 'Times New Roman'; color: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: right; font: 10.0px 'Times New Roman'; color: #000000}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: right; font: 10.0px 'Times New Roman'; color: #000000; min-height: 11.0px}
+    p.p4 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 12.0px 'Times New Roman'; color: #000000; min-height: 15.0px}
+    p.p5 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 10.0px 'Times New Roman'; color: #000000}
+    p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #ff0000; min-height: 10.0px}
+    p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #000000; min-height: 10.0px}
+    p.p8 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #000000}
+    p.p9 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 10.0px 'Times New Roman'; color: #000000; min-height: 11.0px}
+    p.p10 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #ff0000}
+    p.p11 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; font: 10.0px 'Times New Roman'; color: #000000; min-height: 11.0px}
+    p.p12 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: center; text-indent: 18.0px; font: 10.0px 'Times New Roman'; color: #000000}
+    p.p13 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: center; text-indent: 18.0px; font: 10.0px 'Times New Roman'; color: #000000; min-height: 11.0px}
+    span.s1 {font: 9.0px 'Courier New'}
+    span.s2 {color: #ff0000}
+    span.Apple-tab-span {white-space:pre}
+  </style>
+</head>
+<body>
+<p class="p1"><b>The Craftsman: 15<br>
+SMCRemote Part V<br>
+Ess Are Pee</b></p>
+<p class="p2">Robert C. Martin</p>
+<p class="p2">18 June, 2003</p>
+<p class="p3"><i></i><br></p>
+<p class="p4"><br></p>
+<p class="p5"><i>...Continued from last month.<span class="Apple-converted-space">  </span>See &lt;&lt;link&gt;&gt; for last month's article, and the code we were working on.<span class="Apple-converted-space">  </span>You can download that code from:</i></p>
+<p class="p5"><i>www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_14_SMCRemote_IV_Transactions.zip</i></p>
+<p class="p6"><b></b><br></p>
+<p class="p5">The last thing I saw, before the door slid shut, was Jasmine's long black hair swaying and bouncing to the rhythm of her purposeful stride.<span class="Apple-converted-space">  </span>As her saturating presence drained from the room, I felt my lungs release the breath I hadn't known they were holding.<span class="Apple-converted-space">  </span>My eyes lost their focus, and for several quasi-conscious minutes I just sat and blindly gazed at the blur that was the door. <span class="Apple-converted-space"> </span></p>
+<p class="p5">"Whew!" I said to myself.<span class="Apple-converted-space">  </span>"Working with Jasmine is <i>not</i> going to be easy."</p>
+<p class="p5"><i>"Easy or not, "</i> I replied to myself, <i>"she asked you to get that file written and to clean up the code.<span class="Apple-converted-space">  </span>So you'd better get cracking."</i><i></i></p>
+<p class="p5">I sighed.<span class="Apple-converted-space">  </span>"Agreed, agreed." I agreed with myself.<span class="Apple-converted-space">  </span>"I can just imagine what Jasmine would say if I didn't have something to show her.<span class="Apple-converted-space">  </span>She'd say:<i> 'Some Hotshot you turned out to be!<span class="Apple-converted-space">  </span>What did you do, just sit here the whole time doing nothing?'</i>"</p>
+<p class="p5">"Okay, Jasmine, okay.<span class="Apple-converted-space">  </span>So, what should we do first?"</p>
+<p class="p5"><i>"Well, Hotshot, we have to get the</i> <span class="s1">CompilerResultsTransaction</span> <i>to carry the contents of a file from the server to the client; and then write that file on the client."</i><i></i></p>
+<p class="p5">"Oh right." I said. "The compiler will create an output file on the server, and we have to move it to the client.<span class="Apple-converted-space">  </span>This is just what we did in the <span class="s1">CompileFileTransaction</span>."</p>
+<p class="p7"><br></p>
+<p class="p8">public class CompileFileTransaction implements Serializable {</p>
+<p class="p8"><span class="Apple-converted-space">  </span>private String filename;</p>
+<p class="p8"><span class="Apple-converted-space">  </span>private char contents[];</p>
+<p class="p8"><span class="Apple-converted-space">  </span>public CompileFileTransaction(String filename, char buffer[]) {</p>
+<p class="p8"><span class="Apple-converted-space">    </span>this.filename = filename;</p>
+<p class="p8"><span class="Apple-converted-space">    </span>this.contents=buffer;</p>
+<p class="p7"><br></p>
+<p class="p8"><span class="Apple-converted-space">  </span>}</p>
+<p class="p8"><span class="Apple-converted-space">  </span>public String getFilename() {</p>
+<p class="p8"><span class="Apple-converted-space">    </span>return filename;</p>
+<p class="p8"><span class="Apple-converted-space">  </span>}</p>
+<p class="p8"><span class="Apple-converted-space">  </span>public char[] getContents() {</p>
+<p class="p8"><span class="Apple-converted-space">    </span>return contents;</p>
+<p class="p8"><span class="Apple-converted-space">  </span>}</p>
+<p class="p8">}</p>
+<p class="p7"><br></p>
+<p class="p5">"We opened and read the file in the <span class="s1">compileFile</span> method, and then constructed and passed the file name and the array of chars into the constructor to the <span class="s1">CompileFileTransaction</span>."</p>
+<p class="p7"><br></p>
+<p class="p8">public boolean compileFile() {</p>
+<p class="p8"><span class="Apple-converted-space">    </span>char buffer[] = new char[(int) itsFileLength];</p>
+<p class="p8"><span class="Apple-converted-space">    </span>try {</p>
+<p class="p8"><span class="Apple-converted-space">      </span>fileReader.read(buffer);</p>
+<p class="p8"><span class="Apple-converted-space">      </span>CompileFileTransaction cft =<span class="Apple-converted-space"> </span></p>
+<p class="p8"><span class="Apple-converted-space">        </span>new CompileFileTransaction(itsFilename, buffer);</p>
+<p class="p7"><br></p>
+<p class="p5"><i>"Right, Hotshot, that's just what we did.<span class="Apple-converted-space">  </span>Is there something you don't like about that?"</i></p>
+<p class="p5">"I don't like having to write the same code twice.<span class="Apple-converted-space">  </span>Jerry made a big point out of not duplicating code."</p>
+<p class="p5"><i>"Jerry's not exactly the sharpest knife in the drawer, Hotshot".<span class="Apple-converted-space"> </span></i></p>
+<p class="p5">"Maybe not, but I think he was right about that.<span class="Apple-converted-space">  </span>So I think I want to write a class that carries a file across the socket."</p>
+<p class="p5"><i>"Something like a </i><span class="s1"><i>FileCarrier</i></span><i>?"</i></p>
+<p class="p5">"Yeah, that's a good name for it!"</p>
+<p class="p5"><i>"OK, Hottie, write a test for it."</i></p>
+<p class="p5">"Hottie? -- Er, OK.<span class="Apple-converted-space">  </span>How about this?"</p>
+<p class="p9"><br></p>
+<p class="p10"><b>public class FileCarrierTest extends TestCase {</b></p>
+<p class="p10"><b><span class="Apple-converted-space">  </span>public void testAFile() throws Exception {</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>final String TESTFILE = "testFile.txt"; <span class="Apple-converted-space">   </span></b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>final String TESTSTRING = "test";</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>createFile(TESTFILE, TESTSTRING);</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>FileCarrier fc = new FileCarrier(TESTFILE);</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>fc.write();</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>assertTrue(new File(TESTFILE).exists());</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>String contents = readFile(TESTFILE);</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>assertEquals(TESTSTRING, contents);<span class="Apple-converted-space">   </span></b></p>
+<p class="p10"><b><span class="Apple-converted-space">  </span>}</b></p>
+<p class="p10"><b>}</b></p>
+<p class="p6"><b></b><br></p>
+<p class="p5"><i>"Yes, very good, Hot Stuff, keep going."</i></p>
+<p class="p5">"OK, beautiful.<span class="Apple-converted-space">  </span>Here are the two utility functions..."</p>
+<p class="p6"><b></b><br></p>
+<p class="p10"><b><span class="Apple-converted-space">  </span>private String readFile(final String TESTFILE) throws IOException {</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>BufferedReader reader = new BufferedReader(new FileReader(TESTFILE));</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>String line = reader.readLine();</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>return line;</b></p>
+<p class="p10"><b><span class="Apple-converted-space">  </span>}</b></p>
+<p class="p6"><b></b><br></p>
+<p class="p10"><b><span class="Apple-converted-space">  </span>private void createFile(final String TESTFILE,<span class="Apple-converted-space"> </span></b></p>
+<p class="p10"><b><span class="Apple-converted-space">                          </span>final String TESTSTRING) throws IOException {</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>PrintWriter writer = new PrintWriter(new FileWriter(TESTFILE));</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>writer.println(TESTSTRING);</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>writer.close();</b></p>
+<p class="p10"><b><span class="Apple-converted-space">  </span>}</b></p>
+<p class="p6"><b></b><br></p>
+<p class="p5">"...and here is the stubbed implementation of <span class="s1">FileCarrier</span> that will make this test compile and fail.</p>
+<p class="p9"><br></p>
+<p class="p10"><b>public class FileCarrier {</b></p>
+<p class="p10"><b><span class="Apple-converted-space">  </span>public FileCarrier(String fileName) {</b></p>
+<p class="p10"><b><span class="Apple-converted-space">  </span>}</b></p>
+<p class="p6"><b></b><br></p>
+<p class="p10"><b><span class="Apple-converted-space">  </span>public void write() {</b></p>
+<p class="p10"><b><span class="Apple-converted-space">  </span>}</b></p>
+<p class="p10"><b>}</b></p>
+<p class="p6"><b></b><br></p>
+<p class="p5">"So now, Jazzy-wazzy, all we have to do to make the test pass is read the file in the constructor and write it in the <span class="s1">write()</span> function."</p>
+<p class="p5"><i>"Not yet, over-temp, first run the test to make sure it will fail."</i></p>
+<p class="p5">"Jay-girl, there's no implementation in <span class="s1">FileCarrier</span>.<span class="Apple-converted-space">  </span>Of course it's going to fail.</p>
+<p class="p5"><i>"Well, exotherm, you and I both know that.<span class="Apple-converted-space">  </span>But does the program?"</i></p>
+<p class="p5">"I love it when you make me run a test!<span class="Apple-converted-space">  </span>OK, here goes."</p>
+<p class="p5"><i><span class="Apple-tab-span">	</span>** the test passes**</i></p>
+<p class="p5">"Huh?<span class="Apple-converted-space">  </span>What?<span class="Apple-converted-space">  </span>How can that be?<span class="Apple-converted-space">  </span>Do you understand that Jazz?"</p>
+<p class="p5"><i>"Gosh, boiling point, I sure don't.<span class="Apple-converted-space">  </span>How can the test pass when there's nothing in</i> <span class="s1">FileCarrier</span><i> to..."</i></p>
+<p class="p5">"Oh.<span class="Apple-converted-space">  </span>Egad.<span class="Apple-converted-space">  </span>Are we dumb or what.<span class="Apple-converted-space">  </span>We never deleted the test file."</p>
+<p class="p5"><i>"Ah, yes, I see that now, Mr. tepid breath. <span class="Apple-converted-space">  </span>So why don't you fix that?"</i></p>
+<p class="p5">"OK, here."</p>
+<p class="p7"><br></p>
+<p class="p8"><span class="Apple-converted-space">  </span>public void testAFile() throws Exception {</p>
+<p class="p8"><span class="Apple-converted-space">    </span>final String TESTFILE = "testFile.txt";</p>
+<p class="p8"><span class="Apple-converted-space">    </span>final String TESTSTRING = "test";</p>
+<p class="p8"><span class="Apple-converted-space">    </span>createFile(TESTFILE, TESTSTRING);</p>
+<p class="p8"><span class="Apple-converted-space">    </span>FileCarrier fc = new FileCarrier(TESTFILE);</p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>new File(TESTFILE).delete();</b></p>
+<p class="p8"><span class="Apple-converted-space">    </span>fc.write();</p>
+<p class="p8"><span class="Apple-converted-space">    </span>assertTrue(new File(TESTFILE).exists());</p>
+<p class="p8"><span class="Apple-converted-space">    </span>String contents = readFile(TESTFILE);</p>
+<p class="p8"><span class="Apple-converted-space">    </span>assertEquals(TESTSTRING, contents);</p>
+<p class="p8"><span class="Apple-converted-space">  </span>}</p>
+<p class="p9"><br></p>
+<p class="p5"><i>"OK, great, now it fails.<span class="Apple-converted-space">  </span>But -- latent-heat --<span class="Apple-converted-space">  </span>can you make it pass?"</i></p>
+<p class="p5">"Sure I can, JJ, just watch me!"</p>
+<p class="p7"><br></p>
+<p class="p10"><b>public class FileCarrier implements Serializable {</b></p>
+<p class="p10"><b><span class="Apple-converted-space">  </span>private String fileName;</b></p>
+<p class="p10"><b><span class="Apple-converted-space">  </span>private char[] contents;</b></p>
+<p class="p6"><b></b><br></p>
+<p class="p10"><b><span class="Apple-converted-space">  </span>public FileCarrier(String fileName) throws Exception {</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>File f = new File(fileName);</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>this.fileName = fileName;</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>int fileSize = (int)f.length();</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>contents = new char[fileSize];</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>FileReader reader = new FileReader(f);</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>reader.read(contents);</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>reader.close();</b></p>
+<p class="p10"><b><span class="Apple-converted-space">  </span>}</b></p>
+<p class="p6"><b></b><br></p>
+<p class="p10"><b><span class="Apple-converted-space">  </span>public void write() throws Exception {</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>FileWriter writer = new FileWriter(fileName);</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>writer.write(contents);</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>writer.close();</b></p>
+<p class="p10"><b><span class="Apple-converted-space">  </span>}</b></p>
+<p class="p10"><b>}</b></p>
+<p class="p7"><br></p>
+<p class="p5"><i>"Yee Ha! electron-volt, you are cooking now!"</i></p>
+<p class="p5">"Why, thanks! Gorgeous!<span class="Apple-converted-space">  </span>But you haven't seen anything yet.<span class="Apple-converted-space">  </span>Watch how I integrate the <span class="s1">FileCarrier</span> into the <span class="s1">CompileFileTransaction</span>!<span class="Apple-converted-space">  </span>That should turn your head."</p>
+<p class="p7"><br></p>
+<p class="p8">public class CompileFileTransaction implements Serializable {</p>
+<p class="p8"><span class="Apple-converted-space">  </span>FileCarrier sourceFile;</p>
+<p class="p8"><span class="Apple-converted-space">  </span>public CompileFileTransaction(String filename) throws Exception {</p>
+<p class="p8"><span class="Apple-converted-space">    </span>sourceFile = new FileCarrier(filename);</p>
+<p class="p8"><span class="Apple-converted-space">  </span>}</p>
+<p class="p8"><span class="Apple-converted-space">  </span>public String getFilename() {</p>
+<p class="p8"><span class="Apple-converted-space">    </span>return sourceFile.getFileName();</p>
+<p class="p8"><span class="Apple-converted-space">  </span>}</p>
+<p class="p8"><span class="Apple-converted-space">  </span>public char[] getContents() {</p>
+<p class="p8"><span class="Apple-converted-space">    </span>return sourceFile.getContents();</p>
+<p class="p8"><span class="Apple-converted-space">  </span>}</p>
+<p class="p8">}</p>
+<p class="p7"><br></p>
+<p class="p5">"And now I'll change the <span class="s1">compileFile</span> function to use the new <span class="s1">CompileFileTransaction</span>!"</p>
+<p class="p9"><br></p>
+<p class="p8"><span class="Apple-converted-space">      </span>CompileFileTransaction cft = new CompileFileTransaction<span class="s2"><b>(itsFilename</b></span>);</p>
+<p class="p8"><span class="Apple-converted-space">      </span>os.writeObject(cft);</p>
+<p class="p8"><span class="Apple-converted-space">      </span>os.flush();</p>
+<p class="p8"><span class="Apple-converted-space">      </span>Object response = is.readObject();</p>
+<p class="p8"><span class="Apple-converted-space">      </span>CompilerResultsTransaction crt = (CompilerResultsTransaction)response;</p>
+<p class="p8"><span class="Apple-converted-space">      </span>crt.write();</p>
+<p class="p7"><br></p>
+<p class="p5">"And now I'll run all the tests and ... see? They all pass!"</p>
+<p class="p5"><i>"Oh, fever man, stop it, stop it, you're making me crazy!"</i></p>
+<p class="p5">"It's all part of my plan, sweet-eyes, all part of my plan.<span class="Apple-converted-space">  </span>Now, watch with bated breath as I put the <span class="s1">FileCarrier</span> into the <span class="s1">CompilerResultsTransaction</span>!"</p>
+<p class="p5"><i>"Ooooh!"</i></p>
+<p class="p7"><br></p>
+<p class="p8">public class CompilerResultsTransaction implements Serializable {</p>
+<p class="p10"><b><span class="Apple-converted-space">  </span>private FileCarrier resultFile;</b></p>
+<p class="p8"><span class="Apple-converted-space">  </span>public CompilerResultsTransaction(String filename) throws Exception {</p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>resultFile = new FileCarrier(filename);</b></p>
+<p class="p8"><span class="Apple-converted-space">  </span>}</p>
+<p class="p7"><br></p>
+<p class="p8"><span class="Apple-converted-space">  </span>public void write() throws Exception {</p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>resultFile.write();</b></p>
+<p class="p8"><span class="Apple-converted-space">  </span>}</p>
+<p class="p8">}</p>
+<p class="p11"><br></p>
+<p class="p5"><i>"Gasp!"</i></p>
+<p class="p5">"That's right!<span class="Apple-converted-space">  </span>And look how masterfully I change the test to use the new transaction!"</p>
+<p class="p9"><br></p>
+<p class="p8"><span class="Apple-converted-space">  </span>private void parse(Object cmd) throws Exception {</p>
+<p class="p8"><span class="Apple-converted-space">    </span>if (cmd != null) {</p>
+<p class="p8"><span class="Apple-converted-space">      </span>if (cmd instanceof CompileFileTransaction) {</p>
+<p class="p8"><span class="Apple-converted-space">        </span>CompileFileTransaction cft = (CompileFileTransaction) cmd;</p>
+<p class="p8"><span class="Apple-converted-space">        </span>filename = cft.getFilename();</p>
+<p class="p8"><span class="Apple-converted-space">        </span>content = cft.getContents();</p>
+<p class="p8"><span class="Apple-converted-space">        </span>fileLength = content.length;</p>
+<p class="p8"><span class="Apple-converted-space">        </span>fileReceived = true;</p>
+<p class="p10"><b><span class="Apple-converted-space">        </span>TestSMCRemoteClient.createTestFile("resultFile.java", "Some content.");</b></p>
+<p class="p8"><span class="Apple-converted-space">        </span>CompilerResultsTransaction crt =</p>
+<p class="p8"><span class="Apple-converted-space">          </span>new CompilerResultsTransaction("resultFile.java");</p>
+<p class="p8"><span class="Apple-converted-space">        </span>os.writeObject(crt);</p>
+<p class="p8"><span class="Apple-converted-space">        </span>os.flush();</p>
+<p class="p8"><span class="Apple-converted-space">      </span>}</p>
+<p class="p8"><span class="Apple-converted-space">    </span>}</p>
+<p class="p8"><span class="Apple-converted-space">  </span>}</p>
+<p class="p7"><br></p>
+<p class="p5"><i>"More, Alphonse,<span class="Apple-converted-space">  </span>Please, More!"</i></p>
+<p class="p5">You want more Jasmine?<span class="Apple-converted-space">  </span>I can give you more.<span class="Apple-converted-space">  </span>Lots more.<span class="Apple-converted-space">  </span>You see Jasmine, I <i>know</i> about objects.<span class="Apple-converted-space">  </span>Oh yes, I know about them.<span class="Apple-converted-space">  </span><span class="s1">FileCarrier</span> is an <i>Object</i> Jasmine.<span class="Apple-converted-space">  </span>Do you see how it can be used in more than one place, Jasmine?<span class="Apple-converted-space">  </span>Do you see how it encapsulates a single responsibility, Jasmine?<span class="Apple-converted-space">  </span>Do you?<span class="Apple-converted-space">  </span>Do you know the <b>Single Responsibility Principle</b> Jasmine?<span class="Apple-converted-space">  </span>Have you heard of it? Have you studied it?<span class="Apple-converted-space">  </span>Well I have.<span class="Apple-converted-space">  </span>Do you know what it says, Jasmine?<span class="Apple-converted-space">  </span>It says that a class should have one and only one reason to change, Jasmine.<span class="Apple-converted-space">  </span>It says that all the functions and variables of a class should work together towards a single goal, Jasmine.<span class="Apple-converted-space">  </span>It says that a class should not try to accomplish more than one goal...Are you <i>listening</i> Jasmine?</p>
+<p class="p5"><i>"Yes, Alphonse.<span class="Apple-converted-space">  </span>I'm listening.<span class="Apple-converted-space">  </span>Please, don't stop!"</i></p>
+<p class="p5">"You'd better not ask me to stop!<span class="Apple-converted-space">  </span>You see, Jasmine, those of us in the know call this principle the SRP.<span class="Apple-converted-space">  </span>That's ESS ARE PEE Jasmine. <span class="Apple-converted-space"> </span></p>
+<p class="p5"><i>"ESS ARE PEE, Alphonse.<span class="Apple-converted-space">  </span>ess are pee."</i></p>
+<p class="p5">"Remember the <span class="s1">compileFile</span> function Jasmine, remember how it used to read the file and pass a <span class="s1">char</span> array into the <span class="s1">CompileFileTransaction</span>?<span class="Apple-converted-space">  </span>You asked me what I didn't LIKE about that function.<span class="Apple-converted-space">  </span>Well I'll TELL you what I didn't LIKE about it, Jasmine; it was VIOLATING the SRP!<span class="Apple-converted-space">  </span>It had TWO reasons to change, instead of ONE.<span class="Apple-converted-space">  </span>It depended BOTH on the details of reading a file, AND on the policy of building and sending transactions.<span class="Apple-converted-space">  </span>That's TOO MUCH RESPONSIBILITY Jasmine."</p>
+<p class="p5"><i>"You're scaring me, Alphonse."</i></p>
+<p class="p5">"You SHOULD be scared, Jasmine.<span class="Apple-converted-space">  </span>I'm..."</p>
+<p class="p5"><i>"Oh! Alphonse!"</i></p>
+<p class="p5"><i>~<span class="Apple-converted-space">  </span>~<span class="Apple-converted-space">  </span>~</i></p>
+<p class="p5">Then several things happened at once:</p>
+<p class="p5">I noticed that the door was open.</p>
+<p class="p5">I noticed that the chair next to me was empty.</p>
+<p class="p5">I heard the echoes of my falsetto imitation of Jasmine still reverberating off the walls.</p>
+<p class="p5">I saw Jasmine standing in the doorway.<span class="Apple-converted-space">  </span>Her eyes were cold steel.</p>
+<p class="p9"><br></p>
+<p class="p9"><br></p>
+<p class="p7"><br></p>
+<p class="p12"><i>To be continued...maybe.</i></p>
+<p class="p6"><b></b><br></p>
+<p class="p13"><br></p>
+<p class="p9"><br></p>
+<p class="p5"><i>The code that Alphonse and Alphonse finished can be retrieved from:</i></p>
+<p class="p5"><i>www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_15_SMCRemote_V_EssArePee.zip</i></p>
+<p class="p9"><i></i><br></p>
+<p class="p9"><i></i><br></p>
+</body>
+</html>

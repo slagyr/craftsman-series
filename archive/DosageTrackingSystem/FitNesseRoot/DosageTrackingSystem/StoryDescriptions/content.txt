@@ -1,0 +1,21 @@
+!path C:\Documents and Settings\Bob\Desktop\My Documents\Articles\SD\DosageTrackingSystem\classes
+
+^RegisterSuit
+^UnRegisterSuit
+^AlertManagerIfOutsideUserPastDosageLimit
+^SuspendUser
+^SuspendedUserAttemptsToCheckOutSuit
+^AddUser
+^DeleteUser
+^UserDosageReport
+^UserHistoryReport
+^SuitHistoryReport
+^SuitInventoryReport
+^CheckOutSuit
+^CheckInSuit
+^AttemptToCheckOutSuitThatRequiresInspection
+^AttemptToCheckOutSuitWhenUserOverMonthlyLimit
+^SuitInspection
+
+
+

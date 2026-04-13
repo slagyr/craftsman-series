@@ -1,0 +1,841 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>________________________</title>
+  <meta name="Author" content="Robert C. Martin">
+  <meta name="LastAuthor" content="Robert C. Martin">
+  <meta name="Company" content="Object Mentor Inc.">
+  <meta name="CreationTime" content="2002-02-20T05:29:00Z">
+  <meta name="ModificationTime" content="2002-02-20T05:29:00Z">
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.4">
+  <style type="text/css">
+    p.p1 {margin: 34.0px 0.0px 34.0px 0.0px; text-align: right; line-height: 22.0px; font: 24.0px 'Times New Roman'; color: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: right; font: 12.0px 'Times New Roman'; color: #000000}
+    p.p3 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; font: 12.0px 'Times New Roman'; color: #000000; min-height: 15.0px}
+    p.p4 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 12.0px 'Times New Roman'; color: #000000}
+    p.p5 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 12.0px 'Times New Roman'; color: #000000; min-height: 15.0px}
+    p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 12.0px 'Times New Roman'}
+    p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 12.0px 'Times New Roman'; color: #000000; min-height: 15.0px}
+    p.p8 {margin: 3.0px 0.0px 0.0px 0.0px; font: 12.0px 'Times New Roman'; color: #000000}
+    p.p9 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 9.0px 'Courier New'}
+    p.p10 {margin: 0.0px 0.0px 0.0px 18.0px; font: 9.0px 'Courier New'; color: #000000}
+    p.p11 {margin: 0.0px 0.0px 0.0px 18.0px; text-indent: -18.0px; font: 9.0px 'Courier New'; color: #000000}
+    p.p12 {margin: 0.0px 0.0px 0.0px 18.0px; font: 9.0px 'Courier New'; color: #000000; min-height: 10.0px}
+    p.p13 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: justify; font: 14.0px 'Times New Roman'; color: #000000; min-height: 16.0px}
+    p.p14 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: center; font: 12.0px 'Times New Roman'; color: #000000}
+    p.p15 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: justify; font: 12.0px 'Times New Roman'; color: #000000; min-height: 15.0px}
+    span.s1 {font: 9.0px 'Courier New'}
+    span.s2 {font: 9.0px 'Courier New'; color: #000000}
+    span.s3 {color: #000000}
+    span.s4 {font: 12.0px 'Courier New'}
+    table.t1 {border-collapse: collapse}
+    td.td1 {min-width: 361.2px; padding: 0.0px 5.0px 0.0px 5.0px}
+    td.td2 {min-width: 361.2px; border-style: solid; border-width: 1.0px 0.0px 1.0px 0.0px; border-color: #bfbfbf transparent #bfbfbf transparent; padding: 0.0px 5.0px 0.0px 5.0px}
+    td.td3 {min-width: 361.2px; border-style: solid; border-width: 0.0px 0.0px 1.0px 0.0px; border-color: transparent transparent #bfbfbf transparent; padding: 0.0px 5.0px 0.0px 5.0px}
+  </style>
+</head>
+<body>
+<p class="p1"><b>The Craftsman:<br>
+Three.</b></p>
+<p class="p2">Robert C. Martin</p>
+<p class="p2">13 February 2002</p>
+<p class="p2"><i>This chapter is derived from a chapter of </i>Principles, Patterns, and Practices of Agile Software Development<i>, Robert C. Martin, Prentice Hall, 2002.<span class="Apple-converted-space"> </span></i></p>
+<p class="p3"><br></p>
+<p class="p4"><i>Previously Alphonse, the apprentice, was asked by Jerry, the Jouneyman, to write a program to generate prime numbers using the sieve of Eratosthenes.<span class="Apple-converted-space">  </span>Jerry has been reviewing the code and helping Alphonse refactor it.<span class="Apple-converted-space">  </span>He is not happy with Alphonse’s work.<span class="Apple-converted-space">  </span>In the last column Alphonse had just grabbed the keyboard and done a refactoring that he thought Jerry might approve of...</i></p>
+<p class="p5"><i></i><br></p>
+<p class="p4">...Jerry was just barely nodding his head.<span class="Apple-converted-space">  </span>Did he actually like what I did?</p>
+<p class="p4">Next Jerry made pass over the whole program, reading it from beginning to end, rather like he was reading a geometric proof. He told me that this was a real important step. “So far”, he said, “We’ve been refactoring fragments. Now we want to see if the whole program hangs together as a readable whole.” <span class="Apple-converted-space"> </span></p>
+<p class="p4">I asked: “Jerry, do you do this with your own code too?”<span class="Apple-converted-space"> </span></p>
+<p class="p4">Jerry scowled: “We work as a team around here, so there is no code I call my own.<span class="Apple-converted-space">  </span>Do you consider this code yours now?”</p>
+<p class="p4">“Not anymore.” I said, meekly.<span class="Apple-converted-space">  </span>“You’ve had a big influence on it.”</p>
+<p class="p4">“We <i>both</i> have.” he said, “And that’s the way that Mr. C likes it.<span class="Apple-converted-space">  </span>He doesn’t want any single person owning code.<span class="Apple-converted-space">  </span>But to answer your question: Yes.<span class="Apple-converted-space">  </span>We all practice this kind of refactoring and code clean up around here.<span class="Apple-converted-space">  </span>It’s Mr. C’s way.”</p>
+<p class="p4">During the read-through, Jerry realized that he didn’t like the name <span class="s1">initializeArrayOfIntegers</span>.<span class="Apple-converted-space"> </span></p>
+<p class="p4">“What’s being initialized is not, in fact, an array of integers;”, he said,<span class="Apple-converted-space">  </span>“it’s an array of booleans. But <span class="s1">initializeArrayOfBooleans</span> is not an improvement. What we are really doing in this method is uncrossing all the relevant integers so that we can then cross out the multiples.”</p>
+<p class="p4">“Of course!” I said.<span class="Apple-converted-space">  </span>So I grabbed the keyboard and changed the name to <span class="s1">uncrossIntegersUpTo</span>. I also realized that I didn’t like the name <span class="s1">isCrossed</span> for the array of booleans. So I changed it to <span class="s1">crossedOut</span>. The tests all still run.<span class="Apple-converted-space">  </span>I was starting to enjoy this; but Jerry showed no sign of approval.</p>
+<p class="p6">Then Jerry turned to me and asked me what I was smoking when I wrote all that <span class="s2">maxPrimeFactor</span> stuff. <span class="Apple-converted-space">  </span>(See Listing 6.)<span class="Apple-converted-space">  </span>At first I was taken aback.<span class="Apple-converted-space">  </span>But as I looked the code and comments over I realized he had a point.<span class="Apple-converted-space">  </span>Yikes, I felt stupid!<span class="Apple-converted-space">  </span>The square root of the size of the array is not necessarily prime. That method did not calculate the maximum prime factor. The explanatory comment was just wrong. So I sheepishly rewrote the comment to better explain the rationale behind the square root, and renamed all the variables appropriately<span class="s3">. The tests all still ran.</span></p>
+<p class="p7"><br></p>
+<p class="p8"><b>Listing 6</b><b></b></p>
+<p class="p9">TestGeneratePrimes.java (Partial)</p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>private static int calcMaxPrimeFactor()</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>{</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>// We cross out all multiples of p, where p is prime.</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>// Thus, all crossed out multiples have p and q for</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>// factors.<span class="Apple-converted-space">  </span>If p &gt; sqrt of the size of the array, then</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>// q will never be greater than 1.<span class="Apple-converted-space">  </span>Thus p is the</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>// largest prime factor in the array, and is also</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>// the iteration limit.</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>double maxPrimeFactor = Math.sqrt(isCrossed.length) + 1;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>return (int) maxPrimeFactor;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p7"><br></p>
+<p class="p4">“What the devil is that <span class="s4">+1</span> doing in there?” Jerry barked at me. <span class="Apple-converted-space"> </span></p>
+<p class="p4">I gulped, looked at the code, and finally said:<span class="Apple-converted-space">  </span>“I was afraid that a fractional square root would convert to an integer that was one too small to serve as the iteration limit.”<span class="Apple-converted-space"> </span></p>
+<p class="p4">“So you’re going to litter the code with extra increments just because you are<span class="Apple-converted-space">  </span>paranoid?” he asked.<span class="Apple-converted-space">  </span>“That’s silly, get rid of the increment and run the tests.”</p>
+<p class="p4">I did, and the tests all ran.<span class="Apple-converted-space">  </span>I thought about this for a minute, because it made me nervous.<span class="Apple-converted-space">  </span>But I decided that maybe the true iteration limit was the largest prime less than or equal to the square root of the size of the array.<span class="Apple-converted-space"> </span></p>
+<p class="p4">“That last change makes me pretty nervous.” I said to Jerry. <span class="Apple-converted-space">  </span>“I understand the rationale behind the square root, but I’ve got a nagging feeling that there may be some corner cases that aren’t being covered.”<span class="Apple-converted-space"> </span></p>
+<p class="p4">“OK,” he grumbled. “So write another test that checks that.”</p>
+<p class="p4">“I suppose I could check that there are no multiples in any of the prime lists between 2 and 500.”</p>
+<p class="p4">“OK, if it’ll make you feel better, try that.” he said.<span class="Apple-converted-space">  </span>He was clearly becomming impatient.</p>
+<p class="p4">So I wrote the <span class="s1">testExhaustive</span> function shown in REF X32087 \n<span class="Apple-converted-space">  </span>\* MERGEFORMAT Listing 8. The new test passed, and my fears were allayed.</p>
+<p class="p4">Then Jerry relented a bit.<span class="Apple-converted-space">  </span>“It’s always good do know why something works;” said Jerry.<span class="Apple-converted-space">  </span>“and it’s even better when you show you are right with a test.”</p>
+<p class="p4">Then Jerry scrolled one more time through all the code and tests (shown in listings 7 and 8).<span class="Apple-converted-space">  </span>He sat back, thinking for a minute, and said: “OK, I think we’re done.<span class="Apple-converted-space">  </span>The code looks reasonably clean.<span class="Apple-converted-space">  </span>I’ll show it to Mr. C.” <span class="Apple-converted-space"> </span></p>
+<p class="p4">Then he looked me dead in the eye and said: “Remember this. <span class="Apple-converted-space">  </span>From now on when you write a module, get help with it and keep it clean.<span class="Apple-converted-space">  </span>If you hand in anything below those standards you won’t last long here.”</p>
+<p class="p4">And with that, he strode off.<span class="Apple-converted-space"> </span></p>
+<p class="p5"><span class="Apple-converted-space"> </span></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><b>Listing 7</b><b></b></p>
+        <p class="p11">PrimeGenerator.java (final)</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10">/**</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space"> </span>* This class Generates prime numbers up to a user specified</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space"> </span>* maximum.<span class="Apple-converted-space">  </span>The algorithm used is the Sieve of Eratosthenes.</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space"> </span>* Given an array of integers starting at 2:</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space"> </span>* Find the first uncrossed integer, and cross out all its</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space"> </span>* multiples.<span class="Apple-converted-space">  </span>Repeat until there are no more multiples</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space"> </span>* in the array.</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space"> </span>*/</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p12"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10">public class PrimeGenerator</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10">{</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>private static boolean[] crossedOut;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>private static int[] result;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p12"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>public static int[] generatePrimes(int maxValue)</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>{</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>if (maxValue &lt; 2)</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">      </span>return new int[0];</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>else</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>{</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">      </span>uncrossIntegersUpTo(maxValue);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">      </span>crossOutMultiples();</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">      </span>putUncrossedIntegersIntoResult();</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">      </span>return result;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p12"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>private static void uncrossIntegersUpTo(int maxValue)</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>{</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>crossedOut = new boolean[maxValue + 1];</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>for (int i = 2; i &lt; crossedOut.length; i++)</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">      </span>crossedOut[i] = false;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p12"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>private static void crossOutMultiples()</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>{</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>int limit = determineIterationLimit();</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>for (int i = 2; i &lt;= limit; i++)</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">      </span>if (notCrossed(i))</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">        </span>crossOutMultiplesOf(i);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p12"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>private static int determineIterationLimit()</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>{</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>// Every multiple in the array has a prime factor that</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>// is less than or equal to the sqrt of the array size,</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>// so we don't have to cross out multiples of numbers</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>// larger than that root.</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>double iterationLimit = Math.sqrt(crossedOut.length);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>return (int) iterationLimit;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p12"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>private static void crossOutMultiplesOf(int i)</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>{</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>for (int multiple = 2*i;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">         </span>multiple &lt; crossedOut.length;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">         </span>multiple += i)</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">      </span>crossedOut[multiple] = true;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p12"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>private static boolean notCrossed(int i)</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>{</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>return crossedOut[i] == false;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p12"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>private static void putUncrossedIntegersIntoResult()</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>{</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>result = new int[numberOfUncrossedIntegers()];</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>for (int j = 0, i = 2; i &lt; crossedOut.length; i++)</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">      </span>if (notCrossed(i))</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">        </span>result[j++] = i;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p12"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>private static int numberOfUncrossedIntegers()</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>{</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>int count = 0;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>for (int i = 2; i &lt; crossedOut.length; i++)</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">      </span>if (notCrossed(i))</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">        </span>count++;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p12"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>return count;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td3">
+        <p class="p10">}</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p5"><span class="Apple-converted-space"> </span></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td2">
+        <p class="p8"><b>Listing 8</b><b></b></p>
+        <p class="p11">TestGeneratePrimes.java (final)</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10">import junit.framework.*;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p12"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10">public class TestGeneratePrimes extends TestCase</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10">{</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>public static void main(String args[])</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>{</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">      </span>junit.swingui.TestRunner.main(</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">        </span>new String[] {"TestGeneratePrimes"});</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>public TestGeneratePrimes(String name)</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>{</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>super(name);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p12"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>public void testPrimes()</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>{</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>int[] nullArray = PrimeGenerator.generatePrimes(0);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>assertEquals(nullArray.length, 0);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p12"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>int[] minArray = PrimeGenerator.generatePrimes(2);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>assertEquals(minArray.length, 1);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>assertEquals(minArray[0], 2);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p12"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>int[] threeArray = PrimeGenerator.generatePrimes(3);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>assertEquals(threeArray.length, 2);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>assertEquals(threeArray[0], 2);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>assertEquals(threeArray[1], 3);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p12"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>int[] centArray = PrimeGenerator.generatePrimes(100);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>assertEquals(centArray.length, 25);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>assertEquals(centArray[24], 97);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p12"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>public void testExhaustive()</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>{</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>for (int i = 2; i&lt;500; i++)</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">        </span>verifyPrimeList(PrimeGenerator.generatePrimes(i));</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p12"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>private void verifyPrimeList(int[] list)</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>{</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>for (int i=0; i&lt;list.length; i++)</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">        </span>verifyPrime(list[i]);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p12"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>private void verifyPrime(int n)</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>{</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>for (int factor=2; factor&lt;n; factor++)</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">      </span>assert(n%factor != 0);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td3">
+        <p class="p10">}</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p13"><br></p>
+<p class="p4">What a disasater!<span class="Apple-converted-space">  </span>I thought sure that my original solution had been top-notch.<span class="Apple-converted-space">  </span>In some ways I still feel that way.<span class="Apple-converted-space">  </span>I had tried to show off my brilliance, but I guess Mr. C values collaboration and clarity more than individual brilliance. <span class="Apple-converted-space"> </span></p>
+<p class="p4">I had to admit that the program reads much better than it did at the start. It also works a bit better. I was pretty pleased with the outcome.<span class="Apple-converted-space">  </span>Also, in spite of Jerry’s gruff attitude, it had been <i>fun</i> working with him.<span class="Apple-converted-space">  </span>I had learned a lot. <span class="Apple-converted-space"> </span></p>
+<p class="p4">Still, I was pretty discouraged with my performance.<span class="Apple-converted-space">  </span>I don’t think the folks here are going to like me very much.<span class="Apple-converted-space">  </span>I’m not sure they’ll ever think I’m good enough for them.<span class="Apple-converted-space">  </span>This is going to be a lot harder than I thought.</p>
+<p class="p5"><br></p>
+<p class="p14"><b><i>To Be Continued Next Month</i></b><b><i></i></b></p>
+<p class="p5"><br></p>
+<p class="p15"><br></p>
+<p class="p15"><br></p>
+<p class="p15"><br></p>
+<p class="p15"><br></p>
+<p class="p5"><span class="Apple-converted-space"> </span></p>
+<p class="p3"><br></p>
+</body>
+</html>

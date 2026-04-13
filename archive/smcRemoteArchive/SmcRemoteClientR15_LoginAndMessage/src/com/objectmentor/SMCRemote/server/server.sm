@@ -1,0 +1,42 @@
+Context ServerControllerContext
+FSMName ServerController
+Pragma Package com.objectmentor.SMCRemote.server
+Initial Idle
+{
+  Idle {
+    loginEvent       LoggingIn    {}
+    compileEvent     Idle         sendCompileRejection
+    registerEvent    StoringUser  {}
+    abortEvent       *            reportError
+  }
+
+  StoringUser <storeUserAndSendPassword {
+    userStoredEvent    Idle       confirmRegistration
+    userNotStoredEvent Idle       denyRegistration
+    sendFailedEvent    Idle       denyRegistration
+    abortEvent         Idle       {reportError denyRegistration}
+  }
+
+  LoggingIn <checkValidUser {
+    validUserEvent   LoggedIn    acknowledgeLogin
+    invalidUserEvent Idle        rejectLogin
+    abortEvent       Idle        reportError
+  }
+
+  LoggedIn {
+    compileEvent     Compiling  {}
+    abortEvent       Idle       reportError
+  }
+
+  Compiling <doCompile {
+    goodCompileEvent Closing     sendCompileResults
+    badCompileEvent  Closing     sendCompileError
+    abortEvent       Idle        reportError
+  }
+
+  Closing < close{
+    closeEvent       Closed {}
+  }
+
+  Closed {}
+}

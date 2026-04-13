@@ -1,0 +1,14 @@
+require 'rubygems'
+gem 'rspec'
+require 'spec'
+
+describe EmployeeReportVisitor do
+  before do
+  end
+  
+  it "should generate hourly report for hourly employee" do
+  end
+  
+  it "should generate salaried report for salaried employee" do
+  end
+end

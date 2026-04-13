@@ -1,0 +1,4 @@
+|'''Date: '''|!-7:38:35 PM (CDT) on Wednesday, October 5, 2005-!|
+|'''Command: '''|!-java -cp "C:\Documents and Settings\Bob\Desktop\My Documents\Articles\SD\DosageTrackingSystem\classes";"C:\Documents and Settings\Bob\Desktop\My Documents\Articles\SD\DosageTrackingSystem\fitlibrary.jar";c:\cygwin\home\bob\fitnesse\classes fit.FitServer localhost 80 13-!|
+|'''Exit code: '''|!-2-!|
+|'''Time elapsed: '''|!-0.491 seconds-!|

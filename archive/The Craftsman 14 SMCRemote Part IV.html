@@ -1,0 +1,242 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>The Craftsman</title>
+  <meta name="Author" content="Robert C. Martin">
+  <meta name="LastAuthor" content="Robert C. Martin">
+  <meta name="Company" content="Object Mentor Inc.">
+  <meta name="CreationTime" content="2003-05-19T08:37:00Z">
+  <meta name="ModificationTime" content="2003-05-19T08:37:00Z">
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.4">
+  <style type="text/css">
+    p.p1 {margin: 34.0px 0.0px 34.0px 0.0px; text-align: right; line-height: 22.0px; font: 24.0px 'Times New Roman'; color: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: right; font: 10.0px 'Times New Roman'; color: #000000}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: right; font: 10.0px 'Times New Roman'; color: #000000; min-height: 11.0px}
+    p.p4 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 12.0px 'Times New Roman'; color: #000000; min-height: 15.0px}
+    p.p5 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 10.0px 'Times New Roman'; color: #000000}
+    p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #ff0000; min-height: 10.0px}
+    p.p7 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 10.0px 'Times New Roman'; color: #000000; min-height: 11.0px}
+    p.p8 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #000000}
+    p.p9 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #000000; min-height: 10.0px}
+    p.p10 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #ff0000}
+    p.p11 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: center; text-indent: 18.0px; font: 10.0px 'Times New Roman'; color: #000000}
+    p.p12 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: center; text-indent: 18.0px; font: 10.0px 'Times New Roman'; color: #000000; min-height: 11.0px}
+    span.s1 {color: #ff0000}
+    span.s2 {font: 9.0px 'Courier New'}
+    span.s3 {color: #000000}
+  </style>
+</head>
+<body>
+<p class="p1"><b>The Craftsman: 14<br>
+SMCRemote Part IV<br>
+Transactions</b></p>
+<p class="p2">Robert C. Martin</p>
+<p class="p2">19 May, 2003</p>
+<p class="p3"><i></i><br></p>
+<p class="p4"><br></p>
+<p class="p5"><i>...Continued from last month.<span class="Apple-converted-space">  </span>See &lt;&lt;link&gt;&gt; for last month's article, and the code we were working on.<span class="Apple-converted-space">  </span>You can download that code from:</i></p>
+<p class="p5"><i>www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_14_SMCRemote_IV_Transactions.zip</i></p>
+<p class="p6"><b></b><br></p>
+<p class="p5">"OK Hotshot, let's see what you've got."</p>
+<p class="p5">The intensity of Jasmine's stare nailed me to my chair.<span class="Apple-converted-space">  </span>"W-What do you mean?" I stammered.</p>
+<p class="p5">"Look, Hotshot, you aren't going to embarrass <i>me</i> the way you did Jerry.<span class="Apple-converted-space">  </span>I mean Jerry's good and all, but I'm a <i>lot</i> better."</p>
+<p class="p5">"I wasn't trying to embarrass anyone, I..."</p>
+<p class="p5">"Yah, sure.<span class="Apple-converted-space">  </span>Let's just get on with this, shall we?<span class="Apple-converted-space">  </span>What's the next change you expect to make?"</p>
+<p class="p5">We were sitting in the lab, looking at the code that Jerry and I had just written. <span class="Apple-converted-space">  </span>I had showed Jasmine how I had changed Jerry's code that sent strings across the socket to send objects instead.</p>
+<p class="p5">"I -- er -- I don't know.<span class="Apple-converted-space">  </span>I just thought sending objects would be --uh -- better than strings."<span class="Apple-converted-space">  </span>God, she made me nervous.<span class="Apple-converted-space">  </span>She is stunningly beautiful, in an austere kind of way.<span class="Apple-converted-space">  </span>Intensity spills out of her every look and action.<span class="Apple-converted-space">  </span>And those deep black eyes!</p>
+<p class="p5">Jasmine rolled those eyes now.<span class="Apple-converted-space">  </span>"THINK! Hotshot, THINK!<span class="Apple-converted-space">  </span>You aren't just going to wrap a couple of strings and integers into an object are you?<span class="Apple-converted-space">  </span>What does that wrapping imply?<span class="Apple-converted-space">  </span>What can you <i>do</i> with it?"</p>
+<p class="p5">"I, uh..." If she'd stop pinning me with those eyes I might be able to THINK.<span class="Apple-converted-space">  </span>I simultaneously wanted to be anywhere else, and nowhere else.<span class="Apple-converted-space">  </span>It felt like being torn in two.</p>
+<p class="p5">I closed my eyes and mentally recited a quick calming mantra.<span class="Apple-converted-space">  </span>I forced the tension out of my mind and body.<span class="Apple-converted-space">  </span>Within a few seconds I was able to consider the question she had provoked me with. <span class="Apple-converted-space"> </span></p>
+<p class="p5">The test case we were working on verified that we could send a file over the socket.<span class="Apple-converted-space">  </span>The code that sent the file looked like this:</p>
+<p class="p7"><br></p>
+<p class="p8"><span class="Apple-converted-space">    </span>private void writeSendFileCommand() throws IOException {</p>
+<p class="p8"><span class="Apple-converted-space">        </span>os.writeObject("Sending");</p>
+<p class="p8"><span class="Apple-converted-space">        </span>os.writeObject(itsFilename);</p>
+<p class="p8"><span class="Apple-converted-space">        </span>os.writeLong(itsFileLength);</p>
+<p class="p8"><span class="Apple-converted-space">        </span>char buffer[] = new char[(int) itsFileLength];</p>
+<p class="p8"><span class="Apple-converted-space">        </span>fileReader.read(buffer);</p>
+<p class="p8"><span class="Apple-converted-space">        </span>os.writeObject(buffer);</p>
+<p class="p8"><span class="Apple-converted-space">        </span>os.flush();</p>
+<p class="p8"><span class="Apple-converted-space">    </span>}</p>
+<p class="p9"><br></p>
+<p class="p5">But <i>why</i> were we sending a file?<span class="Apple-converted-space">  </span>We were sending it to the SMCRemoteServer to be compiled.<span class="Apple-converted-space">  </span>Then the server would send back the compiled file.<span class="Apple-converted-space">  </span>Why had Jerry sent the "Sending" string first?<span class="Apple-converted-space">  </span>He said that it was to alert the server that a file was coming.<span class="Apple-converted-space">  </span>But we don't want to tell the server that a file is coming, we want to tell the server to compile a file, and send back the results.</p>
+<p class="p5">I was thinking hard, but some part of my brain continued to recite the calming mantra.<span class="Apple-converted-space">  </span>Almost as if in a trance, I walked to the wall and drew the following diagram:</p>
+<p class="p5"><span class="Apple-converted-space"> </span>EMBED Visio.Drawing.6 <span class="Apple-converted-space"> </span></p>
+<p class="p5">I looked over at Jasmine, and noticed a smile flicker across her severe expression.<span class="Apple-converted-space">  </span>"I like the way you are thinking Hotshot, but don't stop there."</p>
+<p class="p5">There were four pieces of data being sent to the server.<span class="Apple-converted-space">  </span>The file name, the file length, the file contents, and the "Sending" string.<span class="Apple-converted-space">  </span>Why were these being sent separately?<span class="Apple-converted-space">  </span>They were all part of the same packet of information, the same -- Transaction!<span class="Apple-converted-space">  </span>That was it!</p>
+<p class="p5">I shook myself out of my calming trance and made the following change to the test:</p>
+<p class="p7"><br></p>
+<p class="p8"><span class="Apple-converted-space">  </span>public void <span class="s1"><b>testCompileFile</b></span>() throws Exception {</p>
+<p class="p8"><span class="Apple-converted-space">    </span>File f = createTestFile("testSendFile", "I am sending this file.");</p>
+<p class="p8"><span class="Apple-converted-space">    </span>c.setFilename("testSendFile");</p>
+<p class="p8"><span class="Apple-converted-space">    </span>assertTrue(c.connect());</p>
+<p class="p8"><span class="Apple-converted-space">    </span>assertTrue(c.prepareFile());</p>
+<p class="p8"><span class="Apple-converted-space">    </span>assertTrue(c.<span class="s1"><b>compileFile()</b></span>);</p>
+<p class="p8"><span class="Apple-converted-space">    </span>Thread.sleep(50);</p>
+<p class="p8"><span class="Apple-converted-space">    </span>assertTrue(server.fileReceived);</p>
+<p class="p8"><span class="Apple-converted-space">    </span>assertEquals("testSendFile", server.filename);</p>
+<p class="p8"><span class="Apple-converted-space">    </span>assertEquals(23, server.fileLength);</p>
+<p class="p8"><span class="Apple-converted-space">    </span>assertEquals("I am sending this file.", new String(server.content));</p>
+<p class="p8"><span class="Apple-converted-space">    </span>f.delete();</p>
+<p class="p8"><span class="Apple-converted-space">  </span>}</p>
+<p class="p9"><br></p>
+<p class="p5">Then I modified the old <span class="s2">sendFile</span> function as follows:</p>
+<p class="p9"><br></p>
+<p class="p8"><span class="Apple-converted-space">  </span>public boolean <span class="s1"><b>compileFile</b></span>() {</p>
+<p class="p8"><span class="Apple-converted-space">    </span>boolean fileSent = false;</p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>char buffer[] = new char[(int) itsFileLength];</b></p>
+<p class="p8"><span class="Apple-converted-space">    </span>try {</p>
+<p class="p10"><b><span class="Apple-converted-space">      </span>fileReader.read(buffer);</b></p>
+<p class="p10"><b><span class="Apple-converted-space">      </span>CompileFileTransaction cft =<span class="Apple-converted-space"> </span></b></p>
+<p class="p10"><b><span class="Apple-converted-space">        </span>new CompileFileTransaction(itsFilename, buffer);</b></p>
+<p class="p10"><b><span class="Apple-converted-space">      </span>os.writeObject(cft);</b></p>
+<p class="p10"><b><span class="Apple-converted-space">      </span>os.flush();</b></p>
+<p class="p8"><span class="Apple-converted-space">      </span>fileSent = true;</p>
+<p class="p8"><span class="Apple-converted-space">    </span>} catch (Exception e) {</p>
+<p class="p8"><span class="Apple-converted-space">      </span>fileSent = false;</p>
+<p class="p8"><span class="Apple-converted-space">    </span>}</p>
+<p class="p8"><span class="Apple-converted-space">    </span>return fileSent;</p>
+<p class="p8"><span class="Apple-converted-space">  </span>}</p>
+<p class="p9"><br></p>
+<p class="p5">I looked over at Jasmine, and<span class="Apple-converted-space">  </span>saw that she was following along <i>very</i> closely.<span class="Apple-converted-space">  </span>I couldn't read her expression through her raw intensity, but I was pretty sure I was on a good track. <span class="Apple-converted-space"> </span></p>
+<p class="p5">Next I wrote the <span class="s2">CompileFileTransaction</span> class.</p>
+<p class="p7"><br></p>
+<p class="p10"><b>public class CompileFileTransaction implements Serializable {</b></p>
+<p class="p10"><b><span class="Apple-converted-space">  </span>private String filename;</b></p>
+<p class="p10"><b><span class="Apple-converted-space">  </span>private char contents[];</b></p>
+<p class="p10"><b><span class="Apple-converted-space">  </span>public CompileFileTransaction(String filename, char buffer[]) {</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>this.filename = filename;</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>this.contents=buffer;</b></p>
+<p class="p6"><b></b><br></p>
+<p class="p10"><b><span class="Apple-converted-space">  </span>}</b></p>
+<p class="p10"><b><span class="Apple-converted-space">  </span>public String getFilename() {</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>return filename;</b></p>
+<p class="p10"><b><span class="Apple-converted-space">  </span>}</b></p>
+<p class="p10"><b><span class="Apple-converted-space">  </span>public char[] getContents() {</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>return contents;</b></p>
+<p class="p10"><b><span class="Apple-converted-space">  </span>}</b></p>
+<p class="p10"><b>}</b></p>
+<p class="p6"><b></b><br></p>
+<p class="p5">This allowed the project to compile.<span class="Apple-converted-space">  </span>Of course the tests failed big time.<span class="Apple-converted-space">  </span>So I made the following changes to the mock server in the test.</p>
+<p class="p7"><br></p>
+<p class="p8"><span class="Apple-converted-space">  </span>public void serve(Socket socket) {</p>
+<p class="p8"><span class="Apple-converted-space">    </span>try {</p>
+<p class="p8"><span class="Apple-converted-space">      </span>os = new PrintStream(socket.getOutputStream());</p>
+<p class="p8"><span class="Apple-converted-space">      </span>is = new ObjectInputStream(socket.getInputStream());</p>
+<p class="p8"><span class="Apple-converted-space">      </span>os.println("SMCR Test Server");</p>
+<p class="p8"><span class="Apple-converted-space">      </span>os.flush();</p>
+<p class="p10"><span class="s3"><span class="Apple-converted-space">      </span>parse(</span><b>is.readObject()</b><span class="s3">);</span></p>
+<p class="p8"><span class="Apple-converted-space">    </span>} catch (Exception e) {</p>
+<p class="p8"><span class="Apple-converted-space">    </span>}</p>
+<p class="p8"><span class="Apple-converted-space">  </span>}</p>
+<p class="p9"><br></p>
+<p class="p8"><span class="Apple-converted-space">  </span>private void parse(<span class="s1"><b>Object</b></span> cmd) throws Exception {</p>
+<p class="p8"><span class="Apple-converted-space">    </span>if (cmd != null) {</p>
+<p class="p10"><span class="s3"><span class="Apple-converted-space">      </span>if (</span><b>cmd instanceof CompileFileTransaction</b><span class="s3">) {</span></p>
+<p class="p10"><b><span class="Apple-converted-space">        </span>CompileFileTransaction cft = (CompileFileTransaction) cmd;</b></p>
+<p class="p10"><b><span class="Apple-converted-space">        </span>filename = cft.getFilename();</b></p>
+<p class="p10"><b><span class="Apple-converted-space">        </span>content = cft.getContents();</b></p>
+<p class="p10"><b><span class="Apple-converted-space">        </span>fileLength = content.length;</b></p>
+<p class="p8"><span class="Apple-converted-space">        </span>fileReceived = true;</p>
+<p class="p8"><span class="Apple-converted-space">      </span>}</p>
+<p class="p8"><span class="Apple-converted-space">    </span>}</p>
+<p class="p8"><span class="Apple-converted-space">  </span>}</p>
+<p class="p7"><br></p>
+<p class="p5">These changes made all the tests pass.<span class="Apple-converted-space">  </span>I looked over at Jasmine and asked: "Is this what you had in mind?"</p>
+<p class="p5">"Well, Hotshot, it's a start.<span class="Apple-converted-space">  </span>It's certainly a lot better than converting all the data elements to strings the way Jerry did it.<span class="Apple-converted-space">  </span>And it's also a lot better than shipping each data element as its own individual object."</p>
+<p class="p5">"How would you make it better?" I asked, hoping to get her focus off me, and onto the project.</p>
+<p class="p5">"Later." she said.<span class="Apple-converted-space">  </span>"Right now, let's complete the transaction.<span class="Apple-converted-space">  </span>You've got to get the client to accept server's response."</p>
+<p class="p5">"That shouldn't be hard." I said.<span class="Apple-converted-space">  </span>So I added the following three lines to the end of the <span class="s2">testCompileFile</span> test case:</p>
+<p class="p7"><br></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>File resultFile = new File("resultFile.java");</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>assertTrue("Result file does not exist", resultFile.exists());</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>resultFile.delete();</b></p>
+<p class="p9"><br></p>
+<p class="p5">I ran the test and verified that it failed. <span class="Apple-converted-space"> </span></p>
+<p class="p5">"After we call <span class="s2">compileFile</span> the results should be written into a file." I explained to Jasmine.<span class="Apple-converted-space">  </span>"At the moment I don't care what's in that file I just want to make sure that it gets created."</p>
+<p class="p5">"So how are you going to create it?" she challenged.</p>
+<p class="p5">"I'll show you." I said, and I made the following change to the mock server in the test.</p>
+<p class="p7"><br></p>
+<p class="p8"><span class="Apple-converted-space">  </span>private void parse(Object cmd) throws Exception {</p>
+<p class="p8"><span class="Apple-converted-space">    </span>if (cmd != null) {</p>
+<p class="p8"><span class="Apple-converted-space">      </span>if (cmd instanceof CompileFileTransaction) {</p>
+<p class="p8"><span class="Apple-converted-space">        </span>CompileFileTransaction cft = (CompileFileTransaction) cmd;</p>
+<p class="p8"><span class="Apple-converted-space">        </span>filename = cft.getFilename();</p>
+<p class="p8"><span class="Apple-converted-space">        </span>content = cft.getContents();</p>
+<p class="p8"><span class="Apple-converted-space">        </span>fileLength = content.length;</p>
+<p class="p8"><span class="Apple-converted-space">        </span>fileReceived = true;</p>
+<p class="p10"><b><span class="Apple-converted-space">        </span>CompilerResultsTransaction crt =</b></p>
+<p class="p10"><b><span class="Apple-converted-space">          </span>new CompilerResultsTransaction("resultFile.java");</b></p>
+<p class="p10"><b><span class="Apple-converted-space">        </span>os.writeObject(crt);</b></p>
+<p class="p10"><b><span class="Apple-converted-space">        </span>os.flush();</b></p>
+<p class="p8"><span class="Apple-converted-space">      </span>}</p>
+<p class="p8"><span class="Apple-converted-space">    </span>}</p>
+<p class="p8"><span class="Apple-converted-space">  </span>}</p>
+<p class="p5">Then I made this compile by creating a skeleton of the <span class="s2">CompilerResultsTransaction</span> class.</p>
+<p class="p7"><br></p>
+<p class="p10"><b>public class CompilerResultsTransaction implements Serializable {</b></p>
+<p class="p10"><b><span class="Apple-converted-space">  </span>public CompilerResultsTransaction(String filename) {</b></p>
+<p class="p6"><b></b><br></p>
+<p class="p10"><b><span class="Apple-converted-space">  </span>}</b></p>
+<p class="p6"><b></b><br></p>
+<p class="p10"><b><span class="Apple-converted-space">  </span>public void write() {</b></p>
+<p class="p6"><b></b><br></p>
+<p class="p10"><b><span class="Apple-converted-space">  </span>}</b></p>
+<p class="p10"><b>}</b></p>
+<p class="p6"><b></b><br></p>
+<p class="p5">Of course the test still failed.<span class="Apple-converted-space">  </span>So I made the following change to <span class="s2">compileFile</span>.</p>
+<p class="p7"><br></p>
+<p class="p8"><span class="Apple-converted-space">  </span>public boolean compileFile() {</p>
+<p class="p8"><span class="Apple-converted-space">    </span>boolean <span class="s1"><b>fileCompiled</b></span> = false;</p>
+<p class="p8"><span class="Apple-converted-space">    </span>char buffer[] = new char[(int) itsFileLength];</p>
+<p class="p8"><span class="Apple-converted-space">    </span>try {</p>
+<p class="p8"><span class="Apple-converted-space">      </span>fileReader.read(buffer);</p>
+<p class="p8"><span class="Apple-converted-space">      </span>CompileFileTransaction cft =<span class="Apple-converted-space"> </span></p>
+<p class="p8"><span class="Apple-converted-space">        </span>new CompileFileTransaction(itsFilename, buffer);</p>
+<p class="p8"><span class="Apple-converted-space">      </span>os.writeObject(cft);</p>
+<p class="p8"><span class="Apple-converted-space">      </span>os.flush();</p>
+<p class="p10"><b><span class="Apple-converted-space">      </span>Object response = is.readObject();</b></p>
+<p class="p10"><b><span class="Apple-converted-space">      </span>CompilerResultsTransaction crt = (CompilerResultsTransaction)response;</b></p>
+<p class="p10"><b><span class="Apple-converted-space">      </span>crt.write();</b></p>
+<p class="p8"><span class="Apple-converted-space">      </span><span class="s1"><b>fileCompiled</b></span> = true;</p>
+<p class="p8"><span class="Apple-converted-space">    </span>} catch (Exception e) {</p>
+<p class="p8"><span class="Apple-converted-space">      </span><span class="s1"><b>fileCompiled</b></span> = false;</p>
+<p class="p8"><span class="Apple-converted-space">    </span>}</p>
+<p class="p8"><span class="Apple-converted-space">    </span>return <span class="s1"><b>fileCompiled</b></span>;</p>
+<p class="p8"><span class="Apple-converted-space">  </span>}</p>
+<p class="p9"><br></p>
+<p class="p5">And then finally I fleshed out the transaction.</p>
+<p class="p9"><br></p>
+<p class="p8">public class CompilerResultsTransaction implements Serializable {</p>
+<p class="p10"><b><span class="Apple-converted-space">  </span>private String filename;</b></p>
+<p class="p8"><span class="Apple-converted-space">  </span>public CompilerResultsTransaction(String filename) {</p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>this.filename = filename;</b></p>
+<p class="p8"><span class="Apple-converted-space">  </span>}</p>
+<p class="p9"><br></p>
+<p class="p8"><span class="Apple-converted-space">  </span>public void write() throws Exception {</p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>File resultFile = new File(filename);</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>resultFile.createNewFile();</b></p>
+<p class="p8"><span class="Apple-converted-space">  </span>}</p>
+<p class="p8">}</p>
+<p class="p9"><br></p>
+<p class="p5">"Good enough for now." Jasmine said, and leaned back in her chair.<span class="Apple-converted-space">  </span>"I'm going to go on break in a few minutes while you get the <span class="s2">CompilerResultsTransaction</span> to actually write the file instead of just create it.<span class="Apple-converted-space">  </span>Also, I'd like you to do a bit of cleanup of the code.<span class="Apple-converted-space">  </span>There's a lot of cruft left behind from when you and Jerry were messing around with sending strings and integers.<span class="Apple-converted-space">  </span>But before I go, I'd like your thoughts on that <span class="s2">instanceof</span> you used in the mock server."</p>
+<p class="p5">"That was the simplest thing I could think of to check whether or not the incoming object was a <span class="s2">CompileFileTransaction</span>." I said.<span class="Apple-converted-space">  </span>"Is there something wrong with it?"</p>
+<p class="p5">She stood up, preparing to leave.<span class="Apple-converted-space">  </span>She looked down at me and said: "No, nothing horribly wrong.<span class="Apple-converted-space">  </span>But do you think that's what the real server is going to do?<span class="Apple-converted-space">  </span>Do you think the real server will have a long <span class="s2">if/else</span> chain of <span class="s2">instanceof</span> expressions to parse the incoming transactions?"</p>
+<p class="p5">"I hadn't really thought that far ahead." I said.</p>
+<p class="p5">"No." she said flatly. "I imagine you hadn't."<span class="Apple-converted-space">  </span>And she strode out of the room.</p>
+<p class="p5">The room felt distinctly empty without her in it, as though my presence didn't count at all.<span class="Apple-converted-space">  </span>I let out a long sigh, and shook my head.<span class="Apple-converted-space">  </span>I could see that the working with Jasmine was going to be both exhausting and educational in many different ways.<span class="Apple-converted-space"> </span></p>
+<p class="p5">One thing I was sure of, I <i>really</i> hated being called Hotshot.<span class="Apple-converted-space">  </span>I sighed again, turned back to the computer, and started working on the tasks he gave me.</p>
+<p class="p9"><br></p>
+<p class="p11"><i>To be continued.</i></p>
+<p class="p6"><b></b><br></p>
+<p class="p12"><br></p>
+<p class="p7"><br></p>
+<p class="p5"><i>The code that Jerry and Alphonse finished can be retrieved from:</i></p>
+<p class="p5"><i>www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_13_SMCRemote_III_Objects.zip</i></p>
+<p class="p7"><i></i><br></p>
+<p class="p7"><i></i><br></p>
+</body>
+</html>

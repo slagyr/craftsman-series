@@ -1,0 +1,227 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>The Craftsman</title>
+  <meta name="Author" content="Robert C. Martin">
+  <meta name="LastAuthor" content="Robert C. Martin">
+  <meta name="Company" content="Object Mentor Inc.">
+  <meta name="CreationTime" content="2002-07-12T10:31:00Z">
+  <meta name="ModificationTime" content="2002-07-12T10:31:00Z">
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.4">
+  <style type="text/css">
+    p.p1 {margin: 34.0px 0.0px 34.0px 0.0px; text-align: right; line-height: 22.0px; font: 24.0px 'Times New Roman'; color: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: right; font: 10.0px 'Times New Roman'; color: #000000}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: right; font: 10.0px 'Times New Roman'; color: #000000; min-height: 11.0px}
+    p.p4 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 12.0px 'Times New Roman'; color: #000000; min-height: 15.0px}
+    p.p5 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 10.0px 'Times New Roman'; color: #000000}
+    p.p6 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 10.0px 'Times New Roman'; color: #000000; min-height: 11.0px}
+    p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #000000}
+    p.p8 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #000000; min-height: 10.0px}
+    table.t1 {border-collapse: collapse}
+    td.td1 {min-width: 442.8px; border-style: solid; border-width: 1.0px 1.0px 1.0px 1.0px; border-color: #bfbfbf #bfbfbf #bfbfbf #bfbfbf; padding: 0.0px 5.0px 0.0px 5.0px}
+  </style>
+</head>
+<body>
+<p class="p1"><b>The Craftsman: 4</b></p>
+<p class="p2">Robert C. Martin</p>
+<p class="p2">12 July 2002</p>
+<p class="p3"><i></i><br></p>
+<p class="p4"><br></p>
+<p class="p5">Dear Diary,</p>
+<p class="p5">Last night I stared out the window for hours watching the stars drift through the spectrum. <span class="Apple-converted-space">  </span>I felt conflicted about the work I did with Jerry yesterday.<span class="Apple-converted-space">  </span>I learned a lot from working with Jerry on the prime generator, but I don’t think I impressed him very much.<span class="Apple-converted-space">  </span>And, frankly, I wasn’t all that impressed with him.<span class="Apple-converted-space">  </span>he spent a lot of time polishing a piece of code that worked just fine.</p>
+<p class="p5">Today Jerry came to me with a new exercise.<span class="Apple-converted-space">  </span>He asked me to write a<span class="Apple-converted-space">  </span>program that calculates the prime factors of an integer.<span class="Apple-converted-space">  </span>He said he’d work with me from the start.<span class="Apple-converted-space">  </span>So the two of us sat down and began to program.</p>
+<p class="p5">I was pretty sure I knew how to do this.<span class="Apple-converted-space">  </span>We had written the prime generator yesterday.<span class="Apple-converted-space">  </span>Finding prime factors is just a matter of<span class="Apple-converted-space">  </span>walking through a list of primes and seeing if any are factors of the given integer.<span class="Apple-converted-space">  </span>So I grabbed the keyboard and began to write code. <span class="Apple-converted-space">  </span>After about half an hour of writing and testing I had produced the following.</p>
+<p class="p6"><br></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7">import java.util.Iterator;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7">import java.util.LinkedList;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7">import java.util.List;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p8"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7">public class PrimeFactorizer {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>public static void main(String[] args) {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>int[] factors = findFactors(Integer.parseInt(args[0]));</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>for (int i = 0; i &lt; factors.length; i++)</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">      </span>System.out.println(factors[i]);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p8"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>public static int[] findFactors(int multiple) {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>List factors = new LinkedList();</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>int[] primes = PrimeGenerator.generatePrimes((int) Math.sqrt(multiple));</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>for (int i = 0; i &lt; primes.length; i++)</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">      </span>for (; multiple % primes[i] == 0; multiple /= primes[i])</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">        </span>factors.add(new Integer(primes[i]));</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>return createFactorArray(factors);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p8"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>private static int[] createFactorArray(List factors) {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>int factorArray[] = new int[factors.size()];</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>int j = 0;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>for (Iterator fi = factors.iterator(); fi.hasNext();) {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">      </span>Integer factor = (Integer) fi.next();</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">      </span>factorArray[j++] = factor.intValue();</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>return factorArray;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7">}</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p6"><br></p>
+<p class="p5">I tested the program by running the main program with several different arguments.<span class="Apple-converted-space">  </span>They all seemed to work.<span class="Apple-converted-space">  </span>Running it with 100 gave me 2, 2, 5, and 5.<span class="Apple-converted-space">  </span>Running it with 32767 gave me 7, 31, and 151.<span class="Apple-converted-space">  </span>Running it with 32768 gave me fifteen twos.</p>
+<p class="p5">Jerry just sat there and watched me.<span class="Apple-converted-space">  </span>He didn’t say a word.<span class="Apple-converted-space">  </span>This made me nervous, but I kept on massaging and testing the code until I was happy with it. <span class="Apple-converted-space">  </span>Then I started writing the unit tests. <span class="Apple-converted-space"> </span></p>
+<p class="p5">“What are you doing?” asked Jerry.</p>
+<p class="p5">“The program works, so I’m writing the unit tests.” I replied.</p>
+<p class="p5">“Why do you need unit tests if the program already works?” he said?</p>
+<p class="p5">I hadn’t thought of it that way.<span class="Apple-converted-space">  </span>I just knew that you were supposed to write unit tests.<span class="Apple-converted-space">  </span>I ventured a guess: “So that other programmers can see that it works?”</p>
+<p class="p5">Jerry looked at me for about thirty seconds.<span class="Apple-converted-space">  </span>Then he shook his head and said: “What are they teaching you guys in school nowadays?”</p>
+<p class="p5">I started to answer, but he stopped me with a look.</p>
+<p class="p5">“OK”, he said, “delete what you’ve done.<span class="Apple-converted-space">  </span>I’ll show you how we do things around here.”</p>
+<p class="p5">I wasn’t prepared for this.<span class="Apple-converted-space">  </span>He wanted me to delete what I had just spent thirty minutes creating.<span class="Apple-converted-space">  </span>I just sat there in disbelief.</p>
+<p class="p5">Finally, Jerry said: “Go ahead, delete it.”</p>
+<p class="p5">“But it works.” I said. <span class="Apple-converted-space"> </span></p>
+<p class="p5">“So what?” Said Jerry. <span class="Apple-converted-space"> </span></p>
+<p class="p5">I was starting to get testy.<span class="Apple-converted-space">  </span>“There’s nothing wrong with it!” I asserted.</p>
+<p class="p5">“Really.”<span class="Apple-converted-space">  </span>he grumbled ; and he grabbed the keyboard and deleted my code.</p>
+<p class="p5">I was dumbfounded.<span class="Apple-converted-space">  </span>No, I was furious.<span class="Apple-converted-space">  </span>He had just reached over and deleted my work.<span class="Apple-converted-space">  </span>For a minute I stopped caring about the prestige of being an apprentice of Mr. C.<span class="Apple-converted-space">  </span>What good was that apprenticeship if it meant I had to work with brutes like Jerry?<span class="Apple-converted-space">  </span>These, and other less complimentary, thoughts raced behind my eyes as I glared at him.</p>
+<p class="p5">“Ah.<span class="Apple-converted-space">  </span>I see that upset you.” Jerry said calmly.</p>
+<p class="p5">I sputtered, but couldn’t say anything intelligent.</p>
+<p class="p5">“Look.” Jerry said, clearly trying to calm me down.<span class="Apple-converted-space">  </span>“Don’t become vested in your code.<span class="Apple-converted-space">  </span>This was just thirty minutes worth of work.<span class="Apple-converted-space">  </span>It’s not that big a deal.<span class="Apple-converted-space">  </span>You need to be ready to throw away a lot more code than that if you want to become any kind of a programmer.<span class="Apple-converted-space">  </span>Often the best thing you can do with a batch of code is throw it out.”</p>
+<p class="p5">“But that’s such a waste!” I blurted.</p>
+<p class="p5">“Do you think the value of a program is in the code?” he asked.<span class="Apple-converted-space">  </span>“It’s not.<span class="Apple-converted-space">  </span>The value of a program is in your head.”</p>
+<p class="p5">He looked at me for a second, and then went on.<span class="Apple-converted-space">  </span>“Have you ever accidentally deleted something you were working on?<span class="Apple-converted-space">  </span>Something that took a few days of effort?”</p>
+<p class="p5">“Once, at school.” I said. “A disk crashed and the latest backup was two days old. <span class="Apple-converted-space"> </span></p>
+<p class="p5">He winced and nodded knowingly.<span class="Apple-converted-space">  </span>Then he asked: “How long did it take you to recreate what you had lost?”</p>
+<p class="p5">“I was pretty familiar with it, so it only took me about half a day to recreate it.”</p>
+<p class="p5">“So you didn’t really lose two days worth of work.”</p>
+<p class="p5">I didn’t care for his logic.<span class="Apple-converted-space">  </span>I couldn’t refute it, but I didn’t like it.<span class="Apple-converted-space">  </span>It had <i>felt</i> like I had lost two days worth of work!</p>
+<p class="p5">“Did you notice whether the new code was better or worse than the code you lost?” he asked.</p>
+<p class="p5">“Oh, it was much better.” I said, regretting my words the instant I said them.<span class="Apple-converted-space">  </span>“I was able to use a much better structure the second time.”</p>
+<p class="p5">He smiled.<span class="Apple-converted-space">  </span>“So for an extra 25% effort, you wound up with a better solution.”</p>
+<p class="p5">His logic was annoying me.<span class="Apple-converted-space">  </span>I shook my head and nearly shouted: “Are you suggesting that we <i>always</i> throw away our code when we are done?”</p>
+<p class="p5">To my astonishment he nodded his head and said: “Almost. <span class="Apple-converted-space">  </span>I’m suggesting that throwing away code is a valid and useful operation.<span class="Apple-converted-space">  </span>I’m suggesting that you should not view it as a loss.<span class="Apple-converted-space">  </span>I’m suggesting that you not get vested in your code.”</p>
+<p class="p6"><span class="Apple-converted-space"> </span></p>
+</body>
+</html>

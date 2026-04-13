@@ -1,0 +1,272 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>The Craftsman</title>
+  <meta name="Author" content="Robert C. Martin">
+  <meta name="LastAuthor" content="Robert C. Martin">
+  <meta name="Company" content="Object Mentor Inc.">
+  <meta name="CreationTime" content="2003-03-18T09:35:00Z">
+  <meta name="ModificationTime" content="2003-03-18T09:35:00Z">
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.4">
+  <style type="text/css">
+    p.p1 {margin: 34.0px 0.0px 34.0px 0.0px; text-align: right; line-height: 22.0px; font: 24.0px 'Times New Roman'; color: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: right; font: 10.0px 'Times New Roman'; color: #000000}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: right; font: 10.0px 'Times New Roman'; color: #000000; min-height: 11.0px}
+    p.p4 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 12.0px 'Times New Roman'; color: #000000; min-height: 15.0px}
+    p.p5 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 10.0px 'Times New Roman'; color: #000000}
+    p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #ff0000; min-height: 10.0px}
+    p.p7 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 10.0px 'Times New Roman'; color: #000000; min-height: 11.0px}
+    p.p8 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #ff0000}
+    p.p9 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #000000; min-height: 10.0px}
+    p.p10 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #000000}
+    p.p11 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: center; text-indent: 18.0px; font: 10.0px 'Times New Roman'; color: #000000}
+    span.s1 {font: 9.0px 'Courier New'}
+    span.s2 {color: #ff0000}
+    span.Apple-tab-span {white-space:pre}
+  </style>
+</head>
+<body>
+<p class="p1"><b>The Craftsman: 12<br>
+SMCRemote Part II<br>
+Three Ugly Lines</b></p>
+<p class="p2">Robert C. Martin</p>
+<p class="p2">18 March, 2003</p>
+<p class="p3"><i></i><br></p>
+<p class="p4"><br></p>
+<p class="p5"><i>...Continued from last month.<span class="Apple-converted-space">  </span>See &lt;&lt;link&gt;&gt; for last month's article, and the code we were working on.<span class="Apple-converted-space">  </span>You can download that code from:</i></p>
+<p class="p5"><i>www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_11_SMCRemote_1_WhatsMain.zip</i></p>
+<p class="p6"><b></b><br></p>
+<p class="p5">I spent my break up in the observation deck.<span class="Apple-converted-space">  </span>We had a little bit of excitement as the ice shield passed through a thick patch of particles that made the ice flicker with blue flashes and transient patterns all over it's surface.</p>
+<p class="p5">As always, Jerry was waiting for me after break.<span class="Apple-converted-space">  </span>I wondered if he ever actually took any of this breaks.<span class="Apple-converted-space">  </span>He beamed at me and said:</p>
+<p class="p5">"OK, let's ship a file over the socket."</p>
+<p class="p5">"Did you watch the Cherenkov display?" I asked. <span class="Apple-converted-space"> </span></p>
+<p class="p5">"A beauty!" he said.<span class="Apple-converted-space">  </span>I guess he <i>does</i> take his breaks.<span class="Apple-converted-space">  </span>But where does he go?</p>
+<p class="p5">"OK, lets ship a file." I said. "I'll write the test case."<span class="Apple-converted-space">  </span>I grabbed the keyboard and started to type.<span class="Apple-converted-space">  </span>The first thing I wrote was the code that created the file to be sent through the socket. <span class="Apple-converted-space"> </span></p>
+<p class="p7"><br></p>
+<p class="p8"><b><span class="Apple-converted-space">    </span>public void testSendFile() throws Exception {</b></p>
+<p class="p8"><b><span class="Apple-converted-space">        </span>File f = new File("testSendFile");</b></p>
+<p class="p8"><b><span class="Apple-converted-space">        </span>FileOutputStream stream = new FileOutputStream(f);</b></p>
+<p class="p8"><b><span class="Apple-converted-space">        </span>stream.write("I am sending this file.".getBytes());</b></p>
+<p class="p8"><b><span class="Apple-converted-space">        </span>stream.close();</b></p>
+<p class="p8"><b><span class="Apple-converted-space">    </span>}</b></p>
+<p class="p7"><br></p>
+<p class="p5">"I know you like to create your data files in the test code rather than depending on them to just be there."<span class="Apple-converted-space"> </span></p>
+<p class="p5">"Right." said Jerry.<span class="Apple-converted-space">  </span>"But do you notice that you have quite a bit of duplication?"</p>
+<p class="p5">I looked around in the test class and immediately saw that we had written almost this exact same code in the <span class="s1">testCountBytesInFile()</span> method that we wrote before our break. <span class="Apple-converted-space"> </span></p>
+<p class="p5">"It's just a four lines of code." I said.<span class="Apple-converted-space">  </span>"Hardly major duplication."</p>
+<p class="p5">"True." Jerry replied. "But duplication should always be removed as soon as possible.<span class="Apple-converted-space">  </span>If you allow duplicate code to accumulate in your project you'll find yourself with a huge source of confusion and bugs."</p>
+<p class="p5">"OK, it's easy enough to fix."<span class="Apple-converted-space">  </span>So I extracted a new function called <span class="s1">createTestFile()</span> and changed both <span class="s1">testCountBytesInFile()</span>, and <span class="s1">testSendFile()</span> to call it.</p>
+<p class="p9"><br></p>
+<p class="p8"><b><span class="Apple-converted-space">    </span>private File createTestFile(String name, String content)<span class="Apple-converted-space"> </span></b></p>
+<p class="p8"><b><span class="Apple-converted-space">    </span>throws IOException<span class="Apple-converted-space">  </span>{</b></p>
+<p class="p10"><span class="Apple-converted-space">        </span>File f = new File(<span class="s2"><b>name</b></span>);</p>
+<p class="p10"><span class="Apple-converted-space">        </span>FileOutputStream stream = new FileOutputStream(f);</p>
+<p class="p10"><span class="Apple-converted-space">        </span>stream.write(<span class="s2"><b>content</b></span>.getBytes());</p>
+<p class="p10"><span class="Apple-converted-space">        </span>stream.close();</p>
+<p class="p8"><b><span class="Apple-converted-space">        </span>return f;</b></p>
+<p class="p8"><b><span class="Apple-converted-space">    </span>}</b></p>
+<p class="p7"><br></p>
+<p class="p5">I ran the tests just to make sure I hadn't broken anything, and then continued writing the test.<span class="Apple-converted-space">  </span>I knew that the test had to simulate <span class="s1">main()</span>, so I called all the functions that <span class="s1">main()</span> would have to call.<span class="Apple-converted-space">  </span>Then I added one final call that would send the file.</p>
+<p class="p7"><br></p>
+<p class="p10"><span class="Apple-converted-space">    </span>public void testSendFile() throws Exception {</p>
+<p class="p10"><span class="Apple-converted-space">        </span>File f = createTestFile("testSendFile", "I am sending this file.");</p>
+<p class="p8"><b><span class="Apple-converted-space">        </span>c.setFilename("testSendFile");</b></p>
+<p class="p8"><b><span class="Apple-converted-space">        </span>assertTrue(c.connect());</b></p>
+<p class="p8"><b><span class="Apple-converted-space">        </span>assertTrue(c.prepareFile());</b></p>
+<p class="p8"><b><span class="Apple-converted-space">        </span>assertTrue(c.sendFile());</b></p>
+<p class="p10"><span class="Apple-converted-space">    </span>}</p>
+<p class="p9"><br></p>
+<p class="p5">"Good." Jerry said.<span class="Apple-converted-space">  </span>You are anticipating that we'll need a method in the client named <span class="s1">sendFile()</span>."</p>
+<p class="p5">"Right." I said. "This method will send the prepared file."</p>
+<p class="p5">I turned back to the test and then got stuck.<span class="Apple-converted-space">  </span>I didn't know how to proceed.<span class="Apple-converted-space">  </span>How was I going to test that this file that I had created and "sent" actually got sent to the server.<span class="Apple-converted-space">  </span>We didn't even <i>have</i> a server?<span class="Apple-converted-space">  </span>Did<span class="Apple-converted-space">  </span>I have to write the whole server before I could test this?<span class="Apple-converted-space">  </span>What was I testing anyway?</p>
+<p class="p5">I sat there for about a minute while Jerry watched expectantly.<span class="Apple-converted-space">  </span>Then I turned to him and explained my dilemma.</p>
+<p class="p5">"No, you don't need to write the server." Jerry said. "At this point all we are testing is the client's ability to <i>send</i> the file, not the servers ability to receive it. "</p>
+<p class="p5">"How can I send the file without having a server to receive it?"<span class="Apple-converted-space"> </span></p>
+<p class="p5">"You can create a stub server that does as little work as possible.<span class="Apple-converted-space">  </span>It doesn't have to receive the file at first, it just has to acknowledge that you sent the file correctly."</p>
+<p class="p5">"So...hmmm...something like this?"</p>
+<p class="p6"><b></b><br></p>
+<p class="p8"><b><span class="Apple-converted-space">        </span>assertTrue(server.fileReceived);</b></p>
+<p class="p6"><b></b><br></p>
+<p class="p5">"Yah, that ought to do." Jerry nodded.<span class="Apple-converted-space">  </span>"Now why don't you make that test pass?"</p>
+<p class="p5">I thought about this for a minute and then realized that this shouldn't be very hard.<span class="Apple-converted-space">  </span>So I wrote a simple mock server that did nothing.</p>
+<p class="p7"><br></p>
+<p class="p8"><b>class TestSMCRServer implements SocketServer {</b></p>
+<p class="p8"><b><span class="Apple-converted-space">    </span>public boolean fileReceived = false;</b></p>
+<p class="p8"><b><span class="Apple-converted-space">    </span>public void serve(Socket socket) {</b></p>
+<p class="p8"><b><span class="Apple-converted-space">    </span>}</b></p>
+<p class="p8"><b>}</b></p>
+<p class="p6"><b></b><br></p>
+<p class="p5">Jerry said: "Ah, more duplication!"</p>
+<p class="p5">I looked around and saw that before the break we had implemented a very similar mock server in the <span class="s1">testConnectToSMCRemoteServer()</span> method, so I eliminated it. <span class="Apple-converted-space"> </span></p>
+<p class="p7"><br></p>
+<p class="p10"><span class="Apple-converted-space">    </span>public void testConnectToSMCRemoteServer() throws Exception {</p>
+<p class="p10"><span class="Apple-converted-space">        </span>boolean connection = c.connect();</p>
+<p class="p10"><span class="Apple-converted-space">        </span>assertTrue(connection);</p>
+<p class="p10"><span class="Apple-converted-space">    </span>}</p>
+<p class="p5">Then I started the server in the <span class="s1">SetUp()</span> method of the test, and closed it in <span class="s1">TearDown()</span>.<span class="Apple-converted-space">  </span>Thus, before every test method was called, the server would be started; and then it would be closed when the test method returned.</p>
+<p class="p7"><br></p>
+<p class="p10"><span class="Apple-converted-space">    </span>protected void setUp() throws Exception {</p>
+<p class="p10"><span class="Apple-converted-space">        </span>c = new SMCRemoteClient();</p>
+<p class="p8"><b><span class="Apple-converted-space">        </span>server = new TestSMCRServer();</b></p>
+<p class="p8"><b><span class="Apple-converted-space">        </span>smc = new SocketService(SMCPORT, server);</b></p>
+<p class="p10"><span class="Apple-converted-space">    </span>}</p>
+<p class="p9"><br></p>
+<p class="p10"><span class="Apple-converted-space">    </span>protected void tearDown() throws Exception {</p>
+<p class="p8"><b><span class="Apple-converted-space">        </span>smc.close();</b></p>
+<p class="p10"><span class="Apple-converted-space">    </span>}</p>
+<p class="p9"><br></p>
+<p class="p5">Finally, I wrote a dummy <span class="s1">sendFile()</span> method in <span class="s1">SMCRemoteClient</span>.</p>
+<p class="p7"><br></p>
+<p class="p8"><b><span class="Apple-converted-space">    </span>public boolean sendFile() {</b></p>
+<p class="p8"><b><span class="Apple-converted-space">        </span>return false;</b></p>
+<p class="p8"><b><span class="Apple-converted-space">    </span>}</b></p>
+<p class="p6"><b></b><br></p>
+<p class="p5">The tests failed as expected. <span class="Apple-converted-space">  </span>I sighed and looked over at Jerry.<span class="Apple-converted-space">  </span>"Now what?" I said.</p>
+<p class="p5">"Send the file." he said.</p>
+<p class="p5">"You mean just open the file and shove it over the socket?"</p>
+<p class="p5">Jerry thought for a minute and said: "No, we probably need to tell the server to expect a file.<span class="Apple-converted-space">  </span>So lets send a simple message and follow it with the contents of the file."</p>
+<p class="p5">Jerry grabbed the keyboard and made the following changes to <span class="s1">SMCRemoteClient</span>.<span class="Apple-converted-space">  </span>"First we have to get the streams out of the socket." He said.</p>
+<p class="p7"><br></p>
+<p class="p10"><span class="Apple-converted-space">    </span>public boolean connect() {</p>
+<p class="p8"><b><span class="Apple-converted-space">        </span>boolean connectionStatus = false;</b></p>
+<p class="p10"><span class="Apple-converted-space">        </span>try {</p>
+<p class="p10"><span class="Apple-converted-space">            </span>Socket s = new Socket("localhost", 9000);</p>
+<p class="p8"><b><span class="Apple-converted-space">            </span>is = new BufferedReader(new InputStreamReader(s.getInputStream()));</b></p>
+<p class="p8"><b><span class="Apple-converted-space">            </span>os = new PrintWriter(new OutputStreamWriter(s.getOutputStream()));</b></p>
+<p class="p8"><b><span class="Apple-converted-space">            </span>connectionStatus = true;</b></p>
+<p class="p10"><span class="Apple-converted-space">        </span>} catch (IOException e) {</p>
+<p class="p8"><b><span class="Apple-converted-space">            </span>e.printStackTrace();</b></p>
+<p class="p8"><b><span class="Apple-converted-space">            </span>connectionStatus = false;</b></p>
+<p class="p10"><span class="Apple-converted-space">        </span>}</p>
+<p class="p8"><b><span class="Apple-converted-space">        </span>return connectionStatus;</b></p>
+<p class="p10"><span class="Apple-converted-space">    </span>}</p>
+<p class="p7"><br></p>
+<p class="p5">"Then we have to make the file available for reading."</p>
+<p class="p7"><br></p>
+<p class="p10"><span class="Apple-converted-space">    </span>public boolean prepareFile() {</p>
+<p class="p8"><b><span class="Apple-converted-space">        </span>boolean filePrepared = false;</b></p>
+<p class="p10"><span class="Apple-converted-space">        </span>File f = new File(itsFilename);</p>
+<p class="p10"><span class="Apple-converted-space">        </span>if (f.exists()) {</p>
+<p class="p10"><span class="Apple-converted-space">            </span>try {</p>
+<p class="p10"><span class="Apple-converted-space">                </span>itsFileLength = f.length();</p>
+<p class="p8"><b><span class="Apple-converted-space">                </span>fileReader = new BufferedReader(</b></p>
+<p class="p8"><b><span class="Apple-converted-space">                               </span>new InputStreamReader(new FileInputStream(f)));</b></p>
+<p class="p8"><b><span class="Apple-converted-space">                </span>filePrepared = true;</b></p>
+<p class="p10"><span class="Apple-converted-space">            </span>} catch (FileNotFoundException e) {</p>
+<p class="p8"><b><span class="Apple-converted-space">                </span>filePrepared = false;</b></p>
+<p class="p8"><b><span class="Apple-converted-space">                </span>e.printStackTrace();</b></p>
+<p class="p10"><span class="Apple-converted-space">            </span>}</p>
+<p class="p10"><span class="Apple-converted-space">        </span>}</p>
+<p class="p8"><b><span class="Apple-converted-space">        </span>return filePrepared;</b></p>
+<p class="p10"><span class="Apple-converted-space">    </span>}</p>
+<p class="p7"><br></p>
+<p class="p5">"Finally, we can send the file."</p>
+<p class="p7"><br></p>
+<p class="p10">public boolean sendFile() {</p>
+<p class="p8"><b><span class="Apple-converted-space">    </span>boolean fileSent = false;</b></p>
+<p class="p8"><b><span class="Apple-converted-space">    </span>try {</b></p>
+<p class="p8"><b><span class="Apple-converted-space">      </span>writeSendFileCommand();</b></p>
+<p class="p8"><b><span class="Apple-converted-space">      </span>fileSent = true;</b></p>
+<p class="p8"><b><span class="Apple-converted-space">    </span>} catch (Exception e) {</b></p>
+<p class="p8"><b><span class="Apple-converted-space">      </span>fileSent = false;</b></p>
+<p class="p8"><b><span class="Apple-converted-space">    </span>}</b></p>
+<p class="p8"><b><span class="Apple-converted-space">    </span>return fileSent;</b></p>
+<p class="p10"><span class="Apple-converted-space">  </span>}</p>
+<p class="p9"><br></p>
+<p class="p8"><b><span class="Apple-converted-space">  </span>private void writeSendFileCommand() throws IOException {</b></p>
+<p class="p8"><b><span class="Apple-converted-space">    </span>os.println("Sending");</b></p>
+<p class="p8"><b><span class="Apple-converted-space">    </span>os.println(itsFilename);</b></p>
+<p class="p8"><b><span class="Apple-converted-space">    </span>os.println(itsFileLength);</b></p>
+<p class="p8"><b><span class="Apple-converted-space">    </span>char buffer[] = new char[(int) itsFileLength];</b></p>
+<p class="p8"><b><span class="Apple-converted-space">    </span>fileReader.read(buffer);</b></p>
+<p class="p8"><b><span class="Apple-converted-space">    </span>os.write(buffer);</b></p>
+<p class="p8"><b><span class="Apple-converted-space">    </span>os.flush();</b></p>
+<p class="p8"><b><span class="Apple-converted-space">  </span>}</b></p>
+<p class="p6"><b></b><br></p>
+<p class="p5">"Wow!" I said. "That was a lot of typing without testing."</p>
+<p class="p5">Jerry looked at me sheepishly.<span class="Apple-converted-space">  </span>"Yes, I'm a little nervous about that."</p>
+<p class="p5">He hit the test button, and the test failed because <span class="s1">server.fileReceived</span> returned <span class="s1">false</span>.</p>
+<p class="p5">"Whew!" said Jerry. "We dodged a muon pulse."</p>
+<p class="p5">"So." I said. "You are going to precede the file with three lines.<span class="Apple-converted-space">  </span>The first contains the string "Sending".<span class="Apple-converted-space">  </span>The second contains the file name, and the third contains the length of the file.<span class="Apple-converted-space">  </span>After that you send the file in character array."</p>
+<p class="p5">"Right.<span class="Apple-converted-space">  </span>I told you before the break that we'd need that file length."</p>
+<p class="p5">"Hmmm. I guess so." I said.</p>
+<p class="p5">"So now, all we have to do is receive the file in the mock server.<span class="Apple-converted-space">  </span>Would you like to take a try?"</p>
+<p class="p5">I<span class="Apple-converted-space">  </span>was pretty sure I knew what to do.<span class="Apple-converted-space">  </span>So I made the following changes.<span class="Apple-converted-space">  </span>First I changed the test to make sure we got the filename, length, and the file contents. <span class="Apple-converted-space"> </span></p>
+<p class="p7"><br></p>
+<p class="p10"><span class="Apple-converted-space">  </span>public void testSendFile() throws Exception {</p>
+<p class="p10"><span class="Apple-converted-space">    </span>File f = createTestFile("testSendFile", "I am sending this file.");</p>
+<p class="p10"><span class="Apple-converted-space">    </span>c.setFilename("testSendFile");</p>
+<p class="p10"><span class="Apple-converted-space">    </span>assertTrue(c.connect());</p>
+<p class="p10"><span class="Apple-converted-space">    </span>assertTrue(c.prepareFile());</p>
+<p class="p10"><span class="Apple-converted-space">    </span>assertTrue(c.sendFile());</p>
+<p class="p8"><b><span class="Apple-converted-space">    </span>Thread.sleep(50);</b></p>
+<p class="p8"><b><span class="Apple-converted-space">    </span>assertTrue(server.fileReceived);</b></p>
+<p class="p8"><b><span class="Apple-converted-space">    </span>assertEquals("testSendFile", server.filename);</b></p>
+<p class="p8"><b><span class="Apple-converted-space">    </span>assertEquals(23, server.fileLength);</b></p>
+<p class="p8"><b><span class="Apple-converted-space">    </span>assertEquals("I am sending this file.", new String(server.content));</b></p>
+<p class="p8"><b><span class="Apple-converted-space">    </span>f.delete();</b></p>
+<p class="p10"><span class="Apple-converted-space">  </span>}</p>
+<p class="p9"><br></p>
+<p class="p5">Next I changed the mock server to parse the incoming data and make sure it was correct.</p>
+<p class="p7"><br></p>
+<p class="p10">class TestSMCRServer implements SocketServer {</p>
+<p class="p8"><b><span class="Apple-converted-space">  </span>public String filename = "noFileName";</b></p>
+<p class="p8"><b><span class="Apple-converted-space">  </span>public long fileLength = -1;</b></p>
+<p class="p8"><b><span class="Apple-converted-space">  </span>public boolean fileReceived = false;</b></p>
+<p class="p8"><b><span class="Apple-converted-space">  </span>private PrintStream os;</b></p>
+<p class="p8"><b><span class="Apple-converted-space">  </span>private BufferedReader is;</b></p>
+<p class="p8"><b><span class="Apple-converted-space">  </span>public char[] content;</b></p>
+<p class="p8"><b><span class="Apple-converted-space">  </span>public String command;</b></p>
+<p class="p9"><br></p>
+<p class="p10"><span class="Apple-converted-space">  </span>public void serve(Socket socket) {</p>
+<p class="p8"><b><span class="Apple-converted-space">    </span>try {</b></p>
+<p class="p8"><b><span class="Apple-converted-space">      </span>os = new PrintStream(socket.getOutputStream());</b></p>
+<p class="p8"><b><span class="Apple-converted-space">      </span>is = new BufferedReader(new InputStreamReader(socket.getInputStream()));</b></p>
+<p class="p8"><b><span class="Apple-converted-space">      </span>os.println("SMCR Test Server");</b></p>
+<p class="p8"><b><span class="Apple-converted-space">      </span>os.flush();</b></p>
+<p class="p8"><b><span class="Apple-converted-space">      </span>parse(is.readLine());</b></p>
+<p class="p8"><b><span class="Apple-converted-space">    </span>} catch (Exception e) {</b></p>
+<p class="p8"><b><span class="Apple-converted-space">    </span>}</b></p>
+<p class="p10"><span class="Apple-converted-space">  </span>}</p>
+<p class="p9"><br></p>
+<p class="p8"><b><span class="Apple-converted-space">  </span>private void parse(String cmd) throws Exception {</b></p>
+<p class="p8"><b><span class="Apple-converted-space">    </span>if (cmd != null) {</b></p>
+<p class="p8"><b><span class="Apple-converted-space">      </span>if (cmd.equals("Sending")) {</b></p>
+<p class="p8"><b><span class="Apple-converted-space">        </span>filename = is.readLine();</b></p>
+<p class="p8"><b><span class="Apple-converted-space">        </span>fileLength = Long.parseLong(is.readLine());</b></p>
+<p class="p8"><b><span class="Apple-converted-space">        </span>content = new char[(int)fileLength];</b></p>
+<p class="p8"><b><span class="Apple-converted-space">        </span>is.read(content,0,(int)fileLength);</b></p>
+<p class="p8"><b><span class="Apple-converted-space">        </span>fileReceived = true;</b></p>
+<p class="p8"><b><span class="Apple-converted-space">      </span>}</b></p>
+<p class="p8"><b><span class="Apple-converted-space">    </span>}</b></p>
+<p class="p8"><b><span class="Apple-converted-space">  </span>}</b></p>
+<p class="p10">}</p>
+<p class="p9"><br></p>
+<p class="p5">Finally, I modified <span class="s1">SMCRemoteClient.connect()</span> to wait for the SMCR message sent by the mock server. <span class="Apple-converted-space"> </span></p>
+<p class="p7"><br></p>
+<p class="p10"><span class="Apple-converted-space">    </span>public boolean connect() {</p>
+<p class="p10"><span class="Apple-tab-span">	</span> <span class="Apple-converted-space">  </span>...<span class="Apple-converted-space">     </span></p>
+<p class="p8"><b><span class="Apple-converted-space">      </span>String headerLine = is.readLine();</b></p>
+<p class="p8"><b><span class="Apple-converted-space">      </span>connectionStatus = headerLine != null &amp;&amp;<span class="Apple-converted-space"> </span></b></p>
+<p class="p8"><b><span class="Apple-converted-space">                         </span>headerLine.startsWith("SMCR");</b></p>
+<p class="p10"><span class="Apple-converted-space">      </span>...</p>
+<p class="p10"><span class="Apple-converted-space">    </span>}</p>
+<p class="p9"><br></p>
+<p class="p5">I didn't type this all at once.<span class="Apple-converted-space">  </span>I didn't want to have to dodge another muon pulse.<span class="Apple-converted-space">  </span>So I made the changes in much smaller steps, running the tests in between each step.<span class="Apple-converted-space">  </span>I could tell that Jerry was impressed.<span class="Apple-converted-space">  </span>He was still embarrassed about making such a big change.<span class="Apple-converted-space">  </span>Eventually, when all the tests passed, I felt just a little superior, so I risked an observation.</p>
+<p class="p5">"Jerry." I said. "This code is pretty ugly."</p>
+<p class="p5">"What do you mean?"</p>
+<p class="p5">"Well, sending those three lines, the filename, the length, and the string "Sending".<span class="Apple-converted-space">  </span>That's ugly."</p>
+<p class="p5">Jerry looked at me skeptically.<span class="Apple-converted-space">  </span>He sat up as straight as he could and gave me a condescending look.<span class="Apple-converted-space">  </span>"I suppose you know a better way."</p>
+<p class="p5">"I think I do." I said, and I started to type...</p>
+<p class="p11"><i>To be continued.</i></p>
+<p class="p7"><br></p>
+<p class="p7"><br></p>
+<p class="p5"><i>The code that Jerry and Alphonse finished can be retrieved from:</i></p>
+<p class="p5"><i>www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_12_SMCRemote_I1_ThreeUglyLines.zip</i></p>
+<p class="p7"><i></i><br></p>
+<p class="p7"><i></i><br></p>
+</body>
+</html>

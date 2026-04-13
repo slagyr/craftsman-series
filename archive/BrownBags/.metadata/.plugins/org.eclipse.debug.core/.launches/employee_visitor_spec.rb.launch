@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launchConfiguration type="org.rubypeople.rdt.launching.LaunchConfigurationTypeRubyApplication">
+<stringAttribute key="org.rubypeople.rdt.launching.VM_INSTALL_NAME" value="local"/>
+<stringAttribute key="org.rubypeople.rdt.launching.FILE_NAME" value="employee_visitor_spec.rb"/>
+<stringAttribute key="org.rubypeople.rdt.launching.VM_INSTALL_TYPE_ID" value="org.rubypeople.rdt.launching.StandardVMType"/>
+<stringAttribute key="org.rubypeople.rdt.launching.WORKING_DIRECTORY" value="/Users/unclebob/Documents/Articles/Craftsman/BrownBags/EmployeeVisitor"/>
+<stringAttribute key="org.rubypeople.rdt.launching.PROJECT_NAME" value="EmployeeVisitor"/>
+<stringAttribute key="org.eclipse.debug.core.source_locator_id" value="org.rubypeople.rdt.debug.ui.rubySourceLocator"/>
+</launchConfiguration>

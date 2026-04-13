@@ -1,0 +1,86 @@
+<project name="SMCRemote" default="all">
+  <description>
+    Build the programs and jar files needed for the remote state machine compiler.
+  </description>
+
+  <path id="classpath">
+    <pathelement path="${classpath}"/>
+    <pathelement location="."/>
+    <pathelement location="../import/SocketService"/>
+    <pathelement location="C:/junit3.5/junit.jar"/>
+    <pathelement location="C:/SMC/smc.jar"/>
+  </path>
+
+  <target name="all" depends="clean,serverJar,clientJar">
+  </target>
+
+  <target name="clean">
+    <delete>
+      <fileset dir="." includes="**/*.class"/>
+      <fileset dir="." includes="*.jar"/>
+      <fileset dir="." includes="TEST-*.*"/>
+    </delete>
+  </target>
+
+  <target name="SocketUtilities">
+    <javac classpathref="classpath" srcdir="./src/com/objectmentor/SocketUtilities" destdir="."/>
+    <junit>
+      <classpath refid="classpath"/>
+      <formatter type="plain"/>
+      <test name="com.objectmentor.SocketUtilities.TestFileCarrier"/>
+    </junit>
+  </target>
+
+  <target name="transactions" depends="SocketUtilities">
+    <javac classpathref="classpath" srcdir="./src/com/objectmentor/SMCRemote/transactions" destdir="."/>
+  </target>
+
+  <target name="client" depends="transactions,SocketUtilities,Getopts">
+    <javac classpathref="classpath" srcdir="./src/com/objectmentor/SMCRemote/client" destdir="."/>
+    <junit>
+      <classpath refid="classpath"/>
+      <formatter type="plain"/>
+      <test name="com.objectmentor.SMCRemote.client.TestSMCRemoteClient"/>
+    </junit>
+  </target>
+
+  <target name="server" depends="transactions,SocketUtilities,Getopts,ServerController">
+    <javac classpathref="classpath" srcdir="./src/com/objectmentor/SMCRemote/server" destdir="."/>
+    <junit>
+      <classpath refid="classpath"/>
+      <formatter type="plain"/>
+      <test name="com.objectmentor.SMCRemote.server.TestSMCRemoteServer"/>
+    </junit>
+  </target>
+
+  <target name="ServerController">
+    <java classname="smc.Smc" fork="true" dir="./src/com/objectmentor/SMCRemote/server">
+      <arg value="-f"/>
+      <arg value="server.sm"/>
+      <classpath refid="classpath" />
+    </java>
+  </target>
+
+  <target name="Getopts">
+    <javac classpathref="classpath" srcdir="./src/com/neoworks/util" destdir="."/>
+  </target>
+
+  <target name="serverJar" depends="server">
+    <jar jarfile="SMCRemoteServer.jar">
+      <fileset dir="." includes="com/objectmentor/SocketUtilities/*.class" excludes="**/Test*.class"/>
+      <fileset dir="." includes="com/objectmentor/SMCRemote/transactions/*.class" excludes="**/Test*.class"/>
+      <fileset dir="." includes="com/objectmentor/SMCRemote/server/*.class" excludes="**/Test*.class"/>
+      <fileset dir="." includes="com/neoworks/util/*.class" excludes="**/Test*.class"/>
+      <fileset dir="../import/SocketService" includes="com/objectmentor/SocketService/*.class" excludes="**/Test*.class"/>
+    </jar>
+  </target>
+
+  <target name="clientJar" depends="client">
+    <jar jarfile="SMCRemoteClient.jar">
+      <fileset dir="." includes="com/objectmentor/SocketUtilities/*.class" excludes="**/Test*.class"/>
+      <fileset dir="." includes="com/objectmentor/SMCRemote/transactions/*.class" excludes="**/Test*.class"/>
+      <fileset dir="." includes="com/neoworks/util/*.class" excludes="**/Test*.class"/>
+      <fileset dir="." includes="com/objectmentor/SMCRemote/client/*.class" excludes="**/Test*.class"/>
+    </jar>
+  </target>
+</project>

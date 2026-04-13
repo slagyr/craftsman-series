@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>The Craftsman</title>
+  <meta name="Author" content="Robert C. Martin">
+  <meta name="LastAuthor" content="Robert C. Martin">
+  <meta name="Company" content="Object Mentor Inc.">
+  <meta name="CreationTime" content="2003-01-14T11:50:00Z">
+  <meta name="ModificationTime" content="2003-01-14T11:50:00Z">
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.4">
+  <style type="text/css">
+    p.p1 {margin: 34.0px 0.0px 34.0px 0.0px; text-align: right; line-height: 22.0px; font: 24.0px 'Times New Roman'; color: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: right; font: 10.0px 'Times New Roman'; color: #000000}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: right; font: 10.0px 'Times New Roman'; color: #000000; min-height: 11.0px}
+    p.p4 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 12.0px 'Times New Roman'; color: #000000; min-height: 15.0px}
+    p.p5 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 10.0px 'Times New Roman'; color: #000000}
+    p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #ff0000; min-height: 10.0px}
+    p.p7 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 10.0px 'Times New Roman'; color: #000000; min-height: 11.0px}
+    p.p8 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #ff0000}
+    p.p9 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; font: 10.0px 'Times New Roman'; color: #000000}
+    p.p10 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; font: 10.0px 'Times New Roman'; color: #000000; min-height: 11.0px}
+    p.p11 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #000000}
+    p.p12 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #000000; min-height: 10.0px}
+    span.s1 {font: 9.0px 'Courier New'}
+    span.s2 {color: #ff0000}
+  </style>
+</head>
+<body>
+<p class="p1"><b>The Craftsman: 10<br>
+SocketService 5<br>
+Dangling Threads</b></p>
+<p class="p2">Robert C. Martin</p>
+<p class="p2">14 Jan, 2003</p>
+<p class="p3"><i></i><br></p>
+<p class="p4"><br></p>
+<p class="p5"><i>...Continued from last month.<span class="Apple-converted-space">  </span>See &lt;&lt;link&gt;&gt; for last month's article, and the code we were working on.<span class="Apple-converted-space">  </span>You can download that code from:</i></p>
+<p class="p5"><i>www.objectmentor.com/resources/articles/CraftsmanCode/SDSocketServiceR4_TestMultiThreaded.zip</i></p>
+<p class="p6"><b></b><br></p>
+<p class="p5">I have a standing monthly reservation for breakfast on the observation deck.<span class="Apple-converted-space">  </span>It's a bit of an extravagance on an apprentice's credit, but I love eating under the starbow.</p>
+<p class="p5">As I ate, I started thinking about the dangling thread problem we solved yesterday.<span class="Apple-converted-space">  </span>We fixed the <span class="s1">serverThread</span>, but the serviceRunnable threads were all still left dangling.<span class="Apple-converted-space">  </span>I was certain Jerry would want to fix those before moving on to other issues.</p>
+<p class="p5">Sure enough, when I walked into the lab, Jerry was already there with the following test case on the screen:</p>
+<p class="p7"><br></p>
+<p class="p8"><b><span class="Apple-converted-space">  </span>public void testAllServersClosed() throws Exception {</b></p>
+<p class="p8"><b><span class="Apple-converted-space">    </span>ss.serve(999, new WaitThenClose());</b></p>
+<p class="p8"><b><span class="Apple-converted-space">    </span>Socket s1 = new Socket("localhost", 999);</b></p>
+<p class="p8"><b><span class="Apple-converted-space">    </span>Thread.sleep(20);</b></p>
+<p class="p8"><b><span class="Apple-converted-space">    </span>assertEquals(1,WaitThenClose.threadsActive);</b></p>
+<p class="p8"><b><span class="Apple-converted-space">    </span>ss.close();</b></p>
+<p class="p8"><b><span class="Apple-converted-space">    </span>assertEquals(0, WaitThenClose.threadsActive);</b></p>
+<p class="p8"><b><span class="Apple-converted-space">  </span>}</b></p>
+<p class="p7"><br></p>
+<p class="p9">"Ah, I see what you are doing." I said.<span class="Apple-converted-space">  </span>"You are making sure that all <span class="s1">SocketServer</span>s are closed by the time you return from closing the <span class="s1">SocketService</span>."</p>
+<p class="p9">"Right!<span class="Apple-converted-space">  </span>I want to make sure we don't leave those servers dangling."</p>
+<p class="p9">"But you are only testing it with one server.<span class="Apple-converted-space">  </span>Don't we need to test it with many?"</p>
+<p class="p9">"Right again!<span class="Apple-converted-space">  </span>Lets get this simple test working first and then we'll add more servers to it."</p>
+<p class="p9">"OK", I said, "I think I know how to write <span class="s1">WaitThenClose</span>."</p>
+<p class="p10"><br></p>
+<p class="p8"><b>class WaitThenClose implements SocketServer {</b></p>
+<p class="p8"><b><span class="Apple-converted-space">  </span>public static int threadsActive = 0;</b></p>
+<p class="p8"><b><span class="Apple-converted-space">  </span>public void serve(Socket s) {</b></p>
+<p class="p8"><b><span class="Apple-converted-space">    </span>threadsActive++;</b></p>
+<p class="p8"><b><span class="Apple-converted-space">    </span>delay();</b></p>
+<p class="p8"><b><span class="Apple-converted-space">    </span>threadsActive--;</b></p>
+<p class="p8"><b><span class="Apple-converted-space">  </span>}</b></p>
+<p class="p6"><b></b><br></p>
+<p class="p8"><b><span class="Apple-converted-space">  </span>private void delay() {</b></p>
+<p class="p8"><b><span class="Apple-converted-space">    </span>try {</b></p>
+<p class="p8"><b><span class="Apple-converted-space">      </span>Thread.sleep(100);</b></p>
+<p class="p8"><b><span class="Apple-converted-space">    </span>} catch (InterruptedException e) {</b></p>
+<p class="p8"><b><span class="Apple-converted-space">    </span>}</b></p>
+<p class="p8"><b><span class="Apple-converted-space">  </span>}</b></p>
+<p class="p8"><b>}</b></p>
+<p class="p6"><b></b><br></p>
+<p class="p5">As I wrote this code, Jerry nodded in concurrence as it appeared on the screen.<span class="Apple-converted-space">  </span>This was just what he had thought <span class="s1">WaitThenClose</span> would be like. <span class="Apple-converted-space">  </span>Once it was done and compiled we ran the tests, and they failed as expected:</p>
+<p class="p7"><br></p>
+<p class="p11">testAllServersClosed AssertionFailedError: expected:&lt;0&gt; but was:&lt;1&gt;</p>
+<p class="p12"><br></p>
+<p class="p5">Jerry rubbed his hands together and said: "OK, now lets make it pass the test."<span class="Apple-converted-space">  </span>He made a move to grab the keyboard but I blocked it saying: "I think I have an idea about that."<span class="Apple-converted-space">  </span>So while Jerry watched, I made the following changes.</p>
+<p class="p12"><br></p>
+<p class="p8"><b><span class="Apple-converted-space">  </span>private LinkedList serverThreads = new LinkedList();</b></p>
+<p class="p12"><br></p>
+<p class="p11"><span class="Apple-converted-space">  </span>public void serve(int port, SocketServer server) throws Exception {</p>
+<p class="p11"><span class="Apple-converted-space">    </span>itsServer = server;</p>
+<p class="p11"><span class="Apple-converted-space">    </span>serverSocket = new ServerSocket(port);</p>
+<p class="p11"><span class="Apple-converted-space">    </span>serverThread = new Thread(</p>
+<p class="p11"><span class="Apple-converted-space">      </span>new Runnable() {</p>
+<p class="p11"><span class="Apple-converted-space">        </span>public void run() {</p>
+<p class="p11"><span class="Apple-converted-space">          </span>running = true;</p>
+<p class="p11"><span class="Apple-converted-space">          </span>while (running) {</p>
+<p class="p11"><span class="Apple-converted-space">            </span>try {</p>
+<p class="p11"><span class="Apple-converted-space">              </span>Socket s = serverSocket.accept();</p>
+<p class="p8"><b><span class="Apple-converted-space">              </span>Thread serverThread = new Thread(new ServiceRunnable(s));</b></p>
+<p class="p8"><b><span class="Apple-converted-space">              </span>serverThreads.add(serverThread);</b></p>
+<p class="p8"><b><span class="Apple-converted-space">              </span>serverThread.start();</b></p>
+<p class="p11"><span class="Apple-converted-space">            </span>} catch (IOException e) {</p>
+<p class="p11"><span class="Apple-converted-space">            </span>}</p>
+<p class="p11"><span class="Apple-converted-space">          </span>}</p>
+<p class="p11"><span class="Apple-converted-space">        </span>}</p>
+<p class="p11"><span class="Apple-converted-space">      </span>}</p>
+<p class="p11"><span class="Apple-converted-space">    </span>);</p>
+<p class="p11"><span class="Apple-converted-space">    </span>serverThread.start();</p>
+<p class="p11"><span class="Apple-converted-space">  </span>}</p>
+<p class="p12"><br></p>
+<p class="p11"><span class="Apple-converted-space">  </span>public void close() throws Exception {</p>
+<p class="p11"><span class="Apple-converted-space">    </span>if (running) {</p>
+<p class="p11"><span class="Apple-converted-space">      </span>running = false;</p>
+<p class="p11"><span class="Apple-converted-space">      </span>serverSocket.close();</p>
+<p class="p11"><span class="Apple-converted-space">      </span>serverThread.join();</p>
+<p class="p8"><b><span class="Apple-converted-space">      </span>for (Iterator i = serverThreads.iterator(); i.hasNext();) {</b></p>
+<p class="p8"><b><span class="Apple-converted-space">        </span>Thread thread = (Thread) i.next();</b></p>
+<p class="p8"><b><span class="Apple-converted-space">        </span>serverThreads.remove(thread);</b></p>
+<p class="p8"><b><span class="Apple-converted-space">        </span>thread.join();</b></p>
+<p class="p8"><b><span class="Apple-converted-space">      </span>}</b></p>
+<p class="p11"><span class="Apple-converted-space">    </span>} else {</p>
+<p class="p11"><span class="Apple-converted-space">      </span>serverSocket.close();</p>
+<p class="p11"><span class="Apple-converted-space">    </span>}</p>
+<p class="p11"><span class="Apple-converted-space">  </span>}</p>
+<p class="p12"><br></p>
+<p class="p5">As I compiled this code, Jerry got a funny look on his face.</p>
+<p class="p5">"Is this OK?" I asked.</p>
+<p class="p5">"Let's see." He said. "Run the test."</p>
+<p class="p5">When I ran test it gave me a peculiar error:</p>
+<p class="p11">testOneConnection java.util.ConcurrentModificationException</p>
+<p class="p12"><br></p>
+<p class="p5">"What's that?" I said.</p>
+<p class="p5">"You've broken a rule, Alphonse.<span class="Apple-converted-space">  </span>You never add or remove something from a list while you have an iterator active."</p>
+<p class="p5">"Ouch! Of course!<span class="Apple-converted-space">  </span>I knew that!" I said sheepishly.<span class="Apple-converted-space">  </span>"OK, but that's easy to fix because I really don't need to remove the thread from the list, do I?"<span class="Apple-converted-space">  </span>I quickly removed the <span class="s1">remove</span> line, and ran the test again.</p>
+<p class="p5">"Ah!<span class="Apple-converted-space">  </span>Now it's working just fine."</p>
+<p class="p5">Jerry nodded, but stared at me expectantly.<span class="Apple-converted-space"> </span></p>
+<p class="p5">"What!?" I exclaimed after enduring his gaze for half a minute.</p>
+<p class="p5">"You are still modifying the list while the iterator is active."</p>
+<p class="p5">"I am?"<span class="Apple-converted-space">  </span>I was quite puzzled by this.<span class="Apple-converted-space">  </span>"Jerry, there's only one place where the list is modified, and that's where the thread is added in the <span class="s1">running</span> loop.<span class="Apple-converted-space">  </span>How can that be called while the iterator is active?"</p>
+<p class="p5">"Oh, I think it's possible.<span class="Apple-converted-space">  </span>The call to accept might be on the verge of returning as you enter the iterator loop.<span class="Apple-converted-space">  </span>When the iterator loop blocks on a join, the accept will return and add a thread to the list."</p>
+<p class="p5">"OK, I can sort of see that, but can we test for it?"</p>
+<p class="p5">"We could, but there's no point.<span class="Apple-converted-space">  </span>It turns out that there's another place where you'll be modifying the list while the iterator is open."</p>
+<p class="p5">"There is?"</p>
+<p class="p5">"Yes, you are just about to add it.<span class="Apple-converted-space">  </span>How many threads are in that list?"</p>
+<p class="p5">"All of them...Oh!<span class="Apple-converted-space">  </span>I should be deleting the thread from the list when the thread completes!<span class="Apple-converted-space">  </span>Otherwise completed threads will just hang around in the list."<span class="Apple-converted-space">  </span>I grabbed the keyboard and made the following change.</p>
+<p class="p12"><br></p>
+<p class="p11"><span class="Apple-converted-space">  </span>class ServiceRunnable implements Runnable {</p>
+<p class="p11"><span class="Apple-converted-space">    </span>private Socket itsSocket;</p>
+<p class="p12"><br></p>
+<p class="p11"><span class="Apple-converted-space">    </span>ServiceRunnable(Socket s) {</p>
+<p class="p11"><span class="Apple-converted-space">      </span>itsSocket = s;</p>
+<p class="p11"><span class="Apple-converted-space">    </span>}</p>
+<p class="p12"><br></p>
+<p class="p11"><span class="Apple-converted-space">    </span>public void run() {</p>
+<p class="p11"><span class="Apple-converted-space">      </span>try {</p>
+<p class="p11"><span class="Apple-converted-space">        </span>itsServer.serve(itsSocket);</p>
+<p class="p8"><b><span class="Apple-converted-space">        </span>serverThreads.remove(Thread.currentThread());</b></p>
+<p class="p11"><span class="Apple-converted-space">        </span>itsSocket.close();</p>
+<p class="p11"><span class="Apple-converted-space">      </span>} catch (IOException e) {</p>
+<p class="p11"><span class="Apple-converted-space">      </span>}</p>
+<p class="p11"><span class="Apple-converted-space">    </span>}</p>
+<p class="p11"><span class="Apple-converted-space">  </span>}</p>
+<p class="p12"><br></p>
+<p class="p5">"Aha!<span class="Apple-converted-space">  </span>Now it fails again." I said.<span class="Apple-converted-space">  </span>"You were right!<span class="Apple-converted-space">  </span>Some of the threads complete before the iterator loop finishes.<span class="Apple-converted-space">  </span>Boy, it's a good thing the iterator complains about concurrent updates!"</p>
+<p class="p5">"Yes, it is." Nodded Jerry.<span class="Apple-converted-space">  </span>"Now let me show you how I'd fix this."</p>
+<p class="p5">Once again he took the keyboard, and once again I did not protest.<span class="Apple-converted-space">  </span>He proceeded to make the following change.</p>
+<p class="p12"><br></p>
+<p class="p11"><span class="Apple-converted-space">  </span>public void close() throws Exception {</p>
+<p class="p11"><span class="Apple-converted-space">    </span>if (running) {</p>
+<p class="p11"><span class="Apple-converted-space">      </span>running = false;</p>
+<p class="p11"><span class="Apple-converted-space">      </span>serverSocket.close();</p>
+<p class="p11"><span class="Apple-converted-space">      </span>serverThread.join();</p>
+<p class="p8"><b><span class="Apple-converted-space">      </span>while (serverThreads.size() &gt; 0) {</b></p>
+<p class="p8"><b><span class="Apple-converted-space">        </span>Thread t = (Thread)serverThreads.get(0);</b></p>
+<p class="p8"><b><span class="Apple-converted-space">        </span>serverThreads.remove(t);</b></p>
+<p class="p8"><b><span class="Apple-converted-space">        </span>t.join();</b></p>
+<p class="p8"><b><span class="Apple-converted-space">      </span>}</b></p>
+<p class="p11"><span class="Apple-converted-space">    </span>} else {</p>
+<p class="p11"><span class="Apple-converted-space">      </span>serverSocket.close();</p>
+<p class="p11"><span class="Apple-converted-space">    </span>}</p>
+<p class="p11"><span class="Apple-converted-space">  </span>}</p>
+<p class="p12"><br></p>
+<p class="p5">"There!" Jerry said.<span class="Apple-converted-space">  </span>"Now all the tests pass again."</p>
+<p class="p5">"I get it!" I said.<span class="Apple-converted-space">  </span>"Instead of using an iterator, you just pull the first element off the list and keep looping until the list is empty."</p>
+<p class="p5">"Right.<span class="Apple-converted-space">  </span>That way there's no iterator open for a long period of time.<span class="Apple-converted-space">  </span>Joins can take awhile.<span class="Apple-converted-space">  </span>It's not good to leave iterator open for long periods when other threads might try to modify the list."</p>
+<p class="p5">"So are we done?"</p>
+<p class="p5">Jerry shook his head. "No, there's still a danger."</p>
+<p class="p5">"What do you mean? What's wrong now?"</p>
+<p class="p5">"Alponse, whenever you have a container being modified by many different threads, there is a chance that the two threads will collide inside the container.<span class="Apple-converted-space">  </span>One thread might be in the middle of adding an element while another thread is in the middle of deleting one.<span class="Apple-converted-space">  </span>When that happens the container can get corrupted and bizarre things can start happening."</p>
+<p class="p5">"Oh, so you mean we should synchronize access to the container?"</p>
+<p class="p5">"Yes, that's exactly what I mean.<span class="Apple-converted-space">  </span>We need to make sure that while the container is being modified, no other thread can access it."</p>
+<p class="p5">"OK, I can do that.<span class="Apple-converted-space">  </span>It's pretty simple!"<span class="Apple-converted-space">  </span>So I proceeded to surround the <span class="s1">add</span> statement and the two <span class="s1">remove</span> statements with <span class="s1">synchronized(serverThreads){...}</span>.<span class="Apple-converted-space">  </span>I ran the tests, and they all still worked.</p>
+<p class="p5">"That's one way." Jerry said with a smile.<span class="Apple-converted-space">  </span>"But it's a bit error prone.<span class="Apple-converted-space">  </span>If someone else modifies the code and puts in another add or remove then they have to remember to put the <span class="s1">synchronized</span> statements in place.<span class="Apple-converted-space">  </span>If they forget then bad things could happen."</p>
+<p class="p5">I thought about that for a minute and decided that he was right.<span class="Apple-converted-space">  </span>It would be better if we didn't have to surround every statement that manipulated the list with synchronization.<span class="Apple-converted-space">  </span>"You know a better way then?"</p>
+<p class="p5">"Yes."<span class="Apple-converted-space">  </span>He took the keyboard, took out all my <span class="s1">synchronized</span> statements.<span class="Apple-converted-space">  </span>Then he changed one more line of code -- the line that created the <span class="s1">LinkedList</span> in the first place:</p>
+<p class="p12"><br></p>
+<p class="p11"><span class="Apple-converted-space">  </span>private <span class="s2"><b>List</b></span> serverThreads = <span class="s2"><b>Collections.synchronizedList(</b></span>new LinkedList()<span class="s2"><b>)</b></span>;</p>
+<p class="p5">Jerry compiled the code and ran all the tests.<span class="Apple-converted-space">  </span>Everything worked just fine.<span class="Apple-converted-space">  </span>Then he looked at me and asked: "What do you know about design patterns, Alphonse?<span class="Apple-converted-space">  </span>Have you heard of the Decorator pattern?"</p>
+<p class="p5">"I've heard of them, of course, and I've seen the book on people's bookshelves, but I don't know too much about them."</p>
+<p class="p5">Jerry looked sternly at me and said: "Then it's time you started learning about them in earnest.<span class="Apple-converted-space">  </span>You can borrow my book and study it if you like.<span class="Apple-converted-space">  </span>The first think I want you to read is the chapter on the Decorator pattern.<span class="Apple-converted-space">  </span>The <span class="s1">synchronizedList</span> function that we just called wraps the <span class="s1">LinkedList</span> in a Decorator.<span class="Apple-converted-space">  </span>All calls to the LinkedList are synchronized by it."</p>
+<p class="p5">"That sounds like a pretty good solution." I said.</p>
+<p class="p5">"Yeah, well, you just have to remember to explicitly synchronize any use of an iterator." He grimaced.</p>
+<p class="p5">"Really?<span class="Apple-converted-space">  </span>You mean iteration isn't synchronized in a synchronized list?"</p>
+<p class="p5">"TANSTAAFL!" He replied?</p>
+<p class="p5">"Huh?"</p>
+<p class="p5">"TANSTAAFL!<span class="Apple-converted-space">  </span>There Ain't No Such Thing As A Free Lunch."</p>
+<p class="p5">"I know." I said as I headed off toward the galley for lunch.</p>
+<p class="p7"><br></p>
+<p class="p6"><b></b><br></p>
+<p class="p10"><br></p>
+<p class="p5"><i>The code that Jerry and Alphonse finished can be retrieved from:</i></p>
+<p class="p5"><i>www.objectmentor.com/resources/articles/CraftsmanCode/SDSocketServiceR4_TestMultiThreaded.zip</i></p>
+<p class="p7"><i></i><br></p>
+<p class="p7"><i></i><br></p>
+</body>
+</html>

@@ -1,0 +1,1055 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"
+xmlns:css="http://macVmlSchemaUri" xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta name=Title content="The Craftsman">
+<meta name=Keywords content="">
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 2008">
+<meta name=Originator content="Microsoft Word 2008">
+<link rel=File-List href="The%20Craftsman%2054%20Clean%20Code%20C3_files/filelist.xml">
+<title>The Craftsman</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>Robert C. Martin</o:Author>
+  <o:Template>Normal.dotm</o:Template>
+  <o:LastAuthor>Robert Martin</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>69</o:TotalTime>
+  <o:LastPrinted>2006-10-18T18:17:00Z</o:LastPrinted>
+  <o:Created>2009-02-16T19:43:00Z</o:Created>
+  <o:LastSaved>2009-02-16T19:43:00Z</o:LastSaved>
+  <o:Pages>2</o:Pages>
+  <o:Words>938</o:Words>
+  <o:Characters>5348</o:Characters>
+  <o:Company>Object Mentor Inc.</o:Company>
+  <o:Lines>44</o:Lines>
+  <o:Paragraphs>10</o:Paragraphs>
+  <o:CharactersWithSpaces>6567</o:CharactersWithSpaces>
+  <o:Version>12.0</o:Version>
+ </o:DocumentProperties>
+ <o:OfficeDocumentSettings>
+  <o:PixelsPerInch>96</o:PixelsPerInch>
+  <o:TargetScreenSize>800x600</o:TargetScreenSize>
+ </o:OfficeDocumentSettings>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:SpellingState>Clean</w:SpellingState>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:TrackMoves>false</w:TrackMoves>
+  <w:TrackFormatting/>
+  <w:DefaultTableStyle>Fitnesse Table</w:DefaultTableStyle>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:Compatibility>
+   <w:UseNormalStyleForList/>
+   <w:DontUseIndentAsNumberingTabStop/>
+   <w:FELineBreak11/>
+   <w:WW11IndentRules/>
+   <w:DontAutofitConstrainedTables/>
+   <w:AutofitLikeWW11/>
+   <w:HangulWidthLikeWW11/>
+  </w:Compatibility>
+ </w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" LatentStyleCount="276">
+ </w:LatentStyles>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+@font-face
+	{font-family:"Courier New";
+	panose-1:2 7 3 9 2 2 5 2 4 4;
+	mso-font-charset:0;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 0 0 0 1 0;}
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 2 1 2 1 8 4 8 7 8;
+	mso-font-charset:2;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:0 0 65536 0 -2147483648 0;}
+@font-face
+	{font-family:Verdana;
+	panose-1:2 11 6 4 3 5 4 4 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 0 0 0 1 0;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 0 0 0 1 0;}
+ /* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+h3
+	{mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	mso-outline-level:3;
+	font-size:13.5pt;
+	font-family:"Times New Roman";
+	mso-bidi-font-weight:bold;}
+p.MsoFootnoteText, li.MsoFootnoteText, div.MsoFootnoteText
+	{mso-style-noshow:yes;
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+p.MsoCommentText, li.MsoCommentText, div.MsoCommentText
+	{mso-style-noshow:yes;
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+span.MsoFootnoteReference
+	{mso-style-noshow:yes;
+	vertical-align:super;}
+span.MsoCommentReference
+	{mso-style-noshow:yes;
+	mso-ansi-font-size:8.0pt;
+	mso-bidi-font-size:8.0pt;}
+p.MsoBodyTextIndent, li.MsoBodyTextIndent, div.MsoBodyTextIndent
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:.25in;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+p.MsoBodyTextFirstIndent2, li.MsoBodyTextFirstIndent2, div.MsoBodyTextFirstIndent2
+	{mso-style-parent:"Body Text Indent";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:.25in;
+	text-indent:10.5pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+p.MsoBodyText3, li.MsoBodyText3, div.MsoBodyText3
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:8.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;
+	text-underline:single;}
+pre
+	{margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Courier New";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Courier New";}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-noshow:yes;
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:8.0pt;
+	font-family:Tahoma;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:Tahoma;}
+p.BODY3, li.BODY3, div.BODY3
+	{mso-style-name:"BODY 3";
+	mso-style-link:"BODY 3 Char";
+	margin-top:3.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-indent:.25in;
+	mso-pagination:none;
+	tab-stops:1.0in;
+	mso-layout-grid-align:none;
+	text-autospace:none;
+	font-size:10.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	color:black;}
+p.CHAPTITLE, li.CHAPTITLE, div.CHAPTITLE
+	{mso-style-name:"CHAP TITLE";
+	margin:0in;
+	margin-bottom:.0001pt;
+	text-align:right;
+	mso-line-height-alt:22.0pt;
+	mso-pagination:none;
+	mso-layout-grid-align:none;
+	text-autospace:none;
+	font-size:24.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	color:black;
+	font-weight:bold;
+	mso-bidi-font-weight:normal;}
+p.QUOTES, li.QUOTES, div.QUOTES
+	{mso-style-name:QUOTES;
+	margin:0in;
+	margin-bottom:.0001pt;
+	text-align:right;
+	mso-pagination:none;
+	mso-layout-grid-align:none;
+	text-autospace:none;
+	font-size:10.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	color:black;
+	font-style:italic;
+	mso-bidi-font-style:normal;}
+p.Code, li.Code, div.Code
+	{mso-style-name:Code;
+	mso-style-parent:"BODY 3";
+	mso-style-link:"Code Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	tab-stops:.25in 1.0in;
+	mso-layout-grid-align:none;
+	text-autospace:none;
+	font-size:9.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Courier New";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Courier New";
+	color:black;
+	mso-no-proof:yes;}
+p.ModCode, li.ModCode, div.ModCode
+	{mso-style-name:ModCode;
+	mso-style-parent:Code;
+	mso-style-link:"ModCode Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	tab-stops:.25in 1.0in;
+	mso-layout-grid-align:none;
+	text-autospace:none;
+	font-size:9.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Courier New";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Courier New";
+	color:red;
+	font-weight:bold;
+	mso-bidi-font-weight:normal;
+	mso-no-proof:yes;}
+span.BODY3Char
+	{mso-style-name:"BODY 3 Char";
+	mso-style-locked:yes;
+	mso-style-link:"BODY 3";
+	mso-bidi-font-size:12.0pt;
+	color:black;
+	mso-ansi-language:EN-US;
+	mso-fareast-language:EN-US;}
+span.CodeChar
+	{mso-style-name:"Code Char";
+	mso-style-locked:yes;
+	mso-style-parent:"BODY 3 Char";
+	mso-style-link:Code;
+	mso-ansi-font-size:9.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Courier New";
+	mso-ascii-font-family:"Courier New";
+	mso-hansi-font-family:"Courier New";
+	mso-bidi-font-family:"Courier New";
+	color:black;
+	mso-ansi-language:EN-US;
+	mso-fareast-language:EN-US;
+	mso-no-proof:yes;}
+span.ModCodeChar
+	{mso-style-name:"ModCode Char";
+	mso-style-locked:yes;
+	mso-style-parent:"Code Char";
+	mso-style-link:ModCode;
+	mso-ansi-font-size:9.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Courier New";
+	mso-ascii-font-family:"Courier New";
+	mso-hansi-font-family:"Courier New";
+	mso-bidi-font-family:"Courier New";
+	color:red;
+	mso-ansi-language:EN-US;
+	mso-fareast-language:EN-US;
+	font-weight:bold;
+	mso-bidi-font-weight:normal;
+	mso-no-proof:yes;}
+span.meta
+	{mso-style-name:meta;}
+span.fitlabel
+	{mso-style-name:fit_label;
+	font-family:Verdana;
+	mso-ascii-font-family:Verdana;
+	mso-hansi-font-family:Verdana;}
+span.StylefitlabelVerdana9ptItalicGray-80
+	{mso-style-name:"Style fit_label + Verdana 9 pt Italic Gray-80%";
+	mso-style-parent:fit_label;
+	mso-ansi-font-size:9.0pt;
+	mso-bidi-font-size:9.0pt;
+	font-family:"Times New Roman";
+	mso-ascii-font-family:"Times New Roman";
+	mso-hansi-font-family:"Times New Roman";
+	color:gray;
+	font-style:italic;}
+p.Pattern, li.Pattern, div.Pattern
+	{mso-style-name:Pattern;
+	mso-style-parent:"BODY 3";
+	mso-style-link:"Pattern Char";
+	margin-top:3.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-indent:.25in;
+	mso-pagination:none;
+	tab-stops:1.0in;
+	mso-layout-grid-align:none;
+	text-autospace:none;
+	font-size:10.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	font-variant:small-caps;
+	color:black;}
+span.PatternChar
+	{mso-style-name:"Pattern Char";
+	mso-style-locked:yes;
+	mso-style-parent:"BODY 3 Char";
+	mso-style-link:Pattern;
+	mso-bidi-font-size:12.0pt;
+	font-variant:small-caps;
+	color:black;
+	mso-ansi-language:EN-US;
+	mso-fareast-language:EN-US;}
+span.fitgrey
+	{mso-style-name:fit_grey;}
+span.body
+	{mso-style-name:body;}
+span.pagetitle
+	{mso-style-name:page_title;}
+span.SpellE
+	{mso-style-name:"";
+	mso-spl-e:yes;}
+span.GramE
+	{mso-style-name:"";
+	mso-gram-e:yes;}
+ /* Page Definitions */
+@page
+	{mso-footnote-separator:url(":The Craftsman 54 Clean Code C3_files:header.htm") fs;
+	mso-footnote-continuation-separator:url(":The Craftsman 54 Clean Code C3_files:header.htm") fcs;
+	mso-endnote-separator:url(":The Craftsman 54 Clean Code C3_files:header.htm") es;
+	mso-endnote-continuation-separator:url(":The Craftsman 54 Clean Code C3_files:header.htm") ecs;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+@list l0
+	{mso-list-id:31925269;
+	mso-list-template-ids:-481131650;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l1
+	{mso-list-id:563413980;
+	mso-list-template-ids:1622043126;}
+@list l1:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l2
+	{mso-list-id:565381069;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1645571134 67698705 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l2:level1
+	{mso-level-text:"%1\)";
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3
+	{mso-list-id:646782512;
+	mso-list-template-ids:-1182737964;}
+@list l3:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l4
+	{mso-list-id:970749122;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-919546364 67698703 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l4:level1
+	{mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5
+	{mso-list-id:1060053805;
+	mso-list-template-ids:1625817432;}
+@list l5:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l6
+	{mso-list-id:1128546385;
+	mso-list-template-ids:1040341674;}
+@list l6:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l7
+	{mso-list-id:1578706892;
+	mso-list-type:hybrid;
+	mso-list-template-ids:82345816 954136472 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l7:level1
+	{mso-level-start-at:22;
+	mso-level-number-format:bullet;
+	mso-level-text:-;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+@list l7:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";
+	mso-bidi-font-family:Symbol;}
+@list l8
+	{mso-list-id:1647053381;
+	mso-list-template-ids:1429089694;}
+@list l8:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l9
+	{mso-list-id:1875189953;
+	mso-list-template-ids:-2056903076;}
+@list l9:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l10
+	{mso-list-id:1916551088;
+	mso-list-template-ids:-352012062;}
+@list l10:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l11
+	{mso-list-id:2047681249;
+	mso-list-template-ids:-1289184880;}
+@list l11:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l12
+	{mso-list-id:2095591514;
+	mso-list-type:hybrid;
+	mso-list-template-ids:340670874 67698705 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l12:level1
+	{mso-level-text:"%1\)";
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+table.MsoNormalTable
+	{mso-style-name:"Table Normal";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0in 5.4pt 0in 5.4pt;
+	mso-para-margin:0in;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";}
+table.FitnesseTable
+	{mso-style-name:"Fitnesse Table";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-padding-alt:0in 5.4pt 0in 5.4pt;
+	mso-tstyle-shading:#E0E0E0;
+	mso-para-margin:0in;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:9.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-ascii-font-family:Verdana;
+	mso-hansi-font-family:Verdana;}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="2050" fillcolor="white">
+  <v:fill color="white"/>
+  <v:shadow color="gray" opacity="1" offset="2pt,2pt"/>
+ </o:shapedefaults></xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body lang=EN-US link=blue vlink=purple style='tab-interval:.5in'>
+
+<div class=Section1>
+
+<p class=CHAPTITLE style='margin-top:34.0pt;margin-right:0in;margin-bottom:
+34.0pt;margin-left:0in'><span style='mso-no-proof:yes'>The Craftsman: 54<br>
+Clean Code: C3<br>
+Redundant Comment<o:p></o:p></span></p>
+
+<p class=QUOTES><span style='font-style:normal;mso-no-proof:yes'>Robert C.
+Martin<o:p></o:p></span></p>
+
+<p class=QUOTES><span style='font-style:normal;mso-no-proof:yes'>16 February
+2009<o:p></o:p></span></p>
+
+<p class=QUOTES><span style='mso-no-proof:yes'><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><o:p></o:p></span></p>
+
+<div style='mso-element:para-border-div;border:none;border-bottom:solid windowtext 1.0pt;
+mso-border-bottom-alt:solid windowtext .75pt;padding:0in 0in 1.0pt 0in'>
+
+<p class=ModCode style='border:none;mso-border-bottom-alt:solid windowtext .75pt;
+padding:0in;mso-padding-alt:0in 0in 1.0pt 0in'><o:p>&nbsp;</o:p></p>
+
+</div>
+
+<p class=BODY3 style='text-indent:0in'><i style='mso-bidi-font-style:normal'>Feb
+15, 1945, 08:00:00 GMT<o:p></o:p></i></p>
+
+<p class=BODY3 style='text-indent:0in'><span class=SpellE><i style='mso-bidi-font-style:
+normal'>Linus</i></span><i style='mso-bidi-font-style:normal'> Pauling was on a
+conference call with Washington, waiting for the status meeting to begin.<span
+style="mso-spacerun: yes">&nbsp; </span>He had very good news about the latest
+experiments for shaping the nuclear charges that propel the Orion crafts.<span
+style="mso-spacerun: yes">&nbsp; </span>The next generation vehicle could be
+20% more efficient as a result. <o:p></o:p></i></p>
+
+<p class=BODY3 style='text-indent:0in'><i style='mso-bidi-font-style:normal'>“<span
+class=SpellE>Linus</span>, are you there” Said Bill Davies, coordinator of the
+meeting.<o:p></o:p></i></p>
+
+<p class=BODY3 style='text-indent:0in'><i style='mso-bidi-font-style:normal'>“I’m
+(cough, cough) here.” He said. “Excuse me, I can’t seem to shake this awful
+cold.” He said.<o:p></o:p></i></p>
+
+<p class=BODY3 style='text-indent:0in'><i style='mso-bidi-font-style:normal'>“I
+know what you mean!<span style="mso-spacerun: yes">&nbsp; </span>We’ve got a
+dozen or so people out sick today.”<o:p></o:p></i></p>
+
+<p class=BODY3 style='text-indent:0in'><i style='mso-bidi-font-style:normal'>Jamie
+Carlson, also on the call, said: “Yeah, there’s a bug going around at
+Brookhaven too.<span style="mso-spacerun: yes">&nbsp; </span>Don’t you just
+love winter?”<o:p></o:p></i></p>
+
+<p class=BODY3 style='text-indent:0in'><i style='mso-bidi-font-style:normal'>“Good
+Morning Folks.” Vice President Truman said, as he joined the call. “Shall we
+get…(cough)…excuse me… started?” <o:p></o:p></i></p>
+
+<div style='mso-element:para-border-div;border:none;border-bottom:solid windowtext 1.0pt;
+mso-border-bottom-alt:solid windowtext .75pt;padding:0in 0in 2.0pt 0in'>
+
+<p class=BODY3 style='text-indent:0in;border:none;mso-border-bottom-alt:solid windowtext .75pt;
+padding:0in;mso-padding-alt:0in 0in 2.0pt 0in'><i style='mso-bidi-font-style:
+normal'><o:p>&nbsp;</o:p></i></p>
+
+</div>
+
+<p class=BODY3 style='text-indent:0in'><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=BODY3><i>Monday, 11 Mar 2002, 15:00<o:p></o:p></i></p>
+
+<p class=BODY3><span class=body>I was staring at the code on my screen.<span
+style="mso-spacerun: yes">&nbsp; </span>It was about three years old, and was
+pretty well written.<span style="mso-spacerun: yes">&nbsp; </span>The thing I
+didn’t like about it was that it was littered with redundant comments.<span
+style="mso-spacerun: yes">&nbsp; </span>I looked up and spotted Jerry pairing
+with Avery in the next cube.<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Jerry, could you come over here and look at
+this?”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Jerry looked up and said, “I’ve only got
+another 10 minutes in the current tomato.<span style="mso-spacerun: yes">&nbsp;
+</span>Can it wait till then?”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Tomato?”<span style="mso-spacerun: yes">&nbsp;
+</span>But Jerry just started back expectantly.<span style="mso-spacerun:
+yes">&nbsp; </span>“Uh, yeah, sure.<span style="mso-spacerun: yes">&nbsp;
+</span>Whenever you’re ready.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Thanks.”<span style="mso-spacerun: yes">&nbsp;
+</span>And Jerry turned back to Avery and whatever it was they were working on.<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>So I scrolled through the code again:<o:p></o:p></span></p>
+
+<p class=Code><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=Code><span class=body>/**<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun: yes">&nbsp;</span>*
+QuickEntryMediator.<span style="mso-spacerun: yes">&nbsp; </span>This class
+takes a JTextField and a JList.<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun: yes">&nbsp;</span>*
+It assumes that the user will type characters into the JTextField<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun: yes">&nbsp;</span>*
+that are prefixes of entries in the JList.<span style="mso-spacerun:
+yes">&nbsp; </span>It automatically selects<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun: yes">&nbsp;</span>*
+the first item in the JList that matches the current prefix in the<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun: yes">&nbsp;</span>*
+JTextField.<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun: yes">&nbsp;</span>*
+&lt;p/&gt;<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun: yes">&nbsp;</span>*
+If the JTextField is null, or the prefix does not match any element<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun: yes">&nbsp;</span>*
+in the JList, then the JList selection is cleared.<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun: yes">&nbsp;</span>*
+&lt;p/&gt;<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun: yes">&nbsp;</span>*
+There are no methods to call for this object.<span style="mso-spacerun:
+yes">&nbsp; </span>You simply create it,<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun: yes">&nbsp;</span>* and
+forget it.<span style="mso-spacerun: yes">&nbsp; </span>(But don't let it be
+garbage collected...)<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun: yes">&nbsp;</span>*
+&lt;p/&gt;<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun: yes">&nbsp;</span>*
+Example:<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun: yes">&nbsp;</span>*
+&lt;p/&gt;<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun: yes">&nbsp;</span>*
+JTextField t = new JTextField();<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun: yes">&nbsp;</span>*
+JList l = new JList();<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun: yes">&nbsp;</span>*
+&lt;p/&gt;<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun: yes">&nbsp;</span>*
+QuickEntryMediator qem = new QuickEntryMediator(t, l);<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun: yes">&nbsp;</span>*
+// that's all folks.<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun: yes">&nbsp;</span>*<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun: yes">&nbsp;</span>*
+@param t The JTextField from which abbreviations will be gotten.<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun: yes">&nbsp;</span>*
+@param l The JList that will be automatically scrolled to match.<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun: yes">&nbsp;</span>*
+@author Jerry, Jeremy.<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun: yes">&nbsp;</span>*
+@date 30 Jun, 1999 2113 (DYSON)<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun: yes">&nbsp;</span>*/<o:p></o:p></span></p>
+
+<p class=Code><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=Code><span class=body>public class QuickEntryMediator {<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun: yes">&nbsp;
+</span>private JTextField itsTextField;<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun: yes">&nbsp;
+</span>private JList itsList;<o:p></o:p></span></p>
+
+<p class=Code><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun: yes">&nbsp;
+</span>public QuickEntryMediator(JTextField t, JList l) {<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp; </span>itsTextField = t;<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp; </span>itsList = l;<o:p></o:p></span></p>
+
+<p class=Code><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp; </span>itsTextField.getDocument().addDocumentListener<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>(<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>new DocumentListener() {<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>public void
+changedUpdate(DocumentEvent e) {<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>textFieldChanged();<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>}<o:p></o:p></span></p>
+
+<p class=Code><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>public void
+insertUpdate(DocumentEvent e) {<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>textFieldChanged();<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>}<o:p></o:p></span></p>
+
+<p class=Code><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>public void
+removeUpdate(DocumentEvent e) {<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>textFieldChanged();<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>}<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp; </span><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;</span>} // new DocumentListener<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>); // addDocumentListener<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun: yes">&nbsp; </span>}
+// QuickEntryMediator()<o:p></o:p></span></p>
+
+<p class=Code><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun: yes">&nbsp;
+</span>private void textFieldChanged() {<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp; </span>String prefix = itsTextField.getText();<o:p></o:p></span></p>
+
+<p class=Code><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp; </span>if (prefix.length() == 0) {<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>itsList.clearSelection();<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>return;<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp; </span>}<o:p></o:p></span></p>
+
+<p class=Code><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp; </span>ListModel m = itsList.getModel();<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp; </span>boolean found = false;<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp; </span>for (int i = 0; found == false &amp;&amp; i &lt;
+m.getSize(); i++) {<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Object o = m.getElementAt(i);<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>String s = o.toString();<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>if (s.startsWith(prefix)) {<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>itsList.setSelectedValue(o,
+true);<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>found = true;<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>}<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp; </span>}<o:p></o:p></span></p>
+
+<p class=Code><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp; </span>if (!found) {<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>itsList.clearSelection();<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp; </span>}<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun: yes">&nbsp; </span>}
+// textFieldChanged<o:p></o:p></span></p>
+
+<p class=Code><span class=body>} // class QuickEntryMediator<o:p></o:p></span></p>
+
+<p class=Code><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=BODY3><span class=body>A few minutes later I heard a small bell
+ringing.<span style="mso-spacerun: yes">&nbsp; </span>I’d heard it several
+times that day, but had ignored it.<span style="mso-spacerun: yes">&nbsp;
+</span>This time, however, it coincided perfectly with Jerry getting up and
+coming over to his workstation.<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“I thought you were supposed to be working with
+Adelaide.” Jerry said.<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Oh, yeah I was, but Jean stepped in.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>Jerry rolled his eyes and nodded wryly.<span
+style="mso-spacerun: yes">&nbsp; </span>“Yeah, that happens.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“What’s up with the bell?” I asked.<span
+style="mso-spacerun: yes">&nbsp; </span><o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Oh that?<span style="mso-spacerun: yes">&nbsp;
+</span>I’ll tell you later.<span style="mso-spacerun: yes">&nbsp; </span>What
+did you need me for?”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>I heaved a sigh.<span style="mso-spacerun:
+yes">&nbsp; </span>“Did you write this code?”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>Jerry looked it over for about half a minute
+and then said: “Oh, yeah, this is part of the <i style='mso-bidi-font-style:
+normal'>Ice</i> system that Jeremy and I wrote a few years back.<span
+style="mso-spacerun: yes">&nbsp; </span><span class=SpellE>Whoo</span>, what a
+hoot that project was!”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>I couldn’t imagine anything being a hoot where
+Jeremy was concerned, but I let that go.<span style="mso-spacerun: yes">&nbsp;
+</span>“I thought you told me that comments shouldn’t be redundant.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Right!” Jerry said, “That’s one of Mr. C’s
+rules.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Yeah, I know.”<span style="mso-spacerun:
+yes">&nbsp; </span>I said. “Its C3: ‘<i style='mso-bidi-font-style:normal'>A
+comment is redundant if it describes something that adequately describes
+itself.</i>’<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Yep, that’s the one.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“So how come you’ve got all this redundancy in
+the <span class=SpellE>javadocs</span> in this module?”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“What redundancy is that?”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Well, look.” I said.<span style="mso-spacerun:
+yes">&nbsp; </span>“The </span><span class=CodeChar><span style='font-size:
+9.0pt;mso-bidi-font-size:12.0pt'>@param</span></span><span class=body>
+statements, and the initial opening paragraph that describers the constructor
+arguments, and the comments on the closing braces, and…”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Oh, yeah, that was back when <span
+class=SpellE>Javadoc</span> was brand new.<span style="mso-spacerun:
+yes">&nbsp; </span>We were so excited about all that automatically generated
+documentation that we <span class=SpellE><span class=GramE>kinda</span></span>
+went overboard with it.<span style="mso-spacerun: yes">&nbsp; </span>But Mr. C.
+got wind of it (I think Jean told him) and he put a stop to it.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>I nodded.<span style="mso-spacerun: yes">&nbsp;
+</span>It was hard for me to internalize that things were so different just a
+couple of years ago.<span style="mso-spacerun: yes">&nbsp; </span>“I guess
+things change a lot around here.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“You bet they do.” Jerry agreed. “We keep on
+learning new stuff all the time.<span style="mso-spacerun: yes">&nbsp; </span>I
+think that’s kind of what it means to <i style='mso-bidi-font-style:normal'>be</i>
+a software developer.<span style="mso-spacerun: yes">&nbsp; </span>God help us
+if we ever stop learning.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>I nodded.<span style="mso-spacerun: yes">&nbsp;
+</span>“So I shouldn’t use this code as a model for my own code, should I?”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Well, at least not the comments.” Jerry
+smiled.<span style="mso-spacerun: yes">&nbsp; </span>“In fact, why don’t you <span
+class=SpellE>refactor</span> the comments in that module so that they conform
+to our current style.<span class=GramE>”</span><o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Uh, <span class=SpellE>er</span>, sure.”<span
+style="mso-spacerun: yes">&nbsp; </span>I hadn’t asked him over here to give me
+a new task.<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Was that all you needed?” He asked, clearly
+anxious to get back to working with Avery.<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Yeah, thanks.<span style="mso-spacerun:
+yes">&nbsp; </span>I’ll see you later at dinner?”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Uh, No, not tonight Alphonse, I’ve got a date
+with Jazzy, <span class=SpellE>er</span>, Jasmine.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“OK, well later then.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>Jerry nodded with a smile and then turned back
+to the cubicle with Avery.<span style="mso-spacerun: yes">&nbsp; </span>I heard
+him wind something up, and notice a ticking sound.<span style="mso-spacerun:
+yes">&nbsp; </span>I started typing. <o:p></o:p></span></p>
+
+<p class=Code><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=Code><span class=body>/**<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun: yes">&nbsp;</span>* Selects
+the line in the list matched by the abbreviation in the text <o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun: yes">&nbsp;</span>*
+field.<span style="mso-spacerun: yes">&nbsp; </span>If no line matches then the
+selection is cleared.<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style="mso-spacerun: yes">&nbsp;</span>*/<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span class=body><b style='mso-bidi-font-weight:normal'><o:p>&nbsp;</o:p></b></span></p>
+
+<p class=BODY3><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=BODY3><span class=body><br style='mso-special-character:line-break'>
+<![if !supportLineBreakNewLine]><br style='mso-special-character:line-break'>
+<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span class=body><o:p>&nbsp;</o:p></span></p>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,777 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>The Craftsman</title>
+  <meta name="Author" content="Robert C. Martin">
+  <meta name="LastAuthor" content="Robert C. Martin">
+  <meta name="Company" content="Object Mentor Inc.">
+  <meta name="CreationTime" content="2002-11-14T12:44:00Z">
+  <meta name="ModificationTime" content="2002-11-14T12:44:00Z">
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.4">
+  <style type="text/css">
+    p.p1 {margin: 34.0px 0.0px 34.0px 0.0px; text-align: right; line-height: 22.0px; font: 24.0px 'Times New Roman'; color: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: right; font: 10.0px 'Times New Roman'; color: #000000}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: right; font: 10.0px 'Times New Roman'; color: #000000; min-height: 11.0px}
+    p.p4 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 12.0px 'Times New Roman'; color: #000000; min-height: 15.0px}
+    p.p5 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 10.0px 'Times New Roman'; color: #000000}
+    p.p6 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 10.0px 'Times New Roman'; color: #000000; min-height: 11.0px}
+    p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #ff0000}
+    p.p8 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #ff0000; min-height: 10.0px}
+    p.p9 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #000000; min-height: 10.0px}
+    p.p10 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #000000}
+    p.p11 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; font: 10.0px 'Times New Roman'; color: #ff0000}
+    p.p12 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; font: 10.0px 'Times New Roman'; color: #000000}
+    span.s1 {font: 9.0px 'Courier New'}
+    span.s2 {color: #000000}
+    table.t1 {border-collapse: collapse}
+    td.td1 {min-width: 442.8px; border-style: solid; border-width: 1.0px 1.0px 1.0px 1.0px; border-color: #bfbfbf #bfbfbf #bfbfbf #bfbfbf; padding: 0.0px 5.0px 0.0px 5.0px}
+  </style>
+</head>
+<body>
+<p class="p1"><b>The Craftsman: 8<br>
+SocketService 3</b></p>
+<p class="p2">Robert C. Martin</p>
+<p class="p2">14 Nov 2002</p>
+<p class="p3"><i></i><br></p>
+<p class="p4"><br></p>
+<p class="p5"><i>...Continued from last month.<span class="Apple-converted-space">  </span>See &lt;&lt;link&gt;&gt; for last month's article, and the code we were working on.<span class="Apple-converted-space">  </span>You can download that code from:</i></p>
+<p class="p5"><i>www.objectmentor.com/resources/articles/CraftsmanCode/SDSocketServerR2_ManyConnections.zip</i></p>
+<p class="p5">---------------------------------------------------</p>
+<p class="p5">The turbo on level 17 was down again, so I had to use the ladder-shaft.<span class="Apple-converted-space">  </span>While sliding down the ladder I got to thinking about how remarkable it was to use tests as a design tool.<span class="Apple-converted-space">  </span>Lost in my thoughts I got a bit careless with the coriolis forces and bumped my elbow against the shaft. <span class="Apple-converted-space">  </span>It was still stinging when I rejoined Jerry in the lab.</p>
+<p class="p5">"Are you ready to try out the test that sends the 'hello' message through the sockets?" he asked.</p>
+<p class="p5">"Sure." I said. <span class="Apple-converted-space">  </span>We uncommented the <span class="s1">TestSendMessage</span> method. <span class="Apple-converted-space"> </span></p>
+<p class="p6"><br></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">  </span>public void testSendMessage() throws Exception</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">  </span>{</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>SocketService ss = new SocketService();</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>ss.serve(999, new HelloServer());</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>Socket s = new Socket("localhost", 999);</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>InputStream is = s.getInputStream();</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>InputStreamReader isr = new InputStreamReader(is);</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>BufferedReader br = new BufferedReader(isr);</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>String answer = br.readLine();</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>s.close();</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>assertEquals("Hello", answer);</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">  </span>}</b></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p8"><b></b><br></p>
+<p class="p5">"As expected, this doesn't compile." Jerry said.<span class="Apple-converted-space">  </span>"We need to write <span class="s1">HelloServer</span>."</p>
+<p class="p5">"I think I know what to do." I said.<span class="Apple-converted-space">  </span>"<span class="s1">HelloServer</span> is a class that derives from <span class="s1">SocketServer</span> and implements the <span class="s1">serve()</span> method to send the string <span class="s1">'hello'</span> over the socket."<span class="Apple-converted-space">  </span>So I grabbed the keyboard and typed the following in the <span class="s1">TestSocketServer.java</span> module:</p>
+<p class="p6"><br></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b>class HelloServer implements SocketServer {</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">  </span>public void serve(Socket s) {</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>try {</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">      </span>OutputStream os = s.getOutputStream();</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">      </span>PrintStream ps = new PrintStream(os);</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">      </span>ps.println("Hello");</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>} catch (IOException e) {</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>}</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">  </span>}</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b>}</b></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p8"><b></b><br></p>
+<p class="p5">This compiled, and the tests passed, first time. <span class="Apple-converted-space"> </span></p>
+<p class="p5">"Nicely done." said Jerry.<span class="Apple-converted-space">  </span>"Now we know we can send a message through the socket."<span class="Apple-converted-space"> </span></p>
+<p class="p5">I knew Jerry was going to start thinking about refactoring now.<span class="Apple-converted-space">  </span>I wanted to get the jump on him.<span class="Apple-converted-space">  </span>So I looked carefully at the code, and I remembered what he told me about duplication.<span class="Apple-converted-space">  </span>"There's some duplicated code in the unit tests." I said.<span class="Apple-converted-space">  </span>"In each of the three tests we create and close the <span class="s1">SocketService</span>. <span class="Apple-converted-space">  </span>We should get rid of that."</p>
+<p class="p5">"Good eye!" He replied.<span class="Apple-converted-space">  </span>"Lets move that into the <span class="s1">Setup</span> and <span class="s1">Teardown</span> functions."<span class="Apple-converted-space">  </span>He grabbed the keyboard and made the following changes. <span class="Apple-converted-space"> </span></p>
+<p class="p9"><br></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">  </span>private SocketService ss;</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>public void setUp() throws Exception {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>ss = new SocketService();</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p9"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>public void tearDown() throws Exception {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>ss.close();</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p9"><br></p>
+<p class="p5">Then he removed all the <span class="s1">ss = newSocketService();</span> and <span class="s1">ss.close();</span> lines from the three tests.</p>
+<p class="p5">"That's a little better." I said. "So now lets see if we can send a message the other direction."</p>
+<p class="p5">"Exactly what I was thinking." Said Jerry.<span class="Apple-converted-space">  </span>"And I've got just the way to do it."<span class="Apple-converted-space"> </span></p>
+<p class="p5">Jerry grabbed the keyboard and began to type a new test case.</p>
+<p class="p6"><br></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">  </span>public void testReceiveMessage() throws Exception {</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>ss.serve(999, new EchoService());</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>Socket s = new Socket("localhost", 999);</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>InputStream is = s.getInputStream();</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>InputStreamReader isr = new InputStreamReader(is);</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>BufferedReader br = new BufferedReader(isr);</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>OutputStream os = s.getOutputStream();</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>PrintStream ps = new PrintStream(os);</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>ps.println("MyMessage");</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>String answer = br.readLine();</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>s.close();</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>assertEquals("MyMessage", answer);</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">  </span>}</b></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p8"><b></b><br></p>
+<p class="p5">"Ouch! That's pretty ugly." I said. <span class="Apple-converted-space"> </span></p>
+<p class="p5">"Yeah, it is." Replied Jerry. "Let's get it working and then we'll clean it up.<span class="Apple-converted-space">  </span>We don't want a mess like that laying around for long!<span class="Apple-converted-space">  </span>You see where I am going with this though, don't you?"</p>
+<p class="p5">"Yes, I thnk so." I said. "<span class="s1">EchoService</span> will recieve a message from the socket and just send it right back.<span class="Apple-converted-space">  </span>So your test just sends <span class="s1">'MyMessage'</span>, then reads it back again."</p>
+<p class="p5">"Right.<span class="Apple-converted-space">  </span>Care to take a crack at writing <span class="s1">EchoService</span>?"</p>
+<p class="p5">"Sure." I said, and I grabbed the keyboard.</p>
+<p class="p8"><b></b><br></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b>class EchoService implements SocketServer {</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">  </span>public void serve(Socket s) {</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>try {</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">      </span>InputStream is = s.getInputStream();</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">      </span>InputStreamReader isr = new InputStreamReader(is);</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">      </span>BufferedReader br = new BufferedReader(isr);</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">      </span>OutputStream os = s.getOutputStream();</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">      </span>PrintStream ps = new PrintStream(os);</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">      </span>String token = br.readLine();</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">      </span>ps.println(token);</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>} catch (IOException e) {</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>}</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">  </span>}</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b>}</b></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p8"><b></b><br></p>
+<p class="p5">"Ick." I said. "More of the same kind of ugly code.<span class="Apple-converted-space">  </span>We keep on having to create <span class="s1">PrintStream</span> and <span class="s1">BufferedReader</span> objects from the socket.<span class="Apple-converted-space">  </span>We really need to clean that up."</p>
+<p class="p5">"We'll do that just as soon as the test works." Said Jerry. And then he looked at me expectantly.</p>
+<p class="p5">"Oh!" I said.<span class="Apple-converted-space">  </span>"I forgot to run the test."</p>
+<p class="p5">Sheepishly I pushed the test button and watched it pass.</p>
+<p class="p5">"That wasn't hard to get working." I said. "Now lets get rid of that ugly code.".</p>
+<p class="p5">Keeping the keyboard, I extracted several functions from the previous mess in <span class="s1">EchoService</span>.</p>
+<p class="p6"><br></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10">class EchoService implements SocketServer {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>public void serve(Socket s) {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>try {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">      </span>BufferedReader br = getBufferedReader(s);</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">      </span>PrintStream ps = getPrintStream(s);</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">      </span>String token = br.readLine();</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">      </span>ps.println(token);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>} catch (IOException e) {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p9"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">  </span>private PrintStream getPrintStream(Socket s) throws IOException {</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>OutputStream os = s.getOutputStream();</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>PrintStream ps = new PrintStream(os);</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>return ps;</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">  </span>}</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p9"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">  </span>private BufferedReader getBufferedReader(Socket s) throws IOException {</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>InputStream is = s.getInputStream();</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>InputStreamReader isr = new InputStreamReader(is);</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>BufferedReader br = new BufferedReader(isr);</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>return br;</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">  </span>}</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10">}</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p9"><br></p>
+<p class="p5">"Yes." Said Jerry. "That makes the serve method of <span class="s1">EchoService</span> much better, but it clutters the class quite a bit.<span class="Apple-converted-space">  </span>Also, it doesn't really help the <span class="s1">testRecieveMessage</span> function.<span class="Apple-converted-space">  </span>That function has the same kind of ugliness.<span class="Apple-converted-space">  </span>I wonder if <span class="s1">getBufferedReader</span> and <span class="s1">getPrintStream</span> are in the right place."</p>
+<p class="p5">"This is going to be a recurring problem." I said.<span class="Apple-converted-space">  </span>"Anybody who wants to use <span class="s1">SocketService</span> is going to have to convert the socket into a <span class="s1">BufferedReader</span> and a <span class="s1">PrintStream</span>."</p>
+<p class="p5">"I think that's your answer!" Jerry replied. "The <span class="s1">getBufferedReader</span> and <span class="s1">getPrintStream</span> methods really belong in <span class="s1">SocketService</span>."</p>
+<p class="p5">This made a lot of sense to me.<span class="Apple-converted-space">  </span>So I moved the two functions into the <span class="s1">SocketService</span> class and changed <span class="s1">EchoService</span> accordingly.</p>
+<p class="p6"><br></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10">public class SocketService {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p11"><span class="s2"><span class="Apple-converted-space">  </span></span><i>[...]</i></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">  </span>public static PrintStream getPrintStream(Socket s) throws IOException {</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>OutputStream os = s.getOutputStream();</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>PrintStream ps = new PrintStream(os);</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>return ps;</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">  </span>}</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p9"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">  </span>public static BufferedReader getBufferedReader(Socket s) throws IOException {</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>InputStream is = s.getInputStream();</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>InputStreamReader isr = new InputStreamReader(is);</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>BufferedReader br = new BufferedReader(isr);</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>return br;</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">  </span>}</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10">}</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p9"><br></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10">class EchoService implements SocketServer {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>public void serve(Socket s) {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>try {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">      </span>BufferedReader br = SocketService.getBufferedReader(s);</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">      </span>PrintStream ps = SocketService.getPrintStream(s);</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">      </span>String token = br.readLine();</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">      </span>ps.println(token);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>} catch (IOException e) {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10">}</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p9"><br></p>
+<p class="p5">The tests all still ran.<span class="Apple-converted-space">  </span>Keeping my momentum, I said: "Now I should be able to fix the <span class="s1">testReceiveMessage</span> method too."<span class="Apple-converted-space">  </span>So, while Jerry watched, I made that change too.</p>
+<p class="p6"><br></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>public void testReceiveMessage() throws Exception {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>ss.serve(999, new EchoService());</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>Socket s = new Socket("localhost", 999);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>BufferedReader br = SocketService.getBufferedReader(s);</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>PrintStream ps = SocketService.getPrintStream(s);</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>ps.println("MyMessage");</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>String answer = br.readLine();</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>s.close();</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>assertEquals("MyMessage", answer);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p9"><br></p>
+<p class="p5">"Yeah, that's a lot better." Jerry said. <span class="Apple-converted-space"> </span></p>
+<p class="p5">"Not only that, but the tests still pass." I said.<span class="Apple-converted-space">  </span>Then I noticed something.<span class="Apple-converted-space">  </span>"Oops, there's another one in <span class="s1">testSendMessage</span>." I said.<span class="Apple-converted-space">  </span>And so I made that change too.</p>
+<p class="p6"><br></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>public void testSendMessage() throws Exception {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>ss.serve(999, new HelloServer());</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>Socket s = new Socket("localhost", 999);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>BufferedReader br = SocketService.getBufferedReader(s);</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>String answer = br.readLine();</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">    </span>assertEquals("Hello", answer);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p10"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p9"><br></p>
+<p class="p5">The tests all still ran. <span class="Apple-converted-space">  </span>I sat there looking through the TestSocketServer class, trying to find any other code I could eliminate.</p>
+<p class="p5">"Are you done?" asked Jerry.</p>
+<p class="p5">After a few more seconds of scanning, I relaxed and said: "I think so."</p>
+<p class="p5">"Good." He said.<span class="Apple-converted-space">  </span>"I was starting to see smoke coming out of your ears.<span class="Apple-converted-space">  </span>I think it's time for a quick break."</p>
+<p class="p5">"OK, but I have a question first."</p>
+<p class="p5">"Shoot."</p>
+<p class="p5">I looked back and forth between Jerry and the code for a few seconds, and then I said: "We haven't made a single change to <span class="s1">SocketService</span>.<span class="Apple-converted-space">  </span>We've added two new tests -- <span class="s1">testSendMessage</span>, and <span class="s1">testReceiveMessage</span> -- and they both just worked.<span class="Apple-converted-space">  </span>And yet we spent a lot of time writing those tests, and also refactoring.<span class="Apple-converted-space">  </span>What good did it do us?<span class="Apple-converted-space">  </span>We didn't change the production code at all!"</p>
+<p class="p5">Jerry raised an eyebrow and gave me an impenetrable regard.<span class="Apple-converted-space">  </span>"It's interesting that you noticed that.<span class="Apple-converted-space">  </span>Do you think we wasted our time?"</p>
+<p class="p5">"It didn't feel like a waste, because we proved to ourselves that you could send and receive messages.<span class="Apple-converted-space">  </span>Still, we wrote and refactored a lot of code that didn't help us add anything to the production code."</p>
+<p class="p5">"You don't think that <span class="s1">getBufferedReader</span> and <span class="s1">getPrintStream</span> were worth putting into production?"</p>
+<p class="p5">"They're pretty trivial, and all they're really doing is supporting the tests."</p>
+<p class="p5">Jerry sighed and looked away for a minute. Then he turned back to me and said: "If you were just coming onto this project, and I showed you these tests, what would they teach you?"</p>
+<p class="p5">That was a strange question.<span class="Apple-converted-space">  </span>My first reaction was to answer by saying that they'd teach me that the authors had wanted to prove their code worked.<span class="Apple-converted-space">  </span>But I held that thought back.<span class="Apple-converted-space">  </span>Jerry wouldn't have asked me that question if he hadn't wanted me to carefully think about the answer.</p>
+<p class="p5">What would I learn by reading those tests?<span class="Apple-converted-space">  </span>I'd learn how to create a <span class="s1">SocketService</span>, and how to bind a <span class="s1">SocketServer</span> derivative to it.<span class="Apple-converted-space">  </span>I'd also learn how to send and receive messages.<span class="Apple-converted-space">  </span>I'd learn the names and locations of the classes in the framework, and how to use them.</p>
+<p class="p5">So I gathered up my courage and said: "You mean we wrote these tests as examples to show to others?"</p>
+<p class="p5">"That's part of the reason, Alphonse.<span class="Apple-converted-space">  </span>Yes.<span class="Apple-converted-space">  </span>Others will be able to read these tests and see how to work the code we're writing.<span class="Apple-converted-space">  </span>They'll also be able to work through our reasoning.<span class="Apple-converted-space">  </span>Moreover, they'll be able to compile and execute these tests in order to prove to themselves that our reasoning was sound."</p>
+<p class="p5">"There's more to it, than that. " He continued. "But we'll leave that for another time.<span class="Apple-converted-space">  </span>Now lets take our break."</p>
+<p class="p5">My elbow still twinged, so I was glad to see that the turbo was repaired.<span class="Apple-converted-space">  </span>On the way up the lift I kept rolling same thought around in my head.<span class="Apple-converted-space">  </span>"Tests are a form of documentation.<span class="Apple-converted-space">  </span>Compilable, executable, and always in sync."</p>
+<p class="p12">--------------------------</p>
+<p class="p5"><i>The code that Jerry and Alphonse finished can be retrieved from:</i></p>
+<p class="p5"><i>www.objectmentor.com/resources/articles/CraftsmanCode/SDSocketServiceR3_SendAndReceive.zip</i></p>
+<p class="p6"><i></i><br></p>
+<p class="p6"><i></i><br></p>
+</body>
+</html>

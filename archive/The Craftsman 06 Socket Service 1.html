@@ -1,0 +1,593 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>The Craftsman</title>
+  <meta name="Author" content="Robert C. Martin">
+  <meta name="LastAuthor" content="Robert C. Martin">
+  <meta name="Company" content="Object Mentor Inc.">
+  <meta name="CreationTime" content="2002-09-16T10:46:00Z">
+  <meta name="ModificationTime" content="2002-09-16T10:46:00Z">
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.4">
+  <style type="text/css">
+    p.p1 {margin: 34.0px 0.0px 34.0px 0.0px; text-align: right; line-height: 22.0px; font: 24.0px 'Times New Roman'; color: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: right; font: 10.0px 'Times New Roman'; color: #000000}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: right; font: 10.0px 'Times New Roman'; color: #000000; min-height: 11.0px}
+    p.p4 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 12.0px 'Times New Roman'; color: #000000; min-height: 15.0px}
+    p.p5 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 10.0px 'Times New Roman'; color: #000000}
+    p.p6 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 10.0px 'Times New Roman'; color: #000000; min-height: 11.0px}
+    p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #000000}
+    p.p8 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #000000; min-height: 10.0px}
+    p.p9 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 9.0px 'Courier New'; color: #000000}
+    p.p10 {margin: 6.0px 0.0px 6.0px 0.0px; font: 9.0px 'Courier New'; color: #000000}
+    span.s1 {font: 9.0px 'Courier New'}
+    span.s2 {font: 12.0px 'Times New Roman'}
+    span.s3 {font: 10.0px 'Times New Roman'}
+    span.Apple-tab-span {white-space:pre}
+    table.t1 {border-collapse: collapse}
+    td.td1 {min-width: 442.8px; border-style: solid; border-width: 1.0px 1.0px 1.0px 1.0px; border-color: #bfbfbf #bfbfbf #bfbfbf #bfbfbf; padding: 0.0px 5.0px 0.0px 5.0px}
+  </style>
+</head>
+<body>
+<p class="p1"><b>The Craftsman: 6<br>
+SocketService 1</b></p>
+<p class="p2">Robert C. Martin</p>
+<p class="p2">16 Sept 2002</p>
+<p class="p3"><i></i><br></p>
+<p class="p4"><br></p>
+<p class="p5">Yesterday left me drained. Jerry and I had solved the prime factors problem by sneaking up on it one tiny test case at a time.<span class="Apple-converted-space">  </span>It was the strangest way to solve a problem that I have ever seen; but it worked better than my original solution.</p>
+<p class="p5"><span class="Apple-converted-space"> </span>I wandered aimlessly around the corridors thinking about it again and again.<span class="Apple-converted-space">  </span>I don’t remember dinner, or even being in the galley.<span class="Apple-converted-space">  </span>I fell asleep early and dreamed of sequences of tiny test cases.</p>
+<p class="p5">When I reported to Jerry this morning he said:</p>
+<p class="p5">“Good Morning Alphonse.<span class="Apple-converted-space">  </span>Are you ready to start working on a <i>real</i> project?”</p>
+<p class="p5">“You bet I am!”<span class="Apple-converted-space">  </span>Farb, yes, I was ready!<span class="Apple-converted-space">  </span>I was tired of these play examples.</p>
+<p class="p5">“Good!<span class="Apple-converted-space">  </span>We’ve got a program called SMC that compiles a finite state machine grammar into Java.<span class="Apple-converted-space">  </span>Mr. C. wants us to turn that program into a service delivered over the net.”</p>
+<p class="p5">“What do you mean?”, I asked.</p>
+<p class="p5">Jerry turned to a sketch-wall and began to talk and draw at the same time.<span class="Apple-converted-space"> </span></p>
+<p class="p5"><span class="Apple-converted-space"> </span>EMBED Visio.Drawing.6 <span class="Apple-converted-space"> </span></p>
+<p class="p5">“We’re going to write two programs.<span class="Apple-converted-space">  </span>One called SMCR Client, and the other called SMCR Server.<span class="Apple-converted-space">  </span>The user who wants to compile a finite state machine will invoke SMCR Client with the name of the file to be compiled.<span class="Apple-converted-space">  </span>SMCR Client will send that file to a special computer where SMCR Server is running.<span class="Apple-converted-space">  </span>SMCR Server will run the SMC compiler and then send the resulting compiled files back to SMCR Client.<span class="Apple-converted-space">  </span>SMCR Client will then write them in the user’s directory.<span class="Apple-converted-space">  </span>As far as the user is concerned, it’ll be no different than using SMC directly.”</p>
+<p class="p5">“OK, I think I understand.” I said. “It sounds pretty simple.”</p>
+<p class="p5">“It is <i>pretty</i> simple.” Jerry said. “But working with sockets is always just a little interesting.”</p>
+<p class="p5">So we sat down at a workstation and, as usual, got ready to write our first unit test. Jerry thought for a minute and then went back to the sketch-wall and drew the following diagram.</p>
+<p class="p6"><br></p>
+<p class="p5"><span class="Apple-converted-space"> </span>EMBED Visio.Drawing.6 <span class="Apple-converted-space"> </span></p>
+<p class="p5">“Here’s what I have in mind for SMCR Server.” He said.<span class="Apple-converted-space">  </span>“We’ll put the socket management code in a class called <span class="s1">SocketService</span>.<span class="Apple-converted-space">  </span>This class will catch, and manage, connections coming from the outside.<span class="Apple-converted-space">  </span>When <span class="s1">serve(port)</span> is called, it’ll create the service socket with the given port number and start accepting connections. Whenever a connection comes in it will create a new thread and pass control to the <span class="s1">serve(socket)</span> method of the <span class="s1">SocketServer</span> interface.<span class="Apple-converted-space">  </span>That way we separate socket management code from the code that performs the services we desire.”</p>
+<p class="p5">Not knowing whether this was a good thing or not, I simply nodded.<span class="Apple-converted-space">  </span>Clearly he had some reason for thinking the way he did.<span class="Apple-converted-space">  </span>I just went along with it. <span class="Apple-converted-space"> </span></p>
+<p class="p5">Next he wrote the following test.</p>
+<p class="p6"><br></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>public void testOneConnection() throws Exception {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>SocketService ss = new SocketService();</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>ss.serve(999);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>connect(999);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>ss.close();</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>assertEquals(1, ss.connections());</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p6"><br></p>
+<p class="p5">“What I’m doing here is called <i>Intentional Programming</i>.” Jerry said.<span class="Apple-converted-space">  </span>I’m calling code that doesn’t yet exist.<span class="Apple-converted-space">  </span>As I do so, I express my intent about what that code should look like, and how it should behave.”</p>
+<p class="p5">“OK.” I responded.<span class="Apple-converted-space">  </span>“You create the <span class="s1">SocketService</span>.<span class="Apple-converted-space">  </span>Then you ask it to accept connections on port 999.<span class="Apple-converted-space">  </span>Next it looks like you are connecting to the service you just created on port 999.<span class="Apple-converted-space">  </span>Finally you close the <span class="s1">SocketService</span> and assert that it got one connection.”</p>
+<p class="p5">“Right.” Jerry confirmed.</p>
+<p class="p5">“But how do you know <span class="s1">SocketService</span> will need the <span class="s1">connections</span> method?”</p>
+<p class="p5">“Oh, it probably doesn’t.<span class="Apple-converted-space">  </span>I’m just putting it there so I can test it.”</p>
+<p class="p5">“Isn’t that wasteful?” I queried?</p>
+<p class="p5">Jerry looked me sternly in the eye and replied:<span class="Apple-converted-space">  </span>“Nothing that makes a test easy is wasted, Alphonse.<span class="Apple-converted-space">  </span>We often add methods to classes simply to make the classes easier to test.”</p>
+<p class="p5">I didn’t like the <span class="s1">connections()</span> method, but I held my tongue for the moment. <span class="Apple-converted-space"> </span></p>
+<p class="p5">We wrote just enough of the<span class="s2"> </span><span class="s1">SocketService</span> constructor, and the <span class="s1">serve</span>, <span class="s1">close</span>, and <span class="s1">connect</span> methods to get everything to compile. They were just empty functions.<span class="Apple-converted-space">  </span>When we ran the test, it failed as expected.</p>
+<p class="p5">Next Jerry wrote the <span class="s1">connect</span> method as part of the test case class.</p>
+<p class="p6"><br></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>private void connect(int port) {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>try {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">      </span>Socket s = new Socket("localhost", port);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">      </span>s.close();</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>} catch (IOException e) {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">      </span>fail("could not connect");</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p8"><br></p>
+<p class="p5">Running this produced the following error:</p>
+<p class="p9"><span class="s3"><span class="Apple-converted-space">  </span></span>testOneConnection: could not connect</p>
+<p class="p5">I said: “It’s failing because it can’t find port 999 anywhere, right?”</p>
+<p class="p5">“Right!” said Jerry.<span class="Apple-converted-space">  </span>“But that’s easy to fix.<span class="Apple-converted-space">  </span>Here, why don’t you fix it?”</p>
+<p class="p5">I’d never written socket code before, so I wasn’t sure what to do next.<span class="Apple-converted-space">  </span>Jerry pointed me to the <span class="s1">ServerSocket</span> entry in the Javadocs.<span class="Apple-converted-space">  </span>The examples there made it look pretty simple.<span class="Apple-converted-space">  </span>So I fleshed in the <span class="s1">SocketService</span> methods as shown below.</p>
+<p class="p6"><br></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b>import java.net.ServerSocket;</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p8"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7">public class SocketService {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">  </span>private ServerSocket serverSocket = null;</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p8"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>public void serve(int port) throws Exception {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>serverSocket = new ServerSocket(port);</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p8"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>public void close() throws Exception {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>serverSocket.close();</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p8"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>public int connections() {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>return 0;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7">}</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p8"><br></p>
+<p class="p9"><span class="s3">Running this gave us:<span class="Apple-converted-space">  </span></span>testOneConnection: expected:&lt;1&gt; but was:&lt;0&gt;</p>
+<p class="p5">“Aha!” I said.<span class="Apple-converted-space">  </span>“It found port 999.<span class="Apple-converted-space">  </span>Cool!<span class="Apple-converted-space">  </span>Now we just need to count the connection!”</p>
+<p class="p5">So I changed the <span class="s1">SocketService</span> class as follows:</p>
+<p class="p6"><br></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b>import java.io.IOException;</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7">import java.net.ServerSocket;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b>import java.net.Socket;</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p8"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7">public class SocketService {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>private ServerSocket serverSocket = null;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">  </span>private int connections = 0;</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p8"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>public void serve(int port) throws Exception {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>serverSocket = new ServerSocket(port);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">   </span><b> try {</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">      </span>Socket s = serverSocket.accept();</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">      </span>s.close();</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">      </span>connections++;</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>} catch (IOException e) {</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>}</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p8"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>public void close() throws Exception {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>serverSocket.close();</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p8"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>public int connections() {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>return connections;</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7">}</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p8"><br></p>
+<p class="p5">But this didn’t work.<span class="Apple-converted-space">  </span>It didn’t even fail.<span class="Apple-converted-space">  </span>When I ran the test, the test hung.</p>
+<p class="p5">“What’s going on?” I asked.</p>
+<p class="p5">Jerry smiled.<span class="Apple-converted-space">  </span>“See if you can figure it out, Alphonse.<span class="Apple-converted-space">  </span>Trace it through.”</p>
+<p class="p5">“OK, let’s see.<span class="Apple-converted-space">  </span>The test program calls <span class="s1">serve</span>, which creates the socket and calls <span class="s1">accept</span>.<span class="Apple-converted-space">  </span>Oh!<span class="Apple-converted-space">  </span><span class="s1">accept</span> doesn’t return until it gets a connection!<span class="Apple-converted-space">  </span>And so <span class="s1">serve</span> never returns, and we never get to call <span class="s1">connect</span>.”</p>
+<p class="p5">Jerry nodded.<span class="Apple-converted-space">  </span>“So how are you going to fix this Alphonse?”</p>
+<p class="p5">I thought about this for a minute.<span class="Apple-converted-space">  </span>I needed to call the <span class="s1">connect</span> function after calling <span class="s1">accept</span>, but when you call <span class="s1">accept</span>, it won’t return until you call connect.<span class="Apple-converted-space">  </span>At first this sounded impossible.</p>
+<p class="p5">“It’s not impossible, Alphonse.” said Jerry.<span class="Apple-converted-space">  </span>“You just have to create a thread.”</p>
+<p class="p5">I thought about this a little more.<span class="Apple-converted-space">  </span>Yes, I could put the call to accept in a separate thread.<span class="Apple-converted-space">  </span>Then I could invoke that thread and then call connect. <span class="Apple-converted-space"> </span></p>
+<p class="p5">“I see what you mean about socket code being a little interesting.” I said.<span class="Apple-converted-space">  </span>And then I made the following changes.</p>
+<p class="p6"><br></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">  </span>private Thread serverThread = null;</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p8"><br></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>public void serve(int port) throws Exception {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>serverSocket = new ServerSocket(port);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>serverThread = new Thread(</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">      </span>new Runnable() {</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">        </span>public void run() {</b><b></b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">          </span>try {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">            </span>Socket s = serverSocket.accept();</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">            </span>s.close();</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">            </span>connections++;</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">          </span>} catch (IOException e) {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">          </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">        </span><b>}</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">      </span>}</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>);</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">    </span>serverThread.start();</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p8"><br></p>
+<p class="p5">“Nice use of the anonymous inner class, Alphonse.” said Jerry.</p>
+<p class="p5">“Thanks.”<span class="Apple-converted-space">  </span>It felt good to get a compliment from him.<span class="Apple-converted-space">  </span>“But it does make for a lot of monkey tails at the end of the function.”</p>
+<p class="p5">“We’ll refactor that later.<span class="Apple-converted-space">  </span>First, lets run the test.”</p>
+<p class="p5">The test ran just fine, but Jerry looked pensive, like he’d just been lied to.</p>
+<p class="p5">“Run the test again, Alphonse.”<span class="Apple-converted-space"> </span></p>
+<p class="p5">I happily hit the run button, and it worked again.</p>
+<p class="p5">“Again.” he said.</p>
+<p class="p5">I looked at him for a second to see if he was joking.<span class="Apple-converted-space">  </span>Clearly he was not.<span class="Apple-converted-space">  </span>His eyes were locked on the screen, as though he were hunting a dribin.<span class="Apple-converted-space">  </span>So I hit the button again and saw:<span class="Apple-converted-space"> </span></p>
+<p class="p10"><span class="Apple-tab-span">	</span>testOneConnection: expected:&lt;1&gt; but was:&lt;0&gt;</p>
+<p class="p5">“Now wait a minute!” I hollered.<span class="Apple-converted-space">  </span>“That can’t be!”</p>
+<p class="p5">“Oh, yes it can.” Jerry said.<span class="Apple-converted-space">  </span>“I was expecting it.”</p>
+<p class="p5">I repeatedly pushed the button.<span class="Apple-converted-space">  </span>In ten attempts I saw three failures.<span class="Apple-converted-space">  </span>Was I losing my mind?<span class="Apple-converted-space">  </span>How can a program behave like that?</p>
+<p class="p5">“How did you know, Jerry?<span class="Apple-converted-space">  </span>Are you related to the oracle of Aldebran?”</p>
+<p class="p5">“No, I’ve just written this kind of code before, and I know a little bit about what to expect.<span class="Apple-converted-space">  </span>Can you work out what’s happening?<span class="Apple-converted-space">  </span>Think it through carefully.”</p>
+<p class="p5">My brain was already hurting, but I started piecing things together.<span class="Apple-converted-space">  </span>I went to the sketch-wall and began to draw.</p>
+<p class="p5"><span class="Apple-converted-space"> </span>EMBED Visio.Drawing.6 <span class="Apple-converted-space"> </span></p>
+<p class="p5">When I had worked it out, I recited the scenario to Jerry.<span class="Apple-converted-space">  </span>“<span class="s1">TestSocketServer</span> sent the <span class="s1">serve(999)</span> message to <span class="s1">SocketService</span>.<span class="Apple-converted-space">  </span><span class="s1">SocketService</span> created the <span class="s1">ServerSocket</span> and the <span class="s1">serverThread</span> and then returned.<span class="Apple-converted-space">  </span><span class="s1">TestSocketServer</span> then called <span class="s1">connect</span> which created the client socket.<span class="Apple-converted-space">  </span>The two sockets must have found each other because we didn’t get a ‘<span class="s1">could not connect</span>’ error.<span class="Apple-converted-space">  </span>The <span class="s1">ServerSocket</span> must have accepted the connection, but perhaps <span class="s1">serverThread</span> hadn’t had a chance to run yet.<span class="Apple-converted-space">  </span>And while <span class="s1">serverThread</span> was blocked, the <span class="s1">connect</span> function closed the client socket.<span class="Apple-converted-space">  </span>Then <span class="s1">TestSocketServer</span> sent the close message to the <span class="s1">SocketService</span>, which closed the <span class="s1">serverSocket</span>.<span class="Apple-converted-space">  </span>By the time the <span class="s1">serverThread</span> got a chance to call the <span class="s1">accept</span> function, the server socket was closed.”</p>
+<p class="p5">“I think you’re right.” Jerry said. “The two events – accept and close – are asynchronous, and the system is sensitive to their order.<span class="Apple-converted-space">  </span>We call that a <i>race condition</i>.<span class="Apple-converted-space">  </span>We have to make sure we always win the race.</p>
+<p class="p5">We decided to test my hypothesis by putting a print statement in the catch block after the <span class="s1">accept</span> call.<span class="Apple-converted-space">  </span>Sure enough, three times in ten,<span class="Apple-converted-space">  </span>we saw the message. <span class="Apple-converted-space"> </span></p>
+<p class="p5">“So how can we get our unit test to run?” Jerry asked me. <span class="Apple-converted-space"> </span></p>
+<p class="p5">“It seems to me that the test can’t just open the client socket and then immediately close it.” I replied. <span class="Apple-converted-space">  </span>“It needs to wait for the accept.”</p>
+<p class="p5">“We could just wait for 100ms real time before closing the client socket.” he said.</p>
+<p class="p5">“Yeah, that would probably work.” I replied.<span class="Apple-converted-space">  </span>“But it’s a bit ugly.”</p>
+<p class="p5">“Let’s see if we can get it to work, and then we’ll consider refactoring it.”</p>
+<p class="p5">So I made the following changes to the <span class="s1">connect</span> method.</p>
+<p class="p8"><span class="Apple-converted-space"> </span></p>
+<table cellspacing="0" cellpadding="0" class="t1">
+  <tbody>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space"> </span>private void connect(int port) {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>try {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">      </span>Socket s = new Socket("localhost", port);</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">      </span><b>try {</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">        </span>Thread.sleep(100);</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">      </span>} catch (InterruptedException e) {</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><b><span class="Apple-converted-space">      </span>}</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">      </span>s.close();</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>} catch (IOException e) {</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">      </span>fail("could not connect");</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">    </span>}</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="td1">
+        <p class="p7"><span class="Apple-converted-space">  </span>}</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="p8"><br></p>
+<p class="p5">This made the tests pass 10 for 10.</p>
+<p class="p5">“This is scary.” I said.<span class="Apple-converted-space">  </span>“The fact that a test passes once doesn’t mean the code is working.”</p>
+<p class="p5">“Yeah.” Jerry agreed. “When you are dealing with multiple threads, you have to keep an eye out for possible race conditions.<span class="Apple-converted-space">  </span>Hitting the test button multiple times is a good habit to get into.”</p>
+<p class="p5">“It’s a good thing we found this in our test cases.” I said. “Finding it after the system was running would have been a <i>lot</i> harder.”</p>
+<p class="p5">Jerry just nodded.</p>
+<p class="p6"><br></p>
+</body>
+</html>

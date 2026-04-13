@@ -1,0 +1,19 @@
+!path C:\Documents and Settings\Bob\Desktop\My Documents\Articles\SD\DosageTrackingSystem\classes
+
+|Import|
+|fitlibrary|
+|junk|
+
+!|Do Fixture|
+|start|junk.me|
+|function|1|argument|2||3|
+|show|function|2|argument|3||4|
+|check|player in cavern|3|true|
+|reject|this stuff|
+
+!|Do Fixture|
+|reject|this stuff|
+
+
+
+

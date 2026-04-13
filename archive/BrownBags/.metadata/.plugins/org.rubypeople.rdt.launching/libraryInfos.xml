@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<libraryInfos>
+<libraryInfo home="/opt/local" version="1.8.4">
+<bootpath>
+<entry path="/opt/local/lib/ruby/site_ruby/1.8"/>
+<entry path="/opt/local/lib/ruby/site_ruby/1.8/i686-darwin8.7.1"/>
+<entry path="/opt/local/lib/ruby/site_ruby"/>
+<entry path="/opt/local/lib/ruby/vendor_ruby/1.8"/>
+<entry path="/opt/local/lib/ruby/vendor_ruby/1.8/i686-darwin8.7.1"/>
+<entry path="/opt/local/lib/ruby/vendor_ruby"/>
+<entry path="/opt/local/lib/ruby/1.8"/>
+<entry path="/opt/local/lib/ruby/1.8/i686-darwin8.7.1"/>
+</bootpath>
+</libraryInfo>
+<libraryInfo home="/opt/local/bin" version="1.8.4">
+<bootpath>
+<entry path="/opt/local/lib/ruby/site_ruby/1.8"/>
+<entry path="/opt/local/lib/ruby/site_ruby/1.8/i686-darwin8.7.1"/>
+<entry path="/opt/local/lib/ruby/site_ruby"/>
+<entry path="/opt/local/lib/ruby/vendor_ruby/1.8"/>
+<entry path="/opt/local/lib/ruby/vendor_ruby/1.8/i686-darwin8.7.1"/>
+<entry path="/opt/local/lib/ruby/vendor_ruby"/>
+<entry path="/opt/local/lib/ruby/1.8"/>
+<entry path="/opt/local/lib/ruby/1.8/i686-darwin8.7.1"/>
+</bootpath>
+</libraryInfo>
+<libraryInfo home="/usr" version="1.8.2">
+<bootpath>
+<entry path="/usr/lib/ruby/site_ruby/1.8"/>
+<entry path="/usr/lib/ruby/site_ruby/1.8/universal-darwin8.0"/>
+<entry path="/usr/lib/ruby/site_ruby"/>
+<entry path="/usr/lib/ruby/1.8"/>
+<entry path="/usr/lib/ruby/1.8/universal-darwin8.0"/>
+</bootpath>
+</libraryInfo>
+</libraryInfos>

@@ -1,0 +1,8 @@
+!3 You cannot unregister a suit that is checked out.
+If a user has checked out a suit, then we cannot allow the suit to be unregistered.
+
+!|set suit|314159|as registered|
+|set suit|314159|as checked out to user|Bob|
+|check|unregister suit|314159|false|
+|check|count of registered suits is|1|
+|check|message|Could not unregister suit 314159.  Checked out to Bob.|was printed|true|

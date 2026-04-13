@@ -1,0 +1,15 @@
+class EmployeeReportVisitor
+  def visitHourly(hourlyEmployee)
+    name = hourlyEmployee.getName
+    hours = hourlyEmployee.getHours
+    @reportLine = "Hourly #{name} worked #{hours} hours."   
+  end
+  
+  def visitSalaried(salariedEmployee)
+    @reportLine = "Salaried #{salariedEmployee.getName} earns $#{salariedEmployee.getSalary}."
+  end
+  
+  def getReportLine 
+    @reportLine
+  end
+end

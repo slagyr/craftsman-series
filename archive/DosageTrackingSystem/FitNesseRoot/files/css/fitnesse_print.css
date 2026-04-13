@@ -1,0 +1,36 @@
+@import url("/files/css/fitnesse.css");
+
+body
+{
+}
+
+div.header
+{
+  position: relative;
+  top: 0px;
+  left: 0px;
+  height: 90px;
+  width: 100%;
+  border-bottom: solid 1px #FF8000;
+}
+
+div.sidebar
+{
+	display: none;
+}
+
+div.art_niche
+{
+}
+
+div.actions
+{
+}
+
+div.main
+{
+  position: relative;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+}

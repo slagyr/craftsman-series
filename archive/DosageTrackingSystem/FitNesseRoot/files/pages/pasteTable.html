@@ -1,0 +1,21 @@
+<html>
+<head>
+	<title>Paste a table from Excel</title>
+	<script>
+		function applyTable()
+		{
+			creator.document.f.pageContent.value += creator.translateExcelTableToFitnesseTable(document.f.tableText.value);
+			window.close(self);
+		}
+	</script>
+</head>
+<body onLoad="document.f.tableText.focus()">
+Paste a table from Microsoft Excel into the text box and<br>
+click apply to add it to the Fitnesse page.<br>
+<form name="f">
+	<textarea cols="50" rows="15" name="tableText"></textarea>
+	<br>
+	<input type="button" value="Add Table" onClick="applyTable()">
+</form>
+</body>
+</html>

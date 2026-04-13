@@ -1,0 +1,371 @@
+/**********
+
+ Global effects
+
+**********/
+
+body
+{
+  margin: 0px;
+  padding: 0px;
+  font-family: trebuchet ms, verdana, tahoma, arial, sans-serif;
+  font-size: 0.7em;
+  background-color: white;
+}
+
+a:link
+{
+  color: #2E2EB2; background: transparent;
+}
+
+a:visited
+{
+  color: #606099; background: transparent;
+}
+
+a:hover
+{
+  color: #8989D9; background: transparent;
+  text-decoration: none;
+}
+
+a:active
+{
+  color: #FF8000; background: transparent;
+}
+
+table
+{
+  background: #EEEEEE;
+  margin: 2px;
+  padding: 0px;
+  border: solid #AAAAAA;
+  border-width: 1px 0px 0px 1px;
+  font-size: 0.9em;
+}
+
+td, th
+{
+  border: solid #AAAAAA;
+  border-width: 0px 1px 1px 0px;
+  padding: 1px 3px 1px 3px;
+}
+
+h1
+{
+  font-size: 3.0em;
+  font-variant: small-caps;
+  margin: 0.5em
+}
+
+h2
+{
+  font-size: 2.2em;
+  font-variant: small-caps;
+  margin: 0.5em
+}
+
+h3
+{
+  font-size: 1.7em;
+  font-variant: small-caps;
+  margin: 0.5em
+}
+
+textarea
+{
+  width: 100%;
+}
+
+/**********
+
+ Structural
+
+**********/
+
+div.header
+{
+  margin: 0px;
+  padding: 5px;
+  position: absolute;
+  top: 0px;
+  left: 110px;
+  height: 90px;
+  width: 87%;
+  border-bottom: solid 1px #FF8000;
+}
+
+div.sidebar
+{
+  margin: 0px;
+  padding: 5px;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 95px;
+  height: 1000px;
+  border-right: dotted 1px #FF8000;
+}
+
+div.art_niche
+{
+  margin: 0px;
+  padding: 0px 0px 5px 0px;
+  position: relative;
+  top: 0px;
+  left: 0px;
+  height: 90px;
+  border-bottom: solid 1px #FF8000;
+  background-image: url("/files/images/FitNesseLogo.gif");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+div.actions
+{
+  margin: 0px;
+  padding: 0px;
+  border-top: solid 3px white;
+}
+
+div.main
+{
+  margin: 0px;
+  padding: 5px;
+  position: absolute;
+  top: 100px;
+  left: 110px;
+  width: 87%;
+}
+
+.actions a:link, .actions a:visited
+{
+  display: block;
+  margin: 0px;
+  line-height: 2.2em;
+  text-indent: 1em;
+  color: #FFF;
+  font-size: 0.8em;
+  font-weight: bold;
+  background-color: #2E2EB2;
+  text-decoration: none;
+  border: solid 1px white;
+  border-width: 0px 0px 2px 0px;
+}
+
+.actions a:hover
+{
+  color: #FF8000;
+  background-color: #606099;
+}
+
+.header a:link
+{
+  font-weight: bold;
+}
+
+/**********
+
+ Miscellaneous formatting
+
+**********/
+
+.note
+{
+  font-size: 0.75em;
+  color: #999999;
+}
+
+.page_title
+{
+  font-size: 3.0em;
+}
+
+.page_type
+{
+  font-size: 1.7em;
+  font-variant: small-caps;
+}
+
+.centered
+{
+  margin: 5px;
+  text-align: center;
+}
+
+.right
+{
+	float: right;
+}
+
+.left
+{
+	float: left;
+}
+
+.strike
+{
+  text-decoration: line-through;
+}
+
+.virtual
+{
+  background-image: url("/files/images/virtualPage.jpg");
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+.meta
+{
+	color: #BF8660;
+	font-style: italic;
+}
+
+.included, .setup, .teardown
+{
+	background: #EEEEEE;
+	margin: 5px 20px 5px 20px;
+	padding: 2px 0px 2px 10px;
+}
+
+.included
+{
+	border-left: 1px solid #8B96B9;
+}
+
+.setup
+{
+	border-left: 1px solid #DFBEA7;
+}
+
+.teardown
+{
+	border-left: 1px solid #FFE680;
+}
+
+/**********
+
+ Page Specific
+
+**********/
+
+div.edit_buttons
+{
+}
+
+div.merge_new
+{
+	float: left;
+	font-size: 1.4em;
+	width: 49%;
+}
+
+div.merge_old
+{
+	float: right;
+	font-size: 1.4em;
+	width: 49%;
+}
+
+.test_summary_1, .test_summary_2
+{
+	display: block;
+	height: 1.5em;
+	width: 100%;
+}
+
+.test_summary_1, .test_output_1
+{
+  background-color: #EFEFEF;
+}
+
+.test_summary_2, .test_output_2
+{
+  background-color: #FFFFFF;
+}
+
+.test_summary_link
+{
+  text-align: right;
+}
+
+.test_summary_results
+{
+	padding: 0px 5px 0px 5px;
+  text-align: left;
+}
+
+.suite_summary
+{
+	margin: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.test_output_1, .test_output_2
+{
+	border: solid 1px #DFD4A7;
+}
+
+.test_output_name
+{
+  margin-top: 10px;
+  background-color: #DFD4A7;
+  font-size: 1.5em;
+  text-indent: 1em;
+}
+
+.attention_label
+{
+  margin: 5px;
+  margin-left: 25%;
+  margin-right: 25%;
+  padding: 5px;
+  text-align: center;
+	border: solid red 1px;
+	background-color: #333333;
+	color: #FFFF00;
+}
+
+/**********
+
+ Used in FIT
+
+**********/
+
+.pass
+{
+  background-color: #AAFFAA;
+}
+
+.fail
+{
+  background-color: #FFAAAA;
+}
+
+.error
+{
+  background-color: #FFFFAA;
+}
+
+.ignore
+{
+  background-color: #CCCCCC;
+}
+
+.fit_stacktrace
+{
+	font-size: 0.7em;
+}
+
+.fit_label
+{
+  font-style: italic;
+  color: #C08080;
+}
+
+.fit_grey
+{
+  color: #808080;
+}

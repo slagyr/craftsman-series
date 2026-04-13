@@ -1,0 +1,908 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"
+xmlns:css="http://macVmlSchemaUri" xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta name=Title content="The Craftsman">
+<meta name=Keywords content="">
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 2008">
+<meta name=Originator content="Microsoft Word 2008">
+<link rel=File-List href="The%20Craftsman%2058%20Clean%20Code%20E2_files/filelist.xml">
+<title>The Craftsman</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>Robert C. Martin</o:Author>
+  <o:Template>Normal.dotm</o:Template>
+  <o:LastAuthor>Robert Martin</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>62</o:TotalTime>
+  <o:LastPrinted>2006-10-18T18:17:00Z</o:LastPrinted>
+  <o:Created>2009-06-06T18:06:00Z</o:Created>
+  <o:LastSaved>2009-06-06T18:06:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>1255</o:Words>
+  <o:Characters>7156</o:Characters>
+  <o:Company>Object Mentor Inc.</o:Company>
+  <o:Lines>59</o:Lines>
+  <o:Paragraphs>14</o:Paragraphs>
+  <o:CharactersWithSpaces>8788</o:CharactersWithSpaces>
+  <o:Version>12.0</o:Version>
+ </o:DocumentProperties>
+ <o:OfficeDocumentSettings>
+  <o:PixelsPerInch>96</o:PixelsPerInch>
+  <o:TargetScreenSize>800x600</o:TargetScreenSize>
+ </o:OfficeDocumentSettings>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:Zoom>125</w:Zoom>
+  <w:SpellingState>Clean</w:SpellingState>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:TrackMoves>false</w:TrackMoves>
+  <w:TrackFormatting/>
+  <w:DefaultTableStyle>Fitnesse Table</w:DefaultTableStyle>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:Compatibility>
+   <w:UseNormalStyleForList/>
+   <w:DontUseIndentAsNumberingTabStop/>
+   <w:FELineBreak11/>
+   <w:WW11IndentRules/>
+   <w:DontAutofitConstrainedTables/>
+   <w:AutofitLikeWW11/>
+   <w:HangulWidthLikeWW11/>
+  </w:Compatibility>
+ </w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" LatentStyleCount="276">
+ </w:LatentStyles>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+@font-face
+	{font-family:"Courier New";
+	panose-1:2 7 3 9 2 2 5 2 4 4;
+	mso-font-charset:0;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 0 0 0 1 0;}
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 2 1 2 1 8 4 8 7 8;
+	mso-font-charset:2;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:0 0 65536 0 -2147483648 0;}
+@font-face
+	{font-family:Verdana;
+	panose-1:2 11 6 4 3 5 4 4 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 0 0 0 1 0;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 0 0 0 1 0;}
+ /* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+h3
+	{mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	mso-outline-level:3;
+	font-size:13.5pt;
+	font-family:"Times New Roman";
+	mso-bidi-font-weight:bold;}
+p.MsoFootnoteText, li.MsoFootnoteText, div.MsoFootnoteText
+	{mso-style-noshow:yes;
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+p.MsoCommentText, li.MsoCommentText, div.MsoCommentText
+	{mso-style-noshow:yes;
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+span.MsoFootnoteReference
+	{mso-style-noshow:yes;
+	vertical-align:super;}
+span.MsoCommentReference
+	{mso-style-noshow:yes;
+	mso-ansi-font-size:8.0pt;
+	mso-bidi-font-size:8.0pt;}
+p.MsoBodyTextIndent, li.MsoBodyTextIndent, div.MsoBodyTextIndent
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:.25in;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+p.MsoBodyTextFirstIndent2, li.MsoBodyTextFirstIndent2, div.MsoBodyTextFirstIndent2
+	{mso-style-parent:"Body Text Indent";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:.25in;
+	text-indent:10.5pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+p.MsoBodyText3, li.MsoBodyText3, div.MsoBodyText3
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:8.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;
+	text-underline:single;}
+pre
+	{margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Courier New";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Courier New";}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-noshow:yes;
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:8.0pt;
+	font-family:Tahoma;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:Tahoma;}
+p.BODY3, li.BODY3, div.BODY3
+	{mso-style-name:"BODY 3";
+	mso-style-link:"BODY 3 Char";
+	margin-top:3.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-indent:.25in;
+	mso-pagination:none;
+	tab-stops:1.0in;
+	mso-layout-grid-align:none;
+	text-autospace:none;
+	font-size:10.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	color:black;}
+p.CHAPTITLE, li.CHAPTITLE, div.CHAPTITLE
+	{mso-style-name:"CHAP TITLE";
+	margin:0in;
+	margin-bottom:.0001pt;
+	text-align:right;
+	mso-line-height-alt:22.0pt;
+	mso-pagination:none;
+	mso-layout-grid-align:none;
+	text-autospace:none;
+	font-size:24.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	color:black;
+	font-weight:bold;
+	mso-bidi-font-weight:normal;}
+p.QUOTES, li.QUOTES, div.QUOTES
+	{mso-style-name:QUOTES;
+	margin:0in;
+	margin-bottom:.0001pt;
+	text-align:right;
+	mso-pagination:none;
+	mso-layout-grid-align:none;
+	text-autospace:none;
+	font-size:10.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	color:black;
+	font-style:italic;
+	mso-bidi-font-style:normal;}
+p.Code, li.Code, div.Code
+	{mso-style-name:Code;
+	mso-style-parent:"BODY 3";
+	mso-style-link:"Code Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	tab-stops:.25in 1.0in;
+	mso-layout-grid-align:none;
+	text-autospace:none;
+	font-size:9.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Courier New";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Courier New";
+	color:black;
+	mso-no-proof:yes;}
+p.ModCode, li.ModCode, div.ModCode
+	{mso-style-name:ModCode;
+	mso-style-parent:Code;
+	mso-style-link:"ModCode Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	tab-stops:.25in 1.0in;
+	mso-layout-grid-align:none;
+	text-autospace:none;
+	font-size:9.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Courier New";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Courier New";
+	color:red;
+	font-weight:bold;
+	mso-bidi-font-weight:normal;
+	mso-no-proof:yes;}
+span.BODY3Char
+	{mso-style-name:"BODY 3 Char";
+	mso-style-locked:yes;
+	mso-style-link:"BODY 3";
+	mso-bidi-font-size:12.0pt;
+	color:black;
+	mso-ansi-language:EN-US;
+	mso-fareast-language:EN-US;}
+span.CodeChar
+	{mso-style-name:"Code Char";
+	mso-style-locked:yes;
+	mso-style-parent:"BODY 3 Char";
+	mso-style-link:Code;
+	mso-ansi-font-size:9.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Courier New";
+	mso-ascii-font-family:"Courier New";
+	mso-hansi-font-family:"Courier New";
+	mso-bidi-font-family:"Courier New";
+	color:black;
+	mso-ansi-language:EN-US;
+	mso-fareast-language:EN-US;
+	mso-no-proof:yes;}
+span.ModCodeChar
+	{mso-style-name:"ModCode Char";
+	mso-style-locked:yes;
+	mso-style-parent:"Code Char";
+	mso-style-link:ModCode;
+	mso-ansi-font-size:9.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Courier New";
+	mso-ascii-font-family:"Courier New";
+	mso-hansi-font-family:"Courier New";
+	mso-bidi-font-family:"Courier New";
+	color:red;
+	mso-ansi-language:EN-US;
+	mso-fareast-language:EN-US;
+	font-weight:bold;
+	mso-bidi-font-weight:normal;
+	mso-no-proof:yes;}
+span.meta
+	{mso-style-name:meta;}
+span.fitlabel
+	{mso-style-name:fit_label;
+	font-family:Verdana;
+	mso-ascii-font-family:Verdana;
+	mso-hansi-font-family:Verdana;}
+span.StylefitlabelVerdana9ptItalicGray-80
+	{mso-style-name:"Style fit_label + Verdana 9 pt Italic Gray-80%";
+	mso-style-parent:fit_label;
+	mso-ansi-font-size:9.0pt;
+	mso-bidi-font-size:9.0pt;
+	font-family:"Times New Roman";
+	mso-ascii-font-family:"Times New Roman";
+	mso-hansi-font-family:"Times New Roman";
+	color:gray;
+	font-style:italic;}
+p.Pattern, li.Pattern, div.Pattern
+	{mso-style-name:Pattern;
+	mso-style-parent:"BODY 3";
+	mso-style-link:"Pattern Char";
+	margin-top:3.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-indent:.25in;
+	mso-pagination:none;
+	tab-stops:1.0in;
+	mso-layout-grid-align:none;
+	text-autospace:none;
+	font-size:10.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	font-variant:small-caps;
+	color:black;}
+span.PatternChar
+	{mso-style-name:"Pattern Char";
+	mso-style-locked:yes;
+	mso-style-parent:"BODY 3 Char";
+	mso-style-link:Pattern;
+	mso-bidi-font-size:12.0pt;
+	font-variant:small-caps;
+	color:black;
+	mso-ansi-language:EN-US;
+	mso-fareast-language:EN-US;}
+span.fitgrey
+	{mso-style-name:fit_grey;}
+span.body
+	{mso-style-name:body;}
+span.pagetitle
+	{mso-style-name:page_title;}
+span.SpellE
+	{mso-style-name:"";
+	mso-spl-e:yes;}
+span.GramE
+	{mso-style-name:"";
+	mso-gram-e:yes;}
+ /* Page Definitions */
+@page
+	{mso-footnote-separator:url(":The Craftsman 58 Clean Code E2_files:header.htm") fs;
+	mso-footnote-continuation-separator:url(":The Craftsman 58 Clean Code E2_files:header.htm") fcs;
+	mso-endnote-separator:url(":The Craftsman 58 Clean Code E2_files:header.htm") es;
+	mso-endnote-continuation-separator:url(":The Craftsman 58 Clean Code E2_files:header.htm") ecs;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+@list l0
+	{mso-list-id:31925269;
+	mso-list-template-ids:-481131650;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l1
+	{mso-list-id:563413980;
+	mso-list-template-ids:1622043126;}
+@list l1:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l2
+	{mso-list-id:565381069;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1645571134 67698705 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l2:level1
+	{mso-level-text:"%1\)";
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3
+	{mso-list-id:646782512;
+	mso-list-template-ids:-1182737964;}
+@list l3:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l4
+	{mso-list-id:970749122;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-919546364 67698703 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l4:level1
+	{mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5
+	{mso-list-id:1060053805;
+	mso-list-template-ids:1625817432;}
+@list l5:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l6
+	{mso-list-id:1128546385;
+	mso-list-template-ids:1040341674;}
+@list l6:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l7
+	{mso-list-id:1578706892;
+	mso-list-type:hybrid;
+	mso-list-template-ids:82345816 954136472 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l7:level1
+	{mso-level-start-at:22;
+	mso-level-number-format:bullet;
+	mso-level-text:-;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+@list l7:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";
+	mso-bidi-font-family:Arial;}
+@list l8
+	{mso-list-id:1647053381;
+	mso-list-template-ids:1429089694;}
+@list l8:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l9
+	{mso-list-id:1875189953;
+	mso-list-template-ids:-2056903076;}
+@list l9:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l10
+	{mso-list-id:1916551088;
+	mso-list-template-ids:-352012062;}
+@list l10:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l11
+	{mso-list-id:2047681249;
+	mso-list-template-ids:-1289184880;}
+@list l11:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l12
+	{mso-list-id:2095591514;
+	mso-list-type:hybrid;
+	mso-list-template-ids:340670874 67698705 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l12:level1
+	{mso-level-text:"%1\)";
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+table.MsoNormalTable
+	{mso-style-name:"Table Normal";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0in 5.4pt 0in 5.4pt;
+	mso-para-margin:0in;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";}
+table.FitnesseTable
+	{mso-style-name:"Fitnesse Table";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-padding-alt:0in 5.4pt 0in 5.4pt;
+	mso-tstyle-shading:#E0E0E0;
+	mso-para-margin:0in;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:9.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-ascii-font-family:Verdana;
+	mso-hansi-font-family:Verdana;}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="2050" fillcolor="white">
+  <v:fill color="white"/>
+  <v:shadow color="gray" opacity="1" offset="2pt,2pt"/>
+ </o:shapedefaults></xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body lang=EN-US link=blue vlink=purple style='tab-interval:.5in'>
+
+<div class=Section1>
+
+<p class=CHAPTITLE style='margin-top:34.0pt;margin-right:0in;margin-bottom:
+34.0pt;margin-left:0in'><span style='mso-no-proof:yes'>The Craftsman: 58<br>
+Clean Code: E2<br>
+One Step Test<o:p></o:p></span></p>
+
+<p class=QUOTES><span style='font-style:normal;mso-no-proof:yes'>Robert C.
+Martin<o:p></o:p></span></p>
+
+<p class=QUOTES><span style='font-style:normal;mso-no-proof:yes'>6 June 2009<o:p></o:p></span></p>
+
+<p class=QUOTES><span style='mso-no-proof:yes'><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><o:p></o:p></span></p>
+
+<div style='mso-element:para-border-div;border:none;border-bottom:solid windowtext 1.0pt;
+mso-border-bottom-alt:solid windowtext .75pt;padding:0in 0in 1.0pt 0in'>
+
+<p class=ModCode style='border:none;mso-border-bottom-alt:solid windowtext .75pt;
+padding:0in;mso-padding-alt:0in 0in 1.0pt 0in'><o:p>&nbsp;</o:p></p>
+
+</div>
+
+<p class=BODY3 style='text-indent:0in'><i style='mso-bidi-font-style:normal'>August
+11, 1945, 06:52:00 <o:p></o:p></i></p>
+
+<p class=BODY3 style='text-indent:0in'><i style='mso-bidi-font-style:normal'>A
+brilliant hole was torn in the sky over the island.<span style="mso-spacerun:
+yes">&nbsp; </span>It grew with insane speed both in size and intensity,
+indiscriminately devouring everything in its path.<span style="mso-spacerun:
+yes">&nbsp; </span>Edward Teller looked out from the window of his observation
+plane as the tiny atoll was consumed by the power he had stolen from the core
+of the Sun.<span style="mso-spacerun: yes">&nbsp; </span>He watched the shock
+wave rip across the surface of the water and part the clouds overhead and he
+could envision the spherical envelope of overpressure as it expanded at many
+times the speed of sound. <o:p></o:p></i></p>
+
+<p class=BODY3 style='text-indent:0in'><i style='mso-bidi-font-style:normal'>No
+mere atomic bomb could have wrought this fearful madness and overwhelming
+destruction.<span style="mso-spacerun: yes">&nbsp; </span>This was an explosive
+that Teller called “The Super”.<span style="mso-spacerun: yes">&nbsp; </span>It
+used a small atomic bomb merely as its trigger, causing Hydrogen to fuse into
+Helium, and thereby unleashing the very power of the stars on Earth.<o:p></o:p></i></p>
+
+<p class=BODY3 style='text-indent:0in'><i style='mso-bidi-font-style:normal'>“And”,
+thought Teller, “how appropriate that we should use that power to take us to
+the stars.”<o:p></o:p></i></p>
+
+<div style='mso-element:para-border-div;border:none;border-bottom:solid windowtext 1.0pt;
+mso-border-bottom-alt:solid windowtext .75pt;padding:0in 0in 2.0pt 0in'>
+
+<p class=BODY3 style='text-indent:0in;border:none;mso-border-bottom-alt:solid windowtext .75pt;
+padding:0in;mso-padding-alt:0in 0in 2.0pt 0in'><i style='mso-bidi-font-style:
+normal'><o:p>&nbsp;</o:p></i></p>
+
+</div>
+
+<p class=BODY3 style='text-indent:0in'><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=BODY3><i>Wed, 14 Mar 2002, 12:22<o:p></o:p></i></p>
+
+<p class=BODY3>After spending the morning pairing together, Avery and I went to
+the galley to get some lunch.<span style="mso-spacerun: yes">&nbsp;
+</span>After picking up our <span class=SpellE>PB&amp;Js</span> and Hot Dogs we
+walked through the lunchroom and spotted Jasmine, Jean, and Jerry in the midst
+of an animated conversation.<span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;
+</span></p>
+
+<p class=BODY3>Jasmine stared a Jean with eyes wide as she asked:<span
+style="mso-spacerun: yes">&nbsp; </span>“You mean you didn’t used to write
+tests at all?” </p>
+
+<p class=BODY3>“Oh my goodness, no my dear!<span style="mso-spacerun:
+yes">&nbsp; </span>We used to just write the code.<span style="mso-spacerun:
+yes">&nbsp; </span>We didn’t really think about tests in those days.”</p>
+
+<p class=BODY3>“Then how did you know your code worked?” asked Jerry.</p>
+
+<p class=BODY3>“We didn’t Jerry dear.<span style="mso-spacerun: yes">&nbsp;
+</span>We just sort of <i style='mso-bidi-font-style:normal'>hoped</i> that it
+did.”</p>
+
+<p class=BODY3>“You didn’t test at <i style='mso-bidi-font-style:normal'>all</i>?
+I yammered.</p>
+
+<p class=BODY3>“Hello Alphonse dear.<span style="mso-spacerun: yes">&nbsp;
+</span>Hello Avery. Sit down boys.<span style="mso-spacerun: yes">&nbsp;
+</span>Sit down.<span style="mso-spacerun: yes">&nbsp; </span>We’re having such
+a lovely discussion.<span style="mso-spacerun: yes">&nbsp; </span>Don’t you
+boys want something better to eat than sandwiches and wienies?<span
+style="mso-spacerun: yes">&nbsp; </span>Growing boys like you should be eating
+hot meals that stick to your ribs, not this candy-food.”</p>
+
+<p class=BODY3>“We’ll get a good dinner, Jean, promise.<span
+style="mso-spacerun: yes">&nbsp; </span>But didn’t you?<span
+style="mso-spacerun: yes">&nbsp; </span>Test, I mean?”</p>
+
+<p class=BODY3>“Test?<span style="mso-spacerun: yes">&nbsp; </span>Oh yes of
+course we did.<span style="mso-spacerun: yes">&nbsp; </span>But not like we do
+now.<span style="mso-spacerun: yes">&nbsp; </span>What we’d do is just sort of
+run the program and see if it worked. “</p>
+
+<p class=BODY3>“But there are so many bugs you just can’t find that way.”
+Jasmine exclaimed. “You must have had a horrible defect count.”</p>
+
+<p class=BODY3>“Yes, Jasmine dear, it was certainly harder to get our programs
+correct.<span style="mso-spacerun: yes">&nbsp; </span>But you have to remember
+that our programs were much smaller in those days, and far less ambitious.<span
+style="mso-spacerun: yes">&nbsp; </span>Back when I started programming, a thousand
+lines was a big program.<span style="mso-spacerun: yes">&nbsp; </span>And back
+then we did something that you children don’t even know about.<span
+style="mso-spacerun: yes">&nbsp; </span>We <i style='mso-bidi-font-style:normal'>desk-checked</i>
+our code.”</p>
+
+<p class=BODY3>“You what?” Avery mumbled through a mouthful of Peanut Butter
+and Jelly.</p>
+
+<p class=BODY3>“We desk-checked, Avery dear.<span style="mso-spacerun:
+yes">&nbsp; </span>We read through our code over and over again, pretending to
+be the computer executing it.<span style="mso-spacerun: yes">&nbsp; </span>We’d
+write down the values of the variables on paper, and step through the program
+one line at a time.”</p>
+
+<p class=BODY3>“Without a computer?” I <span class=GramE>choked,</span> little
+bits of hot-dog spluttering out of my mouth.</p>
+
+<p class=BODY3>“Yes, dear, without a computer.<span style="mso-spacerun:
+yes">&nbsp; </span>It took a long time and a lot of work, but then we had nothing
+much better to do.<span style="mso-spacerun: yes">&nbsp; </span>You see<span
+class=GramE>,</span> it took all day to compile our programs.”</p>
+
+<p class=BODY3>Jasmine nearly sprayed the drink of water she was sipping.<span
+style="mso-spacerun: yes">&nbsp; </span>“What?<span style="mso-spacerun:
+yes">&nbsp; </span>It took a <i style='mso-bidi-font-style:normal'>day</i> to
+run a compile?”</p>
+
+<p class=BODY3>“Yes, dear, that’s right.<span style="mso-spacerun: yes">&nbsp;
+</span>You see we only had one computer and…”</p>
+
+<p class=BODY3>“ONLY ONE COMPUTER?” Several of us exclaimed at the same time.</p>
+
+<p class=BODY3>“Yes, yes, dears.<span style="mso-spacerun: yes">&nbsp;
+</span>They were very expensive in those days, and so we had to share it.”</p>
+
+<p class=BODY3>“You mean you passed it from person to person?”</p>
+
+<p class=BODY3>“Oh, no dear.<span style="mso-spacerun: yes">&nbsp; </span>The
+computer was locked in a huge room.<span style="mso-spacerun: yes">&nbsp;
+</span>Only <i style='mso-bidi-font-style:normal'>computer operators</i> could
+enter that room.<span style="mso-spacerun: yes">&nbsp; </span>We’d hand them
+our programs and they’d put them in a queue, and compile and run them for
+us.<span style="mso-spacerun: yes">&nbsp; </span></p>
+
+<p class=BODY3>“You’d <i style='mso-bidi-font-style:normal'>hand</i> them your
+programs?”</p>
+
+<p class=BODY3>“That’s right, Alphonse.<span style="mso-spacerun: yes">&nbsp;
+</span>We’d punch them onto cards, and then hand the deck of cards to the
+operators.”</p>
+
+<p class=BODY3>“And they’d put them in a queue?”</p>
+
+<p class=BODY3>“Well, actually Avery dear, it was more like a big pile.<span
+style="mso-spacerun: yes">&nbsp; </span>They let me in the computer room from
+time to time and I’d see all the decks of cards lined up on a big shelf.<span
+style="mso-spacerun: yes">&nbsp; </span>When the computer was done with one job,
+the operator would pick up the next deck on the shelf and load it.”</p>
+
+<p class=BODY3>“Wow, talk about stone knives and bearskins!” Avery mumbled. </p>
+
+<p class=BODY3>“Yes, Avery dear, I’m sure it sounds very primitive to you
+youngsters, but it was the cutting edge back in those days.<span
+style="mso-spacerun: yes">&nbsp; </span>And it got this ship built and
+launched.”</p>
+
+<p class=BODY3>We all sat in silence for a moment considering how much was done
+with so little, and how much more we have now.</p>
+
+<p class=BODY3>“But Jean,” Jasmine objected. “Desk checking couldn’t have been
+very accurate.<span style="mso-spacerun: yes">&nbsp; </span>You must have had
+lots of defects.<span style="mso-spacerun: yes">&nbsp; </span>And with a 24
+hour compile time, it must have taken forever to get a program done.”</p>
+
+<p class=BODY3>“Well Jasmine dear, now that you say it that way, I guess you’re
+right.<span style="mso-spacerun: yes">&nbsp; </span>But we didn’t think about
+it like that.<span style="mso-spacerun: yes">&nbsp; </span>We knew that a 1<span
+class=GramE>,000 line</span> program was going to take several days to get
+working.<span style="mso-spacerun: yes">&nbsp; </span>While we were waiting for
+our compiles, we’d pore over the code looking for defects.<span
+style="mso-spacerun: yes">&nbsp; </span>We found most of them that way.”</p>
+
+<p class=BODY3>“But didn’t you write any big systems?<span style="mso-spacerun:
+yes">&nbsp; </span>Didn’t you need to have tests that you could run to make
+sure you hadn’t broken anything?”</p>
+
+<p class=BODY3>“Yes, Jerry dear, but that came later.<span style="mso-spacerun:
+yes">&nbsp; </span>In the early days it took so long to compile and run a
+program that nobody even considered compiling and writing tests at the same
+time.”</p>
+
+<p class=BODY3>“So when did that start?”</p>
+
+<p class=BODY3>“Oh, I’d say about 20 years ago, long after we got under
+way.<span style="mso-spacerun: yes">&nbsp; </span>The computers had gotten fast
+and plentiful enough that we could spend a lot of time with them.<span
+style="mso-spacerun: yes">&nbsp; </span>Once we could use the computer to check
+our code, we stopped desk-checking.”</p>
+
+<p class=BODY3>“So what did those early tests look like?<span
+style="mso-spacerun: yes">&nbsp; </span>Were you doing Test Driven Development
+right away?”</p>
+
+<p class=BODY3>“Oh, no dear.<span style="mso-spacerun: yes">&nbsp; </span>That
+didn’t start until about 10 years ago.”</p>
+
+<p class=BODY3>Even Jasmine and Jerry were amazed.<span style="mso-spacerun:
+yes">&nbsp; </span>We all thought that these disciplines had been handed down
+for decades.</p>
+
+<p class=BODY3>“What did they look like?<span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span>Well dears, their wasn’t any rhyme nor reason to
+them.<span style="mso-spacerun: yes">&nbsp; </span>They were just bits of code
+that we wrote to help us test our programs.<span style="mso-spacerun:
+yes">&nbsp; </span>Often they were nothing more than simple user interfaces for
+bits of our code.<span style="mso-spacerun: yes">&nbsp; </span>They didn’t
+really test anything, they just made it easier for us to manually test them.”</p>
+
+<p class=BODY3>“Let me give you an example.” Jean continued. “Once I had to
+write a timing queue.<span style="mso-spacerun: yes">&nbsp; </span>You’d send a
+job to this queue along with an integer that told the timing queue the number
+of milliseconds to wait before executing the job.<span style="mso-spacerun:
+yes">&nbsp; </span>In order to test this, I wrote a simple little console
+application that listened at the keyboard.<span style="mso-spacerun:
+yes">&nbsp; </span>Every time I hit a key it would schedule a job to echo that character
+10 seconds later.<span style="mso-spacerun: yes">&nbsp; </span>I tested my
+queue by tapping keys to the rhythm of a song I knew.<span style="mso-spacerun:
+yes">&nbsp; </span>Ten seconds later the characters would reappear in the same
+rhythm, and I’d sing the song along with them to make sure they were showing up
+at the right time.”</p>
+
+<p class=BODY3>We were aghast.<span style="mso-spacerun: yes">&nbsp; </span>All
+of us stared at her as if she were a stranger to us.<span style="mso-spacerun:
+yes">&nbsp; </span>This was <i style='mso-bidi-font-style:normal'>Jean</i>!<span
+style="mso-spacerun: yes">&nbsp; </span><span class=GramE>The same Jean who was
+such a testing fanatic.</span><span style="mso-spacerun: yes">&nbsp; </span><span
+class=GramE>The same Jean who would call us on the carpet if we forgot a test.</span><span
+style="mso-spacerun: yes">&nbsp; </span></p>
+
+<p class=BODY3>“Wow.” I said.<span style="mso-spacerun: yes">&nbsp;
+</span>Everyone else nodded.</p>
+
+<p class=BODY3>Jasmine persisted in her questioning.<span style="mso-spacerun:
+yes">&nbsp; </span>“Did you run that…<span class=SpellE>er</span>…test every
+time you changed the system?”</p>
+
+<p class=BODY3>Jean’s face broke into a big smile.<span style="mso-spacerun:
+yes">&nbsp; </span>“Oh, no, Jasmine dear.<span style="mso-spacerun: yes">&nbsp;
+</span>Usually we just threw that test code away.”</p>
+
+<p class=BODY3>“You threw…<span class=GramE>”<span style="mso-spacerun:
+yes">&nbsp; </span></span>My mouth was hanging open.<span style="mso-spacerun:
+yes">&nbsp; </span>I couldn’t believe what I was hearing.<span
+style="mso-spacerun: yes">&nbsp; </span></p>
+
+<p class=BODY3>“Yes, you children really are fortunate to be working
+today.<span style="mso-spacerun: yes">&nbsp; </span>All you boys and girls have
+to do is write your tests and click a little green button whenever you want to
+run them.<span style="mso-spacerun: yes">&nbsp; </span>And you know in seconds
+if the changes you just made broke anything in the system.<span
+style="mso-spacerun: yes">&nbsp; </span>Back <span class=GramE>then,</span> we
+just didn’t have the computer resources, or the understanding, to do those
+things.<span style="mso-spacerun: yes">&nbsp; </span></p>
+
+<p class=BODY3>“But then how did you learn to do TDD?”</p>
+
+<p class=BODY3>Jean paused and hung her head for a moment.<span
+style="mso-spacerun: yes">&nbsp; </span>It was as if the air had suddenly
+chilled.<span style="mso-spacerun: yes">&nbsp; </span>Then Jean looked at me
+with an expression I couldn’t read.<span style="mso-spacerun: yes">&nbsp;
+</span>It was somewhere between pride, reverence, and sadness. </p>
+
+<p class=BODY3>“Mr. C taught us these disciplines dear; over a decade ago.</p>
+
+<p class=BODY3>Jean’s mood had changed.<span style="mso-spacerun: yes">&nbsp;
+</span>She clearly didn’t want to continue this conversation.<span
+style="mso-spacerun: yes">&nbsp; </span>We all excused ourselves and went back
+to work.<span style="mso-spacerun: yes">&nbsp; </span>When I got back to my workstation
+I pulled up Mr. C’s rules.<span style="mso-spacerun: yes">&nbsp; </span>And
+while I read, I wondered just what had happened over a decade ago.<span
+class=body><o:p></o:p></span></p>
+
+<p class=BODY3 style='text-indent:0in'><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=BODY3 style='margin-top:3.0pt;margin-right:.5in;margin-bottom:0in;
+margin-left:.5in;margin-bottom:.0001pt;text-indent:0in'><span class=body><b
+style='mso-bidi-font-weight:normal'>E2: Tests Require More than One Step<o:p></o:p></b></span></p>
+
+<p class=BODY3 style='margin-top:3.0pt;margin-right:.5in;margin-bottom:0in;
+margin-left:.5in;margin-bottom:.0001pt;text-indent:0in'><span class=body>You
+should be able to run <i style='mso-bidi-font-style:normal'>all</i> the unit
+tests with just one command.<span style="mso-spacerun: yes">&nbsp; </span>In
+the best case you can run all the tests by clicking on one button in your
+IDE.<span style="mso-spacerun: yes">&nbsp; </span>In the worst case you should
+be able to issue a single simple command in a shell.<span style="mso-spacerun:
+yes">&nbsp; </span>Being able to run all the tests is so fundamental and so
+important that it should be quick, easy, and obvious to do. <o:p></o:p></span></p>
+
+</div>
+
+</body>
+
+</html>

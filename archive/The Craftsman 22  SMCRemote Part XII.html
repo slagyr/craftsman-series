@@ -1,0 +1,294 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>The Craftsman</title>
+  <meta name="Author" content="Robert C. Martin">
+  <meta name="LastAuthor" content="rcm">
+  <meta name="Company" content="Object Mentor Inc.">
+  <meta name="CreationTime" content="2004-01-08T15:02:00Z">
+  <meta name="ModificationTime" content="2004-01-08T15:02:00Z">
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.4">
+  <style type="text/css">
+    p.p1 {margin: 34.0px 0.0px 34.0px 0.0px; text-align: right; line-height: 22.0px; font: 24.0px 'Times New Roman'; color: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: right; font: 10.0px 'Times New Roman'; color: #000000}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: right; font: 10.0px 'Times New Roman'; color: #000000; min-height: 11.0px}
+    p.p4 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 12.0px 'Times New Roman'; color: #000000; min-height: 15.0px}
+    p.p5 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 10.0px 'Times New Roman'; color: #000000}
+    p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #ff0000; min-height: 10.0px}
+    p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #000000; min-height: 10.0px}
+    p.p8 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #000000}
+    p.p9 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 10.0px 'Times New Roman'; color: #000000; min-height: 11.0px}
+    p.p10 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #ff0000}
+    p.p11 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; font: 10.0px 'Times New Roman'; color: #000000; min-height: 11.0px}
+    p.p12 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: center; text-indent: 18.0px; font: 10.0px 'Times New Roman'; color: #000000}
+    p.p13 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: center; text-indent: 18.0px; font: 10.0px 'Times New Roman'; color: #000000; min-height: 11.0px}
+    span.s1 {font: 9.0px 'Courier New'}
+    span.s2 {color: #ff0000}
+    span.s3 {color: #000000}
+  </style>
+</head>
+<body>
+<p class="p1"><b>The Craftsman: 22<br>
+SMCRemote Part XII<br>
+Bug Eye.</b></p>
+<p class="p2">Robert C. Martin</p>
+<p class="p2">8 January 2004</p>
+<p class="p3"><i></i><br></p>
+<p class="p4"><br></p>
+<p class="p5"><i>...Continued from last month.<span class="Apple-converted-space">  </span>You can download last month's code from:</i></p>
+<p class="p5"><i>w www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_21_Patchwork.zip</i></p>
+<p class="p6"><b></b><br></p>
+<p class="p7"><br></p>
+<p class="p5">Jean invited me join her in the journeyman’s lounge, but I needed to clear my head.<span class="Apple-converted-space">  </span>So I excused myself and went out to an observation bubble.<span class="Apple-converted-space">  </span>The starbow was a brilliant stripe of color painted across the heavens.<span class="Apple-converted-space">  </span>It was a concentric with our ship, and so always appeared below us whenever we looked down through the transparent floor of the bubble.<span class="Apple-converted-space">  </span>The ship’s rotation made the starbow look like a river of colored stars slowly streaming under the floor.</p>
+<p class="p5">It was hard for me to believe that I had just met Jean for the first time this morning.<span class="Apple-converted-space">  </span>Somehow it seemed like a much longer time.<span class="Apple-converted-space">  </span>As I looked back on that time I realized that in the few hours we spent together we got quite a bit done; and yet through it all I had felt so <i>frustrated</i>.<span class="Apple-converted-space">  </span>Somehow the way she worked made me feel like were moving so slowly.<span class="Apple-converted-space">  </span>Jean seemed to think that moving slowly was a good thing.<span class="Apple-converted-space">  </span>She had given me more than one lecture about taking the time and care to build the best software we can.<span class="Apple-converted-space">  </span>I couldn’t disagree with what she was saying, and I was frankly impressed by how much we had really gotten done today, and yet it still felt too slow.</p>
+<p class="p5">I guess, during my classes in school, I had gotten used to writing code quickly and spending lots of time debugging.<span class="Apple-converted-space">  </span>Somehow the debugging didn’t seem slow to me.<span class="Apple-converted-space">  </span>Somehow it felt like I was going fast.<span class="Apple-converted-space">  </span>But when I worked with Jerry, Jasmine, and Jean we wrote our code much more slowly. And we wrote all those tests that seemed to take such a long time.<span class="Apple-converted-space">  </span>We hadn’t spent <i>any</i> time debugging so far; and yet somehow that didn’t make it <i>feel</i> faster.<span class="Apple-converted-space">  </span>It probably <i>was</i> faster, but it felt ponderous. <span class="Apple-converted-space"> </span></p>
+<p class="p5">As I took the turbo back up to our lab, I resolved to stop feeling frustrated.<span class="Apple-converted-space">  </span>Our pace was good, our quality was high, and my feelings of frustration were just old baggage that I needed to get rid of.</p>
+<p class="p5">When I got to the lab a fellow about my age was sitting in my seat.<span class="Apple-converted-space">  </span>There was no sign of Jean.</p>
+<p class="p5">“Hello.” I said.<span class="Apple-converted-space">  </span>“Can I help you?”</p>
+<p class="p5">“Uh… hi….uh, I’m Avery.<span class="Apple-converted-space">  </span>Jean said I should work with you for the rest of the day.”</p>
+<p class="p5">“Oh.<span class="Apple-converted-space">  </span>She did? Uh…”</p>
+<p class="p5">“Yeah, she said you were supposed to show me how to write unit tests.”</p>
+<p class="p5">“Oh…uh…Really?<span class="Apple-converted-space">  </span>Don’t you know?”</p>
+<p class="p5">“Yeah, I know…uh…Jason fired me.”</p>
+<p class="p5">“Jason was your Journeyman?<span class="Apple-converted-space">  </span>He <i>fired</i> you?”</p>
+<p class="p5">“Yeah…uh…Not really, he just asked Jean if he could stop working with me, so Jean told me to work with you for today.”</p>
+<p class="p5">“Why did Jason <i>do</i> that?”</p>
+<p class="p5">“I worked through a break while Jason was gone, and wrote a whole bunch of code without any tests.<span class="Apple-converted-space">  </span>When he came back he got all upset and told me to delete it.<span class="Apple-converted-space">  </span>I got mad back at him and told him I wouldn’t delete it.<span class="Apple-converted-space">  </span>So he just left.”</p>
+<p class="p5">I felt a bit sheepish.<span class="Apple-converted-space">  </span>Did everybody go through something like this?<span class="Apple-converted-space">  </span>“He just left?” I asked.</p>
+<p class="p5">“Yeah, he got all bug-eyed and red in the face, and then just walked out of our lab.<span class="Apple-converted-space">  </span>Next thing I know Jean is telling me to work with you while she finds me a new journeyman.<span class="Apple-converted-space">  </span>She said you’d understand.”</p>
+<p class="p5">Now I felt even more sheepish.<span class="Apple-converted-space">  </span>“Uh, yeah, I guess I do.<span class="Apple-converted-space">  </span>When did you start your apprenticeship?”</p>
+<p class="p5">“Last week, same as you.<span class="Apple-converted-space">  </span>I worked with Jimmy, and Joseph last week, and with Jason today.<span class="Apple-converted-space">  </span>I got along OK with the other two, but there was just something about Jason that set me off.<span class="Apple-converted-space">  </span>I guess I set him off too.”</p>
+<p class="p5">“I guess that happens sometimes.<span class="Apple-converted-space">  </span>Shall we get to work?”</p>
+<p class="p5">“Why not?”</p>
+<p class="p5">I told him about the <span class="s1">SMCRemote</span> project.<span class="Apple-converted-space">  </span>I explained what Jean and I had been up to for the last few hours.<span class="Apple-converted-space">  </span>I told him about the client software that we had gotten working this morning and the server software that Jean and I hade been putting together since then.<span class="Apple-converted-space">  </span>When I finished he said: “It sounds like you are about ready to have the server run a compile.”</p>
+<p class="p5">“Yes, I think we are.<span class="Apple-converted-space">  </span>Tell you what, if I write the test, will you make it pass?”</p>
+<p class="p5">“Sure, why not.<span class="Apple-converted-space">  </span>I guess I’m going to have to get used to this testing stuff.”</p>
+<p class="p5">“Yes, I think you are.<span class="Apple-converted-space">  </span>OK, so here’s the test I’m thinking of.”</p>
+<p class="p7"><br></p>
+<p class="p8"><span class="Apple-converted-space">  </span>public void testCompileIsRunInEmptyDirectory() throws Exception {</p>
+<p class="p8"><span class="Apple-converted-space">    </span>File dummy = new File("dummyFile");</p>
+<p class="p8"><span class="Apple-converted-space">    </span>dummy.createNewFile();</p>
+<p class="p8"><span class="Apple-converted-space">    </span>CompileFileTransaction cft = new CompileFileTransaction("dummyFile");</p>
+<p class="p8"><span class="Apple-converted-space">    </span>dummy.delete();</p>
+<p class="p7"><br></p>
+<p class="p8"><span class="Apple-converted-space">    </span>CompilerResultsTransaction crt = SMCRemoteServer.compile(cft, "ls &gt;files");</p>
+<p class="p7"><br></p>
+<p class="p8"><span class="Apple-converted-space">    </span>File files = new File("files");</p>
+<p class="p8"><span class="Apple-converted-space">    </span>assertFalse(files.exists());</p>
+<p class="p7"><br></p>
+<p class="p8"><span class="Apple-converted-space">    </span>crt.write();</p>
+<p class="p8"><span class="Apple-converted-space">    </span>assertTrue(files.exists());</p>
+<p class="p7"><br></p>
+<p class="p8"><span class="Apple-converted-space">    </span>BufferedReader reader = new BufferedReader(new FileReader(files));</p>
+<p class="p8"><span class="Apple-converted-space">    </span>HashSet lines = new HashSet();</p>
+<p class="p8"><span class="Apple-converted-space">    </span>String line;</p>
+<p class="p8"><span class="Apple-converted-space">    </span>while ((line = reader.readLine()) != null) {</p>
+<p class="p8"><span class="Apple-converted-space">      </span>lines.add(line);</p>
+<p class="p8"><span class="Apple-converted-space">    </span>}</p>
+<p class="p8"><span class="Apple-converted-space">    </span>reader.close();</p>
+<p class="p8"><span class="Apple-converted-space">    </span>files.delete();</p>
+<p class="p7"><br></p>
+<p class="p8"><span class="Apple-converted-space">    </span>assertEquals(2, lines.size());</p>
+<p class="p8"><span class="Apple-converted-space">    </span>assertTrue(lines.contains("files"));</p>
+<p class="p8"><span class="Apple-converted-space">    </span>assertTrue(lines.contains("dummyFile"));</p>
+<p class="p8"><span class="Apple-converted-space">  </span>}</p>
+<p class="p7"><br></p>
+<p class="p5">“Yikes!” said Avery.<span class="Apple-converted-space">  </span>“OK, let me see if I understand this.<span class="Apple-converted-space">  </span>You create a empty dummy file and load it into a <span class="s1">CompileFileTransaction</span>.<span class="Apple-converted-space">  </span>Then you ‘compile’ it but use a ‘<span class="s1">ls &gt;files</span>’ command instead of the normal compile command.<span class="Apple-converted-space">  </span>You expect the compile function to return a <span class="s1">CompilerResultsTransaction</span>.<span class="Apple-converted-space">  </span>You expect that transaction to have the file that contains the output of the ‘<span class="s1">ls</span>’ command.<span class="Apple-converted-space">  </span>You read that file and make sure that the ‘<span class="s1">ls</span>’ command saw nothing but the <span class="s1">dummyFile</span> and the <span class="s1">files</span> file.<span class="Apple-converted-space">  </span>I guess that proves that the compile was run in a directory whose sole contents was the <span class="s1">dummyFile</span>.”</p>
+<p class="p5">This Avery character was no fool.<span class="Apple-converted-space">  </span>“Yes, that’s how I see the test working.<span class="Apple-converted-space">  </span>Can you make it pass?”</p>
+<p class="p5">“Jimmy told me you should always make the test fail before you try to make it pass.<span class="Apple-converted-space">  </span>He said to do the easiest thing that would make the test fail.<span class="Apple-converted-space">  </span>So, I guess something like this.”</p>
+<p class="p9"><br></p>
+<p class="p8"><span class="Apple-converted-space">  </span>public static CompilerResultsTransaction<span class="Apple-converted-space"> </span></p>
+<p class="p8"><span class="Apple-converted-space">  </span>compile(CompileFileTransaction cft, String command)<span class="Apple-converted-space"> </span></p>
+<p class="p8"><span class="Apple-converted-space">  </span>{</p>
+<p class="p8"><span class="Apple-converted-space">    </span>return null;</p>
+<p class="p8"><span class="Apple-converted-space">  </span>}</p>
+<p class="p7"><br></p>
+<p class="p5">Avery ran the tests, and they failed.<span class="Apple-converted-space">  </span>“OK, this fails because it returns a null pointer.<span class="Apple-converted-space">  </span>We can fix that like so.</p>
+<p class="p9"><br></p>
+<p class="p8"><span class="Apple-converted-space">  </span>public static CompilerResultsTransaction</p>
+<p class="p8"><span class="Apple-converted-space">  </span>compile(CompileFileTransaction cft, String command) <span class="s2"><b>throws Exception</b></span><span class="Apple-converted-space"> </span></p>
+<p class="p8"><span class="Apple-converted-space">  </span>{</p>
+<p class="p10"><span class="s3"><span class="Apple-converted-space">    </span>return </span><b>new CompilerResultsTransaction("")</b><span class="s3">;</span></p>
+<p class="p8"><span class="Apple-converted-space">  </span>}</p>
+<p class="p7"><br></p>
+<p class="p5">“OK, that fails because there’s no filename for the <span class="s1">CompilerResultsTransaction</span>. So we’re going to need a file.<span class="Apple-converted-space">  </span>We get that file by executing the compiler.</p>
+<p class="p9"><br></p>
+<p class="p8"><span class="Apple-converted-space">  </span>public static CompilerResultsTransaction</p>
+<p class="p8"><span class="Apple-converted-space">  </span>compile(CompileFileTransaction cft, String command) throws Exception</p>
+<p class="p8"><span class="Apple-converted-space">  </span>{</p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>executeCommand(command);</b></p>
+<p class="p8"><span class="Apple-converted-space">    </span>return new CompilerResultsTransaction("<span class="s2"><b>files</b></span>");</p>
+<p class="p8"><span class="Apple-converted-space">  </span>}</p>
+<p class="p7"><br></p>
+<p class="p5">“Hmm, this fails for the same reason.<span class="Apple-converted-space">  </span>The <span class="s1">files</span> file doesn’t exist. But how could that be.”</p>
+<p class="p5">After some research we found that the <span class="s1">Runtime.exec()</span> function does not interpret the <span class="s1">&gt;</span> as a file redirection command.<span class="Apple-converted-space">  </span>Fixing that was a matter of changing the test as follows:</p>
+<p class="p9"><br></p>
+<p class="p8"><span class="Apple-converted-space">    </span>CompilerResultsTransaction crt =<span class="Apple-converted-space"> </span></p>
+<p class="p8"><span class="Apple-converted-space">      </span>SMCRemoteServer.compile(cft, "<span class="s2"><b>sh -c \"</b></span>ls &gt;files<span class="s2"><b>\"</b></span>");</p>
+<p class="p7"><br></p>
+<p class="p5">“OK, now the test fails at the <span class="s1">assertFalse(files.exists())</span> line.<span class="Apple-converted-space">  </span>This is because we are executing the <span class="s1">ls</span> command in the current directory.<span class="Apple-converted-space">  </span>We need to create a subdirectory and execute it there.”</p>
+<p class="p9"><br></p>
+<p class="p8"><span class="Apple-converted-space">  </span>public static CompilerResultsTransaction</p>
+<p class="p8"><span class="Apple-converted-space">  </span>compile(CompileFileTransaction cft, String command) throws Exception</p>
+<p class="p8"><span class="Apple-converted-space">  </span>{</p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>File wd = makeWorkingDirectory();</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>//How do I execute the command in the working directory?</b></p>
+<p class="p8"><span class="Apple-converted-space">    </span>executeCommand(command);</p>
+<p class="p8"><span class="Apple-converted-space">    </span>return new CompilerResultsTransaction("files");</p>
+<p class="p8"><span class="Apple-converted-space">  </span>}</p>
+<p class="p7"><br></p>
+<p class="p5">“Alphonse, I can create the working directory with that function that you and Jean wrote.<span class="Apple-converted-space">  </span>But how do I get the command to execute in that directory.<span class="Apple-converted-space">  </span>There doesn’t seem to be any way to tell <span class="s1">Runtime.exec()</span> what directory to run in.”</p>
+<p class="p5">Avery and I searched the documents, but we couldn’t find any obvious way to solve this.<span class="Apple-converted-space">  </span>Then I had an idea.</p>
+<p class="p5">“Avery, why don’t we prefix the command with a <span class="s1">“cd workingDirectory;</span>”.</p>
+<p class="p5">“Hmmm.<span class="Apple-converted-space">  </span>That might work but it means that we put the <span class="s1">sh –c</span> stuff in the wrong place.<span class="Apple-converted-space">  </span>We should have put it in <span class="s1">SMCRemoteServer.executeCommand</span>.<span class="Apple-converted-space">  </span>I’ll bet that the <span class="s1">Runtime.exec()</span> function can’t deal with multiple commands and semicolons.”</p>
+<p class="p5">“You’re probably right.<span class="Apple-converted-space">  </span>Even if you aren’t, the <span class="s1">executeCommand</span> function is still a better place for the <span class="s1">sh –c</span> stuff.<span class="Apple-converted-space">  </span>Let’s move it.</p>
+<p class="p7"><br></p>
+<p class="p8"><span class="Apple-converted-space">  </span>public static boolean executeCommand(String command) {</p>
+<p class="p8"><span class="Apple-converted-space">    </span>Runtime rt = Runtime.getRuntime();</p>
+<p class="p8"><span class="Apple-converted-space">    </span>try {</p>
+<p class="p8"><span class="Apple-converted-space">      </span>Process p = rt.exec(<span class="s2"><b>"sh -c \"" + </b></span>command <span class="s2"><b>+ "\""</b></span>);</p>
+<p class="p8"><span class="Apple-converted-space">      </span>p.waitFor();</p>
+<p class="p8"><span class="Apple-converted-space">      </span>return p.exitValue() == 0;</p>
+<p class="p8"><span class="Apple-converted-space">    </span>}</p>
+<p class="p8"><span class="Apple-converted-space">    </span>catch (Exception e) {</p>
+<p class="p8"><span class="Apple-converted-space">      </span>return false;</p>
+<p class="p8"><span class="Apple-converted-space">    </span>}</p>
+<p class="p8"><span class="Apple-converted-space">  </span>}</p>
+<p class="p7"><br></p>
+<p class="p5">“OK, now let’s do that <span class="s1">cd</span> thing.</p>
+<p class="p9"><br></p>
+<p class="p8"><span class="Apple-converted-space">  </span>public static CompilerResultsTransaction</p>
+<p class="p8"><span class="Apple-converted-space">  </span>compile(CompileFileTransaction cft, String command) throws Exception</p>
+<p class="p8"><span class="Apple-converted-space">  </span>{</p>
+<p class="p8"><span class="Apple-converted-space">    </span>File <span class="s2"><b>workingDirectory</b></span> = makeWorkingDirectory();</p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>String wd = workingDirectory.getName();</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>executeCommand("cd " + wd + ";" + command);</b></p>
+<p class="p8"><span class="Apple-converted-space">    </span>return new CompilerResultsTransaction("files");</p>
+<p class="p8"><span class="Apple-converted-space">  </span>}</p>
+<p class="p7"><br></p>
+<p class="p5">“And now, once again, it fails at the <span class="s1">new CompilerResultsTransaction(“files”)</span> line.<span class="Apple-converted-space">  </span>And it’s obvious why!<span class="Apple-converted-space">  </span>That function is not executing in the subdirectory.<span class="Apple-converted-space">  </span>We need to add the subdirectory path to the file name.”</p>
+<p class="p9"><br></p>
+<p class="p8"><span class="Apple-converted-space">  </span>return new CompilerResultsTransaction(<span class="s2"><b>wd +</b></span> "<span class="s2"><b>/</b></span>files");</p>
+<p class="p7"><br></p>
+<p class="p5">“No, that doesn’t work either.<span class="Apple-converted-space">  </span>Now it fails because the <span class="s1">CompilerResultsTransaction</span> thinks the name includes the subdirectory path, and the write function is trying to write the file back into the subdirectory.”</p>
+<p class="p5">I sighed.<span class="Apple-converted-space">  </span>“This is complicated.”</p>
+<p class="p5">“No, “ said Avery, “we just have to pass the subdirectory to the <span class="s1">CompilerResultsTransaction</span> constructor so that it can load the file without storing the path in the filename.</p>
+<p class="p7"><br></p>
+<p class="p8"><span class="Apple-converted-space">  </span>public static CompilerResultsTransaction</p>
+<p class="p8"><span class="Apple-converted-space">  </span>compile(CompileFileTransaction cft, String command) throws Exception</p>
+<p class="p8"><span class="Apple-converted-space">  </span>{</p>
+<p class="p8"><span class="Apple-converted-space">    </span>File workingDirectory = makeWorkingDirectory();</p>
+<p class="p8"><span class="Apple-converted-space">    </span>String wd = workingDirectory.getName();</p>
+<p class="p8"><span class="Apple-converted-space">    </span>executeCommand("cd " + wd + ";" + command);</p>
+<p class="p8"><span class="Apple-converted-space">    </span>return new CompilerResultsTransaction(<span class="s2"><b>workingDirectory</b></span>, "files");</p>
+<p class="p8"><span class="Apple-converted-space">  </span>}</p>
+<p class="p7"><br></p>
+<p class="p8">public class CompilerResultsTransaction implements Serializable {</p>
+<p class="p8"><span class="Apple-converted-space">  </span>private FileCarrier resultFile;</p>
+<p class="p7"><br></p>
+<p class="p8"><span class="Apple-converted-space">  </span>public CompilerResultsTransaction(<span class="s2"><b>File subdirectory,</b></span><span class="Apple-converted-space"> </span></p>
+<p class="p8"><span class="Apple-converted-space">                                    </span>String filename) throws Exception {</p>
+<p class="p8"><span class="Apple-converted-space">    </span>resultFile = new FileCarrier(<span class="s2"><b>subdirectory,</b></span> filename);</p>
+<p class="p8"><span class="Apple-converted-space">  </span>}</p>
+<p class="p7"><br></p>
+<p class="p8"><span class="Apple-converted-space">  </span>public void write() throws Exception {</p>
+<p class="p8"><span class="Apple-converted-space">    </span>resultFile.write();</p>
+<p class="p8"><span class="Apple-converted-space">  </span>}</p>
+<p class="p8">}</p>
+<p class="p7"><br></p>
+<p class="p8">public class FileCarrier implements Serializable {</p>
+<p class="p8"><span class="Apple-converted-space">  </span>private String fileName;</p>
+<p class="p8"><span class="Apple-converted-space">  </span>private LinkedList lines = new LinkedList();</p>
+<p class="p10"><b><span class="Apple-converted-space">  </span>private File subdirectory;</b></p>
+<p class="p7"><br></p>
+<p class="p10"><b><span class="Apple-converted-space">  </span>public FileCarrier(String fileName) throws Exception {</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>this(null, fileName);</b></p>
+<p class="p10"><b><span class="Apple-converted-space">  </span>}</b></p>
+<p class="p7"><br></p>
+<p class="p8"><span class="Apple-converted-space">  </span>public FileCarrier(<span class="s2"><b>File subdirectory,</b></span> String fileName) throws Exception {</p>
+<p class="p8"><span class="Apple-converted-space">    </span>this.fileName = fileName;</p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>this.subdirectory = subdirectory;</b></p>
+<p class="p8"><span class="Apple-converted-space">    </span>loadLines();</p>
+<p class="p8"><span class="Apple-converted-space">  </span>}</p>
+<p class="p7"><br></p>
+<p class="p8"><span class="Apple-converted-space">  </span>private void loadLines() throws IOException {</p>
+<p class="p8"><span class="Apple-converted-space">    </span>BufferedReader br = makeBufferedReader();</p>
+<p class="p8"><span class="Apple-converted-space">    </span>String line;</p>
+<p class="p8"><span class="Apple-converted-space">    </span>while ((line = br.readLine()) != null)</p>
+<p class="p8"><span class="Apple-converted-space">      </span>lines.add(line);</p>
+<p class="p8"><span class="Apple-converted-space">    </span>br.close();</p>
+<p class="p8"><span class="Apple-converted-space">  </span>}</p>
+<p class="p7"><br></p>
+<p class="p8"><span class="Apple-converted-space">  </span>private BufferedReader makeBufferedReader()</p>
+<p class="p8"><span class="Apple-converted-space">    </span>throws FileNotFoundException {</p>
+<p class="p8"><span class="Apple-converted-space">    </span>return new BufferedReader(</p>
+<p class="p8"><span class="Apple-converted-space">      </span>new InputStreamReader(</p>
+<p class="p8"><span class="Apple-converted-space">        </span>new FileInputStream(<span class="s2"><b>new File(subdirectory, fileName)</b></span>)));</p>
+<p class="p8"><span class="Apple-converted-space">  </span>}</p>
+<p class="p7"><br></p>
+<p class="p8"><span class="Apple-converted-space">  </span>public void write() throws Exception {</p>
+<p class="p8"><span class="Apple-converted-space">    </span>PrintStream ps = makePrintStream();</p>
+<p class="p8"><span class="Apple-converted-space">    </span>for (Iterator i = lines.iterator(); i.hasNext();)</p>
+<p class="p8"><span class="Apple-converted-space">      </span>ps.println((String)i.next());</p>
+<p class="p8"><span class="Apple-converted-space">    </span>ps.close();</p>
+<p class="p8"><span class="Apple-converted-space">  </span>}</p>
+<p class="p7"><br></p>
+<p class="p8"><span class="Apple-converted-space">  </span>private PrintStream makePrintStream() throws FileNotFoundException {</p>
+<p class="p8"><span class="Apple-converted-space">    </span>return new PrintStream(</p>
+<p class="p8"><span class="Apple-converted-space">      </span>new FileOutputStream(fileName));</p>
+<p class="p8"><span class="Apple-converted-space">  </span>}</p>
+<p class="p7"><br></p>
+<p class="p8"><span class="Apple-converted-space">  </span>public String getFileName() {</p>
+<p class="p8"><span class="Apple-converted-space">    </span>return fileName;</p>
+<p class="p8"><span class="Apple-converted-space">  </span>}</p>
+<p class="p8">}</p>
+<p class="p7"><br></p>
+<p class="p5">“Whoah!<span class="Apple-converted-space">  </span>Now it’s getting pretty far.<span class="Apple-converted-space">  </span>It’s failing at the <span class="s1">assertEquals(2, lines.size())</span> line of the test.<span class="Apple-converted-space">  </span>And again it’s pretty clear why.<span class="Apple-converted-space">  </span>We never wrote the input file.<span class="Apple-converted-space">  </span>That should be easy to fix!”</p>
+<p class="p5">“Not that easy.<span class="Apple-converted-space">  </span>We’ll have to make sure we write it into the subdirectory.”</p>
+<p class="p5">“Ah, you’re right!<span class="Apple-converted-space">  </span>We have to add the <span class="s1">workingDirectory</span> to the <span class="s1">FileCarrier.write</span> function.<span class="Apple-converted-space">  </span>Good catch!”</p>
+<p class="p9"><br></p>
+<p class="p8"><span class="Apple-converted-space">  </span>public static CompilerResultsTransaction</p>
+<p class="p8"><span class="Apple-converted-space">  </span>compile(CompileFileTransaction cft, String command) throws Exception</p>
+<p class="p8"><span class="Apple-converted-space">  </span>{</p>
+<p class="p8"><span class="Apple-converted-space">    </span>File workingDirectory = makeWorkingDirectory();</p>
+<p class="p8"><span class="Apple-converted-space">    </span>String wd = workingDirectory.getName();</p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>cft.sourceFile.write(workingDirectory);</b></p>
+<p class="p8"><span class="Apple-converted-space">    </span>executeCommand("cd " + wd + ";" + command);</p>
+<p class="p8"><span class="Apple-converted-space">    </span>return new CompilerResultsTransaction(workingDirectory, "files");</p>
+<p class="p8"><span class="Apple-converted-space">  </span>}</p>
+<p class="p8"><span class="Apple-converted-space">  </span>public void write() throws Exception {</p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>write(null);</b></p>
+<p class="p8"><span class="Apple-converted-space">  </span>}</p>
+<p class="p7"><br></p>
+<p class="p8"><span class="Apple-converted-space">  </span>public void write(<span class="s2"><b>File subdirectory</b></span>) throws Exception {</p>
+<p class="p8"><span class="Apple-converted-space">    </span>PrintStream ps = makePrintStream(<span class="s2"><b>subdirectory</b></span>);</p>
+<p class="p8"><span class="Apple-converted-space">    </span>for (Iterator i = lines.iterator(); i.hasNext();)</p>
+<p class="p8"><span class="Apple-converted-space">      </span>ps.println((String)i.next());</p>
+<p class="p8"><span class="Apple-converted-space">    </span>ps.close();</p>
+<p class="p8"><span class="Apple-converted-space">  </span>}</p>
+<p class="p7"><br></p>
+<p class="p8"><span class="Apple-converted-space">  </span>private PrintStream<span class="Apple-converted-space"> </span></p>
+<p class="p8"><span class="Apple-converted-space">  </span>makePrintStream(<span class="s2"><b>File subdirectory</b></span>) throws FileNotFoundException {</p>
+<p class="p8"><span class="Apple-converted-space">    </span>return new PrintStream(</p>
+<p class="p10"><span class="s3"><span class="Apple-converted-space">      </span>new FileOutputStream(</span><b>new File(subdirectory,fileName)</b><span class="s3">));</span></p>
+<p class="p7"><br></p>
+<p class="p5">“Bang!<span class="Apple-converted-space">  </span>And that’s it!<span class="Apple-converted-space">  </span>Now it passes.”</p>
+<p class="p5">“Sweet!”</p>
+<p class="p9"><br></p>
+<p class="p7"><br></p>
+<p class="p9"><br></p>
+<p class="p9"><br></p>
+<p class="p11"><span class="Apple-converted-space"> </span></p>
+<p class="p12"><i>To be continued...</i></p>
+<p class="p6"><b></b><br></p>
+<p class="p13"><br></p>
+<p class="p9"><br></p>
+<p class="p5"><i>The code that Alphonse and Avery finished can be retrieved from:</i></p>
+<p class="p5"><i>w www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_22_BugEye.zip</i></p>
+<p class="p9"><i></i><br></p>
+<p class="p9"><i></i><br></p>
+</body>
+</html>

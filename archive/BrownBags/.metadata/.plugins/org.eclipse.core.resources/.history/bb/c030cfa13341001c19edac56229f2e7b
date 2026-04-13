@@ -1,0 +1,5 @@
+class EmployeeReportVisitor
+  def visitHourly(hourlyEmployee)
+    
+  end
+end

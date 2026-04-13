@@ -1,0 +1,134 @@
+package com.objectmentor.SMCRemote.server;
+
+import com.objectmentor.SMCRemote.transactions.*;
+import com.objectmentor.SocketService.*;
+
+import com.neoworks.util.Getopts;
+
+import java.io.*;
+import java.net.*;
+import java.text.SimpleDateFormat;
+import java.util.*;
+
+public class SMCRemoteService {
+  public static final String DEFAULT_PORT = "9000";
+  public static final String VERSION = "$Id: SMCRemoteService.java,v 1.10 2002/10/12 20:53:41 Administrator Exp $";
+  public static final String COMPILE_COMMAND = "java -cp c:\\SMC\\smc.jar smc.Smc -f";
+
+  public static boolean isVerbose = false;
+  public static int servicePort;
+
+  private static UserValidator userValidator = new UserValidator() {
+    public boolean isValid(String username, String password) {
+      return true;
+    }
+  };
+
+  private SocketService service;
+
+  public SMCRemoteService(int port) throws Exception {
+    service = new SocketService(port, new SMCRemoteServer());
+  }
+
+  public void close() throws Exception {
+    service.close();
+  }
+
+  static void setUserValidator(UserValidator userValidator) {
+    SMCRemoteService.userValidator = userValidator;
+  }
+
+  public static void main(String[] args) {
+    if (parseCommandLine(args)) {
+      verboseHeader();
+      try {
+        SMCRemoteService service = new SMCRemoteService(servicePort);
+      } catch (Exception e) {
+        System.err.println("Could not connect");
+      }
+    } else {
+      System.out.println("usage: java SMCRemoteService -p <port> -v");
+    }
+  }
+
+  static boolean validate(String userName, String password) {
+    return userValidator.isValid(userName, password);
+  }
+
+  static boolean parseCommandLine(String[] args) {
+    Getopts opts = new Getopts("p:v", args);
+    if (opts.error())
+      return false;
+
+    try {
+      servicePort = Integer.parseInt(opts.option('p', DEFAULT_PORT));
+      isVerbose = opts.hasOption('v');
+    } catch (NumberFormatException e) {
+      return false;
+    }
+
+    return true;
+  }
+
+  static String buildCommand(String filename, String generator) {
+    String generatorClass;
+
+    if (generator.equals("java"))
+      generatorClass = "smc.generator.java.SMJavaGenerator";
+    else if (generator.equals("C++"))
+      generatorClass = "smc.generator.cpp.SMCppGenerator";
+    else
+      return "echo bad generator " + generator;
+
+    return COMPILE_COMMAND + " -g " + generatorClass + " " + filename;
+  }
+
+  static int executeCommand(String command, Vector stdout, Vector stderr) throws Exception {
+    Runtime rt = Runtime.getRuntime();
+    Process p = rt.exec(command);
+    flushProcessOutputs(p, stdout, stderr);
+    p.waitFor();
+
+    return p.exitValue();
+  }
+
+  private static void flushProcessOutputs(Process p, Vector stdout, Vector stderr) throws IOException {
+    BufferedReader stdoutReader = new BufferedReader(new InputStreamReader(p.getInputStream()));
+    BufferedReader stderrReader = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+    String line;
+
+    while ((line = stdoutReader.readLine()) != null)
+      stdout.add(line);
+    while ((line = stderrReader.readLine()) != null)
+      stderr.add(line);
+  }
+
+  static File makeTempDirectory() {
+    File tmpDirectory;
+    do {
+      long millis = System.currentTimeMillis();
+      tmpDirectory = new File("smcTempDirectory" + millis);
+    } while (tmpDirectory.exists());
+    tmpDirectory.mkdir();
+    return tmpDirectory;
+  }
+
+  private static void verboseHeader() {
+    verboseMessage("SMCRemoteService---------------------------------");
+    verboseMessage(VERSION);
+    verboseMessage("port = " + servicePort);
+    verboseMessage("-------------------------------------------------");
+  }
+
+  static void verboseMessage(String msg) {
+    if (isVerbose) {
+      Date logTime = new Date();
+      SimpleDateFormat fmt = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss");
+      String logTimeString = fmt.format(logTime);
+
+      System.out.println(logTimeString + " | " + msg);
+    }
+  }
+}
+
+

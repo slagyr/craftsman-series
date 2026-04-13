@@ -1,0 +1,9 @@
+!3 DTrack rejects a duplicate suit registration.
+
+!|set suit|314159|as registered|
+|check|register suit|314159|false|
+|check|was a message sent to manufacturing|false|
+|check|count of registered suits is|1|
+|check|error message|Suit 314159 already registered.|true|
+
+

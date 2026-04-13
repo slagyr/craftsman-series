@@ -1,0 +1,922 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"
+xmlns:css="http://macVmlSchemaUri" xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta name=Title content="The Craftsman">
+<meta name=Keywords content="">
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 2008">
+<meta name=Originator content="Microsoft Word 2008">
+<link rel=File-List href="The%20Craftsman%2061%20Clean%20Code%20F3_files/filelist.xml">
+<title>The Craftsman</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>Robert C. Martin</o:Author>
+  <o:Template>Normal.dotm</o:Template>
+  <o:LastAuthor>Robert Martin</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>109</o:TotalTime>
+  <o:LastPrinted>2006-10-18T18:17:00Z</o:LastPrinted>
+  <o:Created>2009-08-19T18:42:00Z</o:Created>
+  <o:LastSaved>2009-08-19T18:42:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>902</o:Words>
+  <o:Characters>5142</o:Characters>
+  <o:Company>Object Mentor Inc.</o:Company>
+  <o:Lines>42</o:Lines>
+  <o:Paragraphs>10</o:Paragraphs>
+  <o:CharactersWithSpaces>6314</o:CharactersWithSpaces>
+  <o:Version>12.0</o:Version>
+ </o:DocumentProperties>
+ <o:OfficeDocumentSettings>
+  <o:PixelsPerInch>96</o:PixelsPerInch>
+  <o:TargetScreenSize>800x600</o:TargetScreenSize>
+ </o:OfficeDocumentSettings>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:Zoom>125</w:Zoom>
+  <w:SpellingState>Clean</w:SpellingState>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:TrackMoves>false</w:TrackMoves>
+  <w:TrackFormatting/>
+  <w:DefaultTableStyle>Fitnesse Table</w:DefaultTableStyle>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:Compatibility>
+   <w:UseNormalStyleForList/>
+   <w:DontUseIndentAsNumberingTabStop/>
+   <w:FELineBreak11/>
+   <w:WW11IndentRules/>
+   <w:DontAutofitConstrainedTables/>
+   <w:AutofitLikeWW11/>
+   <w:HangulWidthLikeWW11/>
+  </w:Compatibility>
+ </w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" LatentStyleCount="276">
+ </w:LatentStyles>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+@font-face
+	{font-family:"Courier New";
+	panose-1:2 7 3 9 2 2 5 2 4 4;
+	mso-font-charset:0;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 0 0 0 1 0;}
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 2 1 2 1 8 4 8 7 8;
+	mso-font-charset:2;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:0 0 65536 0 -2147483648 0;}
+@font-face
+	{font-family:Verdana;
+	panose-1:2 11 6 4 3 5 4 4 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 0 0 0 1 0;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 0 0 0 1 0;}
+ /* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+h3
+	{mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	mso-outline-level:3;
+	font-size:13.5pt;
+	font-family:"Times New Roman";
+	mso-bidi-font-weight:bold;}
+p.MsoFootnoteText, li.MsoFootnoteText, div.MsoFootnoteText
+	{mso-style-noshow:yes;
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+p.MsoCommentText, li.MsoCommentText, div.MsoCommentText
+	{mso-style-noshow:yes;
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+span.MsoFootnoteReference
+	{mso-style-noshow:yes;
+	vertical-align:super;}
+span.MsoCommentReference
+	{mso-style-noshow:yes;
+	mso-ansi-font-size:8.0pt;
+	mso-bidi-font-size:8.0pt;}
+p.MsoBodyTextIndent, li.MsoBodyTextIndent, div.MsoBodyTextIndent
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:.25in;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+p.MsoBodyTextFirstIndent2, li.MsoBodyTextFirstIndent2, div.MsoBodyTextFirstIndent2
+	{mso-style-parent:"Body Text Indent";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:.25in;
+	text-indent:10.5pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+p.MsoBodyText3, li.MsoBodyText3, div.MsoBodyText3
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:8.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;
+	text-underline:single;}
+em
+	{mso-bidi-font-style:italic;}
+pre
+	{margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Courier New";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Courier New";}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-noshow:yes;
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:8.0pt;
+	font-family:Tahoma;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:Tahoma;}
+p.BODY3, li.BODY3, div.BODY3
+	{mso-style-name:"BODY 3";
+	mso-style-link:"BODY 3 Char";
+	margin-top:3.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-indent:.25in;
+	mso-pagination:none;
+	tab-stops:1.0in;
+	mso-layout-grid-align:none;
+	text-autospace:none;
+	font-size:10.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	color:black;}
+p.CHAPTITLE, li.CHAPTITLE, div.CHAPTITLE
+	{mso-style-name:"CHAP TITLE";
+	margin:0in;
+	margin-bottom:.0001pt;
+	text-align:right;
+	mso-line-height-alt:22.0pt;
+	mso-pagination:none;
+	mso-layout-grid-align:none;
+	text-autospace:none;
+	font-size:24.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	color:black;
+	font-weight:bold;
+	mso-bidi-font-weight:normal;}
+p.QUOTES, li.QUOTES, div.QUOTES
+	{mso-style-name:QUOTES;
+	margin:0in;
+	margin-bottom:.0001pt;
+	text-align:right;
+	mso-pagination:none;
+	mso-layout-grid-align:none;
+	text-autospace:none;
+	font-size:10.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	color:black;
+	font-style:italic;
+	mso-bidi-font-style:normal;}
+p.Code, li.Code, div.Code
+	{mso-style-name:Code;
+	mso-style-parent:"BODY 3";
+	mso-style-link:"Code Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	tab-stops:.25in 1.0in;
+	mso-layout-grid-align:none;
+	text-autospace:none;
+	font-size:9.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Courier New";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Courier New";
+	color:black;
+	mso-no-proof:yes;}
+p.ModCode, li.ModCode, div.ModCode
+	{mso-style-name:ModCode;
+	mso-style-parent:Code;
+	mso-style-link:"ModCode Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	tab-stops:.25in 1.0in;
+	mso-layout-grid-align:none;
+	text-autospace:none;
+	font-size:9.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Courier New";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Courier New";
+	color:red;
+	font-weight:bold;
+	mso-bidi-font-weight:normal;
+	mso-no-proof:yes;}
+span.BODY3Char
+	{mso-style-name:"BODY 3 Char";
+	mso-style-locked:yes;
+	mso-style-link:"BODY 3";
+	mso-bidi-font-size:12.0pt;
+	color:black;
+	mso-ansi-language:EN-US;
+	mso-fareast-language:EN-US;}
+span.CodeChar
+	{mso-style-name:"Code Char";
+	mso-style-locked:yes;
+	mso-style-parent:"BODY 3 Char";
+	mso-style-link:Code;
+	mso-ansi-font-size:9.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Courier New";
+	mso-ascii-font-family:"Courier New";
+	mso-hansi-font-family:"Courier New";
+	mso-bidi-font-family:"Courier New";
+	color:black;
+	mso-ansi-language:EN-US;
+	mso-fareast-language:EN-US;
+	mso-no-proof:yes;}
+span.ModCodeChar
+	{mso-style-name:"ModCode Char";
+	mso-style-locked:yes;
+	mso-style-parent:"Code Char";
+	mso-style-link:ModCode;
+	mso-ansi-font-size:9.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Courier New";
+	mso-ascii-font-family:"Courier New";
+	mso-hansi-font-family:"Courier New";
+	mso-bidi-font-family:"Courier New";
+	color:red;
+	mso-ansi-language:EN-US;
+	mso-fareast-language:EN-US;
+	font-weight:bold;
+	mso-bidi-font-weight:normal;
+	mso-no-proof:yes;}
+span.meta
+	{mso-style-name:meta;}
+span.fitlabel
+	{mso-style-name:fit_label;
+	font-family:Verdana;
+	mso-ascii-font-family:Verdana;
+	mso-hansi-font-family:Verdana;}
+span.StylefitlabelVerdana9ptItalicGray-80
+	{mso-style-name:"Style fit_label + Verdana 9 pt Italic Gray-80%";
+	mso-style-parent:fit_label;
+	mso-ansi-font-size:9.0pt;
+	mso-bidi-font-size:9.0pt;
+	font-family:"Times New Roman";
+	mso-ascii-font-family:"Times New Roman";
+	mso-hansi-font-family:"Times New Roman";
+	color:gray;
+	font-style:italic;}
+p.Pattern, li.Pattern, div.Pattern
+	{mso-style-name:Pattern;
+	mso-style-parent:"BODY 3";
+	mso-style-link:"Pattern Char";
+	margin-top:3.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-indent:.25in;
+	mso-pagination:none;
+	tab-stops:1.0in;
+	mso-layout-grid-align:none;
+	text-autospace:none;
+	font-size:10.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	font-variant:small-caps;
+	color:black;}
+span.PatternChar
+	{mso-style-name:"Pattern Char";
+	mso-style-locked:yes;
+	mso-style-parent:"BODY 3 Char";
+	mso-style-link:Pattern;
+	mso-bidi-font-size:12.0pt;
+	font-variant:small-caps;
+	color:black;
+	mso-ansi-language:EN-US;
+	mso-fareast-language:EN-US;}
+span.fitgrey
+	{mso-style-name:fit_grey;}
+span.body
+	{mso-style-name:body;}
+span.pagetitle
+	{mso-style-name:page_title;}
+span.SpellE
+	{mso-style-name:"";
+	mso-spl-e:yes;}
+span.GramE
+	{mso-style-name:"";
+	mso-gram-e:yes;}
+ /* Page Definitions */
+@page
+	{mso-footnote-separator:url(":The Craftsman 61 Clean Code F3_files:header.htm") fs;
+	mso-footnote-continuation-separator:url(":The Craftsman 61 Clean Code F3_files:header.htm") fcs;
+	mso-endnote-separator:url(":The Craftsman 61 Clean Code F3_files:header.htm") es;
+	mso-endnote-continuation-separator:url(":The Craftsman 61 Clean Code F3_files:header.htm") ecs;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+@list l0
+	{mso-list-id:31925269;
+	mso-list-template-ids:-481131650;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l1
+	{mso-list-id:563413980;
+	mso-list-template-ids:1622043126;}
+@list l1:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l2
+	{mso-list-id:565381069;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1645571134 67698705 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l2:level1
+	{mso-level-text:"%1\)";
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3
+	{mso-list-id:646782512;
+	mso-list-template-ids:-1182737964;}
+@list l3:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l4
+	{mso-list-id:970749122;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-919546364 67698703 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l4:level1
+	{mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5
+	{mso-list-id:1060053805;
+	mso-list-template-ids:1625817432;}
+@list l5:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l6
+	{mso-list-id:1128546385;
+	mso-list-template-ids:1040341674;}
+@list l6:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l7
+	{mso-list-id:1578706892;
+	mso-list-type:hybrid;
+	mso-list-template-ids:82345816 954136472 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l7:level1
+	{mso-level-start-at:22;
+	mso-level-number-format:bullet;
+	mso-level-text:-;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+@list l7:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";
+	mso-bidi-font-family:Symbol;}
+@list l8
+	{mso-list-id:1647053381;
+	mso-list-template-ids:1429089694;}
+@list l8:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l9
+	{mso-list-id:1875189953;
+	mso-list-template-ids:-2056903076;}
+@list l9:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l10
+	{mso-list-id:1916551088;
+	mso-list-template-ids:-352012062;}
+@list l10:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l11
+	{mso-list-id:2047681249;
+	mso-list-template-ids:-1289184880;}
+@list l11:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l12
+	{mso-list-id:2095591514;
+	mso-list-type:hybrid;
+	mso-list-template-ids:340670874 67698705 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l12:level1
+	{mso-level-text:"%1\)";
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+table.MsoNormalTable
+	{mso-style-name:"Table Normal";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0in 5.4pt 0in 5.4pt;
+	mso-para-margin:0in;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";}
+table.FitnesseTable
+	{mso-style-name:"Fitnesse Table";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-padding-alt:0in 5.4pt 0in 5.4pt;
+	mso-tstyle-shading:#E0E0E0;
+	mso-para-margin:0in;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:9.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-ascii-font-family:Verdana;
+	mso-hansi-font-family:Verdana;}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="2050" fillcolor="white">
+  <v:fill color="white"/>
+  <v:shadow color="gray" opacity="1" offset="2pt,2pt"/>
+ </o:shapedefaults></xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body lang=EN-US link=blue vlink=purple style='tab-interval:.5in'>
+
+<div class=Section1>
+
+<p class=CHAPTITLE style='margin-top:34.0pt;margin-right:0in;margin-bottom:
+34.0pt;margin-left:0in'><span style='mso-no-proof:yes'>The Craftsman: 61<br>
+Clean Code: F3<br>
+Flag Arguments<o:p></o:p></span></p>
+
+<p class=QUOTES><span style='font-style:normal;mso-no-proof:yes'>Robert C.
+Martin<o:p></o:p></span></p>
+
+<p class=QUOTES><span style='font-style:normal;mso-no-proof:yes'>19 Aug, 2009<o:p></o:p></span></p>
+
+<p class=QUOTES><span style='mso-no-proof:yes'><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><o:p></o:p></span></p>
+
+<div style='mso-element:para-border-div;border:none;border-bottom:solid windowtext 1.0pt;
+mso-border-bottom-alt:solid windowtext .75pt;padding:0in 0in 1.0pt 0in'>
+
+<p class=ModCode style='border:none;mso-border-bottom-alt:solid windowtext .75pt;
+padding:0in;mso-padding-alt:0in 0in 1.0pt 0in'><o:p>&nbsp;</o:p></p>
+
+</div>
+
+<p class=BODY3 style='text-indent:0in'><i style='mso-bidi-font-style:normal'>61:
+October 31, 1945.<span style="mso-spacerun: yes">&nbsp;&nbsp; </span>Cape
+Canaveral, Florida.<o:p></o:p></i></p>
+
+<p class=BODY3 style='text-indent:0in'><i style='mso-bidi-font-style:normal'><span
+style="mso-spacerun: yes">&nbsp;</span>WHAM<span class=GramE>!....</span><span
+class=SpellE>WHAm</span>…<span class=SpellE>WHam</span>…Wham!....wham!...Dyson
+watched with a mixture of delight and terror as the distant Orion craft thrust
+itself into the sky.<span style="mso-spacerun: yes">&nbsp; </span>Though the
+nuclear detonations that drove it were small, only one kiloton each, they were
+still impossibly bright even through his goggles. The sound that made it
+through the walls of the bunker slammed into him every two seconds as the explosions
+hurled the ship away.<span style="mso-spacerun: yes">&nbsp; </span><o:p></o:p></i></p>
+
+<p class=BODY3 style='text-indent:0in'><i style='mso-bidi-font-style:normal'>This
+was the fifth and final launch today.<span style="mso-spacerun: yes">&nbsp;
+</span>They joined an armada of twelve ships heading for Mars.<span
+style="mso-spacerun: yes">&nbsp; </span>Six of those ships would return in a
+year; but with luck the remaining six ships and five hundred people would stay
+on Mars to build a permanent base and the beginnings of a colony.<span
+style="mso-spacerun: yes">&nbsp; </span><o:p></o:p></i></p>
+
+<div style='mso-element:para-border-div;border:none;border-bottom:solid windowtext 1.0pt;
+mso-border-bottom-alt:solid windowtext .75pt;padding:0in 0in 1.0pt 0in'>
+
+<p class=BODY3 style='text-indent:0in;border:none;mso-border-bottom-alt:solid windowtext .75pt;
+padding:0in;mso-padding-alt:0in 0in 1.0pt 0in'><i style='mso-bidi-font-style:
+normal'>Freeman Dyson stared at the bright two-second flashes of light, now
+nearing orbit.<span style="mso-spacerun: yes">&nbsp; </span>He wondered what it
+would look like, three days from now, when all twelve ships simultaneously
+restarted their engines and left orbit for Mars.<span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span>He wanted to be with them.<span style="mso-spacerun:
+yes">&nbsp; </span>“Next year.” He said to himself.<span style="mso-spacerun:
+yes">&nbsp; </span>“Next year.”<o:p></o:p></i></p>
+
+</div>
+
+<p class=BODY3 style='text-indent:0in'><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=BODY3><i>Fri, 17 Mar 2002, 11:00<o:p></o:p></i></p>
+
+<p class=BODY3><span class=body>Jerry stood up and shook his fist at the
+ceiling.<span style="mso-spacerun: yes">&nbsp; </span>“I hate this!” He said,
+to no one in particular.<span style="mso-spacerun: yes">&nbsp; </span>“I <span
+class=SpellE>fracking</span> hate this!”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Yikes! Jerry, what’s the problem?” I
+asked.<span style="mso-spacerun: yes">&nbsp; </span>Usually Jerry keeps his
+cool, so this had to be something unusual. <o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>Jerry looked at me.<span style="mso-spacerun:
+yes">&nbsp; </span>His shoulders slumped, and he let out a frustrated
+sigh.<span style="mso-spacerun: yes">&nbsp; </span>“I’m just such an idiot
+sometimes.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“I won’t argue with that!” Jasmine popped up
+from her workstation, a mischievous grin on her face.<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Yeah, yeah, I know Jazzy, I know.<span
+style="mso-spacerun: yes">&nbsp; </span>Thanks for the support.”<span
+style="mso-spacerun: yes">&nbsp; </span>He shot a quick grimace in her
+direction.<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>I pressed on.<span style="mso-spacerun:
+yes">&nbsp; </span>“What’s the problem?<span style="mso-spacerun: yes">&nbsp;
+</span>What is it you hate so much?”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Oh, Alphonse, it’s just this problem I’ve been
+debugging for the last hour.<span style="mso-spacerun: yes">&nbsp; </span>The
+answer was right in front of me the whole time, but I just couldn’t see it.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“You should have called me over to pair with
+you!”<span style="mso-spacerun: yes">&nbsp; </span>I said.<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Yeah Jerry!” Chided <span class=SpellE>Jazmine</span>,
+“The Hotshot there can fix anything.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>Jerry just glared at her until she sat back
+down, giggling. <span style="mso-spacerun: yes">&nbsp;</span>“Yeah, I probably
+should have. Here, look at this.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>I walked over to his workstation and saw the
+following code:<o:p></o:p></span></p>
+
+<p class=Code><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=Code><span class=body>int status = controlRod.rotate(30, true)<o:p></o:p></span></p>
+
+<p class=Code><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=BODY3><span class=body>“Ah!<span style="mso-spacerun: yes">&nbsp;
+</span>You’re working on the pile control system.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Yeah, we’re changing the rotation protocol on
+the control rods.<span style="mso-spacerun: yes">&nbsp; </span>Some egg-head
+physicist has decided that we should rotate the rods thirty degrees every month
+instead of fifteen.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“OK.” I said. “So what’s the problem?”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>Jerry sighed, and scrolled the screen forward a
+few lines.<span style="mso-spacerun: yes">&nbsp; </span>“Look at this.”<o:p></o:p></span></p>
+
+<p class=Code><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=Code><span class=body>int status = fuelRod.rotate(0.5, true);<o:p></o:p></span></p>
+
+<p class=Code><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=BODY3><span class=body>“Uh, OK.<span style="mso-spacerun: yes">&nbsp;
+</span>So this is rotating a fuel rod by half a degree.<span
+style="mso-spacerun: yes">&nbsp; </span>Are these lines of code related?”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>Jerry’s mouth tightened.<span
+style="mso-spacerun: yes">&nbsp; </span>“No, but I thought they were.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“I’m not following you, Jerry.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Yeah, I know.<span style="mso-spacerun:
+yes">&nbsp; </span>So here’s the deal.<span style="mso-spacerun: yes">&nbsp;
+</span>I needed to rotate the control rods by thirty degrees.<span
+style="mso-spacerun: yes">&nbsp; </span>So I found this line of code that
+rotated the fuel rods and I figured that the control rods would work the
+same.<span style="mso-spacerun: yes">&nbsp; </span>So I wrote the first code I
+showed you.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“And it didn’t work?”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“It was strange.<span style="mso-spacerun:
+yes">&nbsp; </span>The control rod rotated alright, but it was always about 270
+degrees instead of 30.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“270?<span style="mso-spacerun: yes">&nbsp;
+</span>Is the rotate function broken?”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“No, I ran the tests for the rotate function
+over and over.<span style="mso-spacerun: yes">&nbsp; </span>I even looked at
+the code for the rotate function.<span style="mso-spacerun: yes">&nbsp;
+</span>It’s all just fine.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“So what was the problem?”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>Jerry looked at me sheepishly and pointed back
+to the screen, at the line that rotated the fuel rod by half a degree.<span
+style="mso-spacerun: yes">&nbsp; </span>“That’s not rotating half a degree.” He
+said.<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“It’s not?”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“No, it’s rotating 90 degrees.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Huh?”<span style="mso-spacerun: yes">&nbsp;
+</span>What was he talking about? <o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Yeah, somebody got lazy.<span
+style="mso-spacerun: yes">&nbsp; </span>Actually two people got lazy.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Jerry, how can rotating by .5 be 90?<span
+style="mso-spacerun: yes">&nbsp; </span>For that matter how can rotating by 30
+be 270?”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Actually, that 30 was a lot more than
+270.<span style="mso-spacerun: yes">&nbsp; </span>It was 4.75 times around or
+just under 1,719 degrees.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“OK, Jerry, you are blowing my mind here.<span
+style="mso-spacerun: yes">&nbsp; </span>What the <span class=SpellE>frack</span>
+are you talking about?”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Do you see the Boolean arguments?”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Yeah, they’re both </span><span
+class=CodeChar><span style='font-size:9.0pt;mso-bidi-font-size:12.0pt'>true</span></span><span
+class=body>.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Right.<span style="mso-spacerun: yes">&nbsp;
+</span>What do you think they mean?”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“I don’t know, what?”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Degrees or Radians.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Huh?”<span style="mso-spacerun: yes">&nbsp;
+</span>I blurted.<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>Jerry looked at me meaningfully.<span
+style="mso-spacerun: yes">&nbsp; </span>“They specify whether the argument is
+in degrees or radians.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“OK, so </span><span class=CodeChar><span
+style='font-size:9.0pt;mso-bidi-font-size:12.0pt'>true</span></span><span
+class=body> means degrees.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“No.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Oh, so that was your problem!<span
+style="mso-spacerun: yes">&nbsp; </span>You thought the fuel rod was being
+rotated half a degree, and it was actually being rotated…uh…about pi over
+6…about 30 degrees!<span style="mso-spacerun: yes">&nbsp; </span>Wait…you said
+90.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“No, you’ve got the wrong idea.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Huh?”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>Jerry took a deep breath.<span
+style="mso-spacerun: yes">&nbsp; </span>“The rotate function for fuel rods <i
+style='mso-bidi-font-style:normal'>always</i> rotates the fuel rods by quarter
+of a turn.<span style="mso-spacerun: yes">&nbsp; </span>But it does so in half-second
+increments.<span style="mso-spacerun: yes">&nbsp; </span>The argument specifies
+the size of the increment.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Oh, OK, so it was using half-degree increments
+and would complete the rotation in, <span class=GramE>uh…,</span> half-<span
+class=SpellE>dgree</span>, half-second … one degree per second… 90 seconds.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Yes, that’s right.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“OK, so </span><span class=CodeChar><span
+style='font-size:9.0pt;mso-bidi-font-size:12.0pt'>true</span></span><span
+class=body> means degrees.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>Jerry smiled, sadly.<span style="mso-spacerun:
+yes">&nbsp; </span>“Only half right.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Half right?”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Yeah, </span><span class=CodeChar><span
+style='font-size:9.0pt;mso-bidi-font-size:12.0pt'>true</span></span><span
+class=body> means degrees for the fuel rods.<span style="mso-spacerun:
+yes">&nbsp; </span>But </span><span class=CodeChar><span style='font-size:9.0pt;
+mso-bidi-font-size:12.0pt'>true</span></span><span class=body> means <i
+style='mso-bidi-font-style:normal'>radians</i> for the control rods.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Oh!<span style="mso-spacerun: yes">&nbsp;
+</span>OUCH!”<span style="mso-spacerun: yes">&nbsp; </span><o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Yeah, I was rotating the control rods by 30
+radians.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Oh, so you just <i style='mso-bidi-font-style:
+normal'>assumed</i> that since </span><span class=CodeChar><span
+style='font-size:9.0pt;mso-bidi-font-size:12.0pt'>true</span></span><span
+class=body> meant degrees for fuel rods, that it meant degrees for control rods
+too.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Yeah, but I <span class=SpellE>should’t</span>
+have.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Wow, yeah, someone got lazy.<span
+style="mso-spacerun: yes">&nbsp; </span>They didn’t use the same meaning for </span><span
+class=CodeChar><span style='font-size:9.0pt;mso-bidi-font-size:12.0pt'>true</span></span><span
+class=body> in the rotate function.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Actually, there never should have been a
+Boolean argument.<span style="mso-spacerun: yes">&nbsp; </span>There should
+have been two rotate functions named </span><span class=CodeChar><span
+style='font-size:9.0pt;mso-bidi-font-size:12.0pt'>rotateByDegrees</span></span><span
+class=body> and </span><span class=CodeChar><span style='font-size:9.0pt;
+mso-bidi-font-size:12.0pt'>rotateByRadians</span></span><span class=body>.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>I nodded.<span style="mso-spacerun: yes">&nbsp;
+</span>“Yeah, that makes a lot more sense.<span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span>Nobody’d get confused by that.<span
+style="mso-spacerun: yes">&nbsp; </span>So, who’s the other guy who got lazy?”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“The guy who named the fuel rod <span
+class=GramE>rotate</span> function. He should have given it a name like </span><span
+class=CodeChar><span style='font-size:9.0pt;mso-bidi-font-size:12.0pt'>incrementallyRotateQuarterTurn</span></span><span
+class=body>. <o:p></o:p></span></p>
+
+<p class=BODY3><span class=body><span style="mso-spacerun: yes">&nbsp;</span>“Yeah,
+I see your point.<span style="mso-spacerun: yes">&nbsp; </span>But…why were you
+so upset?<span style="mso-spacerun: yes">&nbsp; </span>You solved the
+problem.<span style="mso-spacerun: yes">&nbsp; </span>You should be happy.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“I was upset, Alphonse, because both of those
+lazy people were me.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>I chortled at that.<span style="mso-spacerun:
+yes">&nbsp; </span>Shook my head, and went back to my workstation.<span
+style="mso-spacerun: yes">&nbsp; </span>I scanned through Mr. <span
+class=SpellE>C.’s</span> rules looking for the rule about flag arguments.<o:p></o:p></span></p>
+
+<p class=Code><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=BODY3 style='margin-top:3.0pt;margin-right:.5in;margin-bottom:0in;
+margin-left:.5in;margin-bottom:.0001pt;text-indent:0in'><span class=body><b
+style='mso-bidi-font-weight:normal'>F3: Flag Arguments<o:p></o:p></b></span></p>
+
+<p class=BODY3 style='margin-top:3.0pt;margin-right:.5in;margin-bottom:0in;
+margin-left:.5in;margin-bottom:.0001pt;text-indent:0in'><span class=body>Boolean
+arguments loudly declare that the function does more than one thing.<span
+style="mso-spacerun: yes">&nbsp; </span>They are confusing and should be
+eliminated.<o:p></o:p></span></p>
+
+</div>
+
+</body>
+
+</html>

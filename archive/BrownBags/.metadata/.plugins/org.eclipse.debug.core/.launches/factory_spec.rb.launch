@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launchConfiguration type="org.rubypeople.rdt.launching.LaunchConfigurationTypeRubyApplication">
+<booleanAttribute key="org.rubypeople.rdt.launching.USE_DEFAULT_LOAD_PATH" value="true"/>
+<stringAttribute key="org.rubypeople.rdt.launching.VM_INSTALL_NAME" value="local"/>
+<stringAttribute key="org.rubypeople.rdt.launching.INTERPRETER_ARGUMENTS" value=""/>
+<stringAttribute key="org.rubypeople.rdt.launching.FILE_NAME" value=""/>
+<stringAttribute key="org.rubypeople.rdt.launching.VM_INSTALL_TYPE_ID" value="org.rubypeople.rdt.launching.StandardVMType"/>
+<stringAttribute key="org.rubypeople.rdt.launching.WORKING_DIRECTORY" value=""/>
+<stringAttribute key="org.rubypeople.rdt.launching.PROGRAM_ARGUMENTS" value=""/>
+<booleanAttribute key="org.rubypeople.rdt.launching.USE_DEFAULT_WORKING_DIRECTORY" value="true"/>
+<stringAttribute key="org.rubypeople.rdt.launching.PROJECT_NAME" value="Abstract Factory"/>
+<stringAttribute key="org.eclipse.debug.core.source_locator_id" value="org.rubypeople.rdt.debug.ui.rubySourceLocator"/>
+</launchConfiguration>

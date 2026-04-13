@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>The Craftsman</title>
+  <meta name="Author" content="Robert C. Martin">
+  <meta name="LastAuthor" content="Robert C. Martin">
+  <meta name="Company" content="Object Mentor Inc.">
+  <meta name="CreationTime" content="2003-09-24T06:12:00Z">
+  <meta name="ModificationTime" content="2003-09-24T06:12:00Z">
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.4">
+  <style type="text/css">
+    p.p1 {margin: 34.0px 0.0px 34.0px 0.0px; text-align: right; line-height: 22.0px; font: 24.0px 'Times New Roman'; color: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: right; font: 10.0px 'Times New Roman'; color: #000000}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: right; font: 10.0px 'Times New Roman'; color: #000000; min-height: 11.0px}
+    p.p4 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 12.0px 'Times New Roman'; color: #000000; min-height: 15.0px}
+    p.p5 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 10.0px 'Times New Roman'; color: #000000}
+    p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #ff0000; min-height: 10.0px}
+    p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #000000; min-height: 10.0px}
+    p.p8 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 10.0px 'Times New Roman'; color: #000000; min-height: 11.0px}
+    p.p9 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #000000}
+    p.p10 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #ff0000}
+    p.p11 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; font: 10.0px 'Times New Roman'; color: #000000; min-height: 11.0px}
+    p.p12 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: center; text-indent: 18.0px; font: 10.0px 'Times New Roman'; color: #000000}
+    p.p13 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: center; text-indent: 18.0px; font: 10.0px 'Times New Roman'; color: #000000; min-height: 11.0px}
+    p.p14 {margin: 0.0px 0.0px 0.0px 0.0px; font: 10.0px 'Courier New'}
+    p.p15 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Times New Roman'; min-height: 15.0px}
+    span.s1 {font: 9.0px 'Courier New'}
+    span.s2 {color: #000000}
+    span.s3 {color: #ff0000}
+    span.s4 {font: 10.0px 'Times New Roman'}
+    span.s5 {font: 9.0px 'Courier New'; color: #000000}
+  </style>
+</head>
+<body>
+<p class="p1"><b>The Craftsman: 18<br>
+SMCRemote Part VIII<br>
+Slow and Steady</b></p>
+<p class="p2">Robert C. Martin</p>
+<p class="p2">24 Sept, 2003</p>
+<p class="p3"><i></i><br></p>
+<p class="p4"><br></p>
+<p class="p5"><i>...Continued from last month.<span class="Apple-converted-space">  </span>You can download last month's code from:</i></p>
+<p class="p5"><i>www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_17_Call_the_Guards.zip</i></p>
+<p class="p6"><b></b><br></p>
+<p class="p7"><br></p>
+<p class="p5">"All right then dear, I think it's time we started to work on the server part of this application, don't you?<span class="Apple-converted-space">  </span>After all the client portion seems to be working as well as we can tell, and a client without a server just seems so lonely.<span class="Apple-converted-space">  </span>Don't you agree?"</p>
+<p class="p5">Jean had just settled her ample behind into her seat.<span class="Apple-converted-space">  </span>As she spoke she reached into her bag and pulled out her knitting.<span class="Apple-converted-space">  </span>The shawl (or whatever it was) had grown considerably during our break (during which I had learned all about Jean's children, grandchildren, nephews, and nieces)</p>
+<p class="p5">"Er, server?"<span class="Apple-converted-space">  </span>Two words were all I could ever seem to muster in response to one of Jean's vocal deluges.</p>
+<p class="p5">"Yes dear, the server.<span class="Apple-converted-space">  </span>The server is going to have to receive that file you've been so diligently sending, save it to disk, and then compile it with SMC.<span class="Apple-converted-space">  </span>Remember dear, we are building a remote compiler for SMC, the State Machine Compiler.<span class="Apple-converted-space">  </span>Now, dear, what's the first test case we should write?</p>
+<p class="p5">What test case indeed?<span class="Apple-converted-space">  </span>I thought furiously about this.<span class="Apple-converted-space">  </span>The server side of the pair of programs had to listen at a socket and receive <span class="s1">CompileFileTransaction</span> objects.<span class="Apple-converted-space">  </span>These objects contain encapsulated files in <span class="s1">FileCarrier</span> sub-objects.<span class="Apple-converted-space">  </span>The server needs to write these encapsulated files to a safe place on the disk, compile them, and then send the results back to the client in a <span class="s1">CompilerResultsTransaction</span> object. <span class="Apple-converted-space"> </span></p>
+<p class="p5">My first worry was how to compile the files.<span class="Apple-converted-space">  </span>Somehow we needed to invoke the compiler and get it to compile the saved file. <span class="Apple-converted-space"> </span></p>
+<p class="p5">"Uh, could we write a test case for invoking the compiler?"</p>
+<p class="p5">Jean smiled the way a grandmother smiles at an infant taking its first steps.<span class="Apple-converted-space">  </span>"Why of course, dear, that would be a lovely place to start.<span class="Apple-converted-space">  </span>Do you know how to invoke the compiler?<span class="Apple-converted-space">  </span>Let's see, I think we just have to build the right command line and then invoke it.<span class="Apple-converted-space">  </span>Now what was that command line syntax?<span class="Apple-converted-space">  </span>It's been so long since I used SMC, I don't quite remember.<span class="Apple-converted-space">  </span>Hear, dear, type this command:<span class="Apple-converted-space">  </span><span class="s1">java smc.Smc</span>.<span class="Apple-converted-space">  </span>That's right dear, now what does that error message say?<span class="Apple-converted-space">  </span>Class def not found?<span class="Apple-converted-space">  </span>Oh yes, we forgot the classpath.<span class="Apple-converted-space">  </span>Don't get old dear; you start forgetting things.<span class="Apple-converted-space">  </span>Type this: <span class="s1">java -cp C:/SMC/smc.jar smc.Smc</span>.<span class="Apple-converted-space">  </span>That's better, now what does that message say?"</p>
+<p class="p5">The message on the screen was usage error that described all the command line arguments for SMC.<span class="Apple-converted-space">  </span>"Er, it's a usage message."</p>
+<p class="p5">"So it is, dear, so it is.<span class="Apple-converted-space">  </span>And it looks to me as though we want to invoke SMC with the following command:<span class="Apple-converted-space">  </span><span class="s1">java -cp C:/SMC/smc.jar smc.Smc -f myFile.sm</span>.<span class="Apple-converted-space">  </span>Don't you agree dear?<span class="Apple-converted-space">  </span>Why don't you write a test case that will generate that command line?"</p>
+<p class="p5">So I created a new unit test class named <span class="s1">SMCRemoteServerTest</span>.</p>
+<p class="p8"><br></p>
+<p class="p9">public class SMCRemoteServerTest extends TestCase {</p>
+<p class="p9"><span class="Apple-converted-space">  </span>public void testBuildCommandLine() throws Exception {</p>
+<p class="p9"><span class="Apple-converted-space">    </span>assertEquals("java -cp C:/SMC/smc.jar -f myFile.sm",</p>
+<p class="p9"><span class="Apple-converted-space">      </span>SMCRemoteServer.buildCommandLine("myFile.sm"))<span class="Apple-converted-space">  </span>;</p>
+<p class="p9"><span class="Apple-converted-space">  </span>}</p>
+<p class="p9">}</p>
+<p class="p7"><br></p>
+<p class="p5">And I wrote the <span class="s1">SMCRemoteServer</span> class too.</p>
+<p class="p7"><br></p>
+<p class="p9">public class SMCRemoteServer {</p>
+<p class="p9"><span class="Apple-converted-space">  </span>public static String buildCommandLine(String file) {</p>
+<p class="p9"><span class="Apple-converted-space">    </span>return null;</p>
+<p class="p9"><span class="Apple-converted-space">  </span>}</p>
+<p class="p9">}</p>
+<p class="p7"><br></p>
+<p class="p5">"Very good, dear.<span class="Apple-converted-space">  </span>The test fails, as it should.<span class="Apple-converted-space">  </span>You've been learning your lessons well.<span class="Apple-converted-space">  </span>Now it should be a simple matter to make that test pass, don't you think?</p>
+<p class="p5">"Er -- sure."</p>
+<p class="p7"><br></p>
+<p class="p9"><span class="Apple-converted-space">  </span>public static String buildCommandLine(String file) {</p>
+<p class="p10"><span class="s2"><span class="Apple-converted-space">    </span>return </span><b>"java -cp C:/SMC/smc.jar smc.Smc -f " + file</b><span class="s2">;</span></p>
+<p class="p9"><span class="Apple-converted-space">  </span>}</p>
+<p class="p7"><br></p>
+<p class="p5">"That's fine dear, now run it for me, won't you?<span class="Apple-converted-space">  </span>Good.<span class="Apple-converted-space">  </span>Oh!<span class="Apple-converted-space">  </span>Why, the test failed dear, what could be the matter?"</p>
+<p class="p5">The message on the screen was: <span class="s1">expected:&lt;......&gt; but was:&lt;...smc.Smc ...&gt;</span>.<span class="Apple-converted-space">  </span>I looked carefully at the code and realized that I had forgotten the <span class="s1">smc.Smc</span> in the test case.<span class="Apple-converted-space">  </span>"Er, I guess I wrote the test wrong."</p>
+<p class="p5">"So you did, so you did.<span class="Apple-converted-space">  </span>Yes, sometimes we do write the tests wrong.<span class="Apple-converted-space">  </span>Bugs can occurr anywhere.<span class="Apple-converted-space">  </span>That's why it's always a good idea to write both tests and code.<span class="Apple-converted-space">  </span>That way you are writing everything twice.<span class="Apple-converted-space">  </span>I have a nephew who does accounting in ship stores, and he always enters every transaction into two distinct ledgers.<span class="Apple-converted-space">  </span>What did he call that?<span class="Apple-converted-space">  </span>Oh, yes, <i>dual entry bookkeeping</i>.<span class="Apple-converted-space">  </span>He says it helps him prevent and track down errors.<span class="Apple-converted-space">  </span>And that's just what we're doing, isn't it dear.<span class="Apple-converted-space">  </span>We write every bit of functionality twice.<span class="Apple-converted-space">  </span>Once in a test, and once in code.<span class="Apple-converted-space">  </span>And it <i>does</i> help us to prevent and track down errors doens't it dear?"</p>
+<p class="p5">While she was droning, I fixed the test case.<span class="Apple-converted-space">  </span>Jean is a nice old lady, and pretty smart too, but my ears were ringing from the continual chatter. <span class="Apple-converted-space"> </span></p>
+<p class="p7"><br></p>
+<p class="p9"><span class="Apple-converted-space">  </span>public void testBuildCommandLine() throws Exception {</p>
+<p class="p9"><span class="Apple-converted-space">    </span>assertEquals("java -cp C:/SMC/smc.jar <span class="s3"><b>smc.Smc</b></span> -f myFile.sm",</p>
+<p class="p9"><span class="Apple-converted-space">      </span>SMCRemoteServer.buildCommandLine("myFile.sm"))<span class="Apple-converted-space">  </span>;</p>
+<p class="p9"><span class="Apple-converted-space">  </span>}</p>
+<p class="p7"><br></p>
+<p class="p5">This made the test pass.</p>
+<p class="p5">"Wonderful, dear, wonderful; but the code is a bit messy, don't you think?<span class="Apple-converted-space">  </span>Let's clean it up before we go any further.<span class="Apple-converted-space">  </span>Clean your messes before they start, I always say."</p>
+<p class="p5">I looked at the code and didn't see anything particularly messy.<span class="Apple-converted-space">  </span>So I looked back and Jean and said: "Er, where would you like to start?"</p>
+<p class="p5">"My goodness dear; why it's as plain as the nose on your face!<span class="Apple-converted-space">  </span>That <span class="s1">buildCommandLine</span> function needs a bit of straightening.<span class="Apple-converted-space">  </span>That string in the return statement is just full of unexplained assumptions that are sure to confuse the next person to read this code.<span class="Apple-converted-space">  </span>We don't want to confuse anyone, do we?<span class="Apple-converted-space">  </span>I should say we don't.<span class="Apple-converted-space">  </span>Here, dear, give me the keyboard."</p>
+<p class="p5">She set down her knitting (is that the beginnings of a sleeve) and with considerable effort took control of the keyboard.<span class="Apple-converted-space">  </span>Her typing was slow but deliberate, as if each keystroke caused her pain.<span class="Apple-converted-space">  </span>Eventually she changed the return statement as follows:</p>
+<p class="p7"><br></p>
+<p class="p9">return "java -cp <span class="s3"><b>" + "</b></span>C:/SMC/smc.jar<span class="s3"><b>" + "</b></span> <span class="s3"><b>" + "</b></span>smc.Smc<span class="s3"><b>" + "</b></span> -f " + file;</p>
+<p class="p7"><br></p>
+<p class="p5">Then she ran the test, and it passed.</p>
+<p class="p5">"There, dear, do you see now?<span class="Apple-converted-space">  </span>We need to replace some of those strings with constants that explain how the command line is built.<span class="Apple-converted-space">  </span>Do you want to do it dear, or shall I?"</p>
+<p class="p5">Her pained expression was answer enough.<span class="Apple-converted-space">  </span>I took the keyboard and added the constants I thought she was after.</p>
+<p class="p7"><br></p>
+<p class="p9">public class SMCRemoteServer {</p>
+<p class="p10"><b><span class="Apple-converted-space">  </span>private static final String SMC_CLASSPATH = "C:/SMC/smc.jar";</b></p>
+<p class="p10"><b><span class="Apple-converted-space">  </span>private static final String SMC_CLASSNAME = "smc.Smc";</b></p>
+<p class="p7"><br></p>
+<p class="p9"><span class="Apple-converted-space">  </span>public static String buildCommandLine(String file) {</p>
+<p class="p9"><span class="Apple-converted-space">    </span>return "java -cp " +</p>
+<p class="p9"><span class="Apple-converted-space">      </span><span class="s3"><b>SMC_CLASSPATH</b></span> + " " +</p>
+<p class="p10"><span class="s2"><span class="Apple-converted-space">      </span></span><b>SMC_CLASSNAME</b><span class="s2"> +</span></p>
+<p class="p9"><span class="Apple-converted-space">      </span>" -f " + file;</p>
+<p class="p9"><span class="Apple-converted-space">  </span>}</p>
+<p class="p9">}</p>
+<p class="p7"><br></p>
+<p class="p5">"Yes, dear, that's just what I was after.<span class="Apple-converted-space">  </span>Don't you think that others will make a bit more sense out of it now?<span class="Apple-converted-space">  </span>I know I would if I were them.<span class="Apple-converted-space">  </span>Now dear, why don't you and I go to the break room and settle our brains?"</p>
+<p class="p5">Something inside me snapped.</p>
+<p class="p5">"Jean, we've barely gotten anything done!"</p>
+<p class="p5">"Why dear, whatever do you mean, we've gotten quite a bit done."</p>
+<p class="p5">I wasn't thinking about whom I was talking to.<span class="Apple-converted-space">  </span>I kept right on blathering.<span class="Apple-converted-space">  </span>"We've only gotten one stupid function done.<span class="Apple-converted-space">  </span>If we keep moving at this snail's pace, Mr. C is going to transfer us to the husbandry deck to clean out the Dribin cages!"</p>
+<p class="p5">"Really dear, why ever would you think such a thing?<span class="Apple-converted-space">  </span>I've been working in this department for well over thirty years, dear, and nobody has ever suggested that I should be cleaning up after Dribins."</p>
+<p class="p5">She stopped for a moment as if composing her thoughts.<span class="Apple-converted-space">  </span>Then she looked at me with a kindly, but stern, expression on her face.</p>
+<p class="p5">"Alphonse dear, the only way to get done with a program quickly, is to do the very best job you can with it.<span class="Apple-converted-space">  </span>If you rush, or if you take shortcuts, you will pay for it later in debugging time.<span class="Apple-converted-space">  </span>Mr. C. is paying you for your time, dear, and he wants the very best work you can do.<span class="Apple-converted-space">  </span>The code is your product, dear, and Mr. C. doesn't pay for poor products.<span class="Apple-converted-space">  </span>He doesn't want to hear that you saved a day by being sloppy because he knows that he'll have to pay dearly for that sloppiness later.<span class="Apple-converted-space">  </span>What he wants is the very best code you can write.<span class="Apple-converted-space">  </span>He wants that code to be as clean, expressive, and well tested as you can make it.<span class="Apple-converted-space">  </span>And, dear, Mr. C. knows that if you do that, you'll be done with it quicker than all those young fools who think they can go faster by cutting corners.<span class="Apple-converted-space">  </span>No, dear, we aren't going too slow.<span class="Apple-converted-space">  </span>We're moving along at just the right pace to get done as quickly as possible.<span class="Apple-converted-space">  </span>Now, let's go get a cup of tea, shall we?"</p>
+<p class="p11"><br></p>
+<p class="p8"><br></p>
+<p class="p8"><br></p>
+<p class="p8"><br></p>
+<p class="p11"><br></p>
+<p class="p12"><i>To be continued...</i></p>
+<p class="p6"><b></b><br></p>
+<p class="p13"><br></p>
+<p class="p8"><br></p>
+<p class="p5"><i>The code that Alphonse and Jean finished can be retrieved from:</i></p>
+<p class="p5"><i>www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_17_Slow_And_Steady.zip</i></p>
+<p class="p8"><i></i><br></p>
+<p class="p8"><i></i><br></p>
+<p class="p14"><span class="s4"><span class="Apple-converted-space"> </span>You can download </span><span class="s5">smc.jar</span><span class="s4"> from: </span>http://www.objectmentor.com/resources/downloads/smc_java</p>
+<p class="p15"><br></p>
+<p class="p8"><i></i><br></p>
+</body>
+</html>

@@ -1,0 +1,304 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>The Craftsman</title>
+  <meta name="Author" content="Robert C. Martin">
+  <meta name="LastAuthor" content="rcm">
+  <meta name="Company" content="Object Mentor Inc.">
+  <meta name="CreationTime" content="2004-02-19T09:58:00Z">
+  <meta name="ModificationTime" content="2004-02-19T09:58:00Z">
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.4">
+  <style type="text/css">
+    p.p1 {margin: 34.0px 0.0px 34.0px 0.0px; text-align: right; line-height: 22.0px; font: 24.0px 'Times New Roman'; color: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: right; font: 10.0px 'Times New Roman'; color: #000000}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: right; font: 10.0px 'Times New Roman'; color: #000000; min-height: 11.0px}
+    p.p4 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 12.0px 'Times New Roman'; color: #000000; min-height: 15.0px}
+    p.p5 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 10.0px 'Times New Roman'; color: #000000}
+    p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #ff0000; min-height: 10.0px}
+    p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #000000; min-height: 10.0px}
+    p.p8 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; text-indent: 18.0px; font: 10.0px 'Times New Roman'; color: #000000; min-height: 11.0px}
+    p.p9 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #000000}
+    p.p10 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px 'Courier New'; color: #ff0000}
+    p.p11 {margin: 0.0px 0.0px 0.0px 18.0px; font: 9.0px 'Courier New'; color: #000000}
+    p.p12 {margin: 0.0px 0.0px 0.0px 36.0px; font: 9.0px 'Courier New'; color: #000000}
+    p.p13 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: justify; font: 10.0px 'Times New Roman'; color: #000000; min-height: 11.0px}
+    p.p14 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: center; text-indent: 18.0px; font: 10.0px 'Times New Roman'; color: #000000}
+    p.p15 {margin: 3.0px 0.0px 0.0px 0.0px; text-align: center; text-indent: 18.0px; font: 10.0px 'Times New Roman'; color: #000000; min-height: 11.0px}
+    span.s1 {font: 9.0px 'Courier New'}
+    span.s2 {color: #ff0000}
+  </style>
+</head>
+<body>
+<p class="p1"><b>The Craftsman: 23<br>
+SMCRemote Part XIII<br>
+Raggedy.</b></p>
+<p class="p2">Robert C. Martin</p>
+<p class="p2">19 February 2004</p>
+<p class="p3"><i></i><br></p>
+<p class="p4"><br></p>
+<p class="p5"><i>...Continued from last month.<span class="Apple-converted-space">  </span>You can download last month's code from:</i></p>
+<p class="p5"><i>www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_22_BugEye.zip</i></p>
+<p class="p6"><b></b><br></p>
+<p class="p7"><br></p>
+<p class="p5"><i>20 Feb 2002, 14:00</i></p>
+<p class="p7"><br></p>
+<p class="p5">Avery looked at me with a smug smile on his pimply face. His bushy red eyebrows added intensity to the look.<span class="Apple-converted-space">  </span>He had gained confidence over the last hour, and his stammering had disappeared.<span class="Apple-converted-space">  </span>“OK, so now the server executes compiles in an empty directory.<span class="Apple-converted-space">  </span>Now I think its time to test the whole server from end to end.”</p>
+<p class="p5">“You mean you want to open a socket with the server, send in a <span class="s1">CompileFileTransaction</span> and see if the appropriate <span class="s1">CompilerResponseTransaction</span> comes out?”</p>
+<p class="p5">“Precisely, Alphonse.<span class="Apple-converted-space">  </span>Precisely.”<span class="Apple-converted-space">  </span>As he gained confidence he started speaking with an odd formality.<span class="Apple-converted-space">  </span>It was a bit strange, but also a bit fun.<span class="Apple-converted-space">  </span>Playing along I said:<span class="Apple-converted-space">  </span>“I see, Avery.<span class="Apple-converted-space">  </span>Then I suggest that you compose the appropriate test case, and then I’ll endeavor to satisfy it.”</p>
+<p class="p5">“Excellent suggestion, Alphonse.<span class="Apple-converted-space">  </span>Shall I proceed?”</p>
+<p class="p5">“Please do.”</p>
+<p class="p5">Avery faced the screen, making a show of stretching his fingers and squaring his shoulders before touching the keyboard. <span class="Apple-converted-space">  </span>He typed:</p>
+<p class="p8"><br></p>
+<p class="p9"><span class="Apple-converted-space">    </span>public void testServerEndToEnd() throws Exception {</p>
+<p class="p7"><span class="Apple-converted-space">        </span></p>
+<p class="p9"><span class="Apple-converted-space">    </span>}</p>
+<p class="p8"><br></p>
+<p class="p5">He paused with mock intensity and said: “Do you agree with the name?”</p>
+<p class="p5">“Indeed!” I replied. <span class="Apple-converted-space">  </span>I was getting into this. <span class="Apple-converted-space">  </span>He continued to type while he talked.<span class="Apple-converted-space"> </span></p>
+<p class="p5">“Our first goal should be to instantiate the <span class="s1">SMCRemoteServer</span> and bind it to some port number that is convenient for our test case.”</p>
+<p class="p8"><br></p>
+<p class="p9"><span class="Apple-converted-space">    </span>public void testServerEndToEnd() throws Exception {</p>
+<p class="p10"><b><span class="Apple-converted-space">       </span>SMCRemoteServer server = new SMCRemoteServer(999);</b></p>
+<p class="p9"><span class="Apple-converted-space">    </span>}</p>
+<p class="p7"><br></p>
+<p class="p5">“I appreciate the intent of that code, but notice that it fails to compile.<span class="Apple-converted-space">  </span>Apparently there is no constructor that takes an <span class="s1">int</span>.”<span class="Apple-converted-space"> </span></p>
+<p class="p5">“Well spotted, Alphonse.<span class="Apple-converted-space">  </span>Well spotted.<span class="Apple-converted-space">  </span>We must therefore create just such a constructor.” <span class="Apple-converted-space"> </span></p>
+<p class="p8"><br></p>
+<p class="p11">public class SMCRemoteServer {</p>
+<p class="p12">…</p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>public SMCRemoteServer(int port) {</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>}</b></p>
+<p class="p11"><span class="Apple-converted-space">   </span>…</p>
+<p class="p11">}</p>
+<p class="p8"><br></p>
+<p class="p5">“Nicely done, Avery.<span class="Apple-converted-space">  </span>I suggest that this test will pass in its current form.”</p>
+<p class="p5">“I believe you may be correct, Alphonse.<span class="Apple-converted-space">  </span>Shall we try?”</p>
+<p class="p5">“Yes, I believe we should.”</p>
+<p class="p5">Avery pushed the test button and the green bar flashed on the screen indicating that the test had passed.</p>
+<p class="p5">“As expected.” Avery said with a self-satisfied tone.<span class="Apple-converted-space">  </span>“Next we’ll have our test connect to that socket like so:”</p>
+<p class="p8"><br></p>
+<p class="p9"><span class="Apple-converted-space">  </span>public void testServerEndToEnd() throws Exception {</p>
+<p class="p9"><span class="Apple-converted-space">    </span>SMCRemoteServer server = new SMCRemoteServer(999);</p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>Socket client = new Socket("localhost", 999);</b></p>
+<p class="p9"><span class="Apple-converted-space">  </span>}</p>
+<p class="p7"><br></p>
+<p class="p5">“I expect, Avery, that this will fail.”</p>
+<p class="p5">“I agree, Alphonse.<span class="Apple-converted-space">  </span>We never created the server socket.”<span class="Apple-converted-space">  </span>Pushing the test button quickly yielded a red bar on the screen.<span class="Apple-converted-space">  </span>We looked at each other and nodded, pleased with our mutual prescience.</p>
+<p class="p5">I held my hands out in front of me, as a polite gesture requesting Avery to slide the keyboard in my direction.<span class="Apple-converted-space">  </span>He did so with a flourish and a knowing look. <span class="Apple-converted-space"> </span></p>
+<p class="p5">“Thank you Avery.<span class="Apple-converted-space">  </span>To make this test pass we’ll use a utility named <span class="s1">SocketService</span> that Jerry and I wrote last week.”</p>
+<p class="p8"><br></p>
+<p class="p9"><span class="Apple-converted-space">  </span>public SMCRemoteServer(int port) throws Exception {</p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>SocketService service = new SocketService(port, new SocketServer() {</b></p>
+<p class="p10"><b><span class="Apple-converted-space">      </span>public void serve(Socket theSocket) {</b></p>
+<p class="p10"><b><span class="Apple-converted-space">        </span>try {</b></p>
+<p class="p10"><b><span class="Apple-converted-space">          </span>theSocket.close();</b></p>
+<p class="p10"><b><span class="Apple-converted-space">        </span>} catch (IOException e) {</b></p>
+<p class="p10"><b><span class="Apple-converted-space">        </span>}</b></p>
+<p class="p10"><b><span class="Apple-converted-space">      </span>}</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>});</b></p>
+<p class="p9"><span class="Apple-converted-space">  </span>}</p>
+<p class="p7"><br></p>
+<p class="p5">“Nicely done, Alphonse.<span class="Apple-converted-space">  </span>Shall I run the test?”</p>
+<p class="p5">“Certainly!” I slid the keyboard back to him.</p>
+<p class="p5">Again we smiled and nodded – making a show of it -- as the green bar flashed on the screen.</p>
+<p class="p5">“Now then,” harrumphed Avery, “The server should respond with a connection message.”</p>
+<p class="p5">“Yes indeed it should, Avery.” I said, remembering back to last Thursday.<span class="Apple-converted-space">  </span>“Jerry and I decided that the message would be a string that begins with SMCR.”</p>
+<p class="p5">“Well then, that’s easy enough to test.”</p>
+<p class="p8"><br></p>
+<p class="p9"><span class="Apple-converted-space">  </span>public void testServerEndToEnd() throws Exception {</p>
+<p class="p9"><span class="Apple-converted-space">    </span>SMCRemoteServer server = new SMCRemoteServer(999);</p>
+<p class="p9"><span class="Apple-converted-space">    </span>Socket client = new Socket("localhost", 999);</p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>ObjectInputStream is = new ObjectInputStream(client.getInputStream());</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>String header = (String) is.readObject();</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>assertTrue(header.startsWith("SMCR"));</b></p>
+<p class="p9"><span class="Apple-converted-space">  </span>}</p>
+<p class="p7"><br></p>
+<p class="p5">“Yes, that looks quite proper.<span class="Apple-converted-space">  </span>Quite proper.”<span class="Apple-converted-space">  </span>I said accepting the keyboard as Avery brandished it in my direction.<span class="Apple-converted-space">  </span>I ran the test, and noted with satisfaction as it failed due to an <span class="s1">EOFException</span>.<span class="Apple-converted-space">  </span>Now then, to make this pass we merely create the appropriate string and send it out the socket – like so!”</p>
+<p class="p8"><br></p>
+<p class="p9"><span class="Apple-converted-space">  </span>public SMCRemoteServer(int port) throws Exception {</p>
+<p class="p9"><span class="Apple-converted-space">    </span>SocketService service = new SocketService(port, new SocketServer() {</p>
+<p class="p9"><span class="Apple-converted-space">      </span>public void serve(Socket theSocket) {</p>
+<p class="p9"><span class="Apple-converted-space">        </span>try {</p>
+<p class="p10"><b><span class="Apple-converted-space">          </span>ObjectOutputStream os =<span class="Apple-converted-space"> </span></b></p>
+<p class="p10"><b><span class="Apple-converted-space">            </span>new ObjectOutputStream(theSocket.getOutputStream());</b></p>
+<p class="p10"><b><span class="Apple-converted-space">          </span>os.writeObject("SMCR");</b></p>
+<p class="p9"><span class="Apple-converted-space">          </span>theSocket.close();</p>
+<p class="p9"><span class="Apple-converted-space">        </span>} catch (IOException e) {</p>
+<p class="p9"><span class="Apple-converted-space">        </span>}</p>
+<p class="p9"><span class="Apple-converted-space">      </span>}</p>
+<p class="p9"><span class="Apple-converted-space">    </span>});</p>
+<p class="p9"><span class="Apple-converted-space">  </span>}</p>
+<p class="p8"><br></p>
+<p class="p5">The test produced a green bar, and we repeated the smile and nod ritual.<span class="Apple-converted-space">  </span>I passed the keyboard back to Avery holding it as though I were passing a fencing foil to my opponent at the start of a match.<span class="Apple-converted-space">  </span>“Your weapon sir.”</p>
+<p class="p5">“At your disposal, sir.” He responded.<span class="Apple-converted-space">  </span>“I believe we must now prepare to send the <span class="s1">CompileFileTransaction</span>.<span class="Apple-converted-space">  </span>This will require us to first write a source file containing code that the SMC compiler can compile.”</p>
+<p class="p5">“Ah, indeed, Jean and I created such a file just this morning.<span class="Apple-converted-space">  </span>The code is in the <span class="s1">testExecuteCommand()</span> function.<span class="Apple-converted-space">  </span>We should be able to extract it into a function of its own named <span class="s1">writeSourceFile()</span>.”</p>
+<p class="p8"><br></p>
+<p class="p9"><span class="Apple-converted-space">  </span>private File writeSourceFile(String theSourceFileName) throws IOException {</p>
+<p class="p9"><span class="Apple-converted-space">    </span>File sourceFile = new File(theSourceFileName);</p>
+<p class="p9"><span class="Apple-converted-space">    </span>PrintWriter pw = new PrintWriter(new FileWriter(sourceFile));</p>
+<p class="p9"><span class="Apple-converted-space">    </span>pw.println("Context C");</p>
+<p class="p9"><span class="Apple-converted-space">    </span>pw.println("FSMName F");</p>
+<p class="p9"><span class="Apple-converted-space">    </span>pw.println("Initial I");</p>
+<p class="p9"><span class="Apple-converted-space">    </span>pw.println("{I{E I A}}");</p>
+<p class="p9"><span class="Apple-converted-space">    </span>pw.close();</p>
+<p class="p9"><span class="Apple-converted-space">    </span>return sourceFile;</p>
+<p class="p9"><span class="Apple-converted-space">  </span>}</p>
+<p class="p8"><br></p>
+<p class="p5">“Excellent!<span class="Apple-converted-space">  </span>Thank you Alphonse.<span class="Apple-converted-space">  </span>So now I can create a <span class="s1">CompileFileTransaction</span>, send it to the server, and expect a <span class="s1">CompilerResultsTransaction</span> back – right?”</p>
+<p class="p5">“I’d say that was correct, Avery.”</p>
+<p class="p8"><br></p>
+<p class="p9"><span class="Apple-converted-space">  </span>public void testServerEndToEnd() throws Exception {</p>
+<p class="p9"><span class="Apple-converted-space">    </span>SMCRemoteServer server = new SMCRemoteServer(999);</p>
+<p class="p9"><span class="Apple-converted-space">    </span>Socket client = new Socket("localhost", 999);</p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>ObjectInputStream is = new ObjectInputStream(client.getInputStream());</b></p>
+<p class="p9"><span class="Apple-converted-space">    </span>ObjectOutputStream os = new ObjectOutputStream(client.getOutputStream());</p>
+<p class="p9"><span class="Apple-converted-space">    </span>String header = (String) is.readObject();</p>
+<p class="p9"><span class="Apple-converted-space">    </span>assertTrue(header.startsWith("SMCR"));</p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>File sourceFile = writeSourceFile("mySourceFile.sm");</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>CompileFileTransaction cft = new CompileFileTransaction("mySourceFile.sm");</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>os.writeObject(cft);</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>os.flush();</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>CompilerResultsTransaction crt =<span class="Apple-converted-space"> </span></b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>(CompilerResultsTransaction) is.readObject();</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>assertNotNull(crt);</b></p>
+<p class="p9"><span class="Apple-converted-space">  </span>}</p>
+<p class="p5">With the red bar from the failing test on the screen, Avery said.<span class="Apple-converted-space">  </span>“Alphonse, do you agree that this code expresses my intent.”</p>
+<p class="p5">“Yes, I think it expresses it very well.<span class="Apple-converted-space">  </span>And now if you’ll hand me the keyboard, I’ll make it pass.”</p>
+<p class="p8"><br></p>
+<p class="p9"><span class="Apple-converted-space">      </span>public void serve(Socket theSocket) {</p>
+<p class="p9"><span class="Apple-converted-space">        </span>try {</p>
+<p class="p9"><span class="Apple-converted-space">          </span>ObjectOutputStream os =<span class="Apple-converted-space"> </span></p>
+<p class="p9"><span class="Apple-converted-space">            </span>new ObjectOutputStream(theSocket.getOutputStream());</p>
+<p class="p10"><b><span class="Apple-converted-space">          </span>ObjectInputStream is =<span class="Apple-converted-space"> </span></b></p>
+<p class="p10"><b><span class="Apple-converted-space">            </span>new ObjectInputStream(theSocket.getInputStream());</b></p>
+<p class="p9"><span class="Apple-converted-space">          </span>os.writeObject("SMCR");</p>
+<p class="p10"><b><span class="Apple-converted-space">          </span>os.flush();</b></p>
+<p class="p10"><b><span class="Apple-converted-space">          </span>CompileFileTransaction cft =<span class="Apple-converted-space"> </span></b></p>
+<p class="p10"><b><span class="Apple-converted-space">            </span>(CompileFileTransaction) is.readObject();</b></p>
+<p class="p10"><b><span class="Apple-converted-space">          </span>CompilerResultsTransaction crt = new CompilerResultsTransaction();</b></p>
+<p class="p10"><b><span class="Apple-converted-space">          </span>os.writeObject(crt);</b></p>
+<p class="p10"><b><span class="Apple-converted-space">          </span>os.flush();</b></p>
+<p class="p9"><span class="Apple-converted-space">          </span>theSocket.close();</p>
+<p class="p9"><span class="Apple-converted-space">        </span>} catch (Exception e) {</p>
+<p class="p9"><span class="Apple-converted-space">        </span>}</p>
+<p class="p9"><span class="Apple-converted-space">      </span>}</p>
+<p class="p7"><br></p>
+<p class="p5">“And sure enough, pass it does.”</p>
+<p class="p5">“Well done Alphonse!”</p>
+<p class="p5">“Thank you Avery.<span class="Apple-converted-space">  </span>There really isn’t anything to it.”</p>
+<p class="p5">“In that case, I’ll give you one more challenge.”<span class="Apple-converted-space">  </span>He took the keyboard and began to type again.</p>
+<p class="p8"><br></p>
+<p class="p9"><span class="Apple-converted-space">  </span>public void testServerEndToEnd() throws Exception {</p>
+<p class="p9"><span class="Apple-converted-space">    </span>SMCRemoteServer server = new SMCRemoteServer(999);</p>
+<p class="p9"><span class="Apple-converted-space">    </span>Socket client = new Socket("localhost", 999);</p>
+<p class="p9"><span class="Apple-converted-space">    </span>ObjectInputStream is = new ObjectInputStream(client.getInputStream());</p>
+<p class="p9"><span class="Apple-converted-space">    </span>ObjectOutputStream os = new ObjectOutputStream(client.getOutputStream());</p>
+<p class="p9"><span class="Apple-converted-space">    </span>String header = (String) is.readObject();</p>
+<p class="p9"><span class="Apple-converted-space">    </span>assertTrue(header.startsWith("SMCR"));</p>
+<p class="p9"><span class="Apple-converted-space">    </span>File sourceFile = writeSourceFile("mySourceFile.sm");</p>
+<p class="p9"><span class="Apple-converted-space">    </span>CompileFileTransaction cft = new CompileFileTransaction("mySourceFile.sm");</p>
+<p class="p9"><span class="Apple-converted-space">    </span>os.writeObject(cft);</p>
+<p class="p9"><span class="Apple-converted-space">    </span>os.flush();</p>
+<p class="p9"><span class="Apple-converted-space">    </span>CompilerResultsTransaction crt =<span class="Apple-converted-space"> </span></p>
+<p class="p9"><span class="Apple-converted-space">      </span>(CompilerResultsTransaction) is.readObject();</p>
+<p class="p9"><span class="Apple-converted-space">    </span>assertNotNull(crt);</p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>File resultFile = new File("F.java");</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>assertFalse(resultFile.exists());</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>crt.write();</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>assertTrue(resultFile.exists());</b></p>
+<p class="p9"><span class="Apple-converted-space">  </span>}</p>
+<p class="p7"><br></p>
+<p class="p5">“Aha!” I said.<span class="Apple-converted-space">  </span>“You actually want me to invoke the compiler, eh?”</p>
+<p class="p5">“That I do, my dear Alphonse. <span class="Apple-converted-space">  </span>That I do.”</p>
+<p class="p5">“Then prepare yourself for compilation, young Avery.”</p>
+<p class="p8"><br></p>
+<p class="p9"><span class="Apple-converted-space">      </span>public void serve(Socket theSocket) {</p>
+<p class="p9"><span class="Apple-converted-space">        </span>try {</p>
+<p class="p9"><span class="Apple-converted-space">          </span>ObjectOutputStream os =<span class="Apple-converted-space"> </span></p>
+<p class="p9"><span class="Apple-converted-space">            </span>new ObjectOutputStream(theSocket.getOutputStream());</p>
+<p class="p9"><span class="Apple-converted-space">          </span>ObjectInputStream is =<span class="Apple-converted-space"> </span></p>
+<p class="p9"><span class="Apple-converted-space">            </span>new ObjectInputStream(theSocket.getInputStream());</p>
+<p class="p9"><span class="Apple-converted-space">          </span>os.writeObject("SMCR");</p>
+<p class="p9"><span class="Apple-converted-space">          </span>os.flush();</p>
+<p class="p9"><span class="Apple-converted-space">          </span>CompileFileTransaction cft =<span class="Apple-converted-space"> </span></p>
+<p class="p9"><span class="Apple-converted-space">            </span>(CompileFileTransaction) is.readObject();</p>
+<p class="p10"><b><span class="Apple-converted-space">          </span>String command = buildCommandLine(cft.getFilename());</b></p>
+<p class="p10"><b><span class="Apple-converted-space">          </span>CompilerResultsTransaction crt = compile(cft, command);</b></p>
+<p class="p9"><span class="Apple-converted-space">          </span>os.writeObject(crt);</p>
+<p class="p9"><span class="Apple-converted-space">          </span>os.flush();</p>
+<p class="p9"><span class="Apple-converted-space">          </span>theSocket.close();</p>
+<p class="p9"><span class="Apple-converted-space">        </span>} catch (Exception e) {</p>
+<p class="p9"><span class="Apple-converted-space">        </span>}</p>
+<p class="p9"><span class="Apple-converted-space">      </span>}</p>
+<p class="p8"><br></p>
+<p class="p5">We both leaned over the monitor as I pushed the test button.<span class="Apple-converted-space"> </span></p>
+<p class="p5">Green Bar. Smile.<span class="Apple-converted-space">  </span>Nod.</p>
+<p class="p5">“We’ve done well, Avery.<span class="Apple-converted-space">  </span>But I think it’s time we cleaned this code up a bit.”</p>
+<p class="p5">“I quite agree, Alphonse, it has gotten a little, shall we say, raggedy?”</p>
+<p class="p5">Together we worked through the new server code and split it up into a batch of smaller methods that worked together to tell the story.<span class="Apple-converted-space">  </span>When we were done it looked like this; and all the tests still passed.</p>
+<p class="p7"><br></p>
+<p class="p9"><span class="Apple-converted-space">  </span>public SMCRemoteServer(int port) throws Exception {</p>
+<p class="p9"><span class="Apple-converted-space">    </span>SocketService service =<span class="Apple-converted-space"> </span></p>
+<p class="p9"><span class="Apple-converted-space">      </span>new SocketService(port, new <span class="s2"><b>SMCRemoteServerThread()</b></span>);</p>
+<p class="p9"><span class="Apple-converted-space">  </span>}</p>
+<p class="p7"><br></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>private static class SMCRemoteServerThread implements SocketServer {</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>private ObjectOutputStream os;</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>private ObjectInputStream is;</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>private CompileFileTransaction cft;</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>private CompilerResultsTransaction crt;</b></p>
+<p class="p6"><b></b><br></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>public void serve(Socket theSocket) {</b></p>
+<p class="p10"><b><span class="Apple-converted-space">      </span>try {</b></p>
+<p class="p10"><b><span class="Apple-converted-space">        </span>initializeStreams(theSocket);</b></p>
+<p class="p10"><b><span class="Apple-converted-space">        </span>sayHello();</b></p>
+<p class="p10"><b><span class="Apple-converted-space">        </span>readTransaction();</b></p>
+<p class="p10"><b><span class="Apple-converted-space">        </span>doCompile();</b></p>
+<p class="p10"><b><span class="Apple-converted-space">        </span>writeResponse();</b></p>
+<p class="p10"><b><span class="Apple-converted-space">        </span>theSocket.close();</b></p>
+<p class="p10"><b><span class="Apple-converted-space">      </span>} catch (Exception e) {</b></p>
+<p class="p10"><b><span class="Apple-converted-space">      </span>}</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>}</b></p>
+<p class="p6"><b></b><br></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>private void readTransaction() throws IOException, ClassNotFoundException {</b></p>
+<p class="p10"><b><span class="Apple-converted-space">      </span>cft = (CompileFileTransaction) is.readObject();</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>}</b></p>
+<p class="p6"><b></b><br></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>private void initializeStreams(Socket theSocket) throws IOException {</b></p>
+<p class="p10"><b><span class="Apple-converted-space">      </span>os = new ObjectOutputStream(theSocket.getOutputStream());</b></p>
+<p class="p10"><b><span class="Apple-converted-space">      </span>is = new ObjectInputStream(theSocket.getInputStream());</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>}</b></p>
+<p class="p6"><b></b><br></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>private void writeResponse() throws IOException {</b></p>
+<p class="p10"><b><span class="Apple-converted-space">      </span>os.writeObject(crt);</b></p>
+<p class="p10"><b><span class="Apple-converted-space">      </span>os.flush();</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>}</b></p>
+<p class="p6"><b></b><br></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>private void sayHello() throws IOException {</b></p>
+<p class="p10"><b><span class="Apple-converted-space">      </span>os.writeObject("SMCR");</b></p>
+<p class="p10"><b><span class="Apple-converted-space">      </span>os.flush();</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>}</b></p>
+<p class="p6"><b></b><br></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>private void doCompile() throws Exception {</b></p>
+<p class="p10"><b><span class="Apple-converted-space">      </span>String command = buildCommandLine(cft.getFilename());</b></p>
+<p class="p10"><b><span class="Apple-converted-space">      </span>crt = compile(cft, command);</b></p>
+<p class="p10"><b><span class="Apple-converted-space">    </span>}</b></p>
+<p class="p10"><b><span class="Apple-converted-space">  </span>}</b></p>
+<p class="p6"><b></b><br></p>
+<p class="p5">“OK, that’s much better.<span class="Apple-converted-space">  </span>I think it’s time for a break, don’t you?” I said to Avery.</p>
+<p class="p5">“Yeah, I guess we’ve been at it for a couple of hours.<span class="Apple-converted-space">  </span>Let’s go to the game room and play LandCraft.”</p>
+<p class="p8"><span class="Apple-converted-space"> </span></p>
+<p class="p13"><span class="Apple-converted-space"> </span></p>
+<p class="p14"><i>To be continued...</i></p>
+<p class="p6"><b></b><br></p>
+<p class="p15"><br></p>
+<p class="p8"><br></p>
+<p class="p5"><i>The code that Alphonse and Avery finished can be retrieved from:</i></p>
+<p class="p5"><i>www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_23_Raggedy.zip</i></p>
+<p class="p8"><i></i><br></p>
+<p class="p8"><i></i><br></p>
+</body>
+</html>

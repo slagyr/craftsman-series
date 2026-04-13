@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launchConfiguration type="org.rubypeople.rdt.testunit.launchconfig">
+<stringAttribute key="org.rubypeople.rdt.testunit.TESTTYPE" value=""/>
+<stringAttribute key="org.rubypeople.rdt.testunit.TESTNAME" value=""/>
+<stringAttribute key="org.rubypeople.rdt.testunit.CONTAINER" value="factory_spec.rb"/>
+<stringAttribute key="org.rubypeople.rdt.launching.VM_INSTALL_NAME" value="local"/>
+<stringAttribute key="org.rubypeople.rdt.launching.FILE_NAME" value="/Applications/Aptana IDE Beta/plugins/org.rubypeople.rdt.testunit_0.9.0.704271939NGT/ruby/RemoteTestRunner.rb"/>
+<stringAttribute key="org.rubypeople.rdt.launching.VM_INSTALL_TYPE_ID" value="org.rubypeople.rdt.launching.StandardVMType"/>
+<stringAttribute key="org.rubypeople.rdt.launching.WORKING_DIRECTORY" value="/Users/unclebob/Documents/Articles/Craftsman/BrownBags/AbstractFactory"/>
+<stringAttribute key="org.rubypeople.rdt.launching.PROJECT_NAME" value="AbstractFactory"/>
+<stringAttribute key="org.eclipse.debug.core.source_locator_id" value="org.rubypeople.rdt.debug.ui.rubySourceLocator"/>
+</launchConfiguration>

@@ -1,0 +1,10 @@
+class HourlyEmployee
+  def initialize(name) 
+    @name = name;
+    @timecards = []
+  end
+  
+  def addTimeCard(timeCard)
+    @timcards << timecard;
+  end
+end

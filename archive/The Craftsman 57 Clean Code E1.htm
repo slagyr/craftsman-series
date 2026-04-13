@@ -1,0 +1,1160 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"
+xmlns:css="http://macVmlSchemaUri" xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta name=Title content="The Craftsman">
+<meta name=Keywords content="">
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 2008">
+<meta name=Originator content="Microsoft Word 2008">
+<link rel=File-List href="The%20Craftsman%2057%20Clean%20Code%20E1_files/filelist.xml">
+<title>The Craftsman</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>Robert C. Martin</o:Author>
+  <o:Template>Normal.dotm</o:Template>
+  <o:LastAuthor>Robert Martin</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>125</o:TotalTime>
+  <o:LastPrinted>2006-10-18T18:17:00Z</o:LastPrinted>
+  <o:Created>2009-05-14T17:12:00Z</o:Created>
+  <o:LastSaved>2009-05-14T17:12:00Z</o:LastSaved>
+  <o:Pages>2</o:Pages>
+  <o:Words>1491</o:Words>
+  <o:Characters>8503</o:Characters>
+  <o:Company>Object Mentor Inc.</o:Company>
+  <o:Lines>70</o:Lines>
+  <o:Paragraphs>17</o:Paragraphs>
+  <o:CharactersWithSpaces>10442</o:CharactersWithSpaces>
+  <o:Version>12.0</o:Version>
+ </o:DocumentProperties>
+ <o:OfficeDocumentSettings>
+  <o:PixelsPerInch>96</o:PixelsPerInch>
+  <o:TargetScreenSize>800x600</o:TargetScreenSize>
+ </o:OfficeDocumentSettings>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:SpellingState>Clean</w:SpellingState>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:TrackMoves>false</w:TrackMoves>
+  <w:TrackFormatting/>
+  <w:DefaultTableStyle>Fitnesse Table</w:DefaultTableStyle>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:Compatibility>
+   <w:UseNormalStyleForList/>
+   <w:DontUseIndentAsNumberingTabStop/>
+   <w:FELineBreak11/>
+   <w:WW11IndentRules/>
+   <w:DontAutofitConstrainedTables/>
+   <w:AutofitLikeWW11/>
+   <w:HangulWidthLikeWW11/>
+  </w:Compatibility>
+ </w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" LatentStyleCount="276">
+ </w:LatentStyles>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+@font-face
+	{font-family:"Courier New";
+	panose-1:2 7 3 9 2 2 5 2 4 4;
+	mso-font-charset:0;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 0 0 0 1 0;}
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 2 1 2 1 8 4 8 7 8;
+	mso-font-charset:2;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:0 0 65536 0 -2147483648 0;}
+@font-face
+	{font-family:Verdana;
+	panose-1:2 11 6 4 3 5 4 4 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 0 0 0 1 0;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 0 0 0 1 0;}
+ /* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+h3
+	{mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	mso-outline-level:3;
+	font-size:13.5pt;
+	font-family:"Times New Roman";
+	mso-bidi-font-weight:bold;}
+p.MsoFootnoteText, li.MsoFootnoteText, div.MsoFootnoteText
+	{mso-style-noshow:yes;
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+p.MsoCommentText, li.MsoCommentText, div.MsoCommentText
+	{mso-style-noshow:yes;
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+span.MsoFootnoteReference
+	{mso-style-noshow:yes;
+	vertical-align:super;}
+span.MsoCommentReference
+	{mso-style-noshow:yes;
+	mso-ansi-font-size:8.0pt;
+	mso-bidi-font-size:8.0pt;}
+p.MsoBodyTextIndent, li.MsoBodyTextIndent, div.MsoBodyTextIndent
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:.25in;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+p.MsoBodyTextFirstIndent2, li.MsoBodyTextFirstIndent2, div.MsoBodyTextFirstIndent2
+	{mso-style-parent:"Body Text Indent";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:.25in;
+	text-indent:10.5pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+p.MsoBodyText3, li.MsoBodyText3, div.MsoBodyText3
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:8.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;
+	text-underline:single;}
+pre
+	{margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Courier New";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Courier New";}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-noshow:yes;
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:8.0pt;
+	font-family:Tahoma;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:Tahoma;}
+p.BODY3, li.BODY3, div.BODY3
+	{mso-style-name:"BODY 3";
+	mso-style-link:"BODY 3 Char";
+	margin-top:3.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-indent:.25in;
+	mso-pagination:none;
+	tab-stops:1.0in;
+	mso-layout-grid-align:none;
+	text-autospace:none;
+	font-size:10.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	color:black;}
+p.CHAPTITLE, li.CHAPTITLE, div.CHAPTITLE
+	{mso-style-name:"CHAP TITLE";
+	margin:0in;
+	margin-bottom:.0001pt;
+	text-align:right;
+	mso-line-height-alt:22.0pt;
+	mso-pagination:none;
+	mso-layout-grid-align:none;
+	text-autospace:none;
+	font-size:24.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	color:black;
+	font-weight:bold;
+	mso-bidi-font-weight:normal;}
+p.QUOTES, li.QUOTES, div.QUOTES
+	{mso-style-name:QUOTES;
+	margin:0in;
+	margin-bottom:.0001pt;
+	text-align:right;
+	mso-pagination:none;
+	mso-layout-grid-align:none;
+	text-autospace:none;
+	font-size:10.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	color:black;
+	font-style:italic;
+	mso-bidi-font-style:normal;}
+p.Code, li.Code, div.Code
+	{mso-style-name:Code;
+	mso-style-parent:"BODY 3";
+	mso-style-link:"Code Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	tab-stops:.25in 1.0in;
+	mso-layout-grid-align:none;
+	text-autospace:none;
+	font-size:9.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Courier New";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Courier New";
+	color:black;
+	mso-no-proof:yes;}
+p.ModCode, li.ModCode, div.ModCode
+	{mso-style-name:ModCode;
+	mso-style-parent:Code;
+	mso-style-link:"ModCode Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	tab-stops:.25in 1.0in;
+	mso-layout-grid-align:none;
+	text-autospace:none;
+	font-size:9.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Courier New";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Courier New";
+	color:red;
+	font-weight:bold;
+	mso-bidi-font-weight:normal;
+	mso-no-proof:yes;}
+span.BODY3Char
+	{mso-style-name:"BODY 3 Char";
+	mso-style-locked:yes;
+	mso-style-link:"BODY 3";
+	mso-bidi-font-size:12.0pt;
+	color:black;
+	mso-ansi-language:EN-US;
+	mso-fareast-language:EN-US;}
+span.CodeChar
+	{mso-style-name:"Code Char";
+	mso-style-locked:yes;
+	mso-style-parent:"BODY 3 Char";
+	mso-style-link:Code;
+	mso-ansi-font-size:9.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Courier New";
+	mso-ascii-font-family:"Courier New";
+	mso-hansi-font-family:"Courier New";
+	mso-bidi-font-family:"Courier New";
+	color:black;
+	mso-ansi-language:EN-US;
+	mso-fareast-language:EN-US;
+	mso-no-proof:yes;}
+span.ModCodeChar
+	{mso-style-name:"ModCode Char";
+	mso-style-locked:yes;
+	mso-style-parent:"Code Char";
+	mso-style-link:ModCode;
+	mso-ansi-font-size:9.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Courier New";
+	mso-ascii-font-family:"Courier New";
+	mso-hansi-font-family:"Courier New";
+	mso-bidi-font-family:"Courier New";
+	color:red;
+	mso-ansi-language:EN-US;
+	mso-fareast-language:EN-US;
+	font-weight:bold;
+	mso-bidi-font-weight:normal;
+	mso-no-proof:yes;}
+span.meta
+	{mso-style-name:meta;}
+span.fitlabel
+	{mso-style-name:fit_label;
+	font-family:Verdana;
+	mso-ascii-font-family:Verdana;
+	mso-hansi-font-family:Verdana;}
+span.StylefitlabelVerdana9ptItalicGray-80
+	{mso-style-name:"Style fit_label + Verdana 9 pt Italic Gray-80%";
+	mso-style-parent:fit_label;
+	mso-ansi-font-size:9.0pt;
+	mso-bidi-font-size:9.0pt;
+	font-family:"Times New Roman";
+	mso-ascii-font-family:"Times New Roman";
+	mso-hansi-font-family:"Times New Roman";
+	color:gray;
+	font-style:italic;}
+p.Pattern, li.Pattern, div.Pattern
+	{mso-style-name:Pattern;
+	mso-style-parent:"BODY 3";
+	mso-style-link:"Pattern Char";
+	margin-top:3.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-indent:.25in;
+	mso-pagination:none;
+	tab-stops:1.0in;
+	mso-layout-grid-align:none;
+	text-autospace:none;
+	font-size:10.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	font-variant:small-caps;
+	color:black;}
+span.PatternChar
+	{mso-style-name:"Pattern Char";
+	mso-style-locked:yes;
+	mso-style-parent:"BODY 3 Char";
+	mso-style-link:Pattern;
+	mso-bidi-font-size:12.0pt;
+	font-variant:small-caps;
+	color:black;
+	mso-ansi-language:EN-US;
+	mso-fareast-language:EN-US;}
+span.fitgrey
+	{mso-style-name:fit_grey;}
+span.body
+	{mso-style-name:body;}
+span.pagetitle
+	{mso-style-name:page_title;}
+span.SpellE
+	{mso-style-name:"";
+	mso-spl-e:yes;}
+span.GramE
+	{mso-style-name:"";
+	mso-gram-e:yes;}
+ /* Page Definitions */
+@page
+	{mso-footnote-separator:url(":The Craftsman 57 Clean Code E1_files:header.htm") fs;
+	mso-footnote-continuation-separator:url(":The Craftsman 57 Clean Code E1_files:header.htm") fcs;
+	mso-endnote-separator:url(":The Craftsman 57 Clean Code E1_files:header.htm") es;
+	mso-endnote-continuation-separator:url(":The Craftsman 57 Clean Code E1_files:header.htm") ecs;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+@list l0
+	{mso-list-id:31925269;
+	mso-list-template-ids:-481131650;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l1
+	{mso-list-id:563413980;
+	mso-list-template-ids:1622043126;}
+@list l1:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l2
+	{mso-list-id:565381069;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1645571134 67698705 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l2:level1
+	{mso-level-text:"%1\)";
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3
+	{mso-list-id:646782512;
+	mso-list-template-ids:-1182737964;}
+@list l3:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l4
+	{mso-list-id:970749122;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-919546364 67698703 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l4:level1
+	{mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5
+	{mso-list-id:1060053805;
+	mso-list-template-ids:1625817432;}
+@list l5:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l6
+	{mso-list-id:1128546385;
+	mso-list-template-ids:1040341674;}
+@list l6:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l7
+	{mso-list-id:1578706892;
+	mso-list-type:hybrid;
+	mso-list-template-ids:82345816 954136472 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l7:level1
+	{mso-level-start-at:22;
+	mso-level-number-format:bullet;
+	mso-level-text:-;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+@list l7:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Courier New";}
+@list l8
+	{mso-list-id:1647053381;
+	mso-list-template-ids:1429089694;}
+@list l8:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l9
+	{mso-list-id:1875189953;
+	mso-list-template-ids:-2056903076;}
+@list l9:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l10
+	{mso-list-id:1916551088;
+	mso-list-template-ids:-352012062;}
+@list l10:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l11
+	{mso-list-id:2047681249;
+	mso-list-template-ids:-1289184880;}
+@list l11:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l12
+	{mso-list-id:2095591514;
+	mso-list-type:hybrid;
+	mso-list-template-ids:340670874 67698705 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l12:level1
+	{mso-level-text:"%1\)";
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+table.MsoNormalTable
+	{mso-style-name:"Table Normal";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0in 5.4pt 0in 5.4pt;
+	mso-para-margin:0in;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";}
+table.FitnesseTable
+	{mso-style-name:"Fitnesse Table";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-padding-alt:0in 5.4pt 0in 5.4pt;
+	mso-tstyle-shading:#E0E0E0;
+	mso-para-margin:0in;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:9.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:Verdana;}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="2050" fillcolor="white">
+  <v:fill color="white"/>
+  <v:shadow color="gray" opacity="1" offset="2pt,2pt"/>
+ </o:shapedefaults></xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body lang=EN-US link=blue vlink=purple style='tab-interval:.5in'>
+
+<div class=Section1>
+
+<p class=CHAPTITLE style='margin-top:34.0pt;margin-right:0in;margin-bottom:
+34.0pt;margin-left:0in'><span style='mso-no-proof:yes'>The Craftsman: 57<br>
+Clean Code: E1<br>
+Multistep Build<o:p></o:p></span></p>
+
+<p class=QUOTES><span style='font-style:normal;mso-no-proof:yes'>Robert C.
+Martin<o:p></o:p></span></p>
+
+<p class=QUOTES><span style='font-style:normal;mso-no-proof:yes'>14 May 2009<o:p></o:p></span></p>
+
+<p class=QUOTES><span style='mso-no-proof:yes'><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><o:p></o:p></span></p>
+
+<div style='mso-element:para-border-div;border:none;border-bottom:solid windowtext 1.0pt;
+mso-border-bottom-alt:solid windowtext .75pt;padding:0in 0in 1.0pt 0in'>
+
+<p class=ModCode style='border:none;mso-border-bottom-alt:solid windowtext .75pt;
+padding:0in;mso-padding-alt:0in 0in 1.0pt 0in'><o:p>&nbsp;</o:p></p>
+
+</div>
+
+<p class=BODY3 style='text-indent:0in'><i style='mso-bidi-font-style:normal'>57
+July 4, 1945, 22:23:00 GMT<o:p></o:p></i></p>
+
+<p class=BODY3 style='text-indent:0in'><i style='mso-bidi-font-style:normal'>Chuck
+Yeager stared out the portal at the growing giant.<span style="mso-spacerun:
+yes">&nbsp; </span>Clyde was still 100 kilometers away, but it filled his field
+of view.<span style="mso-spacerun: yes">&nbsp; </span>It was a dark grey
+pockmarked potato slowly rotating while hanging silently in the sky.<span
+style="mso-spacerun: yes">&nbsp; </span>Chuck would be one of the first to set
+foot on Clyde, to gather material to bring home to the egg-heads who
+desperately wanted to know what it was made of.<o:p></o:p></i></p>
+
+<p class=BODY3 style='text-indent:0in'><i style='mso-bidi-font-style:normal'>“They
+think we can move that thing.” O’Hare said from behind him.<span
+style="mso-spacerun: yes">&nbsp; </span><o:p></o:p></i></p>
+
+<p class=BODY3 style='text-indent:0in'><i style='mso-bidi-font-style:normal'>Yeager
+knew better than to show that he’d been startled.<span style="mso-spacerun:
+yes">&nbsp; </span>“That’s what they think, alright.” He responded.<o:p></o:p></i></p>
+
+<p class=BODY3 style='text-indent:0in'><i style='mso-bidi-font-style:normal'>“What
+do you think?” Pressed O’Hare.<span style="mso-spacerun: yes">&nbsp; </span>“Do
+you think we can push this thing aside?”<o:p></o:p></i></p>
+
+<p class=BODY3 style='text-indent:0in'><i style='mso-bidi-font-style:normal'>“Butch,”
+Drawled Yeager, “I’ll be damned if I know.<span style="mso-spacerun:
+yes">&nbsp; </span>But here’s the thing.”<o:p></o:p></i></p>
+
+<p class=BODY3 style='text-indent:0in'><i style='mso-bidi-font-style:normal'>“What’s
+that, Chuck?”<o:p></o:p></i></p>
+
+<p class=BODY3 style='text-indent:0in'><i style='mso-bidi-font-style:normal'>“It’s
+not my job to worry about that.<span style="mso-spacerun: yes">&nbsp;
+</span>Not yours neither.”<o:p></o:p></i></p>
+
+<p class=BODY3 style='text-indent:0in'><i style='mso-bidi-font-style:normal'>“True
+enough.<span style="mso-spacerun: yes">&nbsp; </span>True enough.<span
+style="mso-spacerun: yes">&nbsp; </span>We’re just supposed to walk all over
+that <span class=SpellE>sunofabitch</span> and pick up rocks to bring home.”<o:p></o:p></i></p>
+
+<p class=BODY3 style='text-indent:0in'><i style='mso-bidi-font-style:normal'>“Sounds
+easy, don’t it?”<o:p></o:p></i></p>
+
+<p class=BODY3 style='text-indent:0in'><i style='mso-bidi-font-style:normal'>“Piece
+of cake.”<o:p></o:p></i></p>
+
+<p class=BODY3 style='text-indent:0in'><i style='mso-bidi-font-style:normal'>And
+they both turned and stared at the dark grey pockmarked potato that was rushing
+headlong to destroy their homes.<o:p></o:p></i></p>
+
+<div style='mso-element:para-border-div;border:none;border-bottom:solid windowtext 1.0pt;
+mso-border-bottom-alt:solid windowtext .75pt;padding:0in 0in 2.0pt 0in'>
+
+<p class=BODY3 style='text-indent:0in;border:none;mso-border-bottom-alt:solid windowtext .75pt;
+padding:0in;mso-padding-alt:0in 0in 2.0pt 0in'><i style='mso-bidi-font-style:
+normal'><o:p>&nbsp;</o:p></i></p>
+
+</div>
+
+<p class=BODY3 style='text-indent:0in'><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=BODY3><i>Wed, 14 Mar 2002, 08:43<o:p></o:p></i></p>
+
+<p class=Code><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=BODY3><span class=body>I heard an email come into my PDA while I was
+eating breakfast in the galley, but I ignored it until I had finished.<span
+style="mso-spacerun: yes">&nbsp; </span>I got up and started down the corridor
+to the lift that would take me to my work area.<span style="mso-spacerun:
+yes">&nbsp; </span>As I was walking I flipped open the PDA and started to scan
+the emails.<span style="mso-spacerun: yes">&nbsp; </span><o:p></o:p></span></p>
+
+<p class=Code><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=Code><span class=body>From:<span style="mso-spacerun: yes">&nbsp;
+</span>Jerry<o:p></o:p></span></p>
+
+<p class=Code><span class=body>Subject: PortalClean<o:p></o:p></span></p>
+
+<p class=Code><span class=body>Date: 14 Mar, 2002, 08:32<o:p></o:p></span></p>
+
+<p class=Code><span class=body>To: Alphonse<o:p></o:p></span></p>
+
+<p class=Code><span class=body>----------------------------<o:p></o:p></span></p>
+
+<p class=Code><span class=body>Alphonse,<o:p></o:p></span></p>
+
+<p class=Code><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=Code><span class=body>Please check out the PortalClean system, rebuild
+with latest compiler, and redeploy.<o:p></o:p></span></p>
+
+<p class=Code><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=Code><span class=body>Jerry.<o:p></o:p></span></p>
+
+<p class=Code><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=BODY3><span class=body>I was reading as I turned into the lift.<span
+style="mso-spacerun: yes">&nbsp; </span>I walked headlong into <span
+class=SpellE>Jasmine</span>.<span style="mso-spacerun: yes">&nbsp; </span><o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Hey, watch where you’re going <span
+class=GramE>there</span> Hot Shot!<span style="mso-spacerun: yes">&nbsp;
+</span>Get your nose out of your PDA while you’re walking!”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Oh, sorry Jasmine.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“You <i style='mso-bidi-font-style:normal'>will</i>
+be sorry if you keep <i style='mso-bidi-font-style:normal'>that</i> up.<span
+style="mso-spacerun: yes">&nbsp; </span>Haven’t you ever heard of the
+Discipline of D.E.?”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Uh…what?”<span style="mso-spacerun:
+yes">&nbsp; </span>I hate sounding like a <span class=SpellE>lunk</span>, but
+the sounds come out before I can stop them.<o:p></o:p></span></p>
+
+<p class=BODY3><span class=SpellE><span class=body>Jasimine</span></span><span
+class=body> rolled those glorious green eyes and tossed her long black
+hair.<span style="mso-spacerun: yes">&nbsp; </span>“The Discipline of D.E.,
+Alphonse.<span style="mso-spacerun: yes">&nbsp; </span>Do Easily.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“N-no I’ve never heard of that.”<span
+style="mso-spacerun: yes">&nbsp; </span><o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>The lift engaged and we stated down towards our
+lab.<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“The basic idea is that it’s better to think
+about what you are doing, than it is to do one thing while thinking about
+another.<span style="mso-spacerun: yes">&nbsp; </span>When you are walking,
+think about walking.<span style="mso-spacerun: yes">&nbsp; </span>When you are
+eating, think about eating.<span style="mso-spacerun: yes">&nbsp; </span>You
+make fewer mistakes that way.<span style="mso-spacerun: yes">&nbsp; </span>Or
+so they tell me.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>The lift door opened just as she finished.<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>She gave me a wink and an all-knowing grin, and
+strode purposefully out into the lab with her hair swinging purposefully with
+each stride.<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>I heaved a sigh and made my way to my
+workstation.<span style="mso-spacerun: yes">&nbsp; </span>Avery was there
+already.<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“All set for some pairing?” He asked.<span
+style="mso-spacerun: yes">&nbsp; </span>“I could use a break from what Jean’s
+got me doing.<span style="mso-spacerun: yes">&nbsp; </span>So I thought I’d
+help you out for a bit.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Sure.” I said with some relief.<span
+style="mso-spacerun: yes">&nbsp; </span>It would be good to have a bit of help
+with this <span class=SpellE>PortalClean</span> thing.<span
+style="mso-spacerun: yes">&nbsp; </span>“Jerry just sent me this email.” I held
+my PDA out for him to see.<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Okay, that’s sounds easy.” He said.<span
+style="mso-spacerun: yes">&nbsp; </span>And while I settled myself, he checked
+out the project and got it up on the screen.<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>We both stared at the top-level directory for a
+few seconds.<span style="mso-spacerun: yes">&nbsp; </span>Then, in unison, we
+turned to look at each other, and said: “Where’s the build script?”<span
+style="mso-spacerun: yes">&nbsp; </span>We laughed at our simultaneity, and I
+resisted the urge to say “Jinx”.<span style="mso-spacerun: yes">&nbsp; </span><o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Okay.” I said.<span style="mso-spacerun:
+yes">&nbsp; </span>“How do we build this thing?”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>We both stared at the directory a bit longer,
+but all was saw were source files.<span style="mso-spacerun: yes">&nbsp;
+</span>There didn’t seem to be any kind of script at all.<span
+style="mso-spacerun: yes">&nbsp; </span><o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Wow, this is strange.<span
+style="mso-spacerun: yes">&nbsp; </span>I wonder who wrote this?”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>Avery nodded and typed: </span><span
+class=CodeChar><span style='font-size:9.0pt;mso-bidi-font-size:12.0pt'>git log</span></span><span
+class=body>.<span style="mso-spacerun: yes">&nbsp; </span><o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>As the list of commits scrolled up the screen,
+Avery and I both sighed.<span style="mso-spacerun: yes">&nbsp; </span>Again,
+simultaneously we looked at each other and with as much apprehension as we
+could muster we said the name: “Jasper!”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>Again, we laughed, although this time there
+wasn’t as much to laugh about.<span style="mso-spacerun: yes">&nbsp; </span><o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Do you want to call him over?” Avery asked.<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>I paused to think about this.<span
+style="mso-spacerun: yes">&nbsp; </span>“No.” I said. “But I think we have to.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>Avery rolled his eyes in agreement, and then
+fired off an IM.<o:p></o:p></span></p>
+
+<p class=Code><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=Code><span class=body><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span>Avery:
+Jasper, got a sec?<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span>Jasper:
+Sure beans!<span style="mso-spacerun: yes">&nbsp; </span>What’s up Ayve ol’
+sport?<o:p></o:p></span></p>
+
+<p class=Code><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=BODY3><span class=body>We looked at each other again and rolled our
+eyes.<o:p></o:p></span></p>
+
+<p class=Code><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=Code><span class=body><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span>Avery:
+Alphonse and I could use your help with PortalClean.<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span>Jasper:
+PortalClean!<span style="mso-spacerun: yes">&nbsp; </span>Holy Baloney, It’s
+been years!<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span>Jasper:
+That was one of my first projects.<span style="mso-spacerun: yes">&nbsp;
+</span>What a hoot!<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span>Jasper:
+I’ll be over in a flash guys!<span style="mso-spacerun: yes">&nbsp; </span>See
+you in a jiffy.<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span>Jasper:
+Over and out.<o:p></o:p></span></p>
+
+<p class=Code><span class=body><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span>Jasper:
+BRT.<span style="mso-spacerun: yes">&nbsp; </span><o:p></o:p></span></p>
+
+<p class=Code><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=BODY3><span class=body>Seconds later he was there, in <span
+class=GramE>all his</span> blonde, sugar-bowl haircut, toothy-smiled glory. <o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Hey Alf!<span style="mso-spacerun: yes">&nbsp;
+</span>Hey <span class=SpellE>Ayve</span>!<span style="mso-spacerun:
+yes">&nbsp; </span>Good to see you guys.<span style="mso-spacerun: yes">&nbsp;
+</span>What’s up with <span class=SpellE>PortalClean</span>?<span
+style="mso-spacerun: yes">&nbsp; </span>Wow, It’s been a while since I’ve seen
+that code.<span style="mso-spacerun: yes">&nbsp; </span>Do you mind if I sit
+right here?<span style="mso-spacerun: yes">&nbsp; </span>Thanks.<span
+style="mso-spacerun: yes">&nbsp; </span>Yeah, that’s the directory all
+right.<span style="mso-spacerun: yes">&nbsp; </span>So how can I help you?<span
+style="mso-spacerun: yes">&nbsp; </span>Have you downloaded the <span
+class=SpellE>CleanFramework</span> yet?”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>The rush of syllables ended so abruptly it took
+me a moment to realize that he was done.<span style="mso-spacerun: yes">&nbsp;
+</span>As Jasper beamed at us with his big bright eyes and wide grin, I
+reviewed the deluge of words. <o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>But Avery beat me to it.<span
+style="mso-spacerun: yes">&nbsp; </span>“What’s <span class=SpellE>CleanFramework</span>?”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Good question <span class=SpellE>Ayve</span>!<span
+style="mso-spacerun: yes">&nbsp; </span><span class=SpellE>CleanFramework</span>
+is the framework &lt;grin&gt; that I wrote to support <span class=SpellE>CleanPortal</span>.<span
+style="mso-spacerun: yes">&nbsp; </span>I checked it into a separate repository
+because I thought someone else might be able to use it for a different cleaning
+application.<span style="mso-spacerun: yes">&nbsp; </span>Here, let me show
+you.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>And Jasper grabbed the keyboard and checked out
+the <span class=SpellE>CleanFramework</span> project right in the same
+directory with <span class=SpellE>CleanPortal</span>.<span style="mso-spacerun:
+yes">&nbsp; </span><o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>Jasper stared at the screen for a few seconds
+and then said: “Yeah, I’m pretty sure that’s right.<span style="mso-spacerun:
+yes">&nbsp; </span>Now, <span class=SpellE>AlfAndAyve</span> &lt;grin&gt; have
+you tried building this?<span style="mso-spacerun: yes">&nbsp; </span>Probably
+not since you didn’t have the framework.<span style="mso-spacerun: yes">&nbsp;
+</span>So here’s how you build it.”<span style="mso-spacerun: yes">&nbsp;
+</span>And he began to type. “First you have to build the framework.”<o:p></o:p></span></p>
+
+<p class=Code><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=Code><span class=body>cd CleanFramework<o:p></o:p></span></p>
+
+<p class=Code><span class=body>javac *.java<o:p></o:p></span></p>
+
+<p class=Code><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=BODY3><span class=body>“What are those errors?” I said, as I watched
+the compile fail.<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Oh yeah, that’s right!” Avery exclaimed.<span
+style="mso-spacerun: yes">&nbsp; </span>“We need the <span class=SpellE>CleanUtils</span>
+library too.”<span style="mso-spacerun: yes">&nbsp; </span><o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>And with that he checked out yet another
+library into the same directory.<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“OK <span class=SpellE>AlfAndAyve</span>
+&lt;grin&gt; let’s <span class=GramE>try</span> that again.<span
+style="mso-spacerun: yes">&nbsp; </span>First we build the <span class=SpellE>utils</span>.”<o:p></o:p></span></p>
+
+<p class=Code><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=Code><span class=body>cd CleanUtils<o:p></o:p></span></p>
+
+<p class=Code><span class=body>javac *.java<o:p></o:p></span></p>
+
+<p class=Code><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=BODY3><span class=body>“Next we build the Framework.”<o:p></o:p></span></p>
+
+<p class=Code><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=Code><span class=body>cd ../CleanFramework<o:p></o:p></span></p>
+
+<p class=Code><span class=body>javac &#8211;classpath ../CleanUtils/classes
+*.java<o:p></o:p></span></p>
+
+<p class=Code><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=BODY3><span class=body>“Finally we build the application.”<span
+style="mso-spacerun: yes">&nbsp; </span>And he beamed great big smiles at both
+of us.<o:p></o:p></span></p>
+
+<p class=Code><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=Code><span class=body>cd ..<o:p></o:p></span></p>
+
+<p class=Code><span class=body>javac &#8211;classpath CleanUtils/classes;CleanFramework/classes
+*.java<o:p></o:p></span></p>
+
+<p class=Code><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=BODY3><span class=body>“Whoops! More errors. Hmmm. Let me think.”<span
+style="mso-spacerun: yes">&nbsp; </span><o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>Jasper looked up at the ceiling and put his
+finger on his nose.<span style="mso-spacerun: yes">&nbsp; </span>Avery and I
+looked at each other in horror. <o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Oh yeah!” Jasper said. “I forgot to generate
+the data structures.”<o:p></o:p></span></p>
+
+<p class=Code><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=Code><span class=body>java &#8211;cp CleanUtils/classes
+cleanDataGenerator.Generate data/templates<o:p></o:p></span></p>
+
+<p class=Code><span class=body>... generating 152 java files from templates.
+(18s)<o:p></o:p></span></p>
+
+<p class=Code><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=BODY3><span class=body>“OK, <i style='mso-bidi-font-style:normal'>now</i>
+I can build the application.”<o:p></o:p></span></p>
+
+<p class=Code><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=Code><span class=body>javac &#8211;classpath
+CleanUtils/classes;CleanFramework/classes *.java<o:p></o:p></span></p>
+
+<p class=Code><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=BODY3><span class=body>I could feel the blood start to drain from my
+face. <o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Jasper, WTF?”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Wait Alf, hold on.<span style="mso-spacerun:
+yes">&nbsp; </span>We’re not done.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Not…done?”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Now we’ve got to run the configuration
+parser.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“The…huh?”<o:p></o:p></span></p>
+
+<p class=Code><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=Code><span class=body>java &#8211;cp CleanUtils/classes
+cleanUtils.GenConfig ../CleanFramework/config.xml<o:p></o:p></span></p>
+
+<p class=Code><span class=body>... populating configuation database.<span
+style="mso-spacerun: yes">&nbsp; </span>Please wait... (22s)<o:p></o:p></span></p>
+
+<p class=Code><span class=body>... Binding generated data structure to
+configuration entities... (14s)<o:p></o:p></span></p>
+
+<p class=Code><span class=body>... Reticulating Splines... (92s)<o:p></o:p></span></p>
+
+<p class=Code><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=BODY3><span class=body>Avery was slowly bumping his forehead against
+the desk.<span style="mso-spacerun: yes">&nbsp; </span>His eyes were closed
+tight.<span style="mso-spacerun: yes">&nbsp; </span>His hands were over his
+ears.<span style="mso-spacerun: yes">&nbsp; </span><o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Wow, this machine is a lot faster than we had
+back when I wrote this.<span style="mso-spacerun: yes">&nbsp; </span>We usually
+had to wait for 10 minutes or so!<span style="mso-spacerun: yes">&nbsp;
+</span>OK, now let’s run the tests!”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>Avery and I both perked up at that.<span
+style="mso-spacerun: yes">&nbsp; </span>“You have tests?”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>Jasper looked offended.<span
+style="mso-spacerun: yes">&nbsp; </span>“Alf?<span style="mso-spacerun:
+yes">&nbsp; </span><span class=SpellE>Ayve</span>?<span style="mso-spacerun:
+yes">&nbsp; </span>What do you take me for?<span style="mso-spacerun:
+yes">&nbsp; </span>Of course I have tests.<span style="mso-spacerun:
+yes">&nbsp; </span>First we have to generate the test database.”<o:p></o:p></span></p>
+
+<p class=Code><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=Code><span class=body>java &#8211;cp classes TestDB.build &#8211;nl
+&#8211;p 32<o:p></o:p></span></p>
+
+<p class=Code><span class=body>...alternating rows with variants selected.<o:p></o:p></span></p>
+
+<p class=Code><span class=body>...populating records with mocks of type n<o:p></o:p></span></p>
+
+<p class=Code><span class=body>...Linking records and leaving 32 broken paths.<o:p></o:p></span></p>
+
+<p class=Code><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=BODY3><span class=body>“I always left 32 broken paths. Watch what
+happens when I run the application.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>My eyes got big.<span style="mso-spacerun:
+yes">&nbsp; </span>“The Application!”<span style="mso-spacerun: yes">&nbsp;
+</span>But I was too late.<span style="mso-spacerun: yes">&nbsp; </span>Avery
+slumped in his seat wracked by mock sobs.<o:p></o:p></span></p>
+
+<p class=Code><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=Code><span class=body>java &#8211;cp classes CleanPortal.cleanPortal
+&#8211;t &#8211;v &#8211;log:null &#8211;p:Mock<o:p></o:p></span></p>
+
+<p class=Code><span class=body>******TEST MODE ON*****<o:p></o:p></span></p>
+
+<p class=Code><span class=body>Transverse access applied.<o:p></o:p></span></p>
+
+<p class=Code><span class=body>Mock Portals intialized.<o:p></o:p></span></p>
+
+<p class=Code><span class=body>(2342342)/Portal selection begins.<o:p></o:p></span></p>
+
+<p class=Code><span class=body>(2342346)/Portals selected.<o:p></o:p></span></p>
+
+<p class=Code><span class=body>(2342323)/Portal 1 &#8211; stern @ 359<o:p></o:p></span></p>
+
+<p class=Code><span class=body>(2423523)/Portal 1 &#8211; engaging washers.<o:p></o:p></span></p>
+
+<p class=Code><span class=body>(2349932)/Portal 1 &#8211; washers completed
+(32s)<o:p></o:p></span></p>
+
+<p class=Code><span class=body>(3930283)/Portal 1 &#8211; Optical Transmission
+measured (+2%)<o:p></o:p></span></p>
+
+<p class=Code><span class=body>(4342344)/Portal 1 &#8211; Clean.<o:p></o:p></span></p>
+
+<p class=Code><span class=body>(3234222)/Cleaner Clutch engaged - - Translation
+started.<o:p></o:p></span></p>
+
+<p class=Code><span class=body>...<o:p></o:p></span></p>
+
+<p class=Code><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=BODY3><span class=body>I watched agog and aghast as the torrent of log
+messages scrolled up my screen.<span style="mso-spacerun: yes">&nbsp;
+</span>Jasper, with that big grin plastered on his face, stared intently at the
+screen watching the log messages go by.<span style="mso-spacerun: yes">&nbsp;
+</span>His lips were moving but I couldn’t hear what he was saying.<span
+style="mso-spacerun: yes">&nbsp; </span>I felt uncomfortably numb.<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>Finally the application terminated.<span
+style="mso-spacerun: yes">&nbsp; </span>Jasper leaned back and said:<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Yep, I counted 32.<span style="mso-spacerun:
+yes">&nbsp; </span>The tests all passed.”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>Avery and I both stared at Jasper as though
+he’s just confessed to murdering our mothers.<span style="mso-spacerun:
+yes">&nbsp; </span><o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Jasper... <span class=SpellE>frack</span>… <span
+class=SpellE>Frack</span>!<span style="mso-spacerun: yes">&nbsp; </span>What
+the <span class=SpellE><i style='mso-bidi-font-style:normal'>frack</i></span>
+was that?<span style="mso-spacerun: yes">&nbsp; </span>Holy Cecil, that was a
+complete Cluster <span class=SpellE>Frack</span>.<span style="mso-spacerun:
+yes">&nbsp; </span><span class=GramE>What…??”</span><o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>Jasper’s expression changed.<span
+style="mso-spacerun: yes">&nbsp; </span>He looked almost like he was
+gloating.<span style="mso-spacerun: yes">&nbsp; </span>Then Jerry and Jasmine
+both popped their head up above neighboring cubicle with big condescending grins
+on their faces.<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Oh no!” Avery said and slouched down in his
+seat.<span style="mso-spacerun: yes">&nbsp; </span><o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Oh YES you Hot Shots!<span
+style="mso-spacerun: yes">&nbsp; </span>We <i style='mso-bidi-font-style:normal'>got</i>
+you!”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=GramE><span class=body>The three of them walked away
+laughing and joking with each other.</span></span><span class=body><span
+style="mso-spacerun: yes">&nbsp; </span>Avery and I looked at each other, and
+then burst out laughing too.<span style="mso-spacerun: yes">&nbsp; </span>“They
+got us all right.”<span style="mso-spacerun: yes">&nbsp; </span><o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>“Jinx!”<o:p></o:p></span></p>
+
+<p class=BODY3><span class=body>***<o:p></o:p></span></p>
+
+<p class=BODY3 style='text-indent:0in'><span class=body>Later that day I
+brought up Mr. C’s rules and started to read.<o:p></o:p></span></p>
+
+<p class=BODY3 style='text-indent:0in'><span class=body><o:p>&nbsp;</o:p></span></p>
+
+<p class=BODY3 style='margin-top:3.0pt;margin-right:.5in;margin-bottom:0in;
+margin-left:.5in;margin-bottom:.0001pt;text-indent:0in'><span class=body><b
+style='mso-bidi-font-weight:normal'>E1: Build Requires More Than One Step<o:p></o:p></b></span></p>
+
+<p class=BODY3 style='margin-top:3.0pt;margin-right:.5in;margin-bottom:0in;
+margin-left:.5in;margin-bottom:.0001pt;text-indent:0in'><span class=body>Building
+a project should be a single trivial operation.<span style="mso-spacerun:
+yes">&nbsp; </span>You should not have to check many little pieces out of
+source code control.<span style="mso-spacerun: yes">&nbsp; </span>You should
+not need a sequence of arcane commands or context dependent scripts in order to
+build the individual elements.<span style="mso-spacerun: yes">&nbsp; </span>You
+should not have to search near and far for all the various little extra <span
+class=SpellE>JARs</span>, XML files, and other artifacts that the system
+requires.<span style="mso-spacerun: yes">&nbsp; </span>You <i style='mso-bidi-font-style:
+normal'>should</i> be able to check out the system with one simple command and
+then issue one other simple command to build it. <o:p></o:p></span></p>
+
+</div>
+
+</body>
+
+</html>
