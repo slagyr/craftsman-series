@@ -68,7 +68,3 @@ function articleNumber(article) {
   const match = article.file.match(/The Craftsman\s+(\d+)/);
   return match ? Number.parseInt(match[1], 10) : Number.NaN;
 }
-
-function articleHref(file) {
-  return `article.html?file=${encodeURIComponent(file)}`;
-}

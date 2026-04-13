@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>About | The Craftsman Series</title>
+    <meta name="description" content="About The Craftsman series by Robert C. Martin.">
+    <link rel="stylesheet" href="site.css">
+  </head>
+  <body>
+    <div class="site-shell article-page">
+      <header class="site-topbar">
+        <a class="site-brand" href="index.html">The Craftsman Series</a>
+        <button id="menu-button" class="menu-button" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open navigation menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </header>
+
+      <aside id="menu-overlay" class="menu-overlay" hidden></aside>
+      <aside id="site-menu" class="site-menu" hidden>
+        <div class="menu-header">
+          <div>
+            <p class="eyebrow">Navigate</p>
+            <h2>Episodes</h2>
+          </div>
+          <button id="menu-close" class="menu-close" type="button" aria-label="Close navigation menu">Close</button>
+        </div>
+        <a class="menu-about-link" href="about.html">About This Series</a>
+        <input id="menu-search" class="search-box" type="search" placeholder="Filter episodes">
+        <nav id="menu-list" class="menu-list" aria-label="Episode navigation"></nav>
+      </aside>
+
+      <header class="article-header">
+        <div class="hero-card">
+          <p class="eyebrow">About</p>
+          <h1>The Craftsman Series</h1>
+          <p class="lede">A long-form software engineering narrative by Robert C. Martin (Uncle Bob), published from February 2002 through November 2010.</p>
+        </div>
+      </header>
+
+      <main class="layout about-layout">
+        <section class="panel">
+          <h2>What It Is</h2>
+          <p>The series is written as a continuing story rather than a conventional textbook. It follows an apprentice programmer, the people around him, and the projects they work on together. Across the episodes, the narrative explores how professional developers think, how they learn, how they collaborate, and how they improve code under pressure.</p>
+        </section>
+
+        <section class="panel">
+          <h2>Major Arcs</h2>
+          <ul>
+            <li>early refactoring and unit testing lessons built around small programming exercises</li>
+            <li>networked and command-line tools developed incrementally from user needs outward</li>
+            <li>larger team-based project work where requirements, acceptance tests, architecture, and design pressure start to matter more</li>
+            <li>brown-bag discussions on language features, design tradeoffs, and programming style</li>
+            <li>later essays that connect the story back to broader Clean Code and software craftsmanship ideas</li>
+          </ul>
+        </section>
+
+        <section class="panel">
+          <h2>About This Edition</h2>
+          <p>These pages render the repository's Markdown files directly in the browser. The articles are normalized reading copies converted from the original documents. They are designed to be searchable and easy to read, but they are not exact layout facsimiles of the source files.</p>
+          <p><a class="button-secondary" href="index.html">Start with Episode 1</a></p>
+        </section>
+      </main>
+    </div>
+
+    <script src="articles.js"></script>
+    <script src="site.js"></script>
+    <script>
+      initMenu();
+    </script>
+  </body>
+</html>
