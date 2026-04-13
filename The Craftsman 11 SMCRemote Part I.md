@@ -5,7 +5,7 @@ Robert C. Martin
 
 *...Continued from last month. See > for last month's article, and the code we were working on. You can download that code from:*
 
-*www.objectmentor.com/resources/articles/CraftsmanCode/SDSocketServiceR5_DanglingThreads.zip*
+*[SDSocketServiceR5_DanglingThreads.zip](archive/SDSocketServerR5_DanglingThreads.zip)*
 
 My mind kept reviewing dangling threads as I absentmindedly ate my spaghetti. After lunch I returned to the lab to find Jerry waiting for me.
 
@@ -265,4 +265,4 @@ I left the lab and headed for the break room. I had always thought that `main()`
 
 *The code that Jerry and Alphonse finished can be retrieved from:*
 
-*www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_11_SMCRemote_1_WhatsMain.zip*
+*[Craftsman_11_SMCRemote_1_WhatsMain.zip](archive/Craftsman_11_SMCRemote_1_WhatsMain.zip)*

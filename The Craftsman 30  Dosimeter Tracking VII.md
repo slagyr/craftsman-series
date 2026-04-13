@@ -369,7 +369,7 @@ I looked over at Avery and Jean in the woodshed. It looked like a pretty heavy, 
 *The source code for this article can be found at:*
 
 ```
-www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_30_DosageTrackingSystem.zip
+[Craftsman_30_DosageTrackingSystem.zip](archive/Craftsman_30_DosageTrackingSystem.zip)
 ```
 
 September, 2004, "Swiss Wisdom": http://www.sdmagazine.com/documents/s=7764/sdm0409l

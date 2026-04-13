@@ -19,6 +19,8 @@ Jasmine fixed me with those deep green eyes of her and said: "It's about time, H
 
 She spoke while she drew the following picture on the wall. "OK, here is the finite state machine for the security gate up on the bridge."
 
+![Security gate finite state machine](files/48-1.png)
+
 Avery said: "Excuse me, but that's not really how it works, it..."
 
 "Yeah, yeah, I know." Jasmine replied testily, "But I don't have enough wall space or time to draw the complete FSM. Just bear with me. This *simplified* machine starts out in the LOCKED state. If you wave a valid badge at it, the gate opens and the FSM enters the UNLOCKED state. Once you pass through the gate, it automatically closes and locks and the FSM goes back to the LOCKED state.
@@ -28,6 +30,8 @@ Avery said: "Excuse me, but that's not really how it works, it..."
 Jasmine spun away from the wall to look at her audience. Her long black hair flared out and then fell perfectly around her shoulders. "Everybody got it?" She demanded rather than asked. We all nodded meekly.
 
 "OK," she continued, "now we all know that SMC would generate this using the State pattern. It would create this nice class hierarchy." And she drew the following:
+
+![State pattern class hierarchy](files/48-2.png)
 
 We were all familiar with this so we all nodded meekly as she swung around. She frowned playfully and then went on. "One problem has always been that we had to manage the instances of the `Locked` and `Unlocked`derivatives in `static` variables to prevent us from having to continuously create and destroy them. Another problem has been that we could not make the methods and variables of `GateFSM` private since they are manipulated by the derivatives of `State`."
 

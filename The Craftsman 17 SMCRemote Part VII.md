@@ -5,7 +5,7 @@ Robert C. Martin
 
 *...Continued from last month. You can download last month's code from:*
 
-*www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_16_SMCRemote_VI_Wham_Bam.zip*
+*[Craftsman_16_SMCRemote_VI_Wham_Bam.zip](archive/Craftsman_16_SMCRemote_VI_Wham_Bam.zip)*
 
 Dear Diary, my first week as an apprentice for Mr. C. is over. I've learned a lot in that week, and I've also made a real mess of things. Here's a recap: On Monday Jerry had me write a program to generate prime numbers. On Tuesday he had me write a program to generate prime factors. Wednesday was spent getting the SocketServer working. Thursday we started working on SMCRemoteClient, and I Micahed Jerry. I met Jasmine that afternoon in the Journeymen's lounge. Friday was the most embarrassing day of my life. I haven't seen Jasmine (Ms J) since we finished working Friday afternoon. What a roller coaster of a week. (Diary, just what is a roller coaster anyway?)
 
@@ -134,4 +134,4 @@ Jean put her knitting down into her basket and looked carefully at the code. "We
 
 *The code that Alphonse and Jasmine finished can be retrieved from:*
 
-*www.objectmentor.com/resources/articles/CraftsmanCode/ Craftsman_17_Call_the_Guards.zip*
+*[Craftsman_17_Call_the_Guards.zip](archive/Craftsman_17_Call_the_Guards.zip)*

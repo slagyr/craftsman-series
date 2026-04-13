@@ -305,8 +305,6 @@ Jasper looked up at me and said: "I need a break. Let's go watch the starbow for
 
 *The code for this article can be located at:*
 
-```
-http://www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_40_DosageTrackingSystem.zip
-```
+[Craftsman_40_DosageTrackingSystem.zip](archive/Craftsman_40_DosageTrackingSystem.zip)
 
 *To be continued...*

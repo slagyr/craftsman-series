@@ -5,7 +5,7 @@ Robert C. Martin
 
 *...Continued from last month. See > for last month's article, and the code we were working on. You can download that code from:*
 
-*www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_15_SMCRemote_V_EssArePee.zip p*
+*[Craftsman_15_SMCRemote_V_EssArePee.zip](archive/Craftsman_15_SMCRemote_V_EssArePee.zip)*
 
 Jasmine just stood there staring daggers at me. I tried to lower my head, but I couldn't break contact with her eyes. After about half a minute she rolled those eyes, and stared at the ceiling, tapping her foot. Finally, she shook her head, squared her shoulders and strode over to me. She had an odd, sad, look on her face.
 
@@ -306,4 +306,4 @@ Egad! When was she going to complain about something? Where had Jasmine gone?
 
 *The code that Alphonse and Jasmine finished can be retrieved from:*
 
-*www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_16_SMCRemote_VI_Wham_Bam.zip*
+*[Craftsman_16_SMCRemote_VI_Wham_Bam.zip](archive/Craftsman_16_SMCRemote_VI_Wham_Bam.zip)*

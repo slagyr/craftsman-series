@@ -5,7 +5,7 @@ Robert C. Martin
 
 *...Continued from last month. You can download last month's code from:*
 
-*www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_19_Tolerance.zip*
+*[Craftsman_19_Tolerance.zip](archive/Craftsman_19_Tolerance.zip)*
 
 I returned to the lab after lunch, but Jean was not there. There was neither note, nor email from her; and her knitting basket was nowhere to be seen. After waiting a few minutes, I decided to sit down and continue working on the `SCMRemoteServer`.
 
@@ -192,4 +192,4 @@ A few minutes later, Jean walked in. "Hello Alphonse dear. I'm sorry I'm late, b
 
 *The code that Alphonse and Jean finished can be retrieved from:*
 
-*www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_20_Backslide.zip*
+*[Craftsman_20_Backslide.zip](archive/Craftsman_20_Backslide.zip)*

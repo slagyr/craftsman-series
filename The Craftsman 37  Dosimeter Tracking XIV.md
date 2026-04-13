@@ -159,9 +159,7 @@ Jasper smacked his hands together and started rubbing them. "OK Fonsie, my young
 
 *The code for this article can be located at:*
 
-```
- HYPERLINK "http://www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_37_DosageTrackingSystem.zip" http://www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_37_DosageTrackingSystem.zip
-```
+[Craftsman_37_DosageTrackingSystem.zip](archive/Craftsman_37_DosageTrackingSystem.zip)
 
 *To be continued...*
 

@@ -325,8 +325,6 @@ public class MockConsole implements IConsole  {
 
 *The code for this article can be located at:*
 
-```
- HYPERLINK "http://www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_39_DosageTrackingSystem.zip" http://www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_39_DosageTrackingSystem.zip
-```
+[Craftsman_39_DosageTrackingSystem.zip](archive/Craftsman_39_DosageTrackingSystem.zip)
 
 *To be continued...*

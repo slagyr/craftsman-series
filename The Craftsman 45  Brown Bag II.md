@@ -202,7 +202,7 @@ Avery paused for a second and then said: "It's a good technique, but it's not pe
 
 "Yeah. `Suit` depends upon `SuitVisitor`, which depends upon both derivatives of `Suit`. And of course the derivatives of `Suit` depend upon `Suit`." Avery drew a little picture on his sketch pad while he talked.
 
-EMBED Visio.Drawing.5
+![Suit visitor dependency cycle diagram](files/45-1.png)
 
 I looked at this diagram for a few seconds and then said: "OK, I see the cycle. What I don't see is why the cycle is a problem."
 

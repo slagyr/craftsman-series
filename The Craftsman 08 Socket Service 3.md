@@ -5,7 +5,7 @@ Robert C. Martin
 
 *...Continued from last month. See > for last month's article, and the code we were working on. You can download that code from:*
 
-*www.objectmentor.com/resources/articles/CraftsmanCode/SDSocketServerR2_ManyConnections.zip*
+*[SDSocketServerR2_ManyConnections](archive/SocketServiceArchive/SDSocketServerR2_ManyConnections/)*
 
 ---------------------------------------------------
 
@@ -265,4 +265,4 @@ My elbow still twinged, so I was glad to see that the turbo was repaired. On the
 
 *The code that Jerry and Alphonse finished can be retrieved from:*
 
-*www.objectmentor.com/resources/articles/CraftsmanCode/SDSocketServiceR3_SendAndReceive.zip*
+*[SDSocketServiceR3_SendAndReceive.zip](archive/SocketServiceArchive/SDSocketServiceR3_SendAndRecieve.zip)*

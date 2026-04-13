@@ -5,7 +5,7 @@ Robert C. Martin
 
 *...Continued from last month. You can download last month's code from:*
 
-*www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_18_Slow_And_Steady.zip*
+*[Craftsman_18_Slow_And_Steady.zip](archive/Craftsman_18_Slow_And_Steady.zip)*
 
 Jean took me down the turbo to the journeyman's lounge at .36g in the gamma arm. She said the low-g did wonders for her joints. When we got there I noticed Jerry, Jasmine, and a few other journeymen clustered at a table. Jean noticed them too and started walking over to them. I followed reluctantly.
 
@@ -172,6 +172,6 @@ If nothing else, this "gig" with Jean was going to teach me a new kind of tolera
 
 *The code that Alphonse and Jean finished can be retrieved from:*
 
-*www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_19_Tolerance.zip*
+*[Craftsman_19_Tolerance.zip](archive/Craftsman_19_Tolerance.zip)*
 
 You can get this document from: http://www.objectmentor.com/resources/downloads/bin/smcJava.zip

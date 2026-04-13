@@ -5,7 +5,7 @@ Robert C. Martin
 
 *...Continued from last month. You can download last month's code from:*
 
-*w www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_21_Patchwork.zip*
+*[Craftsman_21_Patchwork.zip](archive/Craftsman_21_Patchwork.zip)*
 
 Jean invited me join her in the journeyman's lounge, but I needed to clear my head. So I excused myself and went out to an observation bubble. The starbow was a brilliant stripe of color painted across the heavens. It was a concentric with our ship, and so always appeared below us whenever we looked down through the transparent floor of the bubble. The ship's rotation made the starbow look like a river of colored stars slowly streaming under the floor.
 
@@ -305,4 +305,4 @@ public class FileCarrier implements Serializable {
 
 *The code that Alphonse and Avery finished can be retrieved from:*
 
-*w www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_22_BugEye.zip*
+*[Craftsman_22_BugEye.zip](archive/Craftsman_22_BugEye.zip)*

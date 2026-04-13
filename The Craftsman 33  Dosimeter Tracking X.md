@@ -276,5 +276,5 @@ Avery and I looked at each other and smiled. I felt pretty good about the cleanu
 *The source code for this article can be found at:*
 
 ```
-www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_32_DosageTrackingSystem.zip
+[Craftsman_32_DosageTrackingSystem.zip](archive/Craftsman_32_DosageTrackingSystem.zip)
 ```

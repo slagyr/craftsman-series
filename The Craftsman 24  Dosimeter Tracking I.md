@@ -5,7 +5,7 @@ Robert C. Martin
 
 *...Continued from last month. You can download last month's code from:*
 
-*www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_23_Raggedy.zip*
+*[Craftsman_23_Raggedy.zip](archive/Craftsman_23_Raggedy.zip)*
 
 *20 Feb 2002,18:00*
 

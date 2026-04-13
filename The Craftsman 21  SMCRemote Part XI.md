@@ -5,7 +5,7 @@ Robert C. Martin
 
 *...Continued from last month. You can download last month's code from:*
 
-*www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_20_Backslide.zip*
+*[Craftsman_20_Backslide.zip](archive/Craftsman_20_Backslide.zip)*
 
 "Well now, Alphonse Dear, where do you think we should run the compile?"
 
@@ -250,4 +250,4 @@ Jean had sewn 16 squares together into a 4X4 grid.
 
 *The code that Alphonse and Jean finished can be retrieved from:*
 
-*www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_21_Patchwork.zip*
+*[Craftsman_21_Patchwork.zip](archive/Craftsman_21_Patchwork.zip)*

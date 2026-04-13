@@ -258,5 +258,5 @@ So we left the lab for the day...and what a day it had been!
 *The source code for this article can be found at:*
 
 ```
-www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_35_DosageTrackingSystem.zip
+[Craftsman_35_DosageTrackingSystem.zip](archive/Craftsman_35_DosageTrackingSystem.zip)
 ```

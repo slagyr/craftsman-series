@@ -5,7 +5,7 @@ Robert C. Martin
 
 *...Continued from last month. You can download last month's code from:*
 
-*www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_22_BugEye.zip*
+*[Craftsman_22_BugEye.zip](archive/Craftsman_22_BugEye.zip)*
 
 *20 Feb 2002, 14:00*
 
@@ -320,4 +320,4 @@ Together we worked through the new server code and split it up into a batch of s
 
 *The code that Alphonse and Avery finished can be retrieved from:*
 
-*www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_23_Raggedy.zip*
+*[Craftsman_23_Raggedy.zip](archive/Craftsman_23_Raggedy.zip)*

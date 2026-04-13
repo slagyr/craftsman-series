@@ -19,7 +19,7 @@ When I reported to Jerry this morning he said:
 
 Jerry turned to a sketch-wall and began to talk and draw at the same time.
 
-EMBED Visio.Drawing.6
+![Socket Service overview diagram](files/6-1.png)
 
 "We're going to write two programs. One called SMCR Client, and the other called SMCR Server. The user who wants to compile a finite state machine will invoke SMCR Client with the name of the file to be compiled. SMCR Client will send that file to a special computer where SMCR Server is running. SMCR Server will run the SMC compiler and then send the resulting compiled files back to SMCR Client. SMCR Client will then write them in the user's directory. As far as the user is concerned, it'll be no different than using SMC directly."
 
@@ -29,7 +29,7 @@ EMBED Visio.Drawing.6
 
 So we sat down at a workstation and, as usual, got ready to write our first unit test. Jerry thought for a minute and then went back to the sketch-wall and drew the following diagram.
 
-EMBED Visio.Drawing.6
+![SocketService structure diagram](files/6-2.png)
 
 "Here's what I have in mind for SMCR Server." He said. "We'll put the socket management code in a class called `SocketService`. This class will catch, and manage, connections coming from the outside. When `serve(port)` is called, it'll create the service socket with the given port number and start accepting connections. Whenever a connection comes in it will create a new thread and pass control to the `serve(socket)` method of the `SocketServer` interface. That way we separate socket management code from the code that performs the services we desire."
 
@@ -218,7 +218,7 @@ I repeatedly pushed the button. In ten attempts I saw three failures. Was I losi
 
 My brain was already hurting, but I started piecing things together. I went to the sketch-wall and began to draw.
 
-EMBED Visio.Drawing.6
+![Socket race condition diagram](files/6-3.png)
 
 When I had worked it out, I recited the scenario to Jerry. "`TestSocketServer` sent the `serve(999)` message to `SocketService`. `SocketService` created the `ServerSocket` and the `serverThread` and then returned. `TestSocketServer` then called `connect` which created the client socket. The two sockets must have found each other because we didn't get a '`could not connect`' error. The `ServerSocket` must have accepted the connection, but perhaps `serverThread` hadn't had a chance to run yet. And while `serverThread` was blocked, the `connect` function closed the client socket. Then `TestSocketServer` sent the close message to the `SocketService`, which closed the `serverSocket`. By the time the `serverThread` got a chance to call the `accept` function, the server socket was closed."
 

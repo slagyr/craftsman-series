@@ -5,7 +5,7 @@ Robert C. Martin
 
 *...Continued from last month. See > for last month's article, and the code we were working on. You can download that code from:*
 
-*www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_14_SMCRemote_IV_Transactions.zip*
+*[Craftsman_14_SMCRemote_IV_Transactions.zip](archive/Craftsman_14_SMCRemote_IV_Transactions.zip)*
 
 "OK Hotshot, let's see what you've got."
 
@@ -45,7 +45,7 @@ But *why* were we sending a file? We were sending it to the SMCRemoteServer to b
 
 I was thinking hard, but some part of my brain continued to recite the calming mantra. Almost as if in a trance, I walked to the wall and drew the following diagram:
 
-EMBED Visio.Drawing.6
+![SMCRemote transaction diagram](files/14-1.png)
 
 I looked over at Jasmine, and noticed a smile flicker across her severe expression. "I like the way you are thinking Hotshot, but don't stop there."
 
@@ -251,4 +251,4 @@ One thing I was sure of, I *really* hated being called Hotshot. I sighed again, 
 
 *The code that Jerry and Alphonse finished can be retrieved from:*
 
-*www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_13_SMCRemote_III_Objects.zip*
+*[Craftsman_13_SMCRemote_III_Objects.zip](archive/Craftsman_13_SMCRemote_III_Objects.zip)*

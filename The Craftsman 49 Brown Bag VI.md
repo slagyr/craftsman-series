@@ -45,6 +45,8 @@ Adelaide rapped for attention, and the crowd settled down. She was clearly nervo
 
 "So we propose to use the A`BSTRACT` F`ACTORY` pattern to break this dependency and insulate the Compiler class from any new derivatives of the CodeGenerator."
 
+![Original compiler dependency diagram](files/49-1.png)
+
 It was clear that Adelaide had rehearsed this pitch a few times. She was a bit too smooth, and going a bit too fast. Jerry must have noticed the same thing because as Adelaide turned around to erase the diagram he stopped her with an obvious question."
 
 "Adelaide, why is it a problem that Compiler knows about JavaGenerator and C++Generator? It seems to me that those dependencies are perfectly appropriate. After all, the Compiler class just calls new on those classes and then uses them through the CodeGenerator interface, doesn't it?"
@@ -74,6 +76,8 @@ Jasmine sighed and her shoulders drooped a bit. Then she said: "OK, you're right
 Jasmine sat down and I caught a glimpse of her rolling here eyes at Jerry.
 
 Adelaide stood back up, waved at the wall to erase the last diagram, and then drew the following:
+
+![Abstract Factory plug-in architecture diagram](files/49-2.png)
 
 Then she started her practiced banter again. "This is our proposed solution. It is classic example of the A`BSTRACT` F`ACTORY` pattern. Notice the GeneratorFactory interface. The Compiler class calls one of the two makeXXXGenerator methods of this interface. In response the RealGeneratorFactory creates the appropriate instance and returns it to the Compiler. Now notice the red line..."
 
@@ -120,6 +124,8 @@ Jared stood up and said: "OK, that's fair enough, but what if you did want to pr
 There was silence in the room for a few seconds, and then I stood up.
 
 "I've been thinking about this for the last few days because we have a similar problem in the Dtrack project. We don't want to recompile our core engine every time a new kind of spacesuit is created." I waved at the wall to erase it, and then drew the following:
+
+![Generalized factory diagram](files/49-3.png)
 
 "And just in case Jean come back in I'll write the code."
 

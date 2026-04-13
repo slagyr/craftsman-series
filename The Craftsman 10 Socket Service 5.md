@@ -5,7 +5,7 @@ Robert C. Martin
 
 *...Continued from last month. See > for last month's article, and the code we were working on. You can download that code from:*
 
-*www.objectmentor.com/resources/articles/CraftsmanCode/SDSocketServiceR4_TestMultiThreaded.zip*
+*[SDSocketServiceR4_TestMultiThreaded source](archive/SocketService/)*
 
 I have a standing monthly reservation for breakfast on the observation deck. It's a bit of an extravagance on an apprentice's credit, but I love eating under the starbow.
 
@@ -235,4 +235,4 @@ Jerry looked sternly at me and said: "Then it's time you started learning about 
 
 *The code that Jerry and Alphonse finished can be retrieved from:*
 
-*www.objectmentor.com/resources/articles/CraftsmanCode/SDSocketServiceR4_TestMultiThreaded.zip*
+*[SDSocketServiceR4_TestMultiThreaded source](archive/SocketService/)*

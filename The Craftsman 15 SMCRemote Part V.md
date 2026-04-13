@@ -5,7 +5,7 @@ Robert C. Martin
 
 *...Continued from last month. See > for last month's article, and the code we were working on. You can download that code from:*
 
-*www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_14_SMCRemote_IV_Transactions.zip*
+*[Craftsman_14_SMCRemote_IV_Transactions.zip](archive/Craftsman_14_SMCRemote_IV_Transactions.zip)*
 
 The last thing I saw, before the door slid shut, was Jasmine's long black hair swaying and bouncing to the rhythm of her purposeful stride. As her saturating presence drained from the room, I felt my lungs release the breath I hadn't known they were holding. My eyes lost their focus, and for several quasi-conscious minutes I just sat and blindly gazed at the blur that was the door.
 
@@ -283,4 +283,4 @@ I saw Jasmine standing in the doorway. Her eyes were cold steel.
 
 *The code that Alphonse and Alphonse finished can be retrieved from:*
 
-*www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_15_SMCRemote_V_EssArePee.zip*
+*[Craftsman_15_SMCRemote_V_EssArePee.zip](archive/Craftsman_15_SMCRemote_V_EssArePee.zip)*

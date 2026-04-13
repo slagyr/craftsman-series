@@ -288,5 +288,5 @@ And with that change, the unit tests, and the FitNesse page all passed.
 *The source code for this article can be found at:*
 
 ```
-www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_34_DosageTrackingSystem.zip
+[Craftsman_34_DosageTrackingSystem.zip](archive/Craftsman_34_DosageTrackingSystem.zip)
 ```

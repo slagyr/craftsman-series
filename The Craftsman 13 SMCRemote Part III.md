@@ -5,7 +5,7 @@ Robert C. Martin
 
 *...Continued from last month. See > for last month's article, and the code we were working on. You can download that code from:*
 
-*www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_12_SMCRemote_I1_ThreeUglyLines.zip*
+*[Craftsman_12_SMCRemote_I1_ThreeUglyLines.zip](archive/Craftsman_12_SMC_II_ThreeUglyLines.zip)*
 
 At our current `τ` of .045 *Destination* was still many lifetimes in the future. Each generation since *Departure* felt those lifetimes stretch inexhaustibly before them. Sometimes the feeling was depressing -- but not today. Today I used a bit of that inexhaustible time to taunt Jerry.
 
@@ -163,4 +163,4 @@ I was beginning to understand. At least I wasn't in any kind of trouble...
 
 *The code that Jerry and Alphonse finished can be retrieved from:*
 
-*www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_13_SMCRemote_III_Objects.zip*
+*[Craftsman_13_SMCRemote_III_Objects.zip](archive/Craftsman_13_SMCRemote_III_Objects.zip)*

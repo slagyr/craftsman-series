@@ -123,8 +123,6 @@ Didn't I?
 
 *The code for this article can be located at:*
 
-```
- HYPERLINK "http://www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_38_DosageTrackingSystem.zip" http://www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_38_DosageTrackingSystem.zip
-```
+[Craftsman_38_DosageTrackingSystem.zip](archive/Craftsman_38_DosageTrackingSystem.zip)
 
 *To be continued...*

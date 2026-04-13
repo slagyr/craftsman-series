@@ -5,7 +5,7 @@ Robert C. Martin
 
 *...Continued from last month. You can download last month's code from:*
 
-*www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_17_Call_the_Guards.zip*
+*[Craftsman_17_Call_the_Guards.zip](archive/Craftsman_17_Call_the_Guards.zip)*
 
 "All right then dear, I think it's time we started to work on the server part of this application, don't you? After all the client portion seems to be working as well as we can tell, and a client without a server just seems so lonely. Don't you agree?"
 
@@ -127,7 +127,7 @@ She stopped for a moment as if composing her thoughts. Then she looked at me wit
 
 *The code that Alphonse and Jean finished can be retrieved from:*
 
-*www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_17_Slow_And_Steady.zip*
+*[Craftsman_17_Slow_And_Steady.zip](archive/Craftsman_18_Slow_And_Steady.zip)*
 
 ```
  You can download smc.jar from: http://www.objectmentor.com/resources/downloads/smc_java

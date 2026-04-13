@@ -5,7 +5,7 @@ Robert C. Martin
 
 *...Continued from last month. See > for last month's article, and the code we were working on. You can download that code from:*
 
-*www.objectmentor.com/resources/articles/CraftsmanCode/SDSocketServiceR3_SendAndReceive.zip*
+*[SDSocketServiceR3_SendAndReceive.zip](archive/SocketServiceArchive/SDSocketServiceR3_SendAndRecieve.zip)*
 
 Alphonse awoke to the gentle bleating of his PDA. Shaking the sleep from his brain he switched off the sleeping field and climbed into the shower. As the hypersonic spray scrubbed and massaged him he allowed his mind to wander to the events of the previous day.
 
@@ -180,4 +180,4 @@ Jerry just stared at the screen and said: "I'm not sure. Let's try a few experim
 
 *The code that Jerry and Alphonse finished can be retrieved from:*
 
-*www.objectmentor.com/resources/articles/CraftsmanCode/SDSocketServiceR3_SendAndReceive.zip*
+*[SDSocketServiceR3_SendAndReceive.zip](archive/SocketServiceArchive/SDSocketServiceR3_SendAndRecieve.zip)*

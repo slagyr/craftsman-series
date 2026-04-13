@@ -200,8 +200,6 @@ One of the unit tests failed, and every acceptance test failed.
 
 *The code for this article can be located at:*
 
-```
-http://www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_40_DosageTrackingSystem.zip
-```
+[Craftsman_40_DosageTrackingSystem.zip](archive/Craftsman_40_DosageTrackingSystem.zip)
 
 *To be continued...*

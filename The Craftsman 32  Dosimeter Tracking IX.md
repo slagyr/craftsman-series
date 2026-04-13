@@ -282,5 +282,5 @@ I was a little worried about that. I didn't want to get Jerry mad by changing th
 *The source code for this article can be found at:*
 
 ```
-www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_32_DosageTrackingSystem.zip
+[Craftsman_32_DosageTrackingSystem.zip](archive/Craftsman_32_DosageTrackingSystem.zip)
 ```

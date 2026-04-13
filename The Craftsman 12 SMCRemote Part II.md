@@ -5,7 +5,7 @@ Robert C. Martin
 
 *...Continued from last month. See > for last month's article, and the code we were working on. You can download that code from:*
 
-*www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_11_SMCRemote_1_WhatsMain.zip*
+*[Craftsman_11_SMCRemote_1_WhatsMain.zip](archive/Craftsman_11_SMCRemote_1_WhatsMain.zip)*
 
 I spent my break up in the observation deck. We had a little bit of excitement as the ice shield passed through a thick patch of particles that made the ice flicker with blue flashes and transient patterns all over it's surface.
 
@@ -299,4 +299,4 @@ Jerry looked at me skeptically. He sat up as straight as he could and gave me a 
 
 *The code that Jerry and Alphonse finished can be retrieved from:*
 
-*www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_12_SMCRemote_I1_ThreeUglyLines.zip*
+*[Craftsman_12_SMCRemote_I1_ThreeUglyLines.zip](archive/Craftsman_12_SMC_II_ThreeUglyLines.zip)*
