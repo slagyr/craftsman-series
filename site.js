@@ -143,7 +143,7 @@ function renderNavEntries(navNode, entries) {
 
   entries.forEach((entry) => {
     const link = document.createElement("a");
-    link.className = "button-secondary";
+    link.className = `button-secondary ${entry.kind || ""}`.trim();
     link.href = entry.href;
     link.textContent = entry.label;
     navNode.appendChild(link);
@@ -157,15 +157,13 @@ function renderReaderNav(index) {
   const bottomEntries = [];
 
   if (index > 0) {
-    const previousEntry = { label: "Previous Episode", href: articleHref(ARTICLES[index - 1].file) };
+    const previousEntry = { label: "Previous Episode", href: articleHref(ARTICLES[index - 1].file), kind: "nav-link-prev" };
     topEntries.push(previousEntry);
     bottomEntries.push(previousEntry);
   }
 
-  topEntries.push({ label: "About", href: "about.html" });
-
   if (index < ARTICLES.length - 1) {
-    const nextEntry = { label: "Next Episode", href: articleHref(ARTICLES[index + 1].file) };
+    const nextEntry = { label: "Next Episode", href: articleHref(ARTICLES[index + 1].file), kind: "nav-link-next" };
     topEntries.push(nextEntry);
     bottomEntries.push(nextEntry);
   }

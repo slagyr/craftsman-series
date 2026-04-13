@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>The Craftsman Series</title>
     <meta name="description" content="Read The Craftsman series online.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="site.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css">
   </head>
@@ -35,21 +38,22 @@
 
       <header class="article-header">
         <div class="hero-card">
-          <p class="eyebrow">Robert C. Martin • 2002-2010</p>
-          <h1 id="page-title">Loading article...</h1>
-          <p id="page-meta" class="article-meta">Fetching Markdown from this repository.</p>
           <figure id="hero-media" class="hero-media" hidden>
             <img id="hero-image" class="hero-image" alt="">
           </figure>
-          <div id="reader-nav-top" class="reader-nav"></div>
+          <h1 id="page-title">Loading article...</h1>
+          <p class="eyebrow">Robert C. Martin • 2002-2010</p>
+          <p id="page-meta" class="article-meta">Fetching Markdown from this repository.</p>
         </div>
       </header>
 
-      <main class="panel article-frame">
-        <div id="content" class="markdown-body">
+      <div id="reader-nav-top" class="reader-nav article-column"></div>
+
+      <main class="article-frame">
+        <div id="content" class="markdown-body article-column">
           <div class="status">Loading...</div>
         </div>
-        <div id="reader-nav-bottom" class="reader-nav reader-nav-bottom"></div>
+        <div id="reader-nav-bottom" class="reader-nav reader-nav-bottom article-column"></div>
       </main>
     </div>
 

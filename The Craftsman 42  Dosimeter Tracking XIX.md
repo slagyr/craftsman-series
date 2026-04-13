@@ -171,9 +171,7 @@ I thought for a bit and said: "No, I can't think of any other alternate tests."
 
 *The code for this article can be located at:*
 
-```
-http://www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_42_DosageTrackingSystem.zip
-```
+[Local DosageTrackingSystem source tree](archive/DosageTrackingSystem/)
 
 *To be continued...*
 

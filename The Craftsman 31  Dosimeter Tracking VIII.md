@@ -230,8 +230,6 @@ It was Avery. Jerry and I quickly turned at the sound of his voice. Both Avery a
 
 *The source code for this article can be found at:*
 
-```
 [Craftsman_31_DosageTrackingSystem.zip](archive/DosageTrackingSystem/Craftsman_31_DosageTrackingSystem.zip)
-```
 
 *Patterns of Enterprise Application Architecture*, Martin Fowler, Addison Wesley, p. 144

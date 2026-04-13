@@ -206,8 +206,6 @@ Avery snapped around, and his face went from anger to dismay. Jean was no longer
 
 *The source code for this article can be found at:*
 
-```
 [Craftsman_29_DosageTrackingSystem.zip](archive/Craftsman%2029%20DosageTrackingSystem.zip)
-```
 
 www.fitnesse.org

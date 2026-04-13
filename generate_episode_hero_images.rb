@@ -12,6 +12,7 @@ class XaiImageGenerator
   OUTPUT_DIR = File.expand_path('files/heroes', __dir__)
   CHARACTER_SHEET_BASENAME = 'characters-cast'.freeze
   MAX_REFERENCES = 3
+  MAX_HERO_ATTEMPTS = 4
 
   GLOBAL_STYLE = <<~PROMPT.strip
     Illustrated mid-century retro-futurist pulp science-fiction poster art inspired by the bold theatrical energy of classic 1950s space adventure posters, warm painterly brushwork, dramatic composition, heroic silhouettes, luminous machinery, recognizable recurring characters, humane expressions, believable body language, brass-and-amber palette with teal and crimson accents, no text, no caption, no logo, no watermark.
@@ -87,7 +88,7 @@ class XaiImageGenerator
     '01' => { references: %i[alphonse jerry], focus: 'Alphonse facing his first brutal code review over a prime-number program at a glowing workstation', emotion: 'nervous first-day vulnerability and stern mentorship', composition: 'tight confrontation in a compact retro-futurist lab' },
     '02' => { references: %i[alphonse jerry], focus: 'one clumsy machine split into three clean brass modules as a metaphor for extracted methods', emotion: 'embarrassed learning turning into clarity', composition: 'shared-console mentorship scene with modular machinery' },
     '03' => { references: %i[alphonse jerry], focus: 'a careful whole-program read-through and the birth of shared code ownership', emotion: 'quiet concentration and growing trust', composition: 'two engineers studying one central screen' },
-    '04' => { references: %i[alphonse], focus: 'a composite number breaking apart into prime factors like machined components', emotion: 'curious problem solving', composition: 'exploded-number mechanical metaphor' },
+    '04' => { references: %i[alphonse jerry], focus: 'Alphonse and Jerry studying a composite number breaking apart into prime factors like machined components', emotion: 'curious problem solving under close mentorship', composition: 'two-character analytical scene built around an exploded-number mechanical metaphor' },
     '05' => { references: %i[alphonse jerry], focus: 'Jerry deleting working code to teach detachment from code', emotion: 'anger, shock, and humility', composition: 'dramatic erasure at a glowing monitor' },
     '06' => { references: [], focus: 'a literal industrial socket and cable beside a newborn server console', emotion: 'experimental curiosity and invention', composition: 'heroic close-up of plug meeting socket in brass machinery' },
     '07' => { references: [], focus: 'two racing signals colliding at a socket to suggest a race condition', emotion: 'tension and precise engineering', composition: 'dynamic technical metaphor with luminous signal trails' },
@@ -170,12 +171,7 @@ class XaiImageGenerator
       if requested_set.nil? || requested_set.include?(episode[:number])
         puts "Generating episode #{episode[:number]} hero image..."
         reference_paths = episode.fetch(:references).map { |key| references.fetch(key) }
-        if reference_paths.empty?
-          image_bytes = generate_image(episode[:prompt])
-        else
-          image_bytes = edit_from_references(episode[:prompt], reference_paths)
-        end
-        hero_path = write_detected_image(File.join(OUTPUT_DIR, "#{episode[:number]}-hero"), image_bytes)
+        hero_path = render_hero_image(episode[:number], episode[:prompt], reference_paths)
         puts "Saved #{hero_path}"
       else
         raise "Missing existing hero image for episode #{episode[:number]}" unless hero_path
@@ -297,6 +293,43 @@ class XaiImageGenerator
     Dir[File.join(OUTPUT_DIR, "#{number}-hero.*")].first
   end
 
+  def render_hero_image(number, prompt, reference_paths)
+    base_path = File.join(OUTPUT_DIR, "#{number}-hero")
+
+    MAX_HERO_ATTEMPTS.times do |attempt|
+      image_bytes = render_candidate_image(prompt, reference_paths)
+
+      path = write_detected_image(base_path, image_bytes)
+      width, height = image_dimensions(path)
+      return path if width >= height
+
+      warn "Episode #{number} returned portrait image #{width}x#{height}; retrying (#{attempt + 1}/#{MAX_HERO_ATTEMPTS})"
+    end
+
+    if reference_paths.length == 1
+      warn "Episode #{number} kept returning portrait; falling back to reference-free landscape generation"
+
+      MAX_HERO_ATTEMPTS.times do |attempt|
+        image_bytes = generate_image(prompt)
+        path = write_detected_image(base_path, image_bytes)
+        width, height = image_dimensions(path)
+        return path if width >= height
+
+        warn "Episode #{number} fallback also returned portrait #{width}x#{height}; retrying (#{attempt + 1}/#{MAX_HERO_ATTEMPTS})"
+      end
+    end
+
+    raise "Unable to get a landscape hero image for episode #{number} after #{MAX_HERO_ATTEMPTS} attempts"
+  end
+
+  def render_candidate_image(prompt, reference_paths)
+    if reference_paths.empty?
+      generate_image(prompt)
+    else
+      edit_from_references(prompt, reference_paths)
+    end
+  end
+
   def generate_image(prompt, aspect_ratio: '16:9')
     payload = {
       model: MODEL,
@@ -368,6 +401,35 @@ class XaiImageGenerator
     full_path = "#{base_path}.#{extension}"
     File.binwrite(full_path, image_bytes)
     full_path
+  end
+
+  def image_dimensions(path)
+    bytes = File.binread(path)
+
+    if bytes.start_with?("\x89PNG".b)
+      return bytes[16, 8].unpack('NN')
+    end
+
+    if bytes.start_with?("\xFF\xD8\xFF".b)
+      index = 2
+      while index < bytes.bytesize
+        break unless bytes.getbyte(index) == 0xFF
+
+        marker = bytes.getbyte(index + 1)
+        index += 2
+        next if marker == 0xD8 || marker == 0xD9
+
+        length = bytes[index, 2].unpack1('n')
+        if [0xC0, 0xC1, 0xC2, 0xC3, 0xC5, 0xC6, 0xC7, 0xC9, 0xCA, 0xCB, 0xCD, 0xCE, 0xCF].include?(marker)
+          height, width = bytes[index + 3, 4].unpack('nn')
+          return [width, height]
+        end
+
+        index += length
+      end
+    end
+
+    [0, 0]
   end
 
   def write_hero_manifest(manifest)

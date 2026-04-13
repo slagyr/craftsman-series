@@ -232,9 +232,7 @@ Jean waddled off, while Avery and I suppressed giggles.
 
 *The code for this article can be located at:*
 
-```
-http://www.objectmentor.com/resources/articles/CraftsmanCode/Craftsman_43_DosageTrackingSystem.zip
-```
+[Local DosageTrackingSystem source tree](archive/DosageTrackingSystem/)
 
 *To be continued...*
 
