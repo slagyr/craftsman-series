@@ -114,25 +114,12 @@ function highlightCodeBlocks() {
   });
 }
 
-function renderReaderNav(index) {
-  const navNode = document.getElementById("reader-nav");
+function renderNavEntries(navNode, entries) {
   if (!navNode) {
     return;
   }
 
   navNode.innerHTML = "";
-  const entries = [];
-
-  if (index > 0) {
-    entries.push({ label: "Previous Episode", href: articleHref(ARTICLES[index - 1].file) });
-  }
-
-  entries.push({ label: "About", href: "about.html" });
-  entries.push({ label: "Open Markdown Source", href: ARTICLES[index].file });
-
-  if (index < ARTICLES.length - 1) {
-    entries.push({ label: "Next Episode", href: articleHref(ARTICLES[index + 1].file) });
-  }
 
   entries.forEach((entry) => {
     const link = document.createElement("a");
@@ -141,6 +128,30 @@ function renderReaderNav(index) {
     link.textContent = entry.label;
     navNode.appendChild(link);
   });
+}
+
+function renderReaderNav(index) {
+  const topNavNode = document.getElementById("reader-nav-top");
+  const bottomNavNode = document.getElementById("reader-nav-bottom");
+  const topEntries = [];
+  const bottomEntries = [];
+
+  if (index > 0) {
+    const previousEntry = { label: "Previous Episode", href: articleHref(ARTICLES[index - 1].file) };
+    topEntries.push(previousEntry);
+    bottomEntries.push(previousEntry);
+  }
+
+  topEntries.push({ label: "About", href: "about.html" });
+
+  if (index < ARTICLES.length - 1) {
+    const nextEntry = { label: "Next Episode", href: articleHref(ARTICLES[index + 1].file) };
+    topEntries.push(nextEntry);
+    bottomEntries.push(nextEntry);
+  }
+
+  renderNavEntries(topNavNode, topEntries);
+  renderNavEntries(bottomNavNode, bottomEntries);
 }
 
 async function initReaderPage() {
